@@ -267,7 +267,7 @@ func (o *ARVRPositionalTracker) GetPosition() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ARVRPositionalTracker) GetRumble() gdnative.Float {
+func (o *ARVRPositionalTracker) GetRumble() gdnative.Real {
 	//log.Println("Calling ARVRPositionalTracker.GetRumble()")
 
 	// Build out the method's arguments
@@ -278,11 +278,11 @@ func (o *ARVRPositionalTracker) GetRumble() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -383,12 +383,12 @@ func (o *ARVRPositionalTracker) GetType() ARVRServerTrackerType {
         Undocumented
 	Args: [{ false rumble float}], Returns: void
 */
-func (o *ARVRPositionalTracker) SetRumble(rumble gdnative.Float) {
+func (o *ARVRPositionalTracker) SetRumble(rumble gdnative.Real) {
 	//log.Println("Calling ARVRPositionalTracker.SetRumble()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(rumble)
+	ptrArguments[0] = gdnative.NewPointerFromReal(rumble)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ARVRPositionalTracker", "set_rumble")
@@ -413,9 +413,9 @@ type ARVRPositionalTrackerImplementer interface {
 	GetName() gdnative.String
 	GetOrientation() gdnative.Basis
 	GetPosition() gdnative.Vector3
-	GetRumble() gdnative.Float
+	GetRumble() gdnative.Real
 	GetTracksOrientation() gdnative.Bool
 	GetTracksPosition() gdnative.Bool
 	GetTransform(adjustByReferenceFrame gdnative.Bool) gdnative.Transform
-	SetRumble(rumble gdnative.Float)
+	SetRumble(rumble gdnative.Real)
 }

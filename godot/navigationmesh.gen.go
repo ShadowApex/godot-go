@@ -144,7 +144,7 @@ func (o *NavigationMesh) CreateFromMesh(mesh MeshImplementer) {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetAgentHeight() gdnative.Float {
+func (o *NavigationMesh) GetAgentHeight() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetAgentHeight()")
 
 	// Build out the method's arguments
@@ -155,11 +155,11 @@ func (o *NavigationMesh) GetAgentHeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -167,7 +167,7 @@ func (o *NavigationMesh) GetAgentHeight() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetAgentMaxClimb() gdnative.Float {
+func (o *NavigationMesh) GetAgentMaxClimb() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetAgentMaxClimb()")
 
 	// Build out the method's arguments
@@ -178,11 +178,11 @@ func (o *NavigationMesh) GetAgentMaxClimb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -190,7 +190,7 @@ func (o *NavigationMesh) GetAgentMaxClimb() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetAgentMaxSlope() gdnative.Float {
+func (o *NavigationMesh) GetAgentMaxSlope() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetAgentMaxSlope()")
 
 	// Build out the method's arguments
@@ -201,11 +201,11 @@ func (o *NavigationMesh) GetAgentMaxSlope() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -213,7 +213,7 @@ func (o *NavigationMesh) GetAgentMaxSlope() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetAgentRadius() gdnative.Float {
+func (o *NavigationMesh) GetAgentRadius() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetAgentRadius()")
 
 	// Build out the method's arguments
@@ -224,11 +224,11 @@ func (o *NavigationMesh) GetAgentRadius() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -236,7 +236,7 @@ func (o *NavigationMesh) GetAgentRadius() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetCellHeight() gdnative.Float {
+func (o *NavigationMesh) GetCellHeight() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetCellHeight()")
 
 	// Build out the method's arguments
@@ -247,11 +247,11 @@ func (o *NavigationMesh) GetCellHeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -259,7 +259,7 @@ func (o *NavigationMesh) GetCellHeight() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetCellSize() gdnative.Float {
+func (o *NavigationMesh) GetCellSize() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetCellSize()")
 
 	// Build out the method's arguments
@@ -270,11 +270,11 @@ func (o *NavigationMesh) GetCellSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -282,7 +282,7 @@ func (o *NavigationMesh) GetCellSize() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetDetailSampleDistance() gdnative.Float {
+func (o *NavigationMesh) GetDetailSampleDistance() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetDetailSampleDistance()")
 
 	// Build out the method's arguments
@@ -293,11 +293,11 @@ func (o *NavigationMesh) GetDetailSampleDistance() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -305,7 +305,7 @@ func (o *NavigationMesh) GetDetailSampleDistance() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetDetailSampleMaxError() gdnative.Float {
+func (o *NavigationMesh) GetDetailSampleMaxError() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetDetailSampleMaxError()")
 
 	// Build out the method's arguments
@@ -316,11 +316,11 @@ func (o *NavigationMesh) GetDetailSampleMaxError() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -328,7 +328,7 @@ func (o *NavigationMesh) GetDetailSampleMaxError() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetEdgeMaxError() gdnative.Float {
+func (o *NavigationMesh) GetEdgeMaxError() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetEdgeMaxError()")
 
 	// Build out the method's arguments
@@ -339,11 +339,11 @@ func (o *NavigationMesh) GetEdgeMaxError() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -351,7 +351,7 @@ func (o *NavigationMesh) GetEdgeMaxError() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetEdgeMaxLength() gdnative.Float {
+func (o *NavigationMesh) GetEdgeMaxLength() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetEdgeMaxLength()")
 
 	// Build out the method's arguments
@@ -362,11 +362,11 @@ func (o *NavigationMesh) GetEdgeMaxLength() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -490,7 +490,7 @@ func (o *NavigationMesh) GetPolygonCount() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetRegionMergeSize() gdnative.Float {
+func (o *NavigationMesh) GetRegionMergeSize() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetRegionMergeSize()")
 
 	// Build out the method's arguments
@@ -501,11 +501,11 @@ func (o *NavigationMesh) GetRegionMergeSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -513,7 +513,7 @@ func (o *NavigationMesh) GetRegionMergeSize() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetRegionMinSize() gdnative.Float {
+func (o *NavigationMesh) GetRegionMinSize() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetRegionMinSize()")
 
 	// Build out the method's arguments
@@ -524,11 +524,11 @@ func (o *NavigationMesh) GetRegionMinSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -582,7 +582,7 @@ func (o *NavigationMesh) GetVertices() gdnative.PoolVector3Array {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *NavigationMesh) GetVertsPerPoly() gdnative.Float {
+func (o *NavigationMesh) GetVertsPerPoly() gdnative.Real {
 	//log.Println("Calling NavigationMesh.GetVertsPerPoly()")
 
 	// Build out the method's arguments
@@ -593,11 +593,11 @@ func (o *NavigationMesh) GetVertsPerPoly() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -605,12 +605,12 @@ func (o *NavigationMesh) GetVertsPerPoly() gdnative.Float {
         Undocumented
 	Args: [{ false agent_height float}], Returns: void
 */
-func (o *NavigationMesh) SetAgentHeight(agentHeight gdnative.Float) {
+func (o *NavigationMesh) SetAgentHeight(agentHeight gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetAgentHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(agentHeight)
+	ptrArguments[0] = gdnative.NewPointerFromReal(agentHeight)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_agent_height")
@@ -626,12 +626,12 @@ func (o *NavigationMesh) SetAgentHeight(agentHeight gdnative.Float) {
         Undocumented
 	Args: [{ false agent_max_climb float}], Returns: void
 */
-func (o *NavigationMesh) SetAgentMaxClimb(agentMaxClimb gdnative.Float) {
+func (o *NavigationMesh) SetAgentMaxClimb(agentMaxClimb gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetAgentMaxClimb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(agentMaxClimb)
+	ptrArguments[0] = gdnative.NewPointerFromReal(agentMaxClimb)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_agent_max_climb")
@@ -647,12 +647,12 @@ func (o *NavigationMesh) SetAgentMaxClimb(agentMaxClimb gdnative.Float) {
         Undocumented
 	Args: [{ false agent_max_slope float}], Returns: void
 */
-func (o *NavigationMesh) SetAgentMaxSlope(agentMaxSlope gdnative.Float) {
+func (o *NavigationMesh) SetAgentMaxSlope(agentMaxSlope gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetAgentMaxSlope()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(agentMaxSlope)
+	ptrArguments[0] = gdnative.NewPointerFromReal(agentMaxSlope)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_agent_max_slope")
@@ -668,12 +668,12 @@ func (o *NavigationMesh) SetAgentMaxSlope(agentMaxSlope gdnative.Float) {
         Undocumented
 	Args: [{ false agent_radius float}], Returns: void
 */
-func (o *NavigationMesh) SetAgentRadius(agentRadius gdnative.Float) {
+func (o *NavigationMesh) SetAgentRadius(agentRadius gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetAgentRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(agentRadius)
+	ptrArguments[0] = gdnative.NewPointerFromReal(agentRadius)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_agent_radius")
@@ -689,12 +689,12 @@ func (o *NavigationMesh) SetAgentRadius(agentRadius gdnative.Float) {
         Undocumented
 	Args: [{ false cell_height float}], Returns: void
 */
-func (o *NavigationMesh) SetCellHeight(cellHeight gdnative.Float) {
+func (o *NavigationMesh) SetCellHeight(cellHeight gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetCellHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(cellHeight)
+	ptrArguments[0] = gdnative.NewPointerFromReal(cellHeight)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_cell_height")
@@ -710,12 +710,12 @@ func (o *NavigationMesh) SetCellHeight(cellHeight gdnative.Float) {
         Undocumented
 	Args: [{ false cell_size float}], Returns: void
 */
-func (o *NavigationMesh) SetCellSize(cellSize gdnative.Float) {
+func (o *NavigationMesh) SetCellSize(cellSize gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(cellSize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(cellSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_cell_size")
@@ -731,12 +731,12 @@ func (o *NavigationMesh) SetCellSize(cellSize gdnative.Float) {
         Undocumented
 	Args: [{ false detail_sample_dist float}], Returns: void
 */
-func (o *NavigationMesh) SetDetailSampleDistance(detailSampleDist gdnative.Float) {
+func (o *NavigationMesh) SetDetailSampleDistance(detailSampleDist gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetDetailSampleDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(detailSampleDist)
+	ptrArguments[0] = gdnative.NewPointerFromReal(detailSampleDist)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_detail_sample_distance")
@@ -752,12 +752,12 @@ func (o *NavigationMesh) SetDetailSampleDistance(detailSampleDist gdnative.Float
         Undocumented
 	Args: [{ false detail_sample_max_error float}], Returns: void
 */
-func (o *NavigationMesh) SetDetailSampleMaxError(detailSampleMaxError gdnative.Float) {
+func (o *NavigationMesh) SetDetailSampleMaxError(detailSampleMaxError gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetDetailSampleMaxError()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(detailSampleMaxError)
+	ptrArguments[0] = gdnative.NewPointerFromReal(detailSampleMaxError)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_detail_sample_max_error")
@@ -773,12 +773,12 @@ func (o *NavigationMesh) SetDetailSampleMaxError(detailSampleMaxError gdnative.F
         Undocumented
 	Args: [{ false edge_max_error float}], Returns: void
 */
-func (o *NavigationMesh) SetEdgeMaxError(edgeMaxError gdnative.Float) {
+func (o *NavigationMesh) SetEdgeMaxError(edgeMaxError gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetEdgeMaxError()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(edgeMaxError)
+	ptrArguments[0] = gdnative.NewPointerFromReal(edgeMaxError)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_edge_max_error")
@@ -794,12 +794,12 @@ func (o *NavigationMesh) SetEdgeMaxError(edgeMaxError gdnative.Float) {
         Undocumented
 	Args: [{ false edge_max_length float}], Returns: void
 */
-func (o *NavigationMesh) SetEdgeMaxLength(edgeMaxLength gdnative.Float) {
+func (o *NavigationMesh) SetEdgeMaxLength(edgeMaxLength gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetEdgeMaxLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(edgeMaxLength)
+	ptrArguments[0] = gdnative.NewPointerFromReal(edgeMaxLength)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_edge_max_length")
@@ -878,12 +878,12 @@ func (o *NavigationMesh) SetFilterWalkableLowHeightSpans(filterWalkableLowHeight
         Undocumented
 	Args: [{ false region_merge_size float}], Returns: void
 */
-func (o *NavigationMesh) SetRegionMergeSize(regionMergeSize gdnative.Float) {
+func (o *NavigationMesh) SetRegionMergeSize(regionMergeSize gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetRegionMergeSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(regionMergeSize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(regionMergeSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_region_merge_size")
@@ -899,12 +899,12 @@ func (o *NavigationMesh) SetRegionMergeSize(regionMergeSize gdnative.Float) {
         Undocumented
 	Args: [{ false region_min_size float}], Returns: void
 */
-func (o *NavigationMesh) SetRegionMinSize(regionMinSize gdnative.Float) {
+func (o *NavigationMesh) SetRegionMinSize(regionMinSize gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetRegionMinSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(regionMinSize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(regionMinSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_region_min_size")
@@ -962,12 +962,12 @@ func (o *NavigationMesh) SetVertices(vertices gdnative.PoolVector3Array) {
         Undocumented
 	Args: [{ false verts_per_poly float}], Returns: void
 */
-func (o *NavigationMesh) SetVertsPerPoly(vertsPerPoly gdnative.Float) {
+func (o *NavigationMesh) SetVertsPerPoly(vertsPerPoly gdnative.Real) {
 	//log.Println("Calling NavigationMesh.SetVertsPerPoly()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(vertsPerPoly)
+	ptrArguments[0] = gdnative.NewPointerFromReal(vertsPerPoly)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("NavigationMesh", "set_verts_per_poly")
@@ -988,42 +988,42 @@ type NavigationMeshImplementer interface {
 	AddPolygon(polygon gdnative.PoolIntArray)
 	ClearPolygons()
 	CreateFromMesh(mesh MeshImplementer)
-	GetAgentHeight() gdnative.Float
-	GetAgentMaxClimb() gdnative.Float
-	GetAgentMaxSlope() gdnative.Float
-	GetAgentRadius() gdnative.Float
-	GetCellHeight() gdnative.Float
-	GetCellSize() gdnative.Float
-	GetDetailSampleDistance() gdnative.Float
-	GetDetailSampleMaxError() gdnative.Float
-	GetEdgeMaxError() gdnative.Float
-	GetEdgeMaxLength() gdnative.Float
+	GetAgentHeight() gdnative.Real
+	GetAgentMaxClimb() gdnative.Real
+	GetAgentMaxSlope() gdnative.Real
+	GetAgentRadius() gdnative.Real
+	GetCellHeight() gdnative.Real
+	GetCellSize() gdnative.Real
+	GetDetailSampleDistance() gdnative.Real
+	GetDetailSampleMaxError() gdnative.Real
+	GetEdgeMaxError() gdnative.Real
+	GetEdgeMaxLength() gdnative.Real
 	GetFilterLedgeSpans() gdnative.Bool
 	GetFilterLowHangingObstacles() gdnative.Bool
 	GetFilterWalkableLowHeightSpans() gdnative.Bool
 	GetPolygon(idx gdnative.Int) gdnative.PoolIntArray
 	GetPolygonCount() gdnative.Int
-	GetRegionMergeSize() gdnative.Float
-	GetRegionMinSize() gdnative.Float
+	GetRegionMergeSize() gdnative.Real
+	GetRegionMinSize() gdnative.Real
 	GetSamplePartitionType() gdnative.Int
 	GetVertices() gdnative.PoolVector3Array
-	GetVertsPerPoly() gdnative.Float
-	SetAgentHeight(agentHeight gdnative.Float)
-	SetAgentMaxClimb(agentMaxClimb gdnative.Float)
-	SetAgentMaxSlope(agentMaxSlope gdnative.Float)
-	SetAgentRadius(agentRadius gdnative.Float)
-	SetCellHeight(cellHeight gdnative.Float)
-	SetCellSize(cellSize gdnative.Float)
-	SetDetailSampleDistance(detailSampleDist gdnative.Float)
-	SetDetailSampleMaxError(detailSampleMaxError gdnative.Float)
-	SetEdgeMaxError(edgeMaxError gdnative.Float)
-	SetEdgeMaxLength(edgeMaxLength gdnative.Float)
+	GetVertsPerPoly() gdnative.Real
+	SetAgentHeight(agentHeight gdnative.Real)
+	SetAgentMaxClimb(agentMaxClimb gdnative.Real)
+	SetAgentMaxSlope(agentMaxSlope gdnative.Real)
+	SetAgentRadius(agentRadius gdnative.Real)
+	SetCellHeight(cellHeight gdnative.Real)
+	SetCellSize(cellSize gdnative.Real)
+	SetDetailSampleDistance(detailSampleDist gdnative.Real)
+	SetDetailSampleMaxError(detailSampleMaxError gdnative.Real)
+	SetEdgeMaxError(edgeMaxError gdnative.Real)
+	SetEdgeMaxLength(edgeMaxLength gdnative.Real)
 	SetFilterLedgeSpans(filterLedgeSpans gdnative.Bool)
 	SetFilterLowHangingObstacles(filterLowHangingObstacles gdnative.Bool)
 	SetFilterWalkableLowHeightSpans(filterWalkableLowHeightSpans gdnative.Bool)
-	SetRegionMergeSize(regionMergeSize gdnative.Float)
-	SetRegionMinSize(regionMinSize gdnative.Float)
+	SetRegionMergeSize(regionMergeSize gdnative.Real)
+	SetRegionMinSize(regionMinSize gdnative.Real)
 	SetSamplePartitionType(samplePartitionType gdnative.Int)
 	SetVertices(vertices gdnative.PoolVector3Array)
-	SetVertsPerPoly(vertsPerPoly gdnative.Float)
+	SetVertsPerPoly(vertsPerPoly gdnative.Real)
 }

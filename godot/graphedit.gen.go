@@ -121,12 +121,12 @@ func (o *GraphEdit) X_GuiInput(arg0 InputEventImplementer) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *GraphEdit) X_ScrollMoved(arg0 gdnative.Float) {
+func (o *GraphEdit) X_ScrollMoved(arg0 gdnative.Real) {
 	//log.Println("Calling GraphEdit.X_ScrollMoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GraphEdit", "_scroll_moved")
@@ -162,12 +162,12 @@ func (o *GraphEdit) X_SnapToggled() {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *GraphEdit) X_SnapValueChanged(arg0 gdnative.Float) {
+func (o *GraphEdit) X_SnapValueChanged(arg0 gdnative.Real) {
 	//log.Println("Calling GraphEdit.X_SnapValueChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GraphEdit", "_snap_value_changed")
@@ -508,7 +508,7 @@ func (o *GraphEdit) GetSnap() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GraphEdit) GetZoom() gdnative.Float {
+func (o *GraphEdit) GetZoom() gdnative.Real {
 	//log.Println("Calling GraphEdit.GetZoom()")
 
 	// Build out the method's arguments
@@ -519,11 +519,11 @@ func (o *GraphEdit) GetZoom() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -798,12 +798,12 @@ func (o *GraphEdit) SetUseSnap(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false p_zoom float}], Returns: void
 */
-func (o *GraphEdit) SetZoom(pZoom gdnative.Float) {
+func (o *GraphEdit) SetZoom(pZoom gdnative.Real) {
 	//log.Println("Calling GraphEdit.SetZoom()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(pZoom)
+	ptrArguments[0] = gdnative.NewPointerFromReal(pZoom)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GraphEdit", "set_zoom")
@@ -822,9 +822,9 @@ type GraphEditImplementer interface {
 	X_ConnectionsLayerDraw()
 	X_GraphNodeMoved(arg0 ObjectImplementer)
 	X_GraphNodeRaised(arg0 ObjectImplementer)
-	X_ScrollMoved(arg0 gdnative.Float)
+	X_ScrollMoved(arg0 gdnative.Real)
 	X_SnapToggled()
-	X_SnapValueChanged(arg0 gdnative.Float)
+	X_SnapValueChanged(arg0 gdnative.Real)
 	X_TopLayerDraw()
 	X_TopLayerInput(arg0 InputEventImplementer)
 	X_UpdateScrollOffset()
@@ -839,7 +839,7 @@ type GraphEditImplementer interface {
 	GetConnectionList() gdnative.Array
 	GetScrollOfs() gdnative.Vector2
 	GetSnap() gdnative.Int
-	GetZoom() gdnative.Float
+	GetZoom() gdnative.Real
 	IsNodeConnected(from gdnative.String, fromPort gdnative.Int, to gdnative.String, toPort gdnative.Int) gdnative.Bool
 	IsRightDisconnectsEnabled() gdnative.Bool
 	IsUsingSnap() gdnative.Bool
@@ -852,5 +852,5 @@ type GraphEditImplementer interface {
 	SetSelected(node ObjectImplementer)
 	SetSnap(pixels gdnative.Int)
 	SetUseSnap(enable gdnative.Bool)
-	SetZoom(pZoom gdnative.Float)
+	SetZoom(pZoom gdnative.Real)
 }

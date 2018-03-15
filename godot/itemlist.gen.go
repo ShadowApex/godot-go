@@ -98,12 +98,12 @@ func (o *ItemList) X_GuiInput(arg0 InputEventImplementer) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *ItemList) X_ScrollChanged(arg0 gdnative.Float) {
+func (o *ItemList) X_ScrollChanged(arg0 gdnative.Real) {
 	//log.Println("Calling ItemList.X_ScrollChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ItemList", "_scroll_changed")
@@ -340,7 +340,7 @@ func (o *ItemList) GetIconMode() ItemListIconMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ItemList) GetIconScale() gdnative.Float {
+func (o *ItemList) GetIconScale() gdnative.Real {
 	//log.Println("Calling ItemList.GetIconScale()")
 
 	// Build out the method's arguments
@@ -351,11 +351,11 @@ func (o *ItemList) GetIconScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1009,12 +1009,12 @@ func (o *ItemList) SetIconMode(mode gdnative.Int) {
         Undocumented
 	Args: [{ false scale float}], Returns: void
 */
-func (o *ItemList) SetIconScale(scale gdnative.Float) {
+func (o *ItemList) SetIconScale(scale gdnative.Real) {
 	//log.Println("Calling ItemList.SetIconScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(scale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(scale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ItemList", "set_icon_scale")
@@ -1354,7 +1354,7 @@ func (o *ItemList) Unselect(idx gdnative.Int) {
 type ItemListImplementer interface {
 	ControlImplementer
 	X_GetItems() gdnative.Array
-	X_ScrollChanged(arg0 gdnative.Float)
+	X_ScrollChanged(arg0 gdnative.Real)
 	X_SetItems(arg0 gdnative.Array)
 	AddIconItem(icon TextureImplementer, selectable gdnative.Bool)
 	AddItem(text gdnative.String, icon TextureImplementer, selectable gdnative.Bool)
@@ -1364,7 +1364,7 @@ type ItemListImplementer interface {
 	GetAllowRmbSelect() gdnative.Bool
 	GetFixedColumnWidth() gdnative.Int
 	GetFixedIconSize() gdnative.Vector2
-	GetIconScale() gdnative.Float
+	GetIconScale() gdnative.Real
 	GetItemAtPosition(position gdnative.Vector2, exact gdnative.Bool) gdnative.Int
 	GetItemCount() gdnative.Int
 	GetItemCustomBgColor(idx gdnative.Int) gdnative.Color
@@ -1391,7 +1391,7 @@ type ItemListImplementer interface {
 	SetFixedColumnWidth(width gdnative.Int)
 	SetFixedIconSize(size gdnative.Vector2)
 	SetIconMode(mode gdnative.Int)
-	SetIconScale(scale gdnative.Float)
+	SetIconScale(scale gdnative.Real)
 	SetItemCustomBgColor(idx gdnative.Int, customBgColor gdnative.Color)
 	SetItemDisabled(idx gdnative.Int, disabled gdnative.Bool)
 	SetItemIcon(idx gdnative.Int, icon TextureImplementer)

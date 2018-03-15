@@ -648,37 +648,33 @@ func (e VariantType) getBase() C.godot_variant_type {
 }
 
 const (
-	VariantTypeNil VariantType = iota
-
-	VariantTypeBool
-	VariantTypeInt
-	VariantTypeReal
-	VariantTypeString
-
-	VariantTypeVector2
-	VariantTypeRect2
-	VariantTypeVector3
-	VariantTypeTransform2D
-	VariantTypePlane
-	VariantTypeQuat
-	VariantTypeAabb
-	VariantTypeBasis
-	VariantTypeTransform
-
-	VariantTypeColor
-	VariantTypeNodePath
-	VariantTypeRid
-	VariantTypeObject
-	VariantTypeDictionary
-	VariantTypeArray
-
-	VariantTypePoolByteArray
-	VariantTypePoolIntArray
-	VariantTypePoolRealArray
-	VariantTypePoolStringArray
-	VariantTypePoolVector2Array
-	VariantTypePoolVector3Array
-	VariantTypePoolColorArray
+	VariantTypeNil              VariantType = 0
+	VariantTypeBool             VariantType = 1
+	VariantTypeInt              VariantType = 2
+	VariantTypeReal             VariantType = 3
+	VariantTypeString           VariantType = 4
+	VariantTypeVector2          VariantType = 5 // 5
+	VariantTypeRect2            VariantType = 6
+	VariantTypeVector3          VariantType = 7
+	VariantTypeTransform2D      VariantType = 8
+	VariantTypePlane            VariantType = 9
+	VariantTypeQuat             VariantType = 10 // 10
+	VariantTypeAabb             VariantType = 11
+	VariantTypeBasis            VariantType = 12
+	VariantTypeTransform        VariantType = 13
+	VariantTypeColor            VariantType = 14
+	VariantTypeNodePath         VariantType = 15 // 15
+	VariantTypeRid              VariantType = 16
+	VariantTypeObject           VariantType = 17
+	VariantTypeDictionary       VariantType = 18
+	VariantTypeArray            VariantType = 19 // 20
+	VariantTypePoolByteArray    VariantType = 20
+	VariantTypePoolIntArray     VariantType = 21
+	VariantTypePoolRealArray    VariantType = 22
+	VariantTypePoolStringArray  VariantType = 23
+	VariantTypePoolVector2Array VariantType = 24 // 25
+	VariantTypePoolVector3Array VariantType = 25
+	VariantTypePoolColorArray   VariantType = 26
 )
 
 // VariantTypeLookupMap is a string-based lookup table of constants for VariantType.
@@ -720,12 +716,12 @@ func (e VariantCallErrorError) getBase() C.godot_variant_call_error_error {
 }
 
 const (
-	CallErrorCallOk VariantCallErrorError = iota
-	CallErrorCallErrorInvalidMethod
-	CallErrorCallErrorInvalidArgument
-	CallErrorCallErrorTooManyArguments
-	CallErrorCallErrorTooFewArguments
-	CallErrorCallErrorInstanceIsNull
+	CallErrorCallOk                    VariantCallErrorError = 0
+	CallErrorCallErrorInvalidMethod    VariantCallErrorError = 1
+	CallErrorCallErrorInvalidArgument  VariantCallErrorError = 2
+	CallErrorCallErrorTooManyArguments VariantCallErrorError = 3
+	CallErrorCallErrorTooFewArguments  VariantCallErrorError = 4
+	CallErrorCallErrorInstanceIsNull   VariantCallErrorError = 5
 )
 
 // VariantCallErrorErrorLookupMap is a string-based lookup table of constants for VariantCallErrorError.

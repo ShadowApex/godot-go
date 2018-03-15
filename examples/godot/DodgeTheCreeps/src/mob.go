@@ -17,17 +17,14 @@ func NewMob() godot.Class {
 // Mob is a structure for enemy mobs.
 type Mob struct {
 	godot.RigidBody2D
-	speedMin       gd.Real
-	speedMax       gd.Real
+	MinSpeed       gd.Real
+	MaxSpeed       gd.Real
 	animatedSprite godot.AnimatedSpriteImplementer
 }
 
 // X_Ready will be called as soon as the mob enters the scene.
 func (m *Mob) X_Ready() {
 	log.Println("X_Ready called!")
-	// Set up a min and max speed.
-	m.speedMin = 150
-	m.speedMax = 250
 
 	// Get the AnimatedSprite child node.
 	animatedSpritePath := gd.NewNodePath("AnimatedSprite")

@@ -59,7 +59,7 @@ func (o *Node2D) ApplyScale(ratio gdnative.Vector2) {
         Returns the angle between the node and the 'point' in radians.
 	Args: [{ false point Vector2}], Returns: float
 */
-func (o *Node2D) GetAngleTo(point gdnative.Vector2) gdnative.Float {
+func (o *Node2D) GetAngleTo(point gdnative.Vector2) gdnative.Real {
 	//log.Println("Calling Node2D.GetAngleTo()")
 
 	// Build out the method's arguments
@@ -71,11 +71,11 @@ func (o *Node2D) GetAngleTo(point gdnative.Vector2) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -106,7 +106,7 @@ func (o *Node2D) GetGlobalPosition() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Node2D) GetGlobalRotation() gdnative.Float {
+func (o *Node2D) GetGlobalRotation() gdnative.Real {
 	//log.Println("Calling Node2D.GetGlobalRotation()")
 
 	// Build out the method's arguments
@@ -117,11 +117,11 @@ func (o *Node2D) GetGlobalRotation() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -129,7 +129,7 @@ func (o *Node2D) GetGlobalRotation() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Node2D) GetGlobalRotationDegrees() gdnative.Float {
+func (o *Node2D) GetGlobalRotationDegrees() gdnative.Real {
 	//log.Println("Calling Node2D.GetGlobalRotationDegrees()")
 
 	// Build out the method's arguments
@@ -140,11 +140,11 @@ func (o *Node2D) GetGlobalRotationDegrees() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -222,7 +222,7 @@ func (o *Node2D) GetRelativeTransformToParent(parent ObjectImplementer) gdnative
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Node2D) GetRotation() gdnative.Float {
+func (o *Node2D) GetRotation() gdnative.Real {
 	//log.Println("Calling Node2D.GetRotation()")
 
 	// Build out the method's arguments
@@ -233,11 +233,11 @@ func (o *Node2D) GetRotation() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -245,7 +245,7 @@ func (o *Node2D) GetRotation() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Node2D) GetRotationDegrees() gdnative.Float {
+func (o *Node2D) GetRotationDegrees() gdnative.Real {
 	//log.Println("Calling Node2D.GetRotationDegrees()")
 
 	// Build out the method's arguments
@@ -256,11 +256,11 @@ func (o *Node2D) GetRotationDegrees() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -379,12 +379,12 @@ func (o *Node2D) LookAt(point gdnative.Vector2) {
         Applies a local translation on the node's X axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
 	Args: [{ false delta float} {False true scaled bool}], Returns: void
 */
-func (o *Node2D) MoveLocalX(delta gdnative.Float, scaled gdnative.Bool) {
+func (o *Node2D) MoveLocalX(delta gdnative.Real, scaled gdnative.Bool) {
 	//log.Println("Calling Node2D.MoveLocalX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[0] = gdnative.NewPointerFromReal(delta)
 	ptrArguments[1] = gdnative.NewPointerFromBool(scaled)
 
 	// Get the method bind
@@ -401,12 +401,12 @@ func (o *Node2D) MoveLocalX(delta gdnative.Float, scaled gdnative.Bool) {
         Applies a local translation on the node's Y axis based on the [method Node._process]'s [code]delta[/code]. If [code]scaled[/code] is false, normalizes the movement.
 	Args: [{ false delta float} {False true scaled bool}], Returns: void
 */
-func (o *Node2D) MoveLocalY(delta gdnative.Float, scaled gdnative.Bool) {
+func (o *Node2D) MoveLocalY(delta gdnative.Real, scaled gdnative.Bool) {
 	//log.Println("Calling Node2D.MoveLocalY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[0] = gdnative.NewPointerFromReal(delta)
 	ptrArguments[1] = gdnative.NewPointerFromBool(scaled)
 
 	// Get the method bind
@@ -423,12 +423,12 @@ func (o *Node2D) MoveLocalY(delta gdnative.Float, scaled gdnative.Bool) {
         Applies a rotation to the node, in radians, starting from its current rotation.
 	Args: [{ false radians float}], Returns: void
 */
-func (o *Node2D) Rotate(radians gdnative.Float) {
+func (o *Node2D) Rotate(radians gdnative.Real) {
 	//log.Println("Calling Node2D.Rotate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radians)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Node2D", "rotate")
@@ -465,12 +465,12 @@ func (o *Node2D) SetGlobalPosition(position gdnative.Vector2) {
         Undocumented
 	Args: [{ false radians float}], Returns: void
 */
-func (o *Node2D) SetGlobalRotation(radians gdnative.Float) {
+func (o *Node2D) SetGlobalRotation(radians gdnative.Real) {
 	//log.Println("Calling Node2D.SetGlobalRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radians)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Node2D", "set_global_rotation")
@@ -486,12 +486,12 @@ func (o *Node2D) SetGlobalRotation(radians gdnative.Float) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *Node2D) SetGlobalRotationDegrees(degrees gdnative.Float) {
+func (o *Node2D) SetGlobalRotationDegrees(degrees gdnative.Real) {
 	//log.Println("Calling Node2D.SetGlobalRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Node2D", "set_global_rotation_degrees")
@@ -570,12 +570,12 @@ func (o *Node2D) SetPosition(position gdnative.Vector2) {
         Undocumented
 	Args: [{ false radians float}], Returns: void
 */
-func (o *Node2D) SetRotation(radians gdnative.Float) {
+func (o *Node2D) SetRotation(radians gdnative.Real) {
 	//log.Println("Calling Node2D.SetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radians)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Node2D", "set_rotation")
@@ -591,12 +591,12 @@ func (o *Node2D) SetRotation(radians gdnative.Float) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *Node2D) SetRotationDegrees(degrees gdnative.Float) {
+func (o *Node2D) SetRotationDegrees(degrees gdnative.Real) {
 	//log.Println("Calling Node2D.SetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Node2D", "set_rotation_degrees")
@@ -766,31 +766,31 @@ func (o *Node2D) Translate(offset gdnative.Vector2) {
 type Node2DImplementer interface {
 	CanvasItemImplementer
 	ApplyScale(ratio gdnative.Vector2)
-	GetAngleTo(point gdnative.Vector2) gdnative.Float
+	GetAngleTo(point gdnative.Vector2) gdnative.Real
 	GetGlobalPosition() gdnative.Vector2
-	GetGlobalRotation() gdnative.Float
-	GetGlobalRotationDegrees() gdnative.Float
+	GetGlobalRotation() gdnative.Real
+	GetGlobalRotationDegrees() gdnative.Real
 	GetGlobalScale() gdnative.Vector2
 	GetPosition() gdnative.Vector2
 	GetRelativeTransformToParent(parent ObjectImplementer) gdnative.Transform2D
-	GetRotation() gdnative.Float
-	GetRotationDegrees() gdnative.Float
+	GetRotation() gdnative.Real
+	GetRotationDegrees() gdnative.Real
 	GetScale() gdnative.Vector2
 	GetZIndex() gdnative.Int
 	GlobalTranslate(offset gdnative.Vector2)
 	IsZRelative() gdnative.Bool
 	LookAt(point gdnative.Vector2)
-	MoveLocalX(delta gdnative.Float, scaled gdnative.Bool)
-	MoveLocalY(delta gdnative.Float, scaled gdnative.Bool)
-	Rotate(radians gdnative.Float)
+	MoveLocalX(delta gdnative.Real, scaled gdnative.Bool)
+	MoveLocalY(delta gdnative.Real, scaled gdnative.Bool)
+	Rotate(radians gdnative.Real)
 	SetGlobalPosition(position gdnative.Vector2)
-	SetGlobalRotation(radians gdnative.Float)
-	SetGlobalRotationDegrees(degrees gdnative.Float)
+	SetGlobalRotation(radians gdnative.Real)
+	SetGlobalRotationDegrees(degrees gdnative.Real)
 	SetGlobalScale(scale gdnative.Vector2)
 	SetGlobalTransform(xform gdnative.Transform2D)
 	SetPosition(position gdnative.Vector2)
-	SetRotation(radians gdnative.Float)
-	SetRotationDegrees(degrees gdnative.Float)
+	SetRotation(radians gdnative.Real)
+	SetRotationDegrees(degrees gdnative.Real)
 	SetScale(scale gdnative.Vector2)
 	SetTransform(xform gdnative.Transform2D)
 	SetZAsRelative(enable gdnative.Bool)

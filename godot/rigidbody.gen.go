@@ -154,7 +154,7 @@ func (o *RigidBody) ApplyImpulse(position gdnative.Vector3, impulse gdnative.Vec
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody) GetAngularDamp() gdnative.Float {
+func (o *RigidBody) GetAngularDamp() gdnative.Real {
 	//log.Println("Calling RigidBody.GetAngularDamp()")
 
 	// Build out the method's arguments
@@ -165,11 +165,11 @@ func (o *RigidBody) GetAngularDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -224,7 +224,7 @@ func (o *RigidBody) GetAxisLock(axis gdnative.Int) gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody) GetBounce() gdnative.Float {
+func (o *RigidBody) GetBounce() gdnative.Real {
 	//log.Println("Calling RigidBody.GetBounce()")
 
 	// Build out the method's arguments
@@ -235,11 +235,11 @@ func (o *RigidBody) GetBounce() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -270,7 +270,7 @@ func (o *RigidBody) GetCollidingBodies() gdnative.Array {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody) GetFriction() gdnative.Float {
+func (o *RigidBody) GetFriction() gdnative.Real {
 	//log.Println("Calling RigidBody.GetFriction()")
 
 	// Build out the method's arguments
@@ -281,11 +281,11 @@ func (o *RigidBody) GetFriction() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -293,7 +293,7 @@ func (o *RigidBody) GetFriction() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody) GetGravityScale() gdnative.Float {
+func (o *RigidBody) GetGravityScale() gdnative.Real {
 	//log.Println("Calling RigidBody.GetGravityScale()")
 
 	// Build out the method's arguments
@@ -304,11 +304,11 @@ func (o *RigidBody) GetGravityScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -316,7 +316,7 @@ func (o *RigidBody) GetGravityScale() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody) GetLinearDamp() gdnative.Float {
+func (o *RigidBody) GetLinearDamp() gdnative.Real {
 	//log.Println("Calling RigidBody.GetLinearDamp()")
 
 	// Build out the method's arguments
@@ -327,11 +327,11 @@ func (o *RigidBody) GetLinearDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -362,7 +362,7 @@ func (o *RigidBody) GetLinearVelocity() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody) GetMass() gdnative.Float {
+func (o *RigidBody) GetMass() gdnative.Real {
 	//log.Println("Calling RigidBody.GetMass()")
 
 	// Build out the method's arguments
@@ -373,11 +373,11 @@ func (o *RigidBody) GetMass() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -431,7 +431,7 @@ func (o *RigidBody) GetMode() RigidBodyMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody) GetWeight() gdnative.Float {
+func (o *RigidBody) GetWeight() gdnative.Real {
 	//log.Println("Calling RigidBody.GetWeight()")
 
 	// Build out the method's arguments
@@ -442,11 +442,11 @@ func (o *RigidBody) GetWeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -569,12 +569,12 @@ func (o *RigidBody) IsUsingCustomIntegrator() gdnative.Bool {
         Undocumented
 	Args: [{ false angular_damp float}], Returns: void
 */
-func (o *RigidBody) SetAngularDamp(angularDamp gdnative.Float) {
+func (o *RigidBody) SetAngularDamp(angularDamp gdnative.Real) {
 	//log.Println("Calling RigidBody.SetAngularDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(angularDamp)
+	ptrArguments[0] = gdnative.NewPointerFromReal(angularDamp)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody", "set_angular_damp")
@@ -654,12 +654,12 @@ func (o *RigidBody) SetAxisVelocity(axisVelocity gdnative.Vector3) {
         Undocumented
 	Args: [{ false bounce float}], Returns: void
 */
-func (o *RigidBody) SetBounce(bounce gdnative.Float) {
+func (o *RigidBody) SetBounce(bounce gdnative.Real) {
 	//log.Println("Calling RigidBody.SetBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(bounce)
+	ptrArguments[0] = gdnative.NewPointerFromReal(bounce)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody", "set_bounce")
@@ -717,12 +717,12 @@ func (o *RigidBody) SetContactMonitor(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false friction float}], Returns: void
 */
-func (o *RigidBody) SetFriction(friction gdnative.Float) {
+func (o *RigidBody) SetFriction(friction gdnative.Real) {
 	//log.Println("Calling RigidBody.SetFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(friction)
+	ptrArguments[0] = gdnative.NewPointerFromReal(friction)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody", "set_friction")
@@ -738,12 +738,12 @@ func (o *RigidBody) SetFriction(friction gdnative.Float) {
         Undocumented
 	Args: [{ false gravity_scale float}], Returns: void
 */
-func (o *RigidBody) SetGravityScale(gravityScale gdnative.Float) {
+func (o *RigidBody) SetGravityScale(gravityScale gdnative.Real) {
 	//log.Println("Calling RigidBody.SetGravityScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(gravityScale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(gravityScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody", "set_gravity_scale")
@@ -759,12 +759,12 @@ func (o *RigidBody) SetGravityScale(gravityScale gdnative.Float) {
         Undocumented
 	Args: [{ false linear_damp float}], Returns: void
 */
-func (o *RigidBody) SetLinearDamp(linearDamp gdnative.Float) {
+func (o *RigidBody) SetLinearDamp(linearDamp gdnative.Real) {
 	//log.Println("Calling RigidBody.SetLinearDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(linearDamp)
+	ptrArguments[0] = gdnative.NewPointerFromReal(linearDamp)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody", "set_linear_damp")
@@ -801,12 +801,12 @@ func (o *RigidBody) SetLinearVelocity(linearVelocity gdnative.Vector3) {
         Undocumented
 	Args: [{ false mass float}], Returns: void
 */
-func (o *RigidBody) SetMass(mass gdnative.Float) {
+func (o *RigidBody) SetMass(mass gdnative.Real) {
 	//log.Println("Calling RigidBody.SetMass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(mass)
+	ptrArguments[0] = gdnative.NewPointerFromReal(mass)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody", "set_mass")
@@ -927,12 +927,12 @@ func (o *RigidBody) SetUseCustomIntegrator(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false weight float}], Returns: void
 */
-func (o *RigidBody) SetWeight(weight gdnative.Float) {
+func (o *RigidBody) SetWeight(weight gdnative.Real) {
 	//log.Println("Calling RigidBody.SetWeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(weight)
+	ptrArguments[0] = gdnative.NewPointerFromReal(weight)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody", "set_weight")
@@ -953,39 +953,39 @@ type RigidBodyImplementer interface {
 	X_DirectStateChanged(arg0 ObjectImplementer)
 	X_IntegrateForces(state PhysicsDirectBodyStateImplementer)
 	ApplyImpulse(position gdnative.Vector3, impulse gdnative.Vector3)
-	GetAngularDamp() gdnative.Float
+	GetAngularDamp() gdnative.Real
 	GetAngularVelocity() gdnative.Vector3
 	GetAxisLock(axis gdnative.Int) gdnative.Bool
-	GetBounce() gdnative.Float
+	GetBounce() gdnative.Real
 	GetCollidingBodies() gdnative.Array
-	GetFriction() gdnative.Float
-	GetGravityScale() gdnative.Float
-	GetLinearDamp() gdnative.Float
+	GetFriction() gdnative.Real
+	GetGravityScale() gdnative.Real
+	GetLinearDamp() gdnative.Real
 	GetLinearVelocity() gdnative.Vector3
-	GetMass() gdnative.Float
+	GetMass() gdnative.Real
 	GetMaxContactsReported() gdnative.Int
-	GetWeight() gdnative.Float
+	GetWeight() gdnative.Real
 	IsAbleToSleep() gdnative.Bool
 	IsContactMonitorEnabled() gdnative.Bool
 	IsSleeping() gdnative.Bool
 	IsUsingContinuousCollisionDetection() gdnative.Bool
 	IsUsingCustomIntegrator() gdnative.Bool
-	SetAngularDamp(angularDamp gdnative.Float)
+	SetAngularDamp(angularDamp gdnative.Real)
 	SetAngularVelocity(angularVelocity gdnative.Vector3)
 	SetAxisLock(axis gdnative.Int, lock gdnative.Bool)
 	SetAxisVelocity(axisVelocity gdnative.Vector3)
-	SetBounce(bounce gdnative.Float)
+	SetBounce(bounce gdnative.Real)
 	SetCanSleep(ableToSleep gdnative.Bool)
 	SetContactMonitor(enabled gdnative.Bool)
-	SetFriction(friction gdnative.Float)
-	SetGravityScale(gravityScale gdnative.Float)
-	SetLinearDamp(linearDamp gdnative.Float)
+	SetFriction(friction gdnative.Real)
+	SetGravityScale(gravityScale gdnative.Real)
+	SetLinearDamp(linearDamp gdnative.Real)
 	SetLinearVelocity(linearVelocity gdnative.Vector3)
-	SetMass(mass gdnative.Float)
+	SetMass(mass gdnative.Real)
 	SetMaxContactsReported(amount gdnative.Int)
 	SetMode(mode gdnative.Int)
 	SetSleeping(sleeping gdnative.Bool)
 	SetUseContinuousCollisionDetection(enable gdnative.Bool)
 	SetUseCustomIntegrator(enable gdnative.Bool)
-	SetWeight(weight gdnative.Float)
+	SetWeight(weight gdnative.Real)
 }

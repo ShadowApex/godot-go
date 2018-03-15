@@ -85,6 +85,9 @@ func parseTypeDef(typeLines []string, headerName string) TypeDef {
 		if len(halves) > 1 {
 			comment = strings.TrimSpace(halves[1])
 		}
+		if strings.HasPrefix(comment, "/") {
+			comment = strings.Replace(comment, "/", "", 1)
+		}
 
 		return def, comment
 	}
@@ -130,7 +133,7 @@ func parseTypeDef(typeLines []string, headerName string) TypeDef {
 	// Loop through each property line
 	for _, line := range properties {
 		// Skip function definitions
-		if strings.Contains(line, ")") {
+		if strings.Contains(line, "(*") {
 			continue
 		}
 
@@ -176,6 +179,11 @@ func parseTypeDef(typeLines []string, headerName string) TypeDef {
 			property.Name = strings.Replace(property.Name, "*", "", 1)
 			property.GoName = strings.Replace(property.GoName, "*", "", 1)
 			property.IsPointer = true
+		}
+
+		// Skip empty property names
+		if property.GoName == "" {
+			continue
 		}
 
 		// Append the property to the type definition

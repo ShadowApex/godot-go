@@ -111,7 +111,7 @@ func (o *BakedLightmap) DebugBake() {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *BakedLightmap) GetBakeCellSize() gdnative.Float {
+func (o *BakedLightmap) GetBakeCellSize() gdnative.Real {
 	//log.Println("Calling BakedLightmap.GetBakeCellSize()")
 
 	// Build out the method's arguments
@@ -122,11 +122,11 @@ func (o *BakedLightmap) GetBakeCellSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -180,7 +180,7 @@ func (o *BakedLightmap) GetBakeQuality() BakedLightmapBakeQuality {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *BakedLightmap) GetCaptureCellSize() gdnative.Float {
+func (o *BakedLightmap) GetCaptureCellSize() gdnative.Real {
 	//log.Println("Calling BakedLightmap.GetCaptureCellSize()")
 
 	// Build out the method's arguments
@@ -191,11 +191,11 @@ func (o *BakedLightmap) GetCaptureCellSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -203,7 +203,7 @@ func (o *BakedLightmap) GetCaptureCellSize() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *BakedLightmap) GetEnergy() gdnative.Float {
+func (o *BakedLightmap) GetEnergy() gdnative.Real {
 	//log.Println("Calling BakedLightmap.GetEnergy()")
 
 	// Build out the method's arguments
@@ -214,11 +214,11 @@ func (o *BakedLightmap) GetEnergy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -309,7 +309,7 @@ func (o *BakedLightmap) GetLightData() BakedLightmapDataImplementer {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *BakedLightmap) GetPropagation() gdnative.Float {
+func (o *BakedLightmap) GetPropagation() gdnative.Real {
 	//log.Println("Calling BakedLightmap.GetPropagation()")
 
 	// Build out the method's arguments
@@ -320,11 +320,11 @@ func (o *BakedLightmap) GetPropagation() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -355,12 +355,12 @@ func (o *BakedLightmap) IsHdr() gdnative.Bool {
         Undocumented
 	Args: [{ false bake_cell_size float}], Returns: void
 */
-func (o *BakedLightmap) SetBakeCellSize(bakeCellSize gdnative.Float) {
+func (o *BakedLightmap) SetBakeCellSize(bakeCellSize gdnative.Real) {
 	//log.Println("Calling BakedLightmap.SetBakeCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(bakeCellSize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(bakeCellSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("BakedLightmap", "set_bake_cell_size")
@@ -418,12 +418,12 @@ func (o *BakedLightmap) SetBakeQuality(bakeQuality gdnative.Int) {
         Undocumented
 	Args: [{ false capture_cell_size float}], Returns: void
 */
-func (o *BakedLightmap) SetCaptureCellSize(captureCellSize gdnative.Float) {
+func (o *BakedLightmap) SetCaptureCellSize(captureCellSize gdnative.Real) {
 	//log.Println("Calling BakedLightmap.SetCaptureCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(captureCellSize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(captureCellSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("BakedLightmap", "set_capture_cell_size")
@@ -439,12 +439,12 @@ func (o *BakedLightmap) SetCaptureCellSize(captureCellSize gdnative.Float) {
         Undocumented
 	Args: [{ false energy float}], Returns: void
 */
-func (o *BakedLightmap) SetEnergy(energy gdnative.Float) {
+func (o *BakedLightmap) SetEnergy(energy gdnative.Real) {
 	//log.Println("Calling BakedLightmap.SetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("BakedLightmap", "set_energy")
@@ -544,12 +544,12 @@ func (o *BakedLightmap) SetLightData(data BakedLightmapDataImplementer) {
         Undocumented
 	Args: [{ false propagation float}], Returns: void
 */
-func (o *BakedLightmap) SetPropagation(propagation gdnative.Float) {
+func (o *BakedLightmap) SetPropagation(propagation gdnative.Real) {
 	//log.Println("Calling BakedLightmap.SetPropagation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(propagation)
+	ptrArguments[0] = gdnative.NewPointerFromReal(propagation)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("BakedLightmap", "set_propagation")
@@ -566,22 +566,22 @@ func (o *BakedLightmap) SetPropagation(propagation gdnative.Float) {
 type BakedLightmapImplementer interface {
 	VisualInstanceImplementer
 	DebugBake()
-	GetBakeCellSize() gdnative.Float
-	GetCaptureCellSize() gdnative.Float
-	GetEnergy() gdnative.Float
+	GetBakeCellSize() gdnative.Real
+	GetCaptureCellSize() gdnative.Real
+	GetEnergy() gdnative.Real
 	GetExtents() gdnative.Vector3
 	GetImagePath() gdnative.String
 	GetLightData() BakedLightmapDataImplementer
-	GetPropagation() gdnative.Float
+	GetPropagation() gdnative.Real
 	IsHdr() gdnative.Bool
-	SetBakeCellSize(bakeCellSize gdnative.Float)
+	SetBakeCellSize(bakeCellSize gdnative.Real)
 	SetBakeMode(bakeMode gdnative.Int)
 	SetBakeQuality(bakeQuality gdnative.Int)
-	SetCaptureCellSize(captureCellSize gdnative.Float)
-	SetEnergy(energy gdnative.Float)
+	SetCaptureCellSize(captureCellSize gdnative.Real)
+	SetEnergy(energy gdnative.Real)
 	SetExtents(extents gdnative.Vector3)
 	SetHdr(hdr gdnative.Bool)
 	SetImagePath(imagePath gdnative.String)
 	SetLightData(data BakedLightmapDataImplementer)
-	SetPropagation(propagation gdnative.Float)
+	SetPropagation(propagation gdnative.Real)
 }

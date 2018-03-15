@@ -71,7 +71,7 @@ func (o *PathFollow) GetCubicInterpolation() gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PathFollow) GetHOffset() gdnative.Float {
+func (o *PathFollow) GetHOffset() gdnative.Real {
 	//log.Println("Calling PathFollow.GetHOffset()")
 
 	// Build out the method's arguments
@@ -82,11 +82,11 @@ func (o *PathFollow) GetHOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -94,7 +94,7 @@ func (o *PathFollow) GetHOffset() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PathFollow) GetOffset() gdnative.Float {
+func (o *PathFollow) GetOffset() gdnative.Real {
 	//log.Println("Calling PathFollow.GetOffset()")
 
 	// Build out the method's arguments
@@ -105,11 +105,11 @@ func (o *PathFollow) GetOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -140,7 +140,7 @@ func (o *PathFollow) GetRotationMode() PathFollowRotationMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PathFollow) GetUnitOffset() gdnative.Float {
+func (o *PathFollow) GetUnitOffset() gdnative.Real {
 	//log.Println("Calling PathFollow.GetUnitOffset()")
 
 	// Build out the method's arguments
@@ -151,11 +151,11 @@ func (o *PathFollow) GetUnitOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -163,7 +163,7 @@ func (o *PathFollow) GetUnitOffset() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PathFollow) GetVOffset() gdnative.Float {
+func (o *PathFollow) GetVOffset() gdnative.Real {
 	//log.Println("Calling PathFollow.GetVOffset()")
 
 	// Build out the method's arguments
@@ -174,11 +174,11 @@ func (o *PathFollow) GetVOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -230,12 +230,12 @@ func (o *PathFollow) SetCubicInterpolation(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false h_offset float}], Returns: void
 */
-func (o *PathFollow) SetHOffset(hOffset gdnative.Float) {
+func (o *PathFollow) SetHOffset(hOffset gdnative.Real) {
 	//log.Println("Calling PathFollow.SetHOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(hOffset)
+	ptrArguments[0] = gdnative.NewPointerFromReal(hOffset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PathFollow", "set_h_offset")
@@ -272,12 +272,12 @@ func (o *PathFollow) SetLoop(loop gdnative.Bool) {
         Undocumented
 	Args: [{ false offset float}], Returns: void
 */
-func (o *PathFollow) SetOffset(offset gdnative.Float) {
+func (o *PathFollow) SetOffset(offset gdnative.Real) {
 	//log.Println("Calling PathFollow.SetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[0] = gdnative.NewPointerFromReal(offset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PathFollow", "set_offset")
@@ -314,12 +314,12 @@ func (o *PathFollow) SetRotationMode(rotationMode gdnative.Int) {
         Undocumented
 	Args: [{ false unit_offset float}], Returns: void
 */
-func (o *PathFollow) SetUnitOffset(unitOffset gdnative.Float) {
+func (o *PathFollow) SetUnitOffset(unitOffset gdnative.Real) {
 	//log.Println("Calling PathFollow.SetUnitOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(unitOffset)
+	ptrArguments[0] = gdnative.NewPointerFromReal(unitOffset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PathFollow", "set_unit_offset")
@@ -335,12 +335,12 @@ func (o *PathFollow) SetUnitOffset(unitOffset gdnative.Float) {
         Undocumented
 	Args: [{ false v_offset float}], Returns: void
 */
-func (o *PathFollow) SetVOffset(vOffset gdnative.Float) {
+func (o *PathFollow) SetVOffset(vOffset gdnative.Real) {
 	//log.Println("Calling PathFollow.SetVOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(vOffset)
+	ptrArguments[0] = gdnative.NewPointerFromReal(vOffset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PathFollow", "set_v_offset")
@@ -357,16 +357,16 @@ func (o *PathFollow) SetVOffset(vOffset gdnative.Float) {
 type PathFollowImplementer interface {
 	SpatialImplementer
 	GetCubicInterpolation() gdnative.Bool
-	GetHOffset() gdnative.Float
-	GetOffset() gdnative.Float
-	GetUnitOffset() gdnative.Float
-	GetVOffset() gdnative.Float
+	GetHOffset() gdnative.Real
+	GetOffset() gdnative.Real
+	GetUnitOffset() gdnative.Real
+	GetVOffset() gdnative.Real
 	HasLoop() gdnative.Bool
 	SetCubicInterpolation(enable gdnative.Bool)
-	SetHOffset(hOffset gdnative.Float)
+	SetHOffset(hOffset gdnative.Real)
 	SetLoop(loop gdnative.Bool)
-	SetOffset(offset gdnative.Float)
+	SetOffset(offset gdnative.Real)
 	SetRotationMode(rotationMode gdnative.Int)
-	SetUnitOffset(unitOffset gdnative.Float)
-	SetVOffset(vOffset gdnative.Float)
+	SetUnitOffset(unitOffset gdnative.Real)
+	SetVOffset(vOffset gdnative.Real)
 }

@@ -1122,7 +1122,7 @@ func (o *physicsServer) BodyGetDirectState(body gdnative.Rid) PhysicsDirectBodyS
 
 	Args: [{ false body RID}], Returns: float
 */
-func (o *physicsServer) BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.Float {
+func (o *physicsServer) BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.BodyGetKinematicSafeMargin()")
 
@@ -1135,11 +1135,11 @@ func (o *physicsServer) BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.F
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1222,7 +1222,7 @@ func (o *physicsServer) BodyGetObjectInstanceId(body gdnative.Rid) gdnative.Int 
         Returns the value of a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
 	Args: [{ false body RID} { false param int}], Returns: float
 */
-func (o *physicsServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physicsServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.BodyGetParam()")
 
@@ -1236,11 +1236,11 @@ func (o *physicsServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdna
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1664,14 +1664,14 @@ func (o *physicsServer) BodySetForceIntegrationCallback(body gdnative.Rid, recei
 
 	Args: [{ false body RID} { false margin float}], Returns: void
 */
-func (o *physicsServer) BodySetKinematicSafeMargin(body gdnative.Rid, margin gdnative.Float) {
+func (o *physicsServer) BodySetKinematicSafeMargin(body gdnative.Rid, margin gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.BodySetKinematicSafeMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(body)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(margin)
+	ptrArguments[1] = gdnative.NewPointerFromReal(margin)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PhysicsServer", "body_set_kinematic_safe_margin")
@@ -1756,7 +1756,7 @@ func (o *physicsServer) BodySetOmitForceIntegration(body gdnative.Rid, enable gd
         Sets a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
 	Args: [{ false body RID} { false param int} { false value float}], Returns: void
 */
-func (o *physicsServer) BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physicsServer) BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.BodySetParam()")
 
@@ -1764,7 +1764,7 @@ func (o *physicsServer) BodySetParam(body gdnative.Rid, param gdnative.Int, valu
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(body)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PhysicsServer", "body_set_param")
@@ -1898,7 +1898,7 @@ func (o *physicsServer) BodySetState(body gdnative.Rid, state gdnative.Int, valu
         Gets a cone_twist_joint parameter (see CONE_TWIST_JOINT* constants).
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
-func (o *physicsServer) ConeTwistJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physicsServer) ConeTwistJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.ConeTwistJointGetParam()")
 
@@ -1912,11 +1912,11 @@ func (o *physicsServer) ConeTwistJointGetParam(joint gdnative.Rid, param gdnativ
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1924,7 +1924,7 @@ func (o *physicsServer) ConeTwistJointGetParam(joint gdnative.Rid, param gdnativ
         Sets a cone_twist_joint parameter (see CONE_TWIST_JOINT* constants).
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
-func (o *physicsServer) ConeTwistJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physicsServer) ConeTwistJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.ConeTwistJointSetParam()")
 
@@ -1932,7 +1932,7 @@ func (o *physicsServer) ConeTwistJointSetParam(joint gdnative.Rid, param gdnativ
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PhysicsServer", "cone_twist_joint_set_param")
@@ -1997,7 +1997,7 @@ func (o *physicsServer) Generic6DofJointGetFlag(joint gdnative.Rid, axis gdnativ
         Gets a generic_6_DOF_joint parameter (see G6DOF_JOINT* constants without the G6DOF_JOINT_FLAG*).
 	Args: [{ false joint RID} { false axis int} { false param int}], Returns: float
 */
-func (o *physicsServer) Generic6DofJointGetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int) gdnative.Float {
+func (o *physicsServer) Generic6DofJointGetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.Generic6DofJointGetParam()")
 
@@ -2012,11 +2012,11 @@ func (o *physicsServer) Generic6DofJointGetParam(joint gdnative.Rid, axis gdnati
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -2049,7 +2049,7 @@ func (o *physicsServer) Generic6DofJointSetFlag(joint gdnative.Rid, axis gdnativ
         Sets a generic_6_DOF_joint parameter (see G6DOF_JOINT* constants without the G6DOF_JOINT_FLAG*).
 	Args: [{ false joint RID} { false axis int} { false param int} { false value float}], Returns: void
 */
-func (o *physicsServer) Generic6DofJointSetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int, value gdnative.Float) {
+func (o *physicsServer) Generic6DofJointSetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.Generic6DofJointSetParam()")
 
@@ -2058,7 +2058,7 @@ func (o *physicsServer) Generic6DofJointSetParam(joint gdnative.Rid, axis gdnati
 	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
 	ptrArguments[1] = gdnative.NewPointerFromInt(axis)
 	ptrArguments[2] = gdnative.NewPointerFromInt(param)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[3] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PhysicsServer", "generic_6dof_joint_set_param")
@@ -2125,7 +2125,7 @@ func (o *physicsServer) HingeJointGetFlag(joint gdnative.Rid, flag gdnative.Int)
         Gets a hinge_joint parameter (see HINGE_JOINT* constants without the HINGE_JOINT_FLAG*).
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
-func (o *physicsServer) HingeJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physicsServer) HingeJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.HingeJointGetParam()")
 
@@ -2139,11 +2139,11 @@ func (o *physicsServer) HingeJointGetParam(joint gdnative.Rid, param gdnative.In
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -2175,7 +2175,7 @@ func (o *physicsServer) HingeJointSetFlag(joint gdnative.Rid, flag gdnative.Int,
         Sets a hinge_joint parameter (see HINGE_JOINT* constants without the HINGE_JOINT_FLAG*).
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
-func (o *physicsServer) HingeJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physicsServer) HingeJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.HingeJointSetParam()")
 
@@ -2183,7 +2183,7 @@ func (o *physicsServer) HingeJointSetParam(joint gdnative.Rid, param gdnative.In
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PhysicsServer", "hinge_joint_set_param")
@@ -2462,7 +2462,7 @@ func (o *physicsServer) PinJointGetLocalB(joint gdnative.Rid) gdnative.Vector3 {
         Gets a pin_joint parameter (see PIN_JOINT* constants).
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
-func (o *physicsServer) PinJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physicsServer) PinJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.PinJointGetParam()")
 
@@ -2476,11 +2476,11 @@ func (o *physicsServer) PinJointGetParam(joint gdnative.Rid, param gdnative.Int)
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -2534,7 +2534,7 @@ func (o *physicsServer) PinJointSetLocalB(joint gdnative.Rid, localB gdnative.Ve
         Sets a pin_joint parameter (see PIN_JOINT* constants).
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
-func (o *physicsServer) PinJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physicsServer) PinJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.PinJointSetParam()")
 
@@ -2542,7 +2542,7 @@ func (o *physicsServer) PinJointSetParam(joint gdnative.Rid, param gdnative.Int,
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PhysicsServer", "pin_joint_set_param")
@@ -2678,7 +2678,7 @@ func (o *physicsServer) ShapeSetData(shape gdnative.Rid, data gdnative.Variant) 
         Gets a slider_joint parameter (see SLIDER_JOINT* constants).
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
-func (o *physicsServer) SliderJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physicsServer) SliderJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.SliderJointGetParam()")
 
@@ -2692,11 +2692,11 @@ func (o *physicsServer) SliderJointGetParam(joint gdnative.Rid, param gdnative.I
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -2704,7 +2704,7 @@ func (o *physicsServer) SliderJointGetParam(joint gdnative.Rid, param gdnative.I
         Gets a slider_joint parameter (see SLIDER_JOINT* constants).
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
-func (o *physicsServer) SliderJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physicsServer) SliderJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.SliderJointSetParam()")
 
@@ -2712,7 +2712,7 @@ func (o *physicsServer) SliderJointSetParam(joint gdnative.Rid, param gdnative.I
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PhysicsServer", "slider_joint_set_param")
@@ -2791,7 +2791,7 @@ func (o *physicsServer) SpaceGetDirectState(space gdnative.Rid) PhysicsDirectSpa
         Returns the value of a space parameter.
 	Args: [{ false space RID} { false param int}], Returns: float
 */
-func (o *physicsServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physicsServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.SpaceGetParam()")
 
@@ -2805,11 +2805,11 @@ func (o *physicsServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gd
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -2865,7 +2865,7 @@ func (o *physicsServer) SpaceSetActive(space gdnative.Rid, active gdnative.Bool)
         Sets the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
 	Args: [{ false space RID} { false param int} { false value float}], Returns: void
 */
-func (o *physicsServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physicsServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling PhysicsServer.SpaceSetParam()")
 
@@ -2873,7 +2873,7 @@ func (o *physicsServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, va
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(space)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PhysicsServer", "space_set_param")
@@ -2922,10 +2922,10 @@ type PhysicsServerImplementer interface {
 	BodyGetCollisionLayer(body gdnative.Rid) gdnative.Int
 	BodyGetCollisionMask(body gdnative.Rid) gdnative.Int
 	BodyGetDirectState(body gdnative.Rid) PhysicsDirectBodyStateImplementer
-	BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.Float
+	BodyGetKinematicSafeMargin(body gdnative.Rid) gdnative.Real
 	BodyGetMaxContactsReported(body gdnative.Rid) gdnative.Int
 	BodyGetObjectInstanceId(body gdnative.Rid) gdnative.Int
-	BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Float
+	BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Real
 	BodyGetShape(body gdnative.Rid, shapeIdx gdnative.Int) gdnative.Rid
 	BodyGetShapeCount(body gdnative.Rid) gdnative.Int
 	BodyGetShapeTransform(body gdnative.Rid, shapeIdx gdnative.Int) gdnative.Transform
@@ -2943,28 +2943,28 @@ type PhysicsServerImplementer interface {
 	BodySetCollisionMask(body gdnative.Rid, mask gdnative.Int)
 	BodySetEnableContinuousCollisionDetection(body gdnative.Rid, enable gdnative.Bool)
 	BodySetForceIntegrationCallback(body gdnative.Rid, receiver ObjectImplementer, method gdnative.String, userdata gdnative.Variant)
-	BodySetKinematicSafeMargin(body gdnative.Rid, margin gdnative.Float)
+	BodySetKinematicSafeMargin(body gdnative.Rid, margin gdnative.Real)
 	BodySetMaxContactsReported(body gdnative.Rid, amount gdnative.Int)
 	BodySetMode(body gdnative.Rid, mode gdnative.Int)
 	BodySetOmitForceIntegration(body gdnative.Rid, enable gdnative.Bool)
-	BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Real)
 	BodySetRayPickable(body gdnative.Rid, enable gdnative.Bool)
 	BodySetShape(body gdnative.Rid, shapeIdx gdnative.Int, shape gdnative.Rid)
 	BodySetShapeTransform(body gdnative.Rid, shapeIdx gdnative.Int, transform gdnative.Transform)
 	BodySetSpace(body gdnative.Rid, space gdnative.Rid)
 	BodySetState(body gdnative.Rid, state gdnative.Int, value gdnative.Variant)
-	ConeTwistJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float
-	ConeTwistJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	ConeTwistJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real
+	ConeTwistJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real)
 	FreeRid(rid gdnative.Rid)
 	Generic6DofJointGetFlag(joint gdnative.Rid, axis gdnative.Int, flag gdnative.Int) gdnative.Bool
-	Generic6DofJointGetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int) gdnative.Float
+	Generic6DofJointGetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int) gdnative.Real
 	Generic6DofJointSetFlag(joint gdnative.Rid, axis gdnative.Int, flag gdnative.Int, enable gdnative.Bool)
-	Generic6DofJointSetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int, value gdnative.Float)
+	Generic6DofJointSetParam(joint gdnative.Rid, axis gdnative.Int, param gdnative.Int, value gdnative.Real)
 	GetProcessInfo(processInfo gdnative.Int) gdnative.Int
 	HingeJointGetFlag(joint gdnative.Rid, flag gdnative.Int) gdnative.Bool
-	HingeJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float
+	HingeJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real
 	HingeJointSetFlag(joint gdnative.Rid, flag gdnative.Int, enabled gdnative.Bool)
-	HingeJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	HingeJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real)
 	JointCreateConeTwist(bodyA gdnative.Rid, localRefA gdnative.Transform, bodyB gdnative.Rid, localRefB gdnative.Transform) gdnative.Rid
 	JointCreateGeneric6Dof(bodyA gdnative.Rid, localRefA gdnative.Transform, bodyB gdnative.Rid, localRefB gdnative.Transform) gdnative.Rid
 	JointCreateHinge(bodyA gdnative.Rid, hingeA gdnative.Transform, bodyB gdnative.Rid, hingeB gdnative.Transform) gdnative.Rid
@@ -2974,20 +2974,20 @@ type PhysicsServerImplementer interface {
 	JointSetSolverPriority(joint gdnative.Rid, priority gdnative.Int)
 	PinJointGetLocalA(joint gdnative.Rid) gdnative.Vector3
 	PinJointGetLocalB(joint gdnative.Rid) gdnative.Vector3
-	PinJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float
+	PinJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real
 	PinJointSetLocalA(joint gdnative.Rid, localA gdnative.Vector3)
 	PinJointSetLocalB(joint gdnative.Rid, localB gdnative.Vector3)
-	PinJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	PinJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real)
 	SetActive(active gdnative.Bool)
 	ShapeCreate(aType gdnative.Int) gdnative.Rid
 	ShapeGetData(shape gdnative.Rid) gdnative.Variant
 	ShapeSetData(shape gdnative.Rid, data gdnative.Variant)
-	SliderJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float
-	SliderJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	SliderJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real
+	SliderJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real)
 	SpaceCreate() gdnative.Rid
 	SpaceGetDirectState(space gdnative.Rid) PhysicsDirectSpaceStateImplementer
-	SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Float
+	SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Real
 	SpaceIsActive(space gdnative.Rid) gdnative.Bool
 	SpaceSetActive(space gdnative.Rid, active gdnative.Bool)
-	SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Real)
 }

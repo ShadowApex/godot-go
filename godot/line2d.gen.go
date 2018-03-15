@@ -327,7 +327,7 @@ func (o *Line2D) GetRoundPrecision() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Line2D) GetSharpLimit() gdnative.Float {
+func (o *Line2D) GetSharpLimit() gdnative.Real {
 	//log.Println("Calling Line2D.GetSharpLimit()")
 
 	// Build out the method's arguments
@@ -338,11 +338,11 @@ func (o *Line2D) GetSharpLimit() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -410,7 +410,7 @@ func (o *Line2D) GetTextureMode() Line2DLineTextureMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Line2D) GetWidth() gdnative.Float {
+func (o *Line2D) GetWidth() gdnative.Real {
 	//log.Println("Calling Line2D.GetWidth()")
 
 	// Build out the method's arguments
@@ -421,11 +421,11 @@ func (o *Line2D) GetWidth() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -623,12 +623,12 @@ func (o *Line2D) SetRoundPrecision(precision gdnative.Int) {
         Undocumented
 	Args: [{ false limit float}], Returns: void
 */
-func (o *Line2D) SetSharpLimit(limit gdnative.Float) {
+func (o *Line2D) SetSharpLimit(limit gdnative.Real) {
 	//log.Println("Calling Line2D.SetSharpLimit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(limit)
+	ptrArguments[0] = gdnative.NewPointerFromReal(limit)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Line2D", "set_sharp_limit")
@@ -686,12 +686,12 @@ func (o *Line2D) SetTextureMode(mode gdnative.Int) {
         Undocumented
 	Args: [{ false width float}], Returns: void
 */
-func (o *Line2D) SetWidth(width gdnative.Float) {
+func (o *Line2D) SetWidth(width gdnative.Real) {
 	//log.Println("Calling Line2D.SetWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[0] = gdnative.NewPointerFromReal(width)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Line2D", "set_width")
@@ -715,9 +715,9 @@ type Line2DImplementer interface {
 	GetPointPosition(i gdnative.Int) gdnative.Vector2
 	GetPoints() gdnative.PoolVector2Array
 	GetRoundPrecision() gdnative.Int
-	GetSharpLimit() gdnative.Float
+	GetSharpLimit() gdnative.Real
 	GetTexture() TextureImplementer
-	GetWidth() gdnative.Float
+	GetWidth() gdnative.Real
 	RemovePoint(i gdnative.Int)
 	SetBeginCapMode(mode gdnative.Int)
 	SetDefaultColor(color gdnative.Color)
@@ -727,8 +727,8 @@ type Line2DImplementer interface {
 	SetPointPosition(i gdnative.Int, position gdnative.Vector2)
 	SetPoints(points gdnative.PoolVector2Array)
 	SetRoundPrecision(precision gdnative.Int)
-	SetSharpLimit(limit gdnative.Float)
+	SetSharpLimit(limit gdnative.Real)
 	SetTexture(texture TextureImplementer)
 	SetTextureMode(mode gdnative.Int)
-	SetWidth(width gdnative.Float)
+	SetWidth(width gdnative.Real)
 }

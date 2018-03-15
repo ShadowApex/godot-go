@@ -290,12 +290,12 @@ func (o *SceneTree) ChangeSceneTo(packedScene PackedSceneImplementer) gdnative.E
 
 	Args: [{ false time_sec float} {True true pause_mode_process bool}], Returns: SceneTreeTimer
 */
-func (o *SceneTree) CreateTimer(timeSec gdnative.Float, pauseModeProcess gdnative.Bool) SceneTreeTimerImplementer {
+func (o *SceneTree) CreateTimer(timeSec gdnative.Real, pauseModeProcess gdnative.Bool) SceneTreeTimerImplementer {
 	//log.Println("Calling SceneTree.CreateTimer()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(timeSec)
+	ptrArguments[0] = gdnative.NewPointerFromReal(timeSec)
 	ptrArguments[1] = gdnative.NewPointerFromBool(pauseModeProcess)
 
 	// Get the method bind
@@ -1189,7 +1189,7 @@ func (o *SceneTree) SetRefuseNewNetworkConnections(refuse gdnative.Bool) {
 
 	Args: [{ false mode int} { false aspect int} { false minsize Vector2} {1 true shrink float}], Returns: void
 */
-func (o *SceneTree) SetScreenStretch(mode gdnative.Int, aspect gdnative.Int, minsize gdnative.Vector2, shrink gdnative.Float) {
+func (o *SceneTree) SetScreenStretch(mode gdnative.Int, aspect gdnative.Int, minsize gdnative.Vector2, shrink gdnative.Real) {
 	//log.Println("Calling SceneTree.SetScreenStretch()")
 
 	// Build out the method's arguments
@@ -1197,7 +1197,7 @@ func (o *SceneTree) SetScreenStretch(mode gdnative.Int, aspect gdnative.Int, min
 	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
 	ptrArguments[1] = gdnative.NewPointerFromInt(aspect)
 	ptrArguments[2] = gdnative.NewPointerFromVector2(minsize)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(shrink)
+	ptrArguments[3] = gdnative.NewPointerFromReal(shrink)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SceneTree", "set_screen_stretch")
@@ -1242,7 +1242,7 @@ type SceneTreeImplementer interface {
 	X_ServerDisconnected()
 	CallGroup(group gdnative.String, method gdnative.String) gdnative.Variant
 	CallGroupFlags(flags gdnative.Int, group gdnative.String, method gdnative.String) gdnative.Variant
-	CreateTimer(timeSec gdnative.Float, pauseModeProcess gdnative.Bool) SceneTreeTimerImplementer
+	CreateTimer(timeSec gdnative.Real, pauseModeProcess gdnative.Bool) SceneTreeTimerImplementer
 	GetCurrentScene() NodeImplementer
 	GetEditedSceneRoot() NodeImplementer
 	GetFrame() gdnative.Int
@@ -1278,6 +1278,6 @@ type SceneTreeImplementer interface {
 	SetPause(enable gdnative.Bool)
 	SetQuitOnGoBack(enabled gdnative.Bool)
 	SetRefuseNewNetworkConnections(refuse gdnative.Bool)
-	SetScreenStretch(mode gdnative.Int, aspect gdnative.Int, minsize gdnative.Vector2, shrink gdnative.Float)
+	SetScreenStretch(mode gdnative.Int, aspect gdnative.Int, minsize gdnative.Vector2, shrink gdnative.Real)
 	SetUseFontOversampling(enable gdnative.Bool)
 }

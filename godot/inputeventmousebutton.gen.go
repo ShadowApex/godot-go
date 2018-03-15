@@ -61,7 +61,7 @@ func (o *InputEventMouseButton) GetButtonIndex() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *InputEventMouseButton) GetFactor() gdnative.Float {
+func (o *InputEventMouseButton) GetFactor() gdnative.Real {
 	//log.Println("Calling InputEventMouseButton.GetFactor()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *InputEventMouseButton) GetFactor() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -149,12 +149,12 @@ func (o *InputEventMouseButton) SetDoubleclick(doubleclick gdnative.Bool) {
         Undocumented
 	Args: [{ false factor float}], Returns: void
 */
-func (o *InputEventMouseButton) SetFactor(factor gdnative.Float) {
+func (o *InputEventMouseButton) SetFactor(factor gdnative.Real) {
 	//log.Println("Calling InputEventMouseButton.SetFactor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(factor)
+	ptrArguments[0] = gdnative.NewPointerFromReal(factor)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("InputEventMouseButton", "set_factor")
@@ -192,10 +192,10 @@ func (o *InputEventMouseButton) SetPressed(pressed gdnative.Bool) {
 type InputEventMouseButtonImplementer interface {
 	InputEventMouseImplementer
 	GetButtonIndex() gdnative.Int
-	GetFactor() gdnative.Float
+	GetFactor() gdnative.Real
 	IsDoubleclick() gdnative.Bool
 	SetButtonIndex(buttonIndex gdnative.Int)
 	SetDoubleclick(doubleclick gdnative.Bool)
-	SetFactor(factor gdnative.Float)
+	SetFactor(factor gdnative.Real)
 	SetPressed(pressed gdnative.Bool)
 }

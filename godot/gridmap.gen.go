@@ -197,7 +197,7 @@ func (o *GridMap) GetCellItemOrientation(x gdnative.Int, y gdnative.Int, z gdnat
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GridMap) GetCellScale() gdnative.Float {
+func (o *GridMap) GetCellScale() gdnative.Real {
 	//log.Println("Calling GridMap.GetCellScale()")
 
 	// Build out the method's arguments
@@ -208,11 +208,11 @@ func (o *GridMap) GetCellScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -512,13 +512,13 @@ func (o *GridMap) GetUsedCells() gdnative.Array {
         Undocumented
 	Args: [{False true gen_lightmap_uv bool} {0.1 true lightmap_uv_texel_size float}], Returns: void
 */
-func (o *GridMap) MakeBakedMeshes(genLightmapUv gdnative.Bool, lightmapUvTexelSize gdnative.Float) {
+func (o *GridMap) MakeBakedMeshes(genLightmapUv gdnative.Bool, lightmapUvTexelSize gdnative.Real) {
 	//log.Println("Calling GridMap.MakeBakedMeshes()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromBool(genLightmapUv)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(lightmapUvTexelSize)
+	ptrArguments[1] = gdnative.NewPointerFromReal(lightmapUvTexelSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GridMap", "make_baked_meshes")
@@ -606,12 +606,12 @@ func (o *GridMap) SetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int, it
         Undocumented
 	Args: [{ false scale float}], Returns: void
 */
-func (o *GridMap) SetCellScale(scale gdnative.Float) {
+func (o *GridMap) SetCellScale(scale gdnative.Real) {
 	//log.Println("Calling GridMap.SetCellScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(scale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(scale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GridMap", "set_cell_scale")
@@ -894,7 +894,7 @@ type GridMapImplementer interface {
 	GetBakeMeshes() gdnative.Array
 	GetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Int
 	GetCellItemOrientation(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Int
-	GetCellScale() gdnative.Float
+	GetCellScale() gdnative.Real
 	GetCellSize() gdnative.Vector3
 	GetCenterX() gdnative.Bool
 	GetCenterY() gdnative.Bool
@@ -907,11 +907,11 @@ type GridMapImplementer interface {
 	GetOctantSize() gdnative.Int
 	GetTheme() MeshLibraryImplementer
 	GetUsedCells() gdnative.Array
-	MakeBakedMeshes(genLightmapUv gdnative.Bool, lightmapUvTexelSize gdnative.Float)
+	MakeBakedMeshes(genLightmapUv gdnative.Bool, lightmapUvTexelSize gdnative.Real)
 	MapToWorld(x gdnative.Int, y gdnative.Int, z gdnative.Int) gdnative.Vector3
 	ResourceChanged(resource ResourceImplementer)
 	SetCellItem(x gdnative.Int, y gdnative.Int, z gdnative.Int, item gdnative.Int, orientation gdnative.Int)
-	SetCellScale(scale gdnative.Float)
+	SetCellScale(scale gdnative.Real)
 	SetCellSize(size gdnative.Vector3)
 	SetCenterX(enable gdnative.Bool)
 	SetCenterY(enable gdnative.Bool)

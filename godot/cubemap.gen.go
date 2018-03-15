@@ -115,7 +115,7 @@ func (o *CubeMap) GetHeight() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CubeMap) GetLossyStorageQuality() gdnative.Float {
+func (o *CubeMap) GetLossyStorageQuality() gdnative.Real {
 	//log.Println("Calling CubeMap.GetLossyStorageQuality()")
 
 	// Build out the method's arguments
@@ -126,11 +126,11 @@ func (o *CubeMap) GetLossyStorageQuality() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -243,12 +243,12 @@ func (o *CubeMap) SetFlags(flags gdnative.Int) {
         Undocumented
 	Args: [{ false quality float}], Returns: void
 */
-func (o *CubeMap) SetLossyStorageQuality(quality gdnative.Float) {
+func (o *CubeMap) SetLossyStorageQuality(quality gdnative.Real) {
 	//log.Println("Calling CubeMap.SetLossyStorageQuality()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(quality)
+	ptrArguments[0] = gdnative.NewPointerFromReal(quality)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CubeMap", "set_lossy_storage_quality")
@@ -309,11 +309,11 @@ type CubeMapImplementer interface {
 	ResourceImplementer
 	GetFlags() gdnative.Int
 	GetHeight() gdnative.Int
-	GetLossyStorageQuality() gdnative.Float
+	GetLossyStorageQuality() gdnative.Real
 	GetSide(side gdnative.Int) ImageImplementer
 	GetWidth() gdnative.Int
 	SetFlags(flags gdnative.Int)
-	SetLossyStorageQuality(quality gdnative.Float)
+	SetLossyStorageQuality(quality gdnative.Real)
 	SetSide(side gdnative.Int, image ImageImplementer)
 	SetStorage(mode gdnative.Int)
 }

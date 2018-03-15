@@ -177,7 +177,7 @@ func (o *Particles) GetDrawPasses() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Particles) GetExplosivenessRatio() gdnative.Float {
+func (o *Particles) GetExplosivenessRatio() gdnative.Real {
 	//log.Println("Calling Particles.GetExplosivenessRatio()")
 
 	// Build out the method's arguments
@@ -188,11 +188,11 @@ func (o *Particles) GetExplosivenessRatio() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -246,7 +246,7 @@ func (o *Particles) GetFractionalDelta() gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Particles) GetLifetime() gdnative.Float {
+func (o *Particles) GetLifetime() gdnative.Real {
 	//log.Println("Calling Particles.GetLifetime()")
 
 	// Build out the method's arguments
@@ -257,11 +257,11 @@ func (o *Particles) GetLifetime() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -292,7 +292,7 @@ func (o *Particles) GetOneShot() gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Particles) GetPreProcessTime() gdnative.Float {
+func (o *Particles) GetPreProcessTime() gdnative.Real {
 	//log.Println("Calling Particles.GetPreProcessTime()")
 
 	// Build out the method's arguments
@@ -303,11 +303,11 @@ func (o *Particles) GetPreProcessTime() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -352,7 +352,7 @@ func (o *Particles) GetProcessMaterial() MaterialImplementer {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Particles) GetRandomnessRatio() gdnative.Float {
+func (o *Particles) GetRandomnessRatio() gdnative.Real {
 	//log.Println("Calling Particles.GetRandomnessRatio()")
 
 	// Build out the method's arguments
@@ -363,11 +363,11 @@ func (o *Particles) GetRandomnessRatio() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -375,7 +375,7 @@ func (o *Particles) GetRandomnessRatio() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Particles) GetSpeedScale() gdnative.Float {
+func (o *Particles) GetSpeedScale() gdnative.Real {
 	//log.Println("Calling Particles.GetSpeedScale()")
 
 	// Build out the method's arguments
@@ -386,11 +386,11 @@ func (o *Particles) GetSpeedScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -593,12 +593,12 @@ func (o *Particles) SetEmitting(emitting gdnative.Bool) {
         Undocumented
 	Args: [{ false ratio float}], Returns: void
 */
-func (o *Particles) SetExplosivenessRatio(ratio gdnative.Float) {
+func (o *Particles) SetExplosivenessRatio(ratio gdnative.Real) {
 	//log.Println("Calling Particles.SetExplosivenessRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ratio)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ratio)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Particles", "set_explosiveness_ratio")
@@ -656,12 +656,12 @@ func (o *Particles) SetFractionalDelta(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false secs float}], Returns: void
 */
-func (o *Particles) SetLifetime(secs gdnative.Float) {
+func (o *Particles) SetLifetime(secs gdnative.Real) {
 	//log.Println("Calling Particles.SetLifetime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(secs)
+	ptrArguments[0] = gdnative.NewPointerFromReal(secs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Particles", "set_lifetime")
@@ -698,12 +698,12 @@ func (o *Particles) SetOneShot(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false secs float}], Returns: void
 */
-func (o *Particles) SetPreProcessTime(secs gdnative.Float) {
+func (o *Particles) SetPreProcessTime(secs gdnative.Real) {
 	//log.Println("Calling Particles.SetPreProcessTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(secs)
+	ptrArguments[0] = gdnative.NewPointerFromReal(secs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Particles", "set_pre_process_time")
@@ -740,12 +740,12 @@ func (o *Particles) SetProcessMaterial(material MaterialImplementer) {
         Undocumented
 	Args: [{ false ratio float}], Returns: void
 */
-func (o *Particles) SetRandomnessRatio(ratio gdnative.Float) {
+func (o *Particles) SetRandomnessRatio(ratio gdnative.Real) {
 	//log.Println("Calling Particles.SetRandomnessRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ratio)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ratio)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Particles", "set_randomness_ratio")
@@ -761,12 +761,12 @@ func (o *Particles) SetRandomnessRatio(ratio gdnative.Float) {
         Undocumented
 	Args: [{ false scale float}], Returns: void
 */
-func (o *Particles) SetSpeedScale(scale gdnative.Float) {
+func (o *Particles) SetSpeedScale(scale gdnative.Real) {
 	//log.Println("Calling Particles.SetSpeedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(scale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(scale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Particles", "set_speed_scale")
@@ -828,15 +828,15 @@ type ParticlesImplementer interface {
 	GetAmount() gdnative.Int
 	GetDrawPassMesh(pass gdnative.Int) MeshImplementer
 	GetDrawPasses() gdnative.Int
-	GetExplosivenessRatio() gdnative.Float
+	GetExplosivenessRatio() gdnative.Real
 	GetFixedFps() gdnative.Int
 	GetFractionalDelta() gdnative.Bool
-	GetLifetime() gdnative.Float
+	GetLifetime() gdnative.Real
 	GetOneShot() gdnative.Bool
-	GetPreProcessTime() gdnative.Float
+	GetPreProcessTime() gdnative.Real
 	GetProcessMaterial() MaterialImplementer
-	GetRandomnessRatio() gdnative.Float
-	GetSpeedScale() gdnative.Float
+	GetRandomnessRatio() gdnative.Real
+	GetSpeedScale() gdnative.Real
 	GetUseLocalCoordinates() gdnative.Bool
 	GetVisibilityAabb() gdnative.Aabb
 	IsEmitting() gdnative.Bool
@@ -846,15 +846,15 @@ type ParticlesImplementer interface {
 	SetDrawPassMesh(pass gdnative.Int, mesh MeshImplementer)
 	SetDrawPasses(passes gdnative.Int)
 	SetEmitting(emitting gdnative.Bool)
-	SetExplosivenessRatio(ratio gdnative.Float)
+	SetExplosivenessRatio(ratio gdnative.Real)
 	SetFixedFps(fps gdnative.Int)
 	SetFractionalDelta(enable gdnative.Bool)
-	SetLifetime(secs gdnative.Float)
+	SetLifetime(secs gdnative.Real)
 	SetOneShot(enable gdnative.Bool)
-	SetPreProcessTime(secs gdnative.Float)
+	SetPreProcessTime(secs gdnative.Real)
 	SetProcessMaterial(material MaterialImplementer)
-	SetRandomnessRatio(ratio gdnative.Float)
-	SetSpeedScale(scale gdnative.Float)
+	SetRandomnessRatio(ratio gdnative.Real)
+	SetSpeedScale(scale gdnative.Real)
 	SetUseLocalCoordinates(enable gdnative.Bool)
 	SetVisibilityAabb(aabb gdnative.Aabb)
 }

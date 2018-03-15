@@ -151,7 +151,7 @@ func (o *AudioStreamPlayer3D) GetAreaMask() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer3D) GetAttenuationFilterCutoffHz() gdnative.Float {
+func (o *AudioStreamPlayer3D) GetAttenuationFilterCutoffHz() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer3D.GetAttenuationFilterCutoffHz()")
 
 	// Build out the method's arguments
@@ -162,11 +162,11 @@ func (o *AudioStreamPlayer3D) GetAttenuationFilterCutoffHz() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -174,7 +174,7 @@ func (o *AudioStreamPlayer3D) GetAttenuationFilterCutoffHz() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer3D) GetAttenuationFilterDb() gdnative.Float {
+func (o *AudioStreamPlayer3D) GetAttenuationFilterDb() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer3D.GetAttenuationFilterDb()")
 
 	// Build out the method's arguments
@@ -185,11 +185,11 @@ func (o *AudioStreamPlayer3D) GetAttenuationFilterDb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -266,7 +266,7 @@ func (o *AudioStreamPlayer3D) GetDopplerTracking() AudioStreamPlayer3DDopplerTra
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer3D) GetEmissionAngle() gdnative.Float {
+func (o *AudioStreamPlayer3D) GetEmissionAngle() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer3D.GetEmissionAngle()")
 
 	// Build out the method's arguments
@@ -277,11 +277,11 @@ func (o *AudioStreamPlayer3D) GetEmissionAngle() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -289,7 +289,7 @@ func (o *AudioStreamPlayer3D) GetEmissionAngle() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer3D) GetEmissionAngleFilterAttenuationDb() gdnative.Float {
+func (o *AudioStreamPlayer3D) GetEmissionAngleFilterAttenuationDb() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer3D.GetEmissionAngleFilterAttenuationDb()")
 
 	// Build out the method's arguments
@@ -300,11 +300,11 @@ func (o *AudioStreamPlayer3D) GetEmissionAngleFilterAttenuationDb() gdnative.Flo
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -312,7 +312,7 @@ func (o *AudioStreamPlayer3D) GetEmissionAngleFilterAttenuationDb() gdnative.Flo
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer3D) GetMaxDb() gdnative.Float {
+func (o *AudioStreamPlayer3D) GetMaxDb() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer3D.GetMaxDb()")
 
 	// Build out the method's arguments
@@ -323,11 +323,11 @@ func (o *AudioStreamPlayer3D) GetMaxDb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -335,7 +335,7 @@ func (o *AudioStreamPlayer3D) GetMaxDb() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer3D) GetMaxDistance() gdnative.Float {
+func (o *AudioStreamPlayer3D) GetMaxDistance() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer3D.GetMaxDistance()")
 
 	// Build out the method's arguments
@@ -346,11 +346,11 @@ func (o *AudioStreamPlayer3D) GetMaxDistance() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -381,7 +381,7 @@ func (o *AudioStreamPlayer3D) GetOutOfRangeMode() AudioStreamPlayer3DOutOfRangeM
         Returns the position in the [AudioStream].
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer3D) GetPlaybackPosition() gdnative.Float {
+func (o *AudioStreamPlayer3D) GetPlaybackPosition() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer3D.GetPlaybackPosition()")
 
 	// Build out the method's arguments
@@ -392,11 +392,11 @@ func (o *AudioStreamPlayer3D) GetPlaybackPosition() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -441,7 +441,7 @@ func (o *AudioStreamPlayer3D) GetStream() AudioStreamImplementer {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer3D) GetUnitDb() gdnative.Float {
+func (o *AudioStreamPlayer3D) GetUnitDb() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer3D.GetUnitDb()")
 
 	// Build out the method's arguments
@@ -452,11 +452,11 @@ func (o *AudioStreamPlayer3D) GetUnitDb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -464,7 +464,7 @@ func (o *AudioStreamPlayer3D) GetUnitDb() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer3D) GetUnitSize() gdnative.Float {
+func (o *AudioStreamPlayer3D) GetUnitSize() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer3D.GetUnitSize()")
 
 	// Build out the method's arguments
@@ -475,11 +475,11 @@ func (o *AudioStreamPlayer3D) GetUnitSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -556,12 +556,12 @@ func (o *AudioStreamPlayer3D) IsPlaying() gdnative.Bool {
         Plays the audio from the given position 'from_position', in seconds.
 	Args: [{0 true from_position float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) Play(fromPosition gdnative.Float) {
+func (o *AudioStreamPlayer3D) Play(fromPosition gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.Play()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(fromPosition)
+	ptrArguments[0] = gdnative.NewPointerFromReal(fromPosition)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "play")
@@ -577,12 +577,12 @@ func (o *AudioStreamPlayer3D) Play(fromPosition gdnative.Float) {
         Sets the position from which audio will be played, in seconds.
 	Args: [{ false to_position float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) Seek(toPosition gdnative.Float) {
+func (o *AudioStreamPlayer3D) Seek(toPosition gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.Seek()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(toPosition)
+	ptrArguments[0] = gdnative.NewPointerFromReal(toPosition)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "seek")
@@ -619,12 +619,12 @@ func (o *AudioStreamPlayer3D) SetAreaMask(mask gdnative.Int) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) SetAttenuationFilterCutoffHz(degrees gdnative.Float) {
+func (o *AudioStreamPlayer3D) SetAttenuationFilterCutoffHz(degrees gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.SetAttenuationFilterCutoffHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "set_attenuation_filter_cutoff_hz")
@@ -640,12 +640,12 @@ func (o *AudioStreamPlayer3D) SetAttenuationFilterCutoffHz(degrees gdnative.Floa
         Undocumented
 	Args: [{ false db float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) SetAttenuationFilterDb(db gdnative.Float) {
+func (o *AudioStreamPlayer3D) SetAttenuationFilterDb(db gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.SetAttenuationFilterDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(db)
+	ptrArguments[0] = gdnative.NewPointerFromReal(db)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "set_attenuation_filter_db")
@@ -745,12 +745,12 @@ func (o *AudioStreamPlayer3D) SetDopplerTracking(mode gdnative.Int) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) SetEmissionAngle(degrees gdnative.Float) {
+func (o *AudioStreamPlayer3D) SetEmissionAngle(degrees gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.SetEmissionAngle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "set_emission_angle")
@@ -787,12 +787,12 @@ func (o *AudioStreamPlayer3D) SetEmissionAngleEnabled(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false db float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) SetEmissionAngleFilterAttenuationDb(db gdnative.Float) {
+func (o *AudioStreamPlayer3D) SetEmissionAngleFilterAttenuationDb(db gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.SetEmissionAngleFilterAttenuationDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(db)
+	ptrArguments[0] = gdnative.NewPointerFromReal(db)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "set_emission_angle_filter_attenuation_db")
@@ -808,12 +808,12 @@ func (o *AudioStreamPlayer3D) SetEmissionAngleFilterAttenuationDb(db gdnative.Fl
         Undocumented
 	Args: [{ false max_db float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) SetMaxDb(maxDb gdnative.Float) {
+func (o *AudioStreamPlayer3D) SetMaxDb(maxDb gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.SetMaxDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(maxDb)
+	ptrArguments[0] = gdnative.NewPointerFromReal(maxDb)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "set_max_db")
@@ -829,12 +829,12 @@ func (o *AudioStreamPlayer3D) SetMaxDb(maxDb gdnative.Float) {
         Undocumented
 	Args: [{ false metres float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) SetMaxDistance(metres gdnative.Float) {
+func (o *AudioStreamPlayer3D) SetMaxDistance(metres gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.SetMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(metres)
+	ptrArguments[0] = gdnative.NewPointerFromReal(metres)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "set_max_distance")
@@ -892,12 +892,12 @@ func (o *AudioStreamPlayer3D) SetStream(stream AudioStreamImplementer) {
         Undocumented
 	Args: [{ false unit_db float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) SetUnitDb(unitDb gdnative.Float) {
+func (o *AudioStreamPlayer3D) SetUnitDb(unitDb gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.SetUnitDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(unitDb)
+	ptrArguments[0] = gdnative.NewPointerFromReal(unitDb)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "set_unit_db")
@@ -913,12 +913,12 @@ func (o *AudioStreamPlayer3D) SetUnitDb(unitDb gdnative.Float) {
         Undocumented
 	Args: [{ false unit_size float}], Returns: void
 */
-func (o *AudioStreamPlayer3D) SetUnitSize(unitSize gdnative.Float) {
+func (o *AudioStreamPlayer3D) SetUnitSize(unitSize gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer3D.SetUnitSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(unitSize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(unitSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer3D", "set_unit_size")
@@ -958,37 +958,37 @@ type AudioStreamPlayer3DImplementer interface {
 	X_IsActive() gdnative.Bool
 	X_SetPlaying(enable gdnative.Bool)
 	GetAreaMask() gdnative.Int
-	GetAttenuationFilterCutoffHz() gdnative.Float
-	GetAttenuationFilterDb() gdnative.Float
+	GetAttenuationFilterCutoffHz() gdnative.Real
+	GetAttenuationFilterDb() gdnative.Real
 	GetBus() gdnative.String
-	GetEmissionAngle() gdnative.Float
-	GetEmissionAngleFilterAttenuationDb() gdnative.Float
-	GetMaxDb() gdnative.Float
-	GetMaxDistance() gdnative.Float
-	GetPlaybackPosition() gdnative.Float
+	GetEmissionAngle() gdnative.Real
+	GetEmissionAngleFilterAttenuationDb() gdnative.Real
+	GetMaxDb() gdnative.Real
+	GetMaxDistance() gdnative.Real
+	GetPlaybackPosition() gdnative.Real
 	GetStream() AudioStreamImplementer
-	GetUnitDb() gdnative.Float
-	GetUnitSize() gdnative.Float
+	GetUnitDb() gdnative.Real
+	GetUnitSize() gdnative.Real
 	IsAutoplayEnabled() gdnative.Bool
 	IsEmissionAngleEnabled() gdnative.Bool
 	IsPlaying() gdnative.Bool
-	Play(fromPosition gdnative.Float)
-	Seek(toPosition gdnative.Float)
+	Play(fromPosition gdnative.Real)
+	Seek(toPosition gdnative.Real)
 	SetAreaMask(mask gdnative.Int)
-	SetAttenuationFilterCutoffHz(degrees gdnative.Float)
-	SetAttenuationFilterDb(db gdnative.Float)
+	SetAttenuationFilterCutoffHz(degrees gdnative.Real)
+	SetAttenuationFilterDb(db gdnative.Real)
 	SetAttenuationModel(model gdnative.Int)
 	SetAutoplay(enable gdnative.Bool)
 	SetBus(bus gdnative.String)
 	SetDopplerTracking(mode gdnative.Int)
-	SetEmissionAngle(degrees gdnative.Float)
+	SetEmissionAngle(degrees gdnative.Real)
 	SetEmissionAngleEnabled(enabled gdnative.Bool)
-	SetEmissionAngleFilterAttenuationDb(db gdnative.Float)
-	SetMaxDb(maxDb gdnative.Float)
-	SetMaxDistance(metres gdnative.Float)
+	SetEmissionAngleFilterAttenuationDb(db gdnative.Real)
+	SetMaxDb(maxDb gdnative.Real)
+	SetMaxDistance(metres gdnative.Real)
 	SetOutOfRangeMode(mode gdnative.Int)
 	SetStream(stream AudioStreamImplementer)
-	SetUnitDb(unitDb gdnative.Float)
-	SetUnitSize(unitSize gdnative.Float)
+	SetUnitDb(unitDb gdnative.Real)
+	SetUnitSize(unitSize gdnative.Real)
 	Stop()
 }

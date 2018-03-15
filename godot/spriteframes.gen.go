@@ -235,7 +235,7 @@ func (o *SpriteFrames) GetAnimationLoop(anim gdnative.String) gdnative.Bool {
         The animation's speed in frames per second.
 	Args: [{ false anim String}], Returns: float
 */
-func (o *SpriteFrames) GetAnimationSpeed(anim gdnative.String) gdnative.Float {
+func (o *SpriteFrames) GetAnimationSpeed(anim gdnative.String) gdnative.Real {
 	//log.Println("Calling SpriteFrames.GetAnimationSpeed()")
 
 	// Build out the method's arguments
@@ -247,11 +247,11 @@ func (o *SpriteFrames) GetAnimationSpeed(anim gdnative.String) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -433,13 +433,13 @@ func (o *SpriteFrames) SetAnimationLoop(anim gdnative.String, loop gdnative.Bool
         The animation's speed in frames per second.
 	Args: [{ false anim String} { false speed float}], Returns: void
 */
-func (o *SpriteFrames) SetAnimationSpeed(anim gdnative.String, speed gdnative.Float) {
+func (o *SpriteFrames) SetAnimationSpeed(anim gdnative.String, speed gdnative.Real) {
 	//log.Println("Calling SpriteFrames.SetAnimationSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(anim)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(speed)
+	ptrArguments[1] = gdnative.NewPointerFromReal(speed)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpriteFrames", "set_animation_speed")
@@ -487,7 +487,7 @@ type SpriteFramesImplementer interface {
 	Clear(anim gdnative.String)
 	ClearAll()
 	GetAnimationLoop(anim gdnative.String) gdnative.Bool
-	GetAnimationSpeed(anim gdnative.String) gdnative.Float
+	GetAnimationSpeed(anim gdnative.String) gdnative.Real
 	GetFrame(anim gdnative.String, idx gdnative.Int) TextureImplementer
 	GetFrameCount(anim gdnative.String) gdnative.Int
 	HasAnimation(anim gdnative.String) gdnative.Bool
@@ -495,6 +495,6 @@ type SpriteFramesImplementer interface {
 	RemoveFrame(anim gdnative.String, idx gdnative.Int)
 	RenameAnimation(anim gdnative.String, newname gdnative.String)
 	SetAnimationLoop(anim gdnative.String, loop gdnative.Bool)
-	SetAnimationSpeed(anim gdnative.String, speed gdnative.Float)
+	SetAnimationSpeed(anim gdnative.String, speed gdnative.Real)
 	SetFrame(anim gdnative.String, idx gdnative.Int, txt TextureImplementer)
 }

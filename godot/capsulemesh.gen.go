@@ -38,7 +38,7 @@ func (o *CapsuleMesh) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CapsuleMesh) GetMidHeight() gdnative.Float {
+func (o *CapsuleMesh) GetMidHeight() gdnative.Real {
 	//log.Println("Calling CapsuleMesh.GetMidHeight()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *CapsuleMesh) GetMidHeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *CapsuleMesh) GetRadialSegments() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CapsuleMesh) GetRadius() gdnative.Float {
+func (o *CapsuleMesh) GetRadius() gdnative.Real {
 	//log.Println("Calling CapsuleMesh.GetRadius()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *CapsuleMesh) GetRadius() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,12 +130,12 @@ func (o *CapsuleMesh) GetRings() gdnative.Int {
         Undocumented
 	Args: [{ false mid_height float}], Returns: void
 */
-func (o *CapsuleMesh) SetMidHeight(midHeight gdnative.Float) {
+func (o *CapsuleMesh) SetMidHeight(midHeight gdnative.Real) {
 	//log.Println("Calling CapsuleMesh.SetMidHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(midHeight)
+	ptrArguments[0] = gdnative.NewPointerFromReal(midHeight)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CapsuleMesh", "set_mid_height")
@@ -172,12 +172,12 @@ func (o *CapsuleMesh) SetRadialSegments(segments gdnative.Int) {
         Undocumented
 	Args: [{ false radius float}], Returns: void
 */
-func (o *CapsuleMesh) SetRadius(radius gdnative.Float) {
+func (o *CapsuleMesh) SetRadius(radius gdnative.Real) {
 	//log.Println("Calling CapsuleMesh.SetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radius)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CapsuleMesh", "set_radius")
@@ -214,12 +214,12 @@ func (o *CapsuleMesh) SetRings(rings gdnative.Int) {
 // of the CapsuleMesh class.
 type CapsuleMeshImplementer interface {
 	PrimitiveMeshImplementer
-	GetMidHeight() gdnative.Float
+	GetMidHeight() gdnative.Real
 	GetRadialSegments() gdnative.Int
-	GetRadius() gdnative.Float
+	GetRadius() gdnative.Real
 	GetRings() gdnative.Int
-	SetMidHeight(midHeight gdnative.Float)
+	SetMidHeight(midHeight gdnative.Real)
 	SetRadialSegments(segments gdnative.Int)
-	SetRadius(radius gdnative.Float)
+	SetRadius(radius gdnative.Real)
 	SetRings(rings gdnative.Int)
 }

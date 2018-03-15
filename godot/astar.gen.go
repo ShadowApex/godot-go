@@ -38,7 +38,7 @@ func (o *AStar) BaseClass() string {
         Called when computing the cost between two connected points.
 	Args: [{ false from_id int} { false to_id int}], Returns: float
 */
-func (o *AStar) X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Float {
+func (o *AStar) X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Real {
 	//log.Println("Calling AStar.X_ComputeCost()")
 
 	// Build out the method's arguments
@@ -51,11 +51,11 @@ func (o *AStar) X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.F
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -63,7 +63,7 @@ func (o *AStar) X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.F
         Called when estimating the cost between a point and the path's ending point.
 	Args: [{ false from_id int} { false to_id int}], Returns: float
 */
-func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Float {
+func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Real {
 	//log.Println("Calling AStar.X_EstimateCost()")
 
 	// Build out the method's arguments
@@ -76,11 +76,11 @@ func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -88,14 +88,14 @@ func (o *AStar) X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.
         Adds a new point at the given position with the given identifier. The algorithm prefers points with lower [code]weight_scale[/code] to form a path. The [code]id[/code] must be 0 or larger, and the [code]weight_scale[/code] must be 1 or larger. [codeblock] var as = AStar.new() as.add_point(1, Vector3(1,0,0), 4) # Adds the point (1,0,0) with weight_scale=4 and id=1 [/codeblock] If there already exists a point for the given id, its position and weight scale are updated to the given values.
 	Args: [{ false id int} { false position Vector3} {1 true weight_scale float}], Returns: void
 */
-func (o *AStar) AddPoint(id gdnative.Int, position gdnative.Vector3, weightScale gdnative.Float) {
+func (o *AStar) AddPoint(id gdnative.Int, position gdnative.Vector3, weightScale gdnative.Real) {
 	//log.Println("Calling AStar.AddPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromInt(id)
 	ptrArguments[1] = gdnative.NewPointerFromVector3(position)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(weightScale)
+	ptrArguments[2] = gdnative.NewPointerFromReal(weightScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AStar", "add_point")
@@ -370,7 +370,7 @@ func (o *AStar) GetPointPosition(id gdnative.Int) gdnative.Vector3 {
         Returns the weight scale of the point associated with the given id.
 	Args: [{ false id int}], Returns: float
 */
-func (o *AStar) GetPointWeightScale(id gdnative.Int) gdnative.Float {
+func (o *AStar) GetPointWeightScale(id gdnative.Int) gdnative.Real {
 	//log.Println("Calling AStar.GetPointWeightScale()")
 
 	// Build out the method's arguments
@@ -382,11 +382,11 @@ func (o *AStar) GetPointWeightScale(id gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -484,13 +484,13 @@ func (o *AStar) SetPointPosition(id gdnative.Int, position gdnative.Vector3) {
         Sets the [code]weight_scale[/code] for the point with the given id.
 	Args: [{ false id int} { false weight_scale float}], Returns: void
 */
-func (o *AStar) SetPointWeightScale(id gdnative.Int, weightScale gdnative.Float) {
+func (o *AStar) SetPointWeightScale(id gdnative.Int, weightScale gdnative.Real) {
 	//log.Println("Calling AStar.SetPointWeightScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(weightScale)
+	ptrArguments[1] = gdnative.NewPointerFromReal(weightScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AStar", "set_point_weight_scale")
@@ -506,9 +506,9 @@ func (o *AStar) SetPointWeightScale(id gdnative.Int, weightScale gdnative.Float)
 // of the AStar class.
 type AStarImplementer interface {
 	ReferenceImplementer
-	X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Float
-	X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Float
-	AddPoint(id gdnative.Int, position gdnative.Vector3, weightScale gdnative.Float)
+	X_ComputeCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Real
+	X_EstimateCost(fromId gdnative.Int, toId gdnative.Int) gdnative.Real
+	AddPoint(id gdnative.Int, position gdnative.Vector3, weightScale gdnative.Real)
 	ArePointsConnected(id gdnative.Int, toId gdnative.Int) gdnative.Bool
 	Clear()
 	ConnectPoints(id gdnative.Int, toId gdnative.Int, bidirectional gdnative.Bool)
@@ -520,10 +520,10 @@ type AStarImplementer interface {
 	GetPointConnections(id gdnative.Int) gdnative.PoolIntArray
 	GetPointPath(fromId gdnative.Int, toId gdnative.Int) gdnative.PoolVector3Array
 	GetPointPosition(id gdnative.Int) gdnative.Vector3
-	GetPointWeightScale(id gdnative.Int) gdnative.Float
+	GetPointWeightScale(id gdnative.Int) gdnative.Real
 	GetPoints() gdnative.Array
 	HasPoint(id gdnative.Int) gdnative.Bool
 	RemovePoint(id gdnative.Int)
 	SetPointPosition(id gdnative.Int, position gdnative.Vector3)
-	SetPointWeightScale(id gdnative.Int, weightScale gdnative.Float)
+	SetPointWeightScale(id gdnative.Int, weightScale gdnative.Real)
 }

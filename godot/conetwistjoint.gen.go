@@ -50,7 +50,7 @@ func (o *ConeTwistJoint) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ConeTwistJoint) X_GetSwingSpan() gdnative.Float {
+func (o *ConeTwistJoint) X_GetSwingSpan() gdnative.Real {
 	//log.Println("Calling ConeTwistJoint.X_GetSwingSpan()")
 
 	// Build out the method's arguments
@@ -61,11 +61,11 @@ func (o *ConeTwistJoint) X_GetSwingSpan() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -73,7 +73,7 @@ func (o *ConeTwistJoint) X_GetSwingSpan() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ConeTwistJoint) X_GetTwistSpan() gdnative.Float {
+func (o *ConeTwistJoint) X_GetTwistSpan() gdnative.Real {
 	//log.Println("Calling ConeTwistJoint.X_GetTwistSpan()")
 
 	// Build out the method's arguments
@@ -84,11 +84,11 @@ func (o *ConeTwistJoint) X_GetTwistSpan() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -96,12 +96,12 @@ func (o *ConeTwistJoint) X_GetTwistSpan() gdnative.Float {
         Undocumented
 	Args: [{ false swing_span float}], Returns: void
 */
-func (o *ConeTwistJoint) X_SetSwingSpan(swingSpan gdnative.Float) {
+func (o *ConeTwistJoint) X_SetSwingSpan(swingSpan gdnative.Real) {
 	//log.Println("Calling ConeTwistJoint.X_SetSwingSpan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(swingSpan)
+	ptrArguments[0] = gdnative.NewPointerFromReal(swingSpan)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ConeTwistJoint", "_set_swing_span")
@@ -117,12 +117,12 @@ func (o *ConeTwistJoint) X_SetSwingSpan(swingSpan gdnative.Float) {
         Undocumented
 	Args: [{ false twist_span float}], Returns: void
 */
-func (o *ConeTwistJoint) X_SetTwistSpan(twistSpan gdnative.Float) {
+func (o *ConeTwistJoint) X_SetTwistSpan(twistSpan gdnative.Real) {
 	//log.Println("Calling ConeTwistJoint.X_SetTwistSpan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(twistSpan)
+	ptrArguments[0] = gdnative.NewPointerFromReal(twistSpan)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ConeTwistJoint", "_set_twist_span")
@@ -138,7 +138,7 @@ func (o *ConeTwistJoint) X_SetTwistSpan(twistSpan gdnative.Float) {
         Undocumented
 	Args: [{ false param int}], Returns: float
 */
-func (o *ConeTwistJoint) GetParam(param gdnative.Int) gdnative.Float {
+func (o *ConeTwistJoint) GetParam(param gdnative.Int) gdnative.Real {
 	//log.Println("Calling ConeTwistJoint.GetParam()")
 
 	// Build out the method's arguments
@@ -150,11 +150,11 @@ func (o *ConeTwistJoint) GetParam(param gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -162,13 +162,13 @@ func (o *ConeTwistJoint) GetParam(param gdnative.Int) gdnative.Float {
         Undocumented
 	Args: [{ false param int} { false value float}], Returns: void
 */
-func (o *ConeTwistJoint) SetParam(param gdnative.Int, value gdnative.Float) {
+func (o *ConeTwistJoint) SetParam(param gdnative.Int, value gdnative.Real) {
 	//log.Println("Calling ConeTwistJoint.SetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(param)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[1] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ConeTwistJoint", "set_param")
@@ -184,10 +184,10 @@ func (o *ConeTwistJoint) SetParam(param gdnative.Int, value gdnative.Float) {
 // of the ConeTwistJoint class.
 type ConeTwistJointImplementer interface {
 	JointImplementer
-	X_GetSwingSpan() gdnative.Float
-	X_GetTwistSpan() gdnative.Float
-	X_SetSwingSpan(swingSpan gdnative.Float)
-	X_SetTwistSpan(twistSpan gdnative.Float)
-	GetParam(param gdnative.Int) gdnative.Float
-	SetParam(param gdnative.Int, value gdnative.Float)
+	X_GetSwingSpan() gdnative.Real
+	X_GetTwistSpan() gdnative.Real
+	X_SetSwingSpan(swingSpan gdnative.Real)
+	X_SetTwistSpan(twistSpan gdnative.Real)
+	GetParam(param gdnative.Int) gdnative.Real
+	SetParam(param gdnative.Int, value gdnative.Real)
 }

@@ -317,7 +317,7 @@ func (o *ParticlesMaterial) GetEmissionShape() ParticlesMaterialEmissionShape {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ParticlesMaterial) GetEmissionSphereRadius() gdnative.Float {
+func (o *ParticlesMaterial) GetEmissionSphereRadius() gdnative.Real {
 	//log.Println("Calling ParticlesMaterial.GetEmissionSphereRadius()")
 
 	// Build out the method's arguments
@@ -328,11 +328,11 @@ func (o *ParticlesMaterial) GetEmissionSphereRadius() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -364,7 +364,7 @@ func (o *ParticlesMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ParticlesMaterial) GetFlatness() gdnative.Float {
+func (o *ParticlesMaterial) GetFlatness() gdnative.Real {
 	//log.Println("Calling ParticlesMaterial.GetFlatness()")
 
 	// Build out the method's arguments
@@ -375,11 +375,11 @@ func (o *ParticlesMaterial) GetFlatness() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -410,7 +410,7 @@ func (o *ParticlesMaterial) GetGravity() gdnative.Vector3 {
         Undocumented
 	Args: [{ false param int}], Returns: float
 */
-func (o *ParticlesMaterial) GetParam(param gdnative.Int) gdnative.Float {
+func (o *ParticlesMaterial) GetParam(param gdnative.Int) gdnative.Real {
 	//log.Println("Calling ParticlesMaterial.GetParam()")
 
 	// Build out the method's arguments
@@ -422,11 +422,11 @@ func (o *ParticlesMaterial) GetParam(param gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -434,7 +434,7 @@ func (o *ParticlesMaterial) GetParam(param gdnative.Int) gdnative.Float {
         Undocumented
 	Args: [{ false param int}], Returns: float
 */
-func (o *ParticlesMaterial) GetParamRandomness(param gdnative.Int) gdnative.Float {
+func (o *ParticlesMaterial) GetParamRandomness(param gdnative.Int) gdnative.Real {
 	//log.Println("Calling ParticlesMaterial.GetParamRandomness()")
 
 	// Build out the method's arguments
@@ -446,11 +446,11 @@ func (o *ParticlesMaterial) GetParamRandomness(param gdnative.Int) gdnative.Floa
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -496,7 +496,7 @@ func (o *ParticlesMaterial) GetParamTexture(param gdnative.Int) TextureImplement
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ParticlesMaterial) GetSpread() gdnative.Float {
+func (o *ParticlesMaterial) GetSpread() gdnative.Real {
 	//log.Println("Calling ParticlesMaterial.GetSpread()")
 
 	// Build out the method's arguments
@@ -507,11 +507,11 @@ func (o *ParticlesMaterial) GetSpread() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -784,12 +784,12 @@ func (o *ParticlesMaterial) SetEmissionShape(shape gdnative.Int) {
         Undocumented
 	Args: [{ false radius float}], Returns: void
 */
-func (o *ParticlesMaterial) SetEmissionSphereRadius(radius gdnative.Float) {
+func (o *ParticlesMaterial) SetEmissionSphereRadius(radius gdnative.Real) {
 	//log.Println("Calling ParticlesMaterial.SetEmissionSphereRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radius)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ParticlesMaterial", "set_emission_sphere_radius")
@@ -827,12 +827,12 @@ func (o *ParticlesMaterial) SetFlag(flag gdnative.Int, enable gdnative.Bool) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *ParticlesMaterial) SetFlatness(amount gdnative.Float) {
+func (o *ParticlesMaterial) SetFlatness(amount gdnative.Real) {
 	//log.Println("Calling ParticlesMaterial.SetFlatness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ParticlesMaterial", "set_flatness")
@@ -869,13 +869,13 @@ func (o *ParticlesMaterial) SetGravity(accelVec gdnative.Vector3) {
         Undocumented
 	Args: [{ false param int} { false value float}], Returns: void
 */
-func (o *ParticlesMaterial) SetParam(param gdnative.Int, value gdnative.Float) {
+func (o *ParticlesMaterial) SetParam(param gdnative.Int, value gdnative.Real) {
 	//log.Println("Calling ParticlesMaterial.SetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(param)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[1] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ParticlesMaterial", "set_param")
@@ -891,13 +891,13 @@ func (o *ParticlesMaterial) SetParam(param gdnative.Int, value gdnative.Float) {
         Undocumented
 	Args: [{ false param int} { false randomness float}], Returns: void
 */
-func (o *ParticlesMaterial) SetParamRandomness(param gdnative.Int, randomness gdnative.Float) {
+func (o *ParticlesMaterial) SetParamRandomness(param gdnative.Int, randomness gdnative.Real) {
 	//log.Println("Calling ParticlesMaterial.SetParamRandomness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(param)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(randomness)
+	ptrArguments[1] = gdnative.NewPointerFromReal(randomness)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ParticlesMaterial", "set_param_randomness")
@@ -935,12 +935,12 @@ func (o *ParticlesMaterial) SetParamTexture(param gdnative.Int, texture TextureI
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *ParticlesMaterial) SetSpread(degrees gdnative.Float) {
+func (o *ParticlesMaterial) SetSpread(degrees gdnative.Real) {
 	//log.Println("Calling ParticlesMaterial.SetSpread()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ParticlesMaterial", "set_spread")
@@ -1026,14 +1026,14 @@ type ParticlesMaterialImplementer interface {
 	GetEmissionNormalTexture() TextureImplementer
 	GetEmissionPointCount() gdnative.Int
 	GetEmissionPointTexture() TextureImplementer
-	GetEmissionSphereRadius() gdnative.Float
+	GetEmissionSphereRadius() gdnative.Real
 	GetFlag(flag gdnative.Int) gdnative.Bool
-	GetFlatness() gdnative.Float
+	GetFlatness() gdnative.Real
 	GetGravity() gdnative.Vector3
-	GetParam(param gdnative.Int) gdnative.Float
-	GetParamRandomness(param gdnative.Int) gdnative.Float
+	GetParam(param gdnative.Int) gdnative.Real
+	GetParamRandomness(param gdnative.Int) gdnative.Real
 	GetParamTexture(param gdnative.Int) TextureImplementer
-	GetSpread() gdnative.Float
+	GetSpread() gdnative.Real
 	GetTrailColorModifier() GradientTextureImplementer
 	GetTrailDivisor() gdnative.Int
 	GetTrailSizeModifier() CurveTextureImplementer
@@ -1045,14 +1045,14 @@ type ParticlesMaterialImplementer interface {
 	SetEmissionPointCount(pointCount gdnative.Int)
 	SetEmissionPointTexture(texture TextureImplementer)
 	SetEmissionShape(shape gdnative.Int)
-	SetEmissionSphereRadius(radius gdnative.Float)
+	SetEmissionSphereRadius(radius gdnative.Real)
 	SetFlag(flag gdnative.Int, enable gdnative.Bool)
-	SetFlatness(amount gdnative.Float)
+	SetFlatness(amount gdnative.Real)
 	SetGravity(accelVec gdnative.Vector3)
-	SetParam(param gdnative.Int, value gdnative.Float)
-	SetParamRandomness(param gdnative.Int, randomness gdnative.Float)
+	SetParam(param gdnative.Int, value gdnative.Real)
+	SetParamRandomness(param gdnative.Int, randomness gdnative.Real)
 	SetParamTexture(param gdnative.Int, texture TextureImplementer)
-	SetSpread(degrees gdnative.Float)
+	SetSpread(degrees gdnative.Real)
 	SetTrailColorModifier(texture GradientTextureImplementer)
 	SetTrailDivisor(divisor gdnative.Int)
 	SetTrailSizeModifier(texture CurveTextureImplementer)

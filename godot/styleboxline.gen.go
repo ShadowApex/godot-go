@@ -61,7 +61,7 @@ func (o *StyleBoxLine) GetColor() gdnative.Color {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *StyleBoxLine) GetGrow() gdnative.Float {
+func (o *StyleBoxLine) GetGrow() gdnative.Real {
 	//log.Println("Calling StyleBoxLine.GetGrow()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *StyleBoxLine) GetGrow() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -151,12 +151,12 @@ func (o *StyleBoxLine) SetColor(color gdnative.Color) {
         Undocumented
 	Args: [{ false grow float}], Returns: void
 */
-func (o *StyleBoxLine) SetGrow(grow gdnative.Float) {
+func (o *StyleBoxLine) SetGrow(grow gdnative.Real) {
 	//log.Println("Calling StyleBoxLine.SetGrow()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(grow)
+	ptrArguments[0] = gdnative.NewPointerFromReal(grow)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StyleBoxLine", "set_grow")
@@ -215,11 +215,11 @@ func (o *StyleBoxLine) SetVertical(vertical gdnative.Bool) {
 type StyleBoxLineImplementer interface {
 	StyleBoxImplementer
 	GetColor() gdnative.Color
-	GetGrow() gdnative.Float
+	GetGrow() gdnative.Real
 	GetThickness() gdnative.Int
 	IsVertical() gdnative.Bool
 	SetColor(color gdnative.Color)
-	SetGrow(grow gdnative.Float)
+	SetGrow(grow gdnative.Real)
 	SetThickness(thickness gdnative.Int)
 	SetVertical(vertical gdnative.Bool)
 }

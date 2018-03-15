@@ -84,7 +84,7 @@ func (o *PhysicsShapeQueryParameters) GetExclude() gdnative.Array {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PhysicsShapeQueryParameters) GetMargin() gdnative.Float {
+func (o *PhysicsShapeQueryParameters) GetMargin() gdnative.Real {
 	//log.Println("Calling PhysicsShapeQueryParameters.GetMargin()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *PhysicsShapeQueryParameters) GetMargin() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -195,12 +195,12 @@ func (o *PhysicsShapeQueryParameters) SetExclude(exclude gdnative.Array) {
         Undocumented
 	Args: [{ false margin float}], Returns: void
 */
-func (o *PhysicsShapeQueryParameters) SetMargin(margin gdnative.Float) {
+func (o *PhysicsShapeQueryParameters) SetMargin(margin gdnative.Real) {
 	//log.Println("Calling PhysicsShapeQueryParameters.SetMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(margin)
+	ptrArguments[0] = gdnative.NewPointerFromReal(margin)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PhysicsShapeQueryParameters", "set_margin")
@@ -281,12 +281,12 @@ type PhysicsShapeQueryParametersImplementer interface {
 	ReferenceImplementer
 	GetCollisionMask() gdnative.Int
 	GetExclude() gdnative.Array
-	GetMargin() gdnative.Float
+	GetMargin() gdnative.Real
 	GetShapeRid() gdnative.Rid
 	GetTransform() gdnative.Transform
 	SetCollisionMask(collisionMask gdnative.Int)
 	SetExclude(exclude gdnative.Array)
-	SetMargin(margin gdnative.Float)
+	SetMargin(margin gdnative.Real)
 	SetShape(shape ResourceImplementer)
 	SetShapeRid(shape gdnative.Rid)
 	SetTransform(transform gdnative.Transform)

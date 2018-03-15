@@ -91,14 +91,14 @@ func (o *Curve) X_SetData(data gdnative.Array) {
         Adds a point to the curve. For each side, if the [code]*_mode[/code] is [code]TANGENT_LINEAR[/code], the [code]*_tangent[/code] angle (in degrees) uses the slope of the curve halfway to the adjacent point. Allows custom assignments to the [code]*_tangent[/code] angle if [code]*_mode[/code] is set to [code]TANGENT_FREE[/code].
 	Args: [{ false position Vector2} {0 true left_tangent float} {0 true right_tangent float} {0 true left_mode int} {0 true right_mode int}], Returns: int
 */
-func (o *Curve) AddPoint(position gdnative.Vector2, leftTangent gdnative.Float, rightTangent gdnative.Float, leftMode gdnative.Int, rightMode gdnative.Int) gdnative.Int {
+func (o *Curve) AddPoint(position gdnative.Vector2, leftTangent gdnative.Real, rightTangent gdnative.Real, leftMode gdnative.Int, rightMode gdnative.Int) gdnative.Int {
 	//log.Println("Calling Curve.AddPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
 	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(leftTangent)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(rightTangent)
+	ptrArguments[1] = gdnative.NewPointerFromReal(leftTangent)
+	ptrArguments[2] = gdnative.NewPointerFromReal(rightTangent)
 	ptrArguments[3] = gdnative.NewPointerFromInt(leftMode)
 	ptrArguments[4] = gdnative.NewPointerFromInt(rightMode)
 
@@ -202,7 +202,7 @@ func (o *Curve) GetBakeResolution() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Curve) GetMaxValue() gdnative.Float {
+func (o *Curve) GetMaxValue() gdnative.Real {
 	//log.Println("Calling Curve.GetMaxValue()")
 
 	// Build out the method's arguments
@@ -213,11 +213,11 @@ func (o *Curve) GetMaxValue() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -225,7 +225,7 @@ func (o *Curve) GetMaxValue() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Curve) GetMinValue() gdnative.Float {
+func (o *Curve) GetMinValue() gdnative.Real {
 	//log.Println("Calling Curve.GetMinValue()")
 
 	// Build out the method's arguments
@@ -236,11 +236,11 @@ func (o *Curve) GetMinValue() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -272,7 +272,7 @@ func (o *Curve) GetPointLeftMode(index gdnative.Int) CurveTangentMode {
         Returns the left tangent angle (in degrees) for the point at [code]index[/code].
 	Args: [{ false index int}], Returns: float
 */
-func (o *Curve) GetPointLeftTangent(index gdnative.Int) gdnative.Float {
+func (o *Curve) GetPointLeftTangent(index gdnative.Int) gdnative.Real {
 	//log.Println("Calling Curve.GetPointLeftTangent()")
 
 	// Build out the method's arguments
@@ -284,11 +284,11 @@ func (o *Curve) GetPointLeftTangent(index gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -344,7 +344,7 @@ func (o *Curve) GetPointRightMode(index gdnative.Int) CurveTangentMode {
         Returns the right tangent angle (in degrees) for the point at [code]index[/code].
 	Args: [{ false index int}], Returns: float
 */
-func (o *Curve) GetPointRightTangent(index gdnative.Int) gdnative.Float {
+func (o *Curve) GetPointRightTangent(index gdnative.Int) gdnative.Real {
 	//log.Println("Calling Curve.GetPointRightTangent()")
 
 	// Build out the method's arguments
@@ -356,11 +356,11 @@ func (o *Curve) GetPointRightTangent(index gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -368,23 +368,23 @@ func (o *Curve) GetPointRightTangent(index gdnative.Int) gdnative.Float {
         Returns the y value for the point that would exist at x-position [code]offset[/code] along the curve.
 	Args: [{ false offset float}], Returns: float
 */
-func (o *Curve) Interpolate(offset gdnative.Float) gdnative.Float {
+func (o *Curve) Interpolate(offset gdnative.Real) gdnative.Real {
 	//log.Println("Calling Curve.Interpolate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[0] = gdnative.NewPointerFromReal(offset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Curve", "interpolate")
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -392,23 +392,23 @@ func (o *Curve) Interpolate(offset gdnative.Float) gdnative.Float {
         Returns the y value for the point that would exist at x-position [code]offset[/code] along the curve using the baked cache. Bakes the curve's points if not already baked.
 	Args: [{ false offset float}], Returns: float
 */
-func (o *Curve) InterpolateBaked(offset gdnative.Float) gdnative.Float {
+func (o *Curve) InterpolateBaked(offset gdnative.Real) gdnative.Real {
 	//log.Println("Calling Curve.InterpolateBaked()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[0] = gdnative.NewPointerFromReal(offset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Curve", "interpolate_baked")
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -458,12 +458,12 @@ func (o *Curve) SetBakeResolution(resolution gdnative.Int) {
         Undocumented
 	Args: [{ false max float}], Returns: void
 */
-func (o *Curve) SetMaxValue(max gdnative.Float) {
+func (o *Curve) SetMaxValue(max gdnative.Real) {
 	//log.Println("Calling Curve.SetMaxValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(max)
+	ptrArguments[0] = gdnative.NewPointerFromReal(max)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Curve", "set_max_value")
@@ -479,12 +479,12 @@ func (o *Curve) SetMaxValue(max gdnative.Float) {
         Undocumented
 	Args: [{ false min float}], Returns: void
 */
-func (o *Curve) SetMinValue(min gdnative.Float) {
+func (o *Curve) SetMinValue(min gdnative.Real) {
 	//log.Println("Calling Curve.SetMinValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(min)
+	ptrArguments[0] = gdnative.NewPointerFromReal(min)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Curve", "set_min_value")
@@ -522,13 +522,13 @@ func (o *Curve) SetPointLeftMode(index gdnative.Int, mode gdnative.Int) {
         Sets the left tangent angle for the point at [code]index[/code] to [code]tangent[/code].
 	Args: [{ false index int} { false tangent float}], Returns: void
 */
-func (o *Curve) SetPointLeftTangent(index gdnative.Int, tangent gdnative.Float) {
+func (o *Curve) SetPointLeftTangent(index gdnative.Int, tangent gdnative.Real) {
 	//log.Println("Calling Curve.SetPointLeftTangent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(index)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(tangent)
+	ptrArguments[1] = gdnative.NewPointerFromReal(tangent)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Curve", "set_point_left_tangent")
@@ -544,13 +544,13 @@ func (o *Curve) SetPointLeftTangent(index gdnative.Int, tangent gdnative.Float) 
         Sets the offset from [code]0.5[/code]
 	Args: [{ false index int} { false offset float}], Returns: int
 */
-func (o *Curve) SetPointOffset(index gdnative.Int, offset gdnative.Float) gdnative.Int {
+func (o *Curve) SetPointOffset(index gdnative.Int, offset gdnative.Real) gdnative.Int {
 	//log.Println("Calling Curve.SetPointOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(index)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[1] = gdnative.NewPointerFromReal(offset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Curve", "set_point_offset")
@@ -591,13 +591,13 @@ func (o *Curve) SetPointRightMode(index gdnative.Int, mode gdnative.Int) {
         Sets the right tangent angle for the point at [code]index[/code] to [code]tangent[/code].
 	Args: [{ false index int} { false tangent float}], Returns: void
 */
-func (o *Curve) SetPointRightTangent(index gdnative.Int, tangent gdnative.Float) {
+func (o *Curve) SetPointRightTangent(index gdnative.Int, tangent gdnative.Real) {
 	//log.Println("Calling Curve.SetPointRightTangent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(index)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(tangent)
+	ptrArguments[1] = gdnative.NewPointerFromReal(tangent)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Curve", "set_point_right_tangent")
@@ -613,13 +613,13 @@ func (o *Curve) SetPointRightTangent(index gdnative.Int, tangent gdnative.Float)
         Assigns the vertical position [code]y[/code] to the point at [code]index[/code].
 	Args: [{ false index int} { false y float}], Returns: void
 */
-func (o *Curve) SetPointValue(index gdnative.Int, y gdnative.Float) {
+func (o *Curve) SetPointValue(index gdnative.Int, y gdnative.Real) {
 	//log.Println("Calling Curve.SetPointValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(index)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(y)
+	ptrArguments[1] = gdnative.NewPointerFromReal(y)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Curve", "set_point_value")
@@ -637,26 +637,26 @@ type CurveImplementer interface {
 	ResourceImplementer
 	X_GetData() gdnative.Array
 	X_SetData(data gdnative.Array)
-	AddPoint(position gdnative.Vector2, leftTangent gdnative.Float, rightTangent gdnative.Float, leftMode gdnative.Int, rightMode gdnative.Int) gdnative.Int
+	AddPoint(position gdnative.Vector2, leftTangent gdnative.Real, rightTangent gdnative.Real, leftMode gdnative.Int, rightMode gdnative.Int) gdnative.Int
 	Bake()
 	CleanDupes()
 	ClearPoints()
 	GetBakeResolution() gdnative.Int
-	GetMaxValue() gdnative.Float
-	GetMinValue() gdnative.Float
-	GetPointLeftTangent(index gdnative.Int) gdnative.Float
+	GetMaxValue() gdnative.Real
+	GetMinValue() gdnative.Real
+	GetPointLeftTangent(index gdnative.Int) gdnative.Real
 	GetPointPosition(index gdnative.Int) gdnative.Vector2
-	GetPointRightTangent(index gdnative.Int) gdnative.Float
-	Interpolate(offset gdnative.Float) gdnative.Float
-	InterpolateBaked(offset gdnative.Float) gdnative.Float
+	GetPointRightTangent(index gdnative.Int) gdnative.Real
+	Interpolate(offset gdnative.Real) gdnative.Real
+	InterpolateBaked(offset gdnative.Real) gdnative.Real
 	RemovePoint(index gdnative.Int)
 	SetBakeResolution(resolution gdnative.Int)
-	SetMaxValue(max gdnative.Float)
-	SetMinValue(min gdnative.Float)
+	SetMaxValue(max gdnative.Real)
+	SetMinValue(min gdnative.Real)
 	SetPointLeftMode(index gdnative.Int, mode gdnative.Int)
-	SetPointLeftTangent(index gdnative.Int, tangent gdnative.Float)
-	SetPointOffset(index gdnative.Int, offset gdnative.Float) gdnative.Int
+	SetPointLeftTangent(index gdnative.Int, tangent gdnative.Real)
+	SetPointOffset(index gdnative.Int, offset gdnative.Real) gdnative.Int
 	SetPointRightMode(index gdnative.Int, mode gdnative.Int)
-	SetPointRightTangent(index gdnative.Int, tangent gdnative.Float)
-	SetPointValue(index gdnative.Int, y gdnative.Float)
+	SetPointRightTangent(index gdnative.Int, tangent gdnative.Real)
+	SetPointValue(index gdnative.Int, y gdnative.Real)
 }

@@ -130,7 +130,7 @@ func (o *ARVRController) GetIsActive() gdnative.Bool {
         Returns the value of the given axis for things like triggers, touchpads, etc. that are embedded into the controller.
 	Args: [{ false axis int}], Returns: float
 */
-func (o *ARVRController) GetJoystickAxis(axis gdnative.Int) gdnative.Float {
+func (o *ARVRController) GetJoystickAxis(axis gdnative.Int) gdnative.Real {
 	//log.Println("Calling ARVRController.GetJoystickAxis()")
 
 	// Build out the method's arguments
@@ -142,11 +142,11 @@ func (o *ARVRController) GetJoystickAxis(axis gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -177,7 +177,7 @@ func (o *ARVRController) GetJoystickId() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ARVRController) GetRumble() gdnative.Float {
+func (o *ARVRController) GetRumble() gdnative.Real {
 	//log.Println("Calling ARVRController.GetRumble()")
 
 	// Build out the method's arguments
@@ -188,11 +188,11 @@ func (o *ARVRController) GetRumble() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -245,12 +245,12 @@ func (o *ARVRController) SetControllerId(controllerId gdnative.Int) {
         Undocumented
 	Args: [{ false rumble float}], Returns: void
 */
-func (o *ARVRController) SetRumble(rumble gdnative.Float) {
+func (o *ARVRController) SetRumble(rumble gdnative.Real) {
 	//log.Println("Calling ARVRController.SetRumble()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(rumble)
+	ptrArguments[0] = gdnative.NewPointerFromReal(rumble)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ARVRController", "set_rumble")
@@ -269,10 +269,10 @@ type ARVRControllerImplementer interface {
 	GetControllerId() gdnative.Int
 	GetControllerName() gdnative.String
 	GetIsActive() gdnative.Bool
-	GetJoystickAxis(axis gdnative.Int) gdnative.Float
+	GetJoystickAxis(axis gdnative.Int) gdnative.Real
 	GetJoystickId() gdnative.Int
-	GetRumble() gdnative.Float
+	GetRumble() gdnative.Real
 	IsButtonPressed(button gdnative.Int) gdnative.Int
 	SetControllerId(controllerId gdnative.Int)
-	SetRumble(rumble gdnative.Float)
+	SetRumble(rumble gdnative.Real)
 }

@@ -38,7 +38,7 @@ func (o *PrismMesh) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PrismMesh) GetLeftToRight() gdnative.Float {
+func (o *PrismMesh) GetLeftToRight() gdnative.Real {
 	//log.Println("Calling PrismMesh.GetLeftToRight()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *PrismMesh) GetLeftToRight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -153,12 +153,12 @@ func (o *PrismMesh) GetSubdivideWidth() gdnative.Int {
         Undocumented
 	Args: [{ false left_to_right float}], Returns: void
 */
-func (o *PrismMesh) SetLeftToRight(leftToRight gdnative.Float) {
+func (o *PrismMesh) SetLeftToRight(leftToRight gdnative.Real) {
 	//log.Println("Calling PrismMesh.SetLeftToRight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(leftToRight)
+	ptrArguments[0] = gdnative.NewPointerFromReal(leftToRight)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PrismMesh", "set_left_to_right")
@@ -258,12 +258,12 @@ func (o *PrismMesh) SetSubdivideWidth(segments gdnative.Int) {
 // of the PrismMesh class.
 type PrismMeshImplementer interface {
 	PrimitiveMeshImplementer
-	GetLeftToRight() gdnative.Float
+	GetLeftToRight() gdnative.Real
 	GetSize() gdnative.Vector3
 	GetSubdivideDepth() gdnative.Int
 	GetSubdivideHeight() gdnative.Int
 	GetSubdivideWidth() gdnative.Int
-	SetLeftToRight(leftToRight gdnative.Float)
+	SetLeftToRight(leftToRight gdnative.Real)
 	SetSize(size gdnative.Vector3)
 	SetSubdivideDepth(segments gdnative.Int)
 	SetSubdivideHeight(segments gdnative.Int)

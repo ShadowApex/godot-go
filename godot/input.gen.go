@@ -256,7 +256,7 @@ func (o *input) GetGyroscope() gdnative.Vector3 {
         Returns the current value of the joypad axis at given index (see [code]JOY_*[/code] constants in [@GlobalScope])
 	Args: [{ false device int} { false axis int}], Returns: float
 */
-func (o *input) GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Float {
+func (o *input) GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling Input.GetJoyAxis()")
 
@@ -270,11 +270,11 @@ func (o *input) GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Floa
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -432,7 +432,7 @@ func (o *input) GetJoyName(device gdnative.Int) gdnative.String {
         Returns the duration of the current vibration effect in seconds.
 	Args: [{ false device int}], Returns: float
 */
-func (o *input) GetJoyVibrationDuration(device gdnative.Int) gdnative.Float {
+func (o *input) GetJoyVibrationDuration(device gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling Input.GetJoyVibrationDuration()")
 
@@ -445,11 +445,11 @@ func (o *input) GetJoyVibrationDuration(device gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -869,16 +869,16 @@ func (o *input) SetMouseMode(mode gdnative.Int) {
         Starts to vibrate the joypad. Joypads usually come with two rumble motors, a strong and a weak one. weak_magnitude is the strength of the weak motor (between 0 and 1) and strong_magnitude is the strength of the strong motor (between 0 and 1). duration is the duration of the effect in seconds (a duration of 0 will try to play the vibration indefinitely). Note that not every hardware is compatible with long effect durations, it is recommended to restart an effect if in need to play it for more than a few seconds.
 	Args: [{ false device int} { false weak_magnitude float} { false strong_magnitude float} {0 true duration float}], Returns: void
 */
-func (o *input) StartJoyVibration(device gdnative.Int, weakMagnitude gdnative.Float, strongMagnitude gdnative.Float, duration gdnative.Float) {
+func (o *input) StartJoyVibration(device gdnative.Int, weakMagnitude gdnative.Real, strongMagnitude gdnative.Real, duration gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling Input.StartJoyVibration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromInt(device)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(weakMagnitude)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(strongMagnitude)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(duration)
+	ptrArguments[1] = gdnative.NewPointerFromReal(weakMagnitude)
+	ptrArguments[2] = gdnative.NewPointerFromReal(strongMagnitude)
+	ptrArguments[3] = gdnative.NewPointerFromReal(duration)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Input", "start_joy_vibration")
@@ -945,14 +945,14 @@ type InputImplementer interface {
 	GetConnectedJoypads() gdnative.Array
 	GetGravity() gdnative.Vector3
 	GetGyroscope() gdnative.Vector3
-	GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Float
+	GetJoyAxis(device gdnative.Int, axis gdnative.Int) gdnative.Real
 	GetJoyAxisIndexFromString(axis gdnative.String) gdnative.Int
 	GetJoyAxisString(axisIndex gdnative.Int) gdnative.String
 	GetJoyButtonIndexFromString(button gdnative.String) gdnative.Int
 	GetJoyButtonString(buttonIndex gdnative.Int) gdnative.String
 	GetJoyGuid(device gdnative.Int) gdnative.String
 	GetJoyName(device gdnative.Int) gdnative.String
-	GetJoyVibrationDuration(device gdnative.Int) gdnative.Float
+	GetJoyVibrationDuration(device gdnative.Int) gdnative.Real
 	GetJoyVibrationStrength(device gdnative.Int) gdnative.Vector2
 	GetLastMouseSpeed() gdnative.Vector2
 	GetMagnetometer() gdnative.Vector3
@@ -969,7 +969,7 @@ type InputImplementer interface {
 	RemoveJoyMapping(guid gdnative.String)
 	SetCustomMouseCursor(image ResourceImplementer, shape gdnative.Int, hotspot gdnative.Vector2)
 	SetMouseMode(mode gdnative.Int)
-	StartJoyVibration(device gdnative.Int, weakMagnitude gdnative.Float, strongMagnitude gdnative.Float, duration gdnative.Float)
+	StartJoyVibration(device gdnative.Int, weakMagnitude gdnative.Real, strongMagnitude gdnative.Real, duration gdnative.Real)
 	StopJoyVibration(device gdnative.Int)
 	WarpMousePosition(to gdnative.Vector2)
 }

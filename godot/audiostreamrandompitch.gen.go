@@ -75,7 +75,7 @@ func (o *AudioStreamRandomPitch) GetAudioStream() AudioStreamImplementer {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamRandomPitch) GetRandomPitch() gdnative.Float {
+func (o *AudioStreamRandomPitch) GetRandomPitch() gdnative.Real {
 	//log.Println("Calling AudioStreamRandomPitch.GetRandomPitch()")
 
 	// Build out the method's arguments
@@ -86,11 +86,11 @@ func (o *AudioStreamRandomPitch) GetRandomPitch() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -119,12 +119,12 @@ func (o *AudioStreamRandomPitch) SetAudioStream(stream AudioStreamImplementer) {
         Undocumented
 	Args: [{ false scale float}], Returns: void
 */
-func (o *AudioStreamRandomPitch) SetRandomPitch(scale gdnative.Float) {
+func (o *AudioStreamRandomPitch) SetRandomPitch(scale gdnative.Real) {
 	//log.Println("Calling AudioStreamRandomPitch.SetRandomPitch()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(scale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(scale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamRandomPitch", "set_random_pitch")
@@ -141,7 +141,7 @@ func (o *AudioStreamRandomPitch) SetRandomPitch(scale gdnative.Float) {
 type AudioStreamRandomPitchImplementer interface {
 	AudioStreamImplementer
 	GetAudioStream() AudioStreamImplementer
-	GetRandomPitch() gdnative.Float
+	GetRandomPitch() gdnative.Real
 	SetAudioStream(stream AudioStreamImplementer)
-	SetRandomPitch(scale gdnative.Float)
+	SetRandomPitch(scale gdnative.Real)
 }

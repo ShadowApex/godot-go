@@ -96,12 +96,12 @@ func (o *RichTextLabel) X_GuiInput(arg0 InputEventImplementer) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *RichTextLabel) X_ScrollChanged(arg0 gdnative.Float) {
+func (o *RichTextLabel) X_ScrollChanged(arg0 gdnative.Real) {
 	//log.Println("Calling RichTextLabel.X_ScrollChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RichTextLabel", "_scroll_changed")
@@ -249,7 +249,7 @@ func (o *RichTextLabel) GetLineCount() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RichTextLabel) GetPercentVisible() gdnative.Float {
+func (o *RichTextLabel) GetPercentVisible() gdnative.Real {
 	//log.Println("Calling RichTextLabel.GetPercentVisible()")
 
 	// Build out the method's arguments
@@ -260,11 +260,11 @@ func (o *RichTextLabel) GetPercentVisible() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -921,12 +921,12 @@ func (o *RichTextLabel) SetOverrideSelectedFontColor(override gdnative.Bool) {
         Undocumented
 	Args: [{ false percent_visible float}], Returns: void
 */
-func (o *RichTextLabel) SetPercentVisible(percentVisible gdnative.Float) {
+func (o *RichTextLabel) SetPercentVisible(percentVisible gdnative.Real) {
 	//log.Println("Calling RichTextLabel.SetPercentVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(percentVisible)
+	ptrArguments[0] = gdnative.NewPointerFromReal(percentVisible)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RichTextLabel", "set_percent_visible")
@@ -1112,13 +1112,13 @@ func (o *RichTextLabel) SetVisibleCharacters(amount gdnative.Int) {
 // of the RichTextLabel class.
 type RichTextLabelImplementer interface {
 	ControlImplementer
-	X_ScrollChanged(arg0 gdnative.Float)
+	X_ScrollChanged(arg0 gdnative.Real)
 	AddImage(image TextureImplementer)
 	AddText(text gdnative.String)
 	Clear()
 	GetBbcode() gdnative.String
 	GetLineCount() gdnative.Int
-	GetPercentVisible() gdnative.Float
+	GetPercentVisible() gdnative.Real
 	GetTabSize() gdnative.Int
 	GetText() gdnative.String
 	GetTotalCharacterCount() gdnative.Int
@@ -1147,7 +1147,7 @@ type RichTextLabelImplementer interface {
 	SetBbcode(text gdnative.String)
 	SetMetaUnderline(enable gdnative.Bool)
 	SetOverrideSelectedFontColor(override gdnative.Bool)
-	SetPercentVisible(percentVisible gdnative.Float)
+	SetPercentVisible(percentVisible gdnative.Real)
 	SetScrollActive(active gdnative.Bool)
 	SetScrollFollow(follow gdnative.Bool)
 	SetSelectionEnabled(enabled gdnative.Bool)

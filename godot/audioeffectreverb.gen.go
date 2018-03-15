@@ -38,7 +38,7 @@ func (o *AudioEffectReverb) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectReverb) GetDamping() gdnative.Float {
+func (o *AudioEffectReverb) GetDamping() gdnative.Real {
 	//log.Println("Calling AudioEffectReverb.GetDamping()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *AudioEffectReverb) GetDamping() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *AudioEffectReverb) GetDamping() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectReverb) GetDry() gdnative.Float {
+func (o *AudioEffectReverb) GetDry() gdnative.Real {
 	//log.Println("Calling AudioEffectReverb.GetDry()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *AudioEffectReverb) GetDry() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *AudioEffectReverb) GetDry() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectReverb) GetHpf() gdnative.Float {
+func (o *AudioEffectReverb) GetHpf() gdnative.Real {
 	//log.Println("Calling AudioEffectReverb.GetHpf()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *AudioEffectReverb) GetHpf() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *AudioEffectReverb) GetHpf() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectReverb) GetPredelayFeedback() gdnative.Float {
+func (o *AudioEffectReverb) GetPredelayFeedback() gdnative.Real {
 	//log.Println("Calling AudioEffectReverb.GetPredelayFeedback()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *AudioEffectReverb) GetPredelayFeedback() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,7 +130,7 @@ func (o *AudioEffectReverb) GetPredelayFeedback() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectReverb) GetPredelayMsec() gdnative.Float {
+func (o *AudioEffectReverb) GetPredelayMsec() gdnative.Real {
 	//log.Println("Calling AudioEffectReverb.GetPredelayMsec()")
 
 	// Build out the method's arguments
@@ -141,11 +141,11 @@ func (o *AudioEffectReverb) GetPredelayMsec() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -153,7 +153,7 @@ func (o *AudioEffectReverb) GetPredelayMsec() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectReverb) GetRoomSize() gdnative.Float {
+func (o *AudioEffectReverb) GetRoomSize() gdnative.Real {
 	//log.Println("Calling AudioEffectReverb.GetRoomSize()")
 
 	// Build out the method's arguments
@@ -164,11 +164,11 @@ func (o *AudioEffectReverb) GetRoomSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -176,7 +176,7 @@ func (o *AudioEffectReverb) GetRoomSize() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectReverb) GetSpread() gdnative.Float {
+func (o *AudioEffectReverb) GetSpread() gdnative.Real {
 	//log.Println("Calling AudioEffectReverb.GetSpread()")
 
 	// Build out the method's arguments
@@ -187,11 +187,11 @@ func (o *AudioEffectReverb) GetSpread() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -199,7 +199,7 @@ func (o *AudioEffectReverb) GetSpread() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectReverb) GetWet() gdnative.Float {
+func (o *AudioEffectReverb) GetWet() gdnative.Real {
 	//log.Println("Calling AudioEffectReverb.GetWet()")
 
 	// Build out the method's arguments
@@ -210,11 +210,11 @@ func (o *AudioEffectReverb) GetWet() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -222,12 +222,12 @@ func (o *AudioEffectReverb) GetWet() gdnative.Float {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectReverb) SetDamping(amount gdnative.Float) {
+func (o *AudioEffectReverb) SetDamping(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectReverb.SetDamping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectReverb", "set_damping")
@@ -243,12 +243,12 @@ func (o *AudioEffectReverb) SetDamping(amount gdnative.Float) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectReverb) SetDry(amount gdnative.Float) {
+func (o *AudioEffectReverb) SetDry(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectReverb.SetDry()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectReverb", "set_dry")
@@ -264,12 +264,12 @@ func (o *AudioEffectReverb) SetDry(amount gdnative.Float) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectReverb) SetHpf(amount gdnative.Float) {
+func (o *AudioEffectReverb) SetHpf(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectReverb.SetHpf()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectReverb", "set_hpf")
@@ -285,12 +285,12 @@ func (o *AudioEffectReverb) SetHpf(amount gdnative.Float) {
         Undocumented
 	Args: [{ false feedback float}], Returns: void
 */
-func (o *AudioEffectReverb) SetPredelayFeedback(feedback gdnative.Float) {
+func (o *AudioEffectReverb) SetPredelayFeedback(feedback gdnative.Real) {
 	//log.Println("Calling AudioEffectReverb.SetPredelayFeedback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(feedback)
+	ptrArguments[0] = gdnative.NewPointerFromReal(feedback)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectReverb", "set_predelay_feedback")
@@ -306,12 +306,12 @@ func (o *AudioEffectReverb) SetPredelayFeedback(feedback gdnative.Float) {
         Undocumented
 	Args: [{ false msec float}], Returns: void
 */
-func (o *AudioEffectReverb) SetPredelayMsec(msec gdnative.Float) {
+func (o *AudioEffectReverb) SetPredelayMsec(msec gdnative.Real) {
 	//log.Println("Calling AudioEffectReverb.SetPredelayMsec()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(msec)
+	ptrArguments[0] = gdnative.NewPointerFromReal(msec)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectReverb", "set_predelay_msec")
@@ -327,12 +327,12 @@ func (o *AudioEffectReverb) SetPredelayMsec(msec gdnative.Float) {
         Undocumented
 	Args: [{ false size float}], Returns: void
 */
-func (o *AudioEffectReverb) SetRoomSize(size gdnative.Float) {
+func (o *AudioEffectReverb) SetRoomSize(size gdnative.Real) {
 	//log.Println("Calling AudioEffectReverb.SetRoomSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(size)
+	ptrArguments[0] = gdnative.NewPointerFromReal(size)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectReverb", "set_room_size")
@@ -348,12 +348,12 @@ func (o *AudioEffectReverb) SetRoomSize(size gdnative.Float) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectReverb) SetSpread(amount gdnative.Float) {
+func (o *AudioEffectReverb) SetSpread(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectReverb.SetSpread()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectReverb", "set_spread")
@@ -369,12 +369,12 @@ func (o *AudioEffectReverb) SetSpread(amount gdnative.Float) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectReverb) SetWet(amount gdnative.Float) {
+func (o *AudioEffectReverb) SetWet(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectReverb.SetWet()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectReverb", "set_wet")
@@ -390,20 +390,20 @@ func (o *AudioEffectReverb) SetWet(amount gdnative.Float) {
 // of the AudioEffectReverb class.
 type AudioEffectReverbImplementer interface {
 	AudioEffectImplementer
-	GetDamping() gdnative.Float
-	GetDry() gdnative.Float
-	GetHpf() gdnative.Float
-	GetPredelayFeedback() gdnative.Float
-	GetPredelayMsec() gdnative.Float
-	GetRoomSize() gdnative.Float
-	GetSpread() gdnative.Float
-	GetWet() gdnative.Float
-	SetDamping(amount gdnative.Float)
-	SetDry(amount gdnative.Float)
-	SetHpf(amount gdnative.Float)
-	SetPredelayFeedback(feedback gdnative.Float)
-	SetPredelayMsec(msec gdnative.Float)
-	SetRoomSize(size gdnative.Float)
-	SetSpread(amount gdnative.Float)
-	SetWet(amount gdnative.Float)
+	GetDamping() gdnative.Real
+	GetDry() gdnative.Real
+	GetHpf() gdnative.Real
+	GetPredelayFeedback() gdnative.Real
+	GetPredelayMsec() gdnative.Real
+	GetRoomSize() gdnative.Real
+	GetSpread() gdnative.Real
+	GetWet() gdnative.Real
+	SetDamping(amount gdnative.Real)
+	SetDry(amount gdnative.Real)
+	SetHpf(amount gdnative.Real)
+	SetPredelayFeedback(feedback gdnative.Real)
+	SetPredelayMsec(msec gdnative.Real)
+	SetRoomSize(size gdnative.Real)
+	SetSpread(amount gdnative.Real)
+	SetWet(amount gdnative.Real)
 }

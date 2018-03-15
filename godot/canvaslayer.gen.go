@@ -121,7 +121,7 @@ func (o *CanvasLayer) GetOffset() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CanvasLayer) GetRotation() gdnative.Float {
+func (o *CanvasLayer) GetRotation() gdnative.Real {
 	//log.Println("Calling CanvasLayer.GetRotation()")
 
 	// Build out the method's arguments
@@ -132,11 +132,11 @@ func (o *CanvasLayer) GetRotation() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -144,7 +144,7 @@ func (o *CanvasLayer) GetRotation() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CanvasLayer) GetRotationDegrees() gdnative.Float {
+func (o *CanvasLayer) GetRotationDegrees() gdnative.Real {
 	//log.Println("Calling CanvasLayer.GetRotationDegrees()")
 
 	// Build out the method's arguments
@@ -155,11 +155,11 @@ func (o *CanvasLayer) GetRotationDegrees() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -313,12 +313,12 @@ func (o *CanvasLayer) SetOffset(offset gdnative.Vector2) {
         Undocumented
 	Args: [{ false radians float}], Returns: void
 */
-func (o *CanvasLayer) SetRotation(radians gdnative.Float) {
+func (o *CanvasLayer) SetRotation(radians gdnative.Real) {
 	//log.Println("Calling CanvasLayer.SetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radians)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CanvasLayer", "set_rotation")
@@ -334,12 +334,12 @@ func (o *CanvasLayer) SetRotation(radians gdnative.Float) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *CanvasLayer) SetRotationDegrees(degrees gdnative.Float) {
+func (o *CanvasLayer) SetRotationDegrees(degrees gdnative.Real) {
 	//log.Println("Calling CanvasLayer.SetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CanvasLayer", "set_rotation_degrees")
@@ -400,16 +400,16 @@ type CanvasLayerImplementer interface {
 	GetCustomViewport() NodeImplementer
 	GetLayer() gdnative.Int
 	GetOffset() gdnative.Vector2
-	GetRotation() gdnative.Float
-	GetRotationDegrees() gdnative.Float
+	GetRotation() gdnative.Real
+	GetRotationDegrees() gdnative.Real
 	GetScale() gdnative.Vector2
 	GetTransform() gdnative.Transform2D
 	GetWorld2D() World2DImplementer
 	SetCustomViewport(viewport ObjectImplementer)
 	SetLayer(layer gdnative.Int)
 	SetOffset(offset gdnative.Vector2)
-	SetRotation(radians gdnative.Float)
-	SetRotationDegrees(degrees gdnative.Float)
+	SetRotation(radians gdnative.Real)
+	SetRotationDegrees(degrees gdnative.Real)
 	SetScale(scale gdnative.Vector2)
 	SetTransform(transform gdnative.Transform2D)
 }

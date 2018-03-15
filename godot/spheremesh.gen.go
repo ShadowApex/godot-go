@@ -38,7 +38,7 @@ func (o *SphereMesh) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SphereMesh) GetHeight() gdnative.Float {
+func (o *SphereMesh) GetHeight() gdnative.Real {
 	//log.Println("Calling SphereMesh.GetHeight()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *SphereMesh) GetHeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *SphereMesh) GetRadialSegments() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SphereMesh) GetRadius() gdnative.Float {
+func (o *SphereMesh) GetRadius() gdnative.Real {
 	//log.Println("Calling SphereMesh.GetRadius()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *SphereMesh) GetRadius() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -153,12 +153,12 @@ func (o *SphereMesh) GetRings() gdnative.Int {
         Undocumented
 	Args: [{ false height float}], Returns: void
 */
-func (o *SphereMesh) SetHeight(height gdnative.Float) {
+func (o *SphereMesh) SetHeight(height gdnative.Real) {
 	//log.Println("Calling SphereMesh.SetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(height)
+	ptrArguments[0] = gdnative.NewPointerFromReal(height)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SphereMesh", "set_height")
@@ -216,12 +216,12 @@ func (o *SphereMesh) SetRadialSegments(radialSegments gdnative.Int) {
         Undocumented
 	Args: [{ false radius float}], Returns: void
 */
-func (o *SphereMesh) SetRadius(radius gdnative.Float) {
+func (o *SphereMesh) SetRadius(radius gdnative.Real) {
 	//log.Println("Calling SphereMesh.SetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radius)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SphereMesh", "set_radius")
@@ -258,14 +258,14 @@ func (o *SphereMesh) SetRings(rings gdnative.Int) {
 // of the SphereMesh class.
 type SphereMeshImplementer interface {
 	PrimitiveMeshImplementer
-	GetHeight() gdnative.Float
+	GetHeight() gdnative.Real
 	GetIsHemisphere() gdnative.Bool
 	GetRadialSegments() gdnative.Int
-	GetRadius() gdnative.Float
+	GetRadius() gdnative.Real
 	GetRings() gdnative.Int
-	SetHeight(height gdnative.Float)
+	SetHeight(height gdnative.Real)
 	SetIsHemisphere(isHemisphere gdnative.Bool)
 	SetRadialSegments(radialSegments gdnative.Int)
-	SetRadius(radius gdnative.Float)
+	SetRadius(radius gdnative.Real)
 	SetRings(rings gdnative.Int)
 }

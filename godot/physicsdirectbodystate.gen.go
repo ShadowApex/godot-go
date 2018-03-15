@@ -425,7 +425,7 @@ func (o *PhysicsDirectBodyState) GetInverseInertia() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PhysicsDirectBodyState) GetInverseMass() gdnative.Float {
+func (o *PhysicsDirectBodyState) GetInverseMass() gdnative.Real {
 	//log.Println("Calling PhysicsDirectBodyState.GetInverseMass()")
 
 	// Build out the method's arguments
@@ -436,11 +436,11 @@ func (o *PhysicsDirectBodyState) GetInverseMass() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -531,7 +531,7 @@ func (o *PhysicsDirectBodyState) GetSpaceState() PhysicsDirectSpaceStateImplemen
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PhysicsDirectBodyState) GetStep() gdnative.Float {
+func (o *PhysicsDirectBodyState) GetStep() gdnative.Real {
 	//log.Println("Calling PhysicsDirectBodyState.GetStep()")
 
 	// Build out the method's arguments
@@ -542,11 +542,11 @@ func (o *PhysicsDirectBodyState) GetStep() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -554,7 +554,7 @@ func (o *PhysicsDirectBodyState) GetStep() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PhysicsDirectBodyState) GetTotalAngularDamp() gdnative.Float {
+func (o *PhysicsDirectBodyState) GetTotalAngularDamp() gdnative.Real {
 	//log.Println("Calling PhysicsDirectBodyState.GetTotalAngularDamp()")
 
 	// Build out the method's arguments
@@ -565,11 +565,11 @@ func (o *PhysicsDirectBodyState) GetTotalAngularDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -600,7 +600,7 @@ func (o *PhysicsDirectBodyState) GetTotalGravity() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PhysicsDirectBodyState) GetTotalLinearDamp() gdnative.Float {
+func (o *PhysicsDirectBodyState) GetTotalLinearDamp() gdnative.Real {
 	//log.Println("Calling PhysicsDirectBodyState.GetTotalLinearDamp()")
 
 	// Build out the method's arguments
@@ -611,11 +611,11 @@ func (o *PhysicsDirectBodyState) GetTotalLinearDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -789,14 +789,14 @@ type PhysicsDirectBodyStateImplementer interface {
 	GetContactLocalPosition(contactIdx gdnative.Int) gdnative.Vector3
 	GetContactLocalShape(contactIdx gdnative.Int) gdnative.Int
 	GetInverseInertia() gdnative.Vector3
-	GetInverseMass() gdnative.Float
+	GetInverseMass() gdnative.Real
 	GetLinearVelocity() gdnative.Vector3
 	GetPrincipalInertiaAxes() gdnative.Basis
 	GetSpaceState() PhysicsDirectSpaceStateImplementer
-	GetStep() gdnative.Float
-	GetTotalAngularDamp() gdnative.Float
+	GetStep() gdnative.Real
+	GetTotalAngularDamp() gdnative.Real
 	GetTotalGravity() gdnative.Vector3
-	GetTotalLinearDamp() gdnative.Float
+	GetTotalLinearDamp() gdnative.Real
 	GetTransform() gdnative.Transform
 	IntegrateForces()
 	IsSleeping() gdnative.Bool

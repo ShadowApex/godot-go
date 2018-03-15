@@ -88,12 +88,12 @@ func (o *Camera2D) X_SetCurrent(current gdnative.Bool) {
         Undocumented
 	Args: [{ false follow_smoothing float}], Returns: void
 */
-func (o *Camera2D) X_SetOldSmoothing(followSmoothing gdnative.Float) {
+func (o *Camera2D) X_SetOldSmoothing(followSmoothing gdnative.Real) {
 	//log.Println("Calling Camera2D.X_SetOldSmoothing()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(followSmoothing)
+	ptrArguments[0] = gdnative.NewPointerFromReal(followSmoothing)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera2D", "_set_old_smoothing")
@@ -295,7 +295,7 @@ func (o *Camera2D) GetCustomViewport() NodeImplementer {
         Undocumented
 	Args: [{ false margin int}], Returns: float
 */
-func (o *Camera2D) GetDragMargin(margin gdnative.Int) gdnative.Float {
+func (o *Camera2D) GetDragMargin(margin gdnative.Int) gdnative.Real {
 	//log.Println("Calling Camera2D.GetDragMargin()")
 
 	// Build out the method's arguments
@@ -307,11 +307,11 @@ func (o *Camera2D) GetDragMargin(margin gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -319,7 +319,7 @@ func (o *Camera2D) GetDragMargin(margin gdnative.Int) gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Camera2D) GetFollowSmoothing() gdnative.Float {
+func (o *Camera2D) GetFollowSmoothing() gdnative.Real {
 	//log.Println("Calling Camera2D.GetFollowSmoothing()")
 
 	// Build out the method's arguments
@@ -330,11 +330,11 @@ func (o *Camera2D) GetFollowSmoothing() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -342,7 +342,7 @@ func (o *Camera2D) GetFollowSmoothing() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Camera2D) GetHOffset() gdnative.Float {
+func (o *Camera2D) GetHOffset() gdnative.Real {
 	//log.Println("Calling Camera2D.GetHOffset()")
 
 	// Build out the method's arguments
@@ -353,11 +353,11 @@ func (o *Camera2D) GetHOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -412,7 +412,7 @@ func (o *Camera2D) GetOffset() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Camera2D) GetVOffset() gdnative.Float {
+func (o *Camera2D) GetVOffset() gdnative.Real {
 	//log.Println("Calling Camera2D.GetVOffset()")
 
 	// Build out the method's arguments
@@ -423,11 +423,11 @@ func (o *Camera2D) GetVOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -747,13 +747,13 @@ func (o *Camera2D) SetCustomViewport(viewport ObjectImplementer) {
         Undocumented
 	Args: [{ false margin int} { false drag_margin float}], Returns: void
 */
-func (o *Camera2D) SetDragMargin(margin gdnative.Int, dragMargin gdnative.Float) {
+func (o *Camera2D) SetDragMargin(margin gdnative.Int, dragMargin gdnative.Real) {
 	//log.Println("Calling Camera2D.SetDragMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(dragMargin)
+	ptrArguments[1] = gdnative.NewPointerFromReal(dragMargin)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera2D", "set_drag_margin")
@@ -790,12 +790,12 @@ func (o *Camera2D) SetEnableFollowSmoothing(followSmoothing gdnative.Bool) {
         Undocumented
 	Args: [{ false follow_smoothing float}], Returns: void
 */
-func (o *Camera2D) SetFollowSmoothing(followSmoothing gdnative.Float) {
+func (o *Camera2D) SetFollowSmoothing(followSmoothing gdnative.Real) {
 	//log.Println("Calling Camera2D.SetFollowSmoothing()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(followSmoothing)
+	ptrArguments[0] = gdnative.NewPointerFromReal(followSmoothing)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera2D", "set_follow_smoothing")
@@ -832,12 +832,12 @@ func (o *Camera2D) SetHDragEnabled(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false ofs float}], Returns: void
 */
-func (o *Camera2D) SetHOffset(ofs gdnative.Float) {
+func (o *Camera2D) SetHOffset(ofs gdnative.Real) {
 	//log.Println("Calling Camera2D.SetHOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ofs)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ofs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera2D", "set_h_offset")
@@ -1022,12 +1022,12 @@ func (o *Camera2D) SetVDragEnabled(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false ofs float}], Returns: void
 */
-func (o *Camera2D) SetVOffset(ofs gdnative.Float) {
+func (o *Camera2D) SetVOffset(ofs gdnative.Real) {
 	//log.Println("Calling Camera2D.SetVOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ofs)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ofs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera2D", "set_v_offset")
@@ -1066,7 +1066,7 @@ type Camera2DImplementer interface {
 	Node2DImplementer
 	X_MakeCurrent(arg0 ObjectImplementer)
 	X_SetCurrent(current gdnative.Bool)
-	X_SetOldSmoothing(followSmoothing gdnative.Float)
+	X_SetOldSmoothing(followSmoothing gdnative.Real)
 	X_UpdateScroll()
 	Align()
 	ClearCurrent()
@@ -1074,12 +1074,12 @@ type Camera2DImplementer interface {
 	GetCameraPosition() gdnative.Vector2
 	GetCameraScreenCenter() gdnative.Vector2
 	GetCustomViewport() NodeImplementer
-	GetDragMargin(margin gdnative.Int) gdnative.Float
-	GetFollowSmoothing() gdnative.Float
-	GetHOffset() gdnative.Float
+	GetDragMargin(margin gdnative.Int) gdnative.Real
+	GetFollowSmoothing() gdnative.Real
+	GetHOffset() gdnative.Real
 	GetLimit(margin gdnative.Int) gdnative.Int
 	GetOffset() gdnative.Vector2
-	GetVOffset() gdnative.Float
+	GetVOffset() gdnative.Real
 	GetZoom() gdnative.Vector2
 	IsCurrent() gdnative.Bool
 	IsFollowSmoothingEnabled() gdnative.Bool
@@ -1094,11 +1094,11 @@ type Camera2DImplementer interface {
 	ResetSmoothing()
 	SetAnchorMode(anchorMode gdnative.Int)
 	SetCustomViewport(viewport ObjectImplementer)
-	SetDragMargin(margin gdnative.Int, dragMargin gdnative.Float)
+	SetDragMargin(margin gdnative.Int, dragMargin gdnative.Real)
 	SetEnableFollowSmoothing(followSmoothing gdnative.Bool)
-	SetFollowSmoothing(followSmoothing gdnative.Float)
+	SetFollowSmoothing(followSmoothing gdnative.Real)
 	SetHDragEnabled(enabled gdnative.Bool)
-	SetHOffset(ofs gdnative.Float)
+	SetHOffset(ofs gdnative.Real)
 	SetLimit(margin gdnative.Int, limit gdnative.Int)
 	SetLimitDrawingEnabled(limitDrawingEnabled gdnative.Bool)
 	SetLimitSmoothingEnabled(limitSmoothingEnabled gdnative.Bool)
@@ -1107,6 +1107,6 @@ type Camera2DImplementer interface {
 	SetRotating(rotating gdnative.Bool)
 	SetScreenDrawingEnabled(screenDrawingEnabled gdnative.Bool)
 	SetVDragEnabled(enabled gdnative.Bool)
-	SetVOffset(ofs gdnative.Float)
+	SetVOffset(ofs gdnative.Real)
 	SetZoom(zoom gdnative.Vector2)
 }

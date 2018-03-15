@@ -38,7 +38,7 @@ func (o *Physics2DDirectBodyState) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Physics2DDirectBodyState) GetAngularVelocity() gdnative.Float {
+func (o *Physics2DDirectBodyState) GetAngularVelocity() gdnative.Real {
 	//log.Println("Calling Physics2DDirectBodyState.GetAngularVelocity()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *Physics2DDirectBodyState) GetAngularVelocity() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -338,7 +338,7 @@ func (o *Physics2DDirectBodyState) GetContactLocalShape(contactIdx gdnative.Int)
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Physics2DDirectBodyState) GetInverseInertia() gdnative.Float {
+func (o *Physics2DDirectBodyState) GetInverseInertia() gdnative.Real {
 	//log.Println("Calling Physics2DDirectBodyState.GetInverseInertia()")
 
 	// Build out the method's arguments
@@ -349,11 +349,11 @@ func (o *Physics2DDirectBodyState) GetInverseInertia() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -361,7 +361,7 @@ func (o *Physics2DDirectBodyState) GetInverseInertia() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Physics2DDirectBodyState) GetInverseMass() gdnative.Float {
+func (o *Physics2DDirectBodyState) GetInverseMass() gdnative.Real {
 	//log.Println("Calling Physics2DDirectBodyState.GetInverseMass()")
 
 	// Build out the method's arguments
@@ -372,11 +372,11 @@ func (o *Physics2DDirectBodyState) GetInverseMass() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -444,7 +444,7 @@ func (o *Physics2DDirectBodyState) GetSpaceState() Physics2DDirectSpaceStateImpl
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Physics2DDirectBodyState) GetStep() gdnative.Float {
+func (o *Physics2DDirectBodyState) GetStep() gdnative.Real {
 	//log.Println("Calling Physics2DDirectBodyState.GetStep()")
 
 	// Build out the method's arguments
@@ -455,11 +455,11 @@ func (o *Physics2DDirectBodyState) GetStep() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -467,7 +467,7 @@ func (o *Physics2DDirectBodyState) GetStep() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Physics2DDirectBodyState) GetTotalAngularDamp() gdnative.Float {
+func (o *Physics2DDirectBodyState) GetTotalAngularDamp() gdnative.Real {
 	//log.Println("Calling Physics2DDirectBodyState.GetTotalAngularDamp()")
 
 	// Build out the method's arguments
@@ -478,11 +478,11 @@ func (o *Physics2DDirectBodyState) GetTotalAngularDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -513,7 +513,7 @@ func (o *Physics2DDirectBodyState) GetTotalGravity() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Physics2DDirectBodyState) GetTotalLinearDamp() gdnative.Float {
+func (o *Physics2DDirectBodyState) GetTotalLinearDamp() gdnative.Real {
 	//log.Println("Calling Physics2DDirectBodyState.GetTotalLinearDamp()")
 
 	// Build out the method's arguments
@@ -524,11 +524,11 @@ func (o *Physics2DDirectBodyState) GetTotalLinearDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -602,12 +602,12 @@ func (o *Physics2DDirectBodyState) IsSleeping() gdnative.Bool {
         Undocumented
 	Args: [{ false velocity float}], Returns: void
 */
-func (o *Physics2DDirectBodyState) SetAngularVelocity(velocity gdnative.Float) {
+func (o *Physics2DDirectBodyState) SetAngularVelocity(velocity gdnative.Real) {
 	//log.Println("Calling Physics2DDirectBodyState.SetAngularVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(velocity)
+	ptrArguments[0] = gdnative.NewPointerFromReal(velocity)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Physics2DDirectBodyState", "set_angular_velocity")
@@ -686,7 +686,7 @@ func (o *Physics2DDirectBodyState) SetTransform(transform gdnative.Transform2D) 
 // of the Physics2DDirectBodyState class.
 type Physics2DDirectBodyStateImplementer interface {
 	ObjectImplementer
-	GetAngularVelocity() gdnative.Float
+	GetAngularVelocity() gdnative.Real
 	GetContactCollider(contactIdx gdnative.Int) gdnative.Rid
 	GetContactColliderId(contactIdx gdnative.Int) gdnative.Int
 	GetContactColliderObject(contactIdx gdnative.Int) ObjectImplementer
@@ -698,18 +698,18 @@ type Physics2DDirectBodyStateImplementer interface {
 	GetContactLocalNormal(contactIdx gdnative.Int) gdnative.Vector2
 	GetContactLocalPosition(contactIdx gdnative.Int) gdnative.Vector2
 	GetContactLocalShape(contactIdx gdnative.Int) gdnative.Int
-	GetInverseInertia() gdnative.Float
-	GetInverseMass() gdnative.Float
+	GetInverseInertia() gdnative.Real
+	GetInverseMass() gdnative.Real
 	GetLinearVelocity() gdnative.Vector2
 	GetSpaceState() Physics2DDirectSpaceStateImplementer
-	GetStep() gdnative.Float
-	GetTotalAngularDamp() gdnative.Float
+	GetStep() gdnative.Real
+	GetTotalAngularDamp() gdnative.Real
 	GetTotalGravity() gdnative.Vector2
-	GetTotalLinearDamp() gdnative.Float
+	GetTotalLinearDamp() gdnative.Real
 	GetTransform() gdnative.Transform2D
 	IntegrateForces()
 	IsSleeping() gdnative.Bool
-	SetAngularVelocity(velocity gdnative.Float)
+	SetAngularVelocity(velocity gdnative.Real)
 	SetLinearVelocity(velocity gdnative.Vector2)
 	SetSleepState(enabled gdnative.Bool)
 	SetTransform(transform gdnative.Transform2D)

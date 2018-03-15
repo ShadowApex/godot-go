@@ -46,6 +46,7 @@ script = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+Speed = 400.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 

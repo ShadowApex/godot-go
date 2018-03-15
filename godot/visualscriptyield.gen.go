@@ -47,7 +47,7 @@ func (o *VisualScriptYield) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VisualScriptYield) GetWaitTime() gdnative.Float {
+func (o *VisualScriptYield) GetWaitTime() gdnative.Real {
 	//log.Println("Calling VisualScriptYield.GetWaitTime()")
 
 	// Build out the method's arguments
@@ -58,11 +58,11 @@ func (o *VisualScriptYield) GetWaitTime() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -93,12 +93,12 @@ func (o *VisualScriptYield) GetYieldMode() VisualScriptYieldYieldMode {
         Undocumented
 	Args: [{ false sec float}], Returns: void
 */
-func (o *VisualScriptYield) SetWaitTime(sec gdnative.Float) {
+func (o *VisualScriptYield) SetWaitTime(sec gdnative.Real) {
 	//log.Println("Calling VisualScriptYield.SetWaitTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(sec)
+	ptrArguments[0] = gdnative.NewPointerFromReal(sec)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualScriptYield", "set_wait_time")
@@ -135,7 +135,7 @@ func (o *VisualScriptYield) SetYieldMode(mode gdnative.Int) {
 // of the VisualScriptYield class.
 type VisualScriptYieldImplementer interface {
 	VisualScriptNodeImplementer
-	GetWaitTime() gdnative.Float
-	SetWaitTime(sec gdnative.Float)
+	GetWaitTime() gdnative.Real
+	SetWaitTime(sec gdnative.Real)
 	SetYieldMode(mode gdnative.Int)
 }

@@ -38,7 +38,7 @@ func (o *InputEventMagnifyGesture) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *InputEventMagnifyGesture) GetFactor() gdnative.Float {
+func (o *InputEventMagnifyGesture) GetFactor() gdnative.Real {
 	//log.Println("Calling InputEventMagnifyGesture.GetFactor()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *InputEventMagnifyGesture) GetFactor() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,12 +61,12 @@ func (o *InputEventMagnifyGesture) GetFactor() gdnative.Float {
         Undocumented
 	Args: [{ false factor float}], Returns: void
 */
-func (o *InputEventMagnifyGesture) SetFactor(factor gdnative.Float) {
+func (o *InputEventMagnifyGesture) SetFactor(factor gdnative.Real) {
 	//log.Println("Calling InputEventMagnifyGesture.SetFactor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(factor)
+	ptrArguments[0] = gdnative.NewPointerFromReal(factor)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("InputEventMagnifyGesture", "set_factor")
@@ -82,6 +82,6 @@ func (o *InputEventMagnifyGesture) SetFactor(factor gdnative.Float) {
 // of the InputEventMagnifyGesture class.
 type InputEventMagnifyGestureImplementer interface {
 	InputEventGestureImplementer
-	GetFactor() gdnative.Float
-	SetFactor(factor gdnative.Float)
+	GetFactor() gdnative.Real
+	SetFactor(factor gdnative.Real)
 }

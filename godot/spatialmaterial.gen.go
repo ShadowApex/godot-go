@@ -212,7 +212,7 @@ func (o *SpatialMaterial) GetAlbedo() gdnative.Color {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetAlphaScissorThreshold() gdnative.Float {
+func (o *SpatialMaterial) GetAlphaScissorThreshold() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetAlphaScissorThreshold()")
 
 	// Build out the method's arguments
@@ -223,11 +223,11 @@ func (o *SpatialMaterial) GetAlphaScissorThreshold() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -235,7 +235,7 @@ func (o *SpatialMaterial) GetAlphaScissorThreshold() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetAnisotropy() gdnative.Float {
+func (o *SpatialMaterial) GetAnisotropy() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetAnisotropy()")
 
 	// Build out the method's arguments
@@ -246,11 +246,11 @@ func (o *SpatialMaterial) GetAnisotropy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -258,7 +258,7 @@ func (o *SpatialMaterial) GetAnisotropy() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetAoLightAffect() gdnative.Float {
+func (o *SpatialMaterial) GetAoLightAffect() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetAoLightAffect()")
 
 	// Build out the method's arguments
@@ -269,11 +269,11 @@ func (o *SpatialMaterial) GetAoLightAffect() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -350,7 +350,7 @@ func (o *SpatialMaterial) GetBlendMode() SpatialMaterialBlendMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetClearcoat() gdnative.Float {
+func (o *SpatialMaterial) GetClearcoat() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetClearcoat()")
 
 	// Build out the method's arguments
@@ -361,11 +361,11 @@ func (o *SpatialMaterial) GetClearcoat() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -373,7 +373,7 @@ func (o *SpatialMaterial) GetClearcoat() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetClearcoatGloss() gdnative.Float {
+func (o *SpatialMaterial) GetClearcoatGloss() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetClearcoatGloss()")
 
 	// Build out the method's arguments
@@ -384,11 +384,11 @@ func (o *SpatialMaterial) GetClearcoatGloss() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -488,7 +488,7 @@ func (o *SpatialMaterial) GetDepthDrawMode() SpatialMaterialDepthDrawMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetDepthScale() gdnative.Float {
+func (o *SpatialMaterial) GetDepthScale() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetDepthScale()")
 
 	// Build out the method's arguments
@@ -499,11 +499,11 @@ func (o *SpatialMaterial) GetDepthScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -580,7 +580,7 @@ func (o *SpatialMaterial) GetDiffuseMode() SpatialMaterialDiffuseMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetDistanceFadeMaxDistance() gdnative.Float {
+func (o *SpatialMaterial) GetDistanceFadeMaxDistance() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetDistanceFadeMaxDistance()")
 
 	// Build out the method's arguments
@@ -591,11 +591,11 @@ func (o *SpatialMaterial) GetDistanceFadeMaxDistance() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -603,7 +603,7 @@ func (o *SpatialMaterial) GetDistanceFadeMaxDistance() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetDistanceFadeMinDistance() gdnative.Float {
+func (o *SpatialMaterial) GetDistanceFadeMinDistance() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetDistanceFadeMinDistance()")
 
 	// Build out the method's arguments
@@ -614,11 +614,11 @@ func (o *SpatialMaterial) GetDistanceFadeMinDistance() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -649,7 +649,7 @@ func (o *SpatialMaterial) GetEmission() gdnative.Color {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetEmissionEnergy() gdnative.Float {
+func (o *SpatialMaterial) GetEmissionEnergy() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetEmissionEnergy()")
 
 	// Build out the method's arguments
@@ -660,11 +660,11 @@ func (o *SpatialMaterial) GetEmissionEnergy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -743,7 +743,7 @@ func (o *SpatialMaterial) GetFlag(flag gdnative.Int) gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetGrow() gdnative.Float {
+func (o *SpatialMaterial) GetGrow() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetGrow()")
 
 	// Build out the method's arguments
@@ -754,11 +754,11 @@ func (o *SpatialMaterial) GetGrow() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -766,7 +766,7 @@ func (o *SpatialMaterial) GetGrow() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetLineWidth() gdnative.Float {
+func (o *SpatialMaterial) GetLineWidth() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetLineWidth()")
 
 	// Build out the method's arguments
@@ -777,11 +777,11 @@ func (o *SpatialMaterial) GetLineWidth() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -789,7 +789,7 @@ func (o *SpatialMaterial) GetLineWidth() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetMetallic() gdnative.Float {
+func (o *SpatialMaterial) GetMetallic() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetMetallic()")
 
 	// Build out the method's arguments
@@ -800,11 +800,11 @@ func (o *SpatialMaterial) GetMetallic() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -835,7 +835,7 @@ func (o *SpatialMaterial) GetMetallicTextureChannel() SpatialMaterialTextureChan
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetNormalScale() gdnative.Float {
+func (o *SpatialMaterial) GetNormalScale() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetNormalScale()")
 
 	// Build out the method's arguments
@@ -846,11 +846,11 @@ func (o *SpatialMaterial) GetNormalScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -927,7 +927,7 @@ func (o *SpatialMaterial) GetParticlesAnimVFrames() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetPointSize() gdnative.Float {
+func (o *SpatialMaterial) GetPointSize() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetPointSize()")
 
 	// Build out the method's arguments
@@ -938,11 +938,11 @@ func (o *SpatialMaterial) GetPointSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -950,7 +950,7 @@ func (o *SpatialMaterial) GetPointSize() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetProximityFadeDistance() gdnative.Float {
+func (o *SpatialMaterial) GetProximityFadeDistance() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetProximityFadeDistance()")
 
 	// Build out the method's arguments
@@ -961,11 +961,11 @@ func (o *SpatialMaterial) GetProximityFadeDistance() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -973,7 +973,7 @@ func (o *SpatialMaterial) GetProximityFadeDistance() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetRefraction() gdnative.Float {
+func (o *SpatialMaterial) GetRefraction() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetRefraction()")
 
 	// Build out the method's arguments
@@ -984,11 +984,11 @@ func (o *SpatialMaterial) GetRefraction() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1019,7 +1019,7 @@ func (o *SpatialMaterial) GetRefractionTextureChannel() SpatialMaterialTextureCh
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetRim() gdnative.Float {
+func (o *SpatialMaterial) GetRim() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetRim()")
 
 	// Build out the method's arguments
@@ -1030,11 +1030,11 @@ func (o *SpatialMaterial) GetRim() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1042,7 +1042,7 @@ func (o *SpatialMaterial) GetRim() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetRimTint() gdnative.Float {
+func (o *SpatialMaterial) GetRimTint() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetRimTint()")
 
 	// Build out the method's arguments
@@ -1053,11 +1053,11 @@ func (o *SpatialMaterial) GetRimTint() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1065,7 +1065,7 @@ func (o *SpatialMaterial) GetRimTint() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetRoughness() gdnative.Float {
+func (o *SpatialMaterial) GetRoughness() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetRoughness()")
 
 	// Build out the method's arguments
@@ -1076,11 +1076,11 @@ func (o *SpatialMaterial) GetRoughness() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1111,7 +1111,7 @@ func (o *SpatialMaterial) GetRoughnessTextureChannel() SpatialMaterialTextureCha
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetSpecular() gdnative.Float {
+func (o *SpatialMaterial) GetSpecular() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetSpecular()")
 
 	// Build out the method's arguments
@@ -1122,11 +1122,11 @@ func (o *SpatialMaterial) GetSpecular() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1157,7 +1157,7 @@ func (o *SpatialMaterial) GetSpecularMode() SpatialMaterialSpecularMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetSubsurfaceScatteringStrength() gdnative.Float {
+func (o *SpatialMaterial) GetSubsurfaceScatteringStrength() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetSubsurfaceScatteringStrength()")
 
 	// Build out the method's arguments
@@ -1168,11 +1168,11 @@ func (o *SpatialMaterial) GetSubsurfaceScatteringStrength() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1287,7 +1287,7 @@ func (o *SpatialMaterial) GetUv1Scale() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetUv1TriplanarBlendSharpness() gdnative.Float {
+func (o *SpatialMaterial) GetUv1TriplanarBlendSharpness() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetUv1TriplanarBlendSharpness()")
 
 	// Build out the method's arguments
@@ -1298,11 +1298,11 @@ func (o *SpatialMaterial) GetUv1TriplanarBlendSharpness() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1356,7 +1356,7 @@ func (o *SpatialMaterial) GetUv2Scale() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpatialMaterial) GetUv2TriplanarBlendSharpness() gdnative.Float {
+func (o *SpatialMaterial) GetUv2TriplanarBlendSharpness() gdnative.Real {
 	//log.Println("Calling SpatialMaterial.GetUv2TriplanarBlendSharpness()")
 
 	// Build out the method's arguments
@@ -1367,11 +1367,11 @@ func (o *SpatialMaterial) GetUv2TriplanarBlendSharpness() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1492,12 +1492,12 @@ func (o *SpatialMaterial) SetAlbedo(albedo gdnative.Color) {
         Undocumented
 	Args: [{ false threshold float}], Returns: void
 */
-func (o *SpatialMaterial) SetAlphaScissorThreshold(threshold gdnative.Float) {
+func (o *SpatialMaterial) SetAlphaScissorThreshold(threshold gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetAlphaScissorThreshold()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(threshold)
+	ptrArguments[0] = gdnative.NewPointerFromReal(threshold)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_alpha_scissor_threshold")
@@ -1513,12 +1513,12 @@ func (o *SpatialMaterial) SetAlphaScissorThreshold(threshold gdnative.Float) {
         Undocumented
 	Args: [{ false anisotropy float}], Returns: void
 */
-func (o *SpatialMaterial) SetAnisotropy(anisotropy gdnative.Float) {
+func (o *SpatialMaterial) SetAnisotropy(anisotropy gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetAnisotropy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(anisotropy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(anisotropy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_anisotropy")
@@ -1534,12 +1534,12 @@ func (o *SpatialMaterial) SetAnisotropy(anisotropy gdnative.Float) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *SpatialMaterial) SetAoLightAffect(amount gdnative.Float) {
+func (o *SpatialMaterial) SetAoLightAffect(amount gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetAoLightAffect()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_ao_light_affect")
@@ -1618,12 +1618,12 @@ func (o *SpatialMaterial) SetBlendMode(blendMode gdnative.Int) {
         Undocumented
 	Args: [{ false clearcoat float}], Returns: void
 */
-func (o *SpatialMaterial) SetClearcoat(clearcoat gdnative.Float) {
+func (o *SpatialMaterial) SetClearcoat(clearcoat gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetClearcoat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(clearcoat)
+	ptrArguments[0] = gdnative.NewPointerFromReal(clearcoat)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_clearcoat")
@@ -1639,12 +1639,12 @@ func (o *SpatialMaterial) SetClearcoat(clearcoat gdnative.Float) {
         Undocumented
 	Args: [{ false clearcoat_gloss float}], Returns: void
 */
-func (o *SpatialMaterial) SetClearcoatGloss(clearcoatGloss gdnative.Float) {
+func (o *SpatialMaterial) SetClearcoatGloss(clearcoatGloss gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetClearcoatGloss()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(clearcoatGloss)
+	ptrArguments[0] = gdnative.NewPointerFromReal(clearcoatGloss)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_clearcoat_gloss")
@@ -1765,12 +1765,12 @@ func (o *SpatialMaterial) SetDepthDrawMode(depthDrawMode gdnative.Int) {
         Undocumented
 	Args: [{ false depth_scale float}], Returns: void
 */
-func (o *SpatialMaterial) SetDepthScale(depthScale gdnative.Float) {
+func (o *SpatialMaterial) SetDepthScale(depthScale gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetDepthScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(depthScale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(depthScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_depth_scale")
@@ -1870,12 +1870,12 @@ func (o *SpatialMaterial) SetDistanceFade(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false distance float}], Returns: void
 */
-func (o *SpatialMaterial) SetDistanceFadeMaxDistance(distance gdnative.Float) {
+func (o *SpatialMaterial) SetDistanceFadeMaxDistance(distance gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetDistanceFadeMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(distance)
+	ptrArguments[0] = gdnative.NewPointerFromReal(distance)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_distance_fade_max_distance")
@@ -1891,12 +1891,12 @@ func (o *SpatialMaterial) SetDistanceFadeMaxDistance(distance gdnative.Float) {
         Undocumented
 	Args: [{ false distance float}], Returns: void
 */
-func (o *SpatialMaterial) SetDistanceFadeMinDistance(distance gdnative.Float) {
+func (o *SpatialMaterial) SetDistanceFadeMinDistance(distance gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetDistanceFadeMinDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(distance)
+	ptrArguments[0] = gdnative.NewPointerFromReal(distance)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_distance_fade_min_distance")
@@ -1933,12 +1933,12 @@ func (o *SpatialMaterial) SetEmission(emission gdnative.Color) {
         Undocumented
 	Args: [{ false emission_energy float}], Returns: void
 */
-func (o *SpatialMaterial) SetEmissionEnergy(emissionEnergy gdnative.Float) {
+func (o *SpatialMaterial) SetEmissionEnergy(emissionEnergy gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetEmissionEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(emissionEnergy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(emissionEnergy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_emission_energy")
@@ -2019,12 +2019,12 @@ func (o *SpatialMaterial) SetFlag(flag gdnative.Int, enable gdnative.Bool) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *SpatialMaterial) SetGrow(amount gdnative.Float) {
+func (o *SpatialMaterial) SetGrow(amount gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetGrow()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_grow")
@@ -2061,12 +2061,12 @@ func (o *SpatialMaterial) SetGrowEnabled(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false line_width float}], Returns: void
 */
-func (o *SpatialMaterial) SetLineWidth(lineWidth gdnative.Float) {
+func (o *SpatialMaterial) SetLineWidth(lineWidth gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetLineWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(lineWidth)
+	ptrArguments[0] = gdnative.NewPointerFromReal(lineWidth)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_line_width")
@@ -2082,12 +2082,12 @@ func (o *SpatialMaterial) SetLineWidth(lineWidth gdnative.Float) {
         Undocumented
 	Args: [{ false metallic float}], Returns: void
 */
-func (o *SpatialMaterial) SetMetallic(metallic gdnative.Float) {
+func (o *SpatialMaterial) SetMetallic(metallic gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetMetallic()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(metallic)
+	ptrArguments[0] = gdnative.NewPointerFromReal(metallic)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_metallic")
@@ -2124,12 +2124,12 @@ func (o *SpatialMaterial) SetMetallicTextureChannel(channel gdnative.Int) {
         Undocumented
 	Args: [{ false normal_scale float}], Returns: void
 */
-func (o *SpatialMaterial) SetNormalScale(normalScale gdnative.Float) {
+func (o *SpatialMaterial) SetNormalScale(normalScale gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetNormalScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(normalScale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(normalScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_normal_scale")
@@ -2208,12 +2208,12 @@ func (o *SpatialMaterial) SetParticlesAnimVFrames(frames gdnative.Int) {
         Undocumented
 	Args: [{ false point_size float}], Returns: void
 */
-func (o *SpatialMaterial) SetPointSize(pointSize gdnative.Float) {
+func (o *SpatialMaterial) SetPointSize(pointSize gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetPointSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(pointSize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(pointSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_point_size")
@@ -2250,12 +2250,12 @@ func (o *SpatialMaterial) SetProximityFade(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false distance float}], Returns: void
 */
-func (o *SpatialMaterial) SetProximityFadeDistance(distance gdnative.Float) {
+func (o *SpatialMaterial) SetProximityFadeDistance(distance gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetProximityFadeDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(distance)
+	ptrArguments[0] = gdnative.NewPointerFromReal(distance)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_proximity_fade_distance")
@@ -2271,12 +2271,12 @@ func (o *SpatialMaterial) SetProximityFadeDistance(distance gdnative.Float) {
         Undocumented
 	Args: [{ false refraction float}], Returns: void
 */
-func (o *SpatialMaterial) SetRefraction(refraction gdnative.Float) {
+func (o *SpatialMaterial) SetRefraction(refraction gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetRefraction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(refraction)
+	ptrArguments[0] = gdnative.NewPointerFromReal(refraction)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_refraction")
@@ -2313,12 +2313,12 @@ func (o *SpatialMaterial) SetRefractionTextureChannel(channel gdnative.Int) {
         Undocumented
 	Args: [{ false rim float}], Returns: void
 */
-func (o *SpatialMaterial) SetRim(rim gdnative.Float) {
+func (o *SpatialMaterial) SetRim(rim gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetRim()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(rim)
+	ptrArguments[0] = gdnative.NewPointerFromReal(rim)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_rim")
@@ -2334,12 +2334,12 @@ func (o *SpatialMaterial) SetRim(rim gdnative.Float) {
         Undocumented
 	Args: [{ false rim_tint float}], Returns: void
 */
-func (o *SpatialMaterial) SetRimTint(rimTint gdnative.Float) {
+func (o *SpatialMaterial) SetRimTint(rimTint gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetRimTint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(rimTint)
+	ptrArguments[0] = gdnative.NewPointerFromReal(rimTint)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_rim_tint")
@@ -2355,12 +2355,12 @@ func (o *SpatialMaterial) SetRimTint(rimTint gdnative.Float) {
         Undocumented
 	Args: [{ false roughness float}], Returns: void
 */
-func (o *SpatialMaterial) SetRoughness(roughness gdnative.Float) {
+func (o *SpatialMaterial) SetRoughness(roughness gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetRoughness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(roughness)
+	ptrArguments[0] = gdnative.NewPointerFromReal(roughness)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_roughness")
@@ -2397,12 +2397,12 @@ func (o *SpatialMaterial) SetRoughnessTextureChannel(channel gdnative.Int) {
         Undocumented
 	Args: [{ false specular float}], Returns: void
 */
-func (o *SpatialMaterial) SetSpecular(specular gdnative.Float) {
+func (o *SpatialMaterial) SetSpecular(specular gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetSpecular()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(specular)
+	ptrArguments[0] = gdnative.NewPointerFromReal(specular)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_specular")
@@ -2439,12 +2439,12 @@ func (o *SpatialMaterial) SetSpecularMode(specularMode gdnative.Int) {
         Undocumented
 	Args: [{ false strength float}], Returns: void
 */
-func (o *SpatialMaterial) SetSubsurfaceScatteringStrength(strength gdnative.Float) {
+func (o *SpatialMaterial) SetSubsurfaceScatteringStrength(strength gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetSubsurfaceScatteringStrength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(strength)
+	ptrArguments[0] = gdnative.NewPointerFromReal(strength)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_subsurface_scattering_strength")
@@ -2545,12 +2545,12 @@ func (o *SpatialMaterial) SetUv1Scale(scale gdnative.Vector3) {
         Undocumented
 	Args: [{ false sharpness float}], Returns: void
 */
-func (o *SpatialMaterial) SetUv1TriplanarBlendSharpness(sharpness gdnative.Float) {
+func (o *SpatialMaterial) SetUv1TriplanarBlendSharpness(sharpness gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetUv1TriplanarBlendSharpness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(sharpness)
+	ptrArguments[0] = gdnative.NewPointerFromReal(sharpness)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_uv1_triplanar_blend_sharpness")
@@ -2608,12 +2608,12 @@ func (o *SpatialMaterial) SetUv2Scale(scale gdnative.Vector3) {
         Undocumented
 	Args: [{ false sharpness float}], Returns: void
 */
-func (o *SpatialMaterial) SetUv2TriplanarBlendSharpness(sharpness gdnative.Float) {
+func (o *SpatialMaterial) SetUv2TriplanarBlendSharpness(sharpness gdnative.Real) {
 	//log.Println("Calling SpatialMaterial.SetUv2TriplanarBlendSharpness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(sharpness)
+	ptrArguments[0] = gdnative.NewPointerFromReal(sharpness)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpatialMaterial", "set_uv2_triplanar_blend_sharpness")
@@ -2630,100 +2630,100 @@ func (o *SpatialMaterial) SetUv2TriplanarBlendSharpness(sharpness gdnative.Float
 type SpatialMaterialImplementer interface {
 	MaterialImplementer
 	GetAlbedo() gdnative.Color
-	GetAlphaScissorThreshold() gdnative.Float
-	GetAnisotropy() gdnative.Float
-	GetAoLightAffect() gdnative.Float
-	GetClearcoat() gdnative.Float
-	GetClearcoatGloss() gdnative.Float
+	GetAlphaScissorThreshold() gdnative.Real
+	GetAnisotropy() gdnative.Real
+	GetAoLightAffect() gdnative.Real
+	GetClearcoat() gdnative.Real
+	GetClearcoatGloss() gdnative.Real
 	GetDepthDeepParallaxMaxLayers() gdnative.Int
 	GetDepthDeepParallaxMinLayers() gdnative.Int
-	GetDepthScale() gdnative.Float
-	GetDistanceFadeMaxDistance() gdnative.Float
-	GetDistanceFadeMinDistance() gdnative.Float
+	GetDepthScale() gdnative.Real
+	GetDistanceFadeMaxDistance() gdnative.Real
+	GetDistanceFadeMinDistance() gdnative.Real
 	GetEmission() gdnative.Color
-	GetEmissionEnergy() gdnative.Float
+	GetEmissionEnergy() gdnative.Real
 	GetFeature(feature gdnative.Int) gdnative.Bool
 	GetFlag(flag gdnative.Int) gdnative.Bool
-	GetGrow() gdnative.Float
-	GetLineWidth() gdnative.Float
-	GetMetallic() gdnative.Float
-	GetNormalScale() gdnative.Float
+	GetGrow() gdnative.Real
+	GetLineWidth() gdnative.Real
+	GetMetallic() gdnative.Real
+	GetNormalScale() gdnative.Real
 	GetParticlesAnimHFrames() gdnative.Int
 	GetParticlesAnimLoop() gdnative.Int
 	GetParticlesAnimVFrames() gdnative.Int
-	GetPointSize() gdnative.Float
-	GetProximityFadeDistance() gdnative.Float
-	GetRefraction() gdnative.Float
-	GetRim() gdnative.Float
-	GetRimTint() gdnative.Float
-	GetRoughness() gdnative.Float
-	GetSpecular() gdnative.Float
-	GetSubsurfaceScatteringStrength() gdnative.Float
+	GetPointSize() gdnative.Real
+	GetProximityFadeDistance() gdnative.Real
+	GetRefraction() gdnative.Real
+	GetRim() gdnative.Real
+	GetRimTint() gdnative.Real
+	GetRoughness() gdnative.Real
+	GetSpecular() gdnative.Real
+	GetSubsurfaceScatteringStrength() gdnative.Real
 	GetTexture(param gdnative.Int) TextureImplementer
 	GetTransmission() gdnative.Color
 	GetUv1Offset() gdnative.Vector3
 	GetUv1Scale() gdnative.Vector3
-	GetUv1TriplanarBlendSharpness() gdnative.Float
+	GetUv1TriplanarBlendSharpness() gdnative.Real
 	GetUv2Offset() gdnative.Vector3
 	GetUv2Scale() gdnative.Vector3
-	GetUv2TriplanarBlendSharpness() gdnative.Float
+	GetUv2TriplanarBlendSharpness() gdnative.Real
 	IsDepthDeepParallaxEnabled() gdnative.Bool
 	IsDistanceFadeEnabled() gdnative.Bool
 	IsGrowEnabled() gdnative.Bool
 	IsProximityFadeEnabled() gdnative.Bool
 	SetAlbedo(albedo gdnative.Color)
-	SetAlphaScissorThreshold(threshold gdnative.Float)
-	SetAnisotropy(anisotropy gdnative.Float)
-	SetAoLightAffect(amount gdnative.Float)
+	SetAlphaScissorThreshold(threshold gdnative.Real)
+	SetAnisotropy(anisotropy gdnative.Real)
+	SetAoLightAffect(amount gdnative.Real)
 	SetAoTextureChannel(channel gdnative.Int)
 	SetBillboardMode(mode gdnative.Int)
 	SetBlendMode(blendMode gdnative.Int)
-	SetClearcoat(clearcoat gdnative.Float)
-	SetClearcoatGloss(clearcoatGloss gdnative.Float)
+	SetClearcoat(clearcoat gdnative.Real)
+	SetClearcoatGloss(clearcoatGloss gdnative.Real)
 	SetCullMode(cullMode gdnative.Int)
 	SetDepthDeepParallax(enable gdnative.Bool)
 	SetDepthDeepParallaxMaxLayers(layer gdnative.Int)
 	SetDepthDeepParallaxMinLayers(layer gdnative.Int)
 	SetDepthDrawMode(depthDrawMode gdnative.Int)
-	SetDepthScale(depthScale gdnative.Float)
+	SetDepthScale(depthScale gdnative.Real)
 	SetDetailBlendMode(detailBlendMode gdnative.Int)
 	SetDetailUv(detailUv gdnative.Int)
 	SetDiffuseMode(diffuseMode gdnative.Int)
 	SetDistanceFade(enabled gdnative.Bool)
-	SetDistanceFadeMaxDistance(distance gdnative.Float)
-	SetDistanceFadeMinDistance(distance gdnative.Float)
+	SetDistanceFadeMaxDistance(distance gdnative.Real)
+	SetDistanceFadeMinDistance(distance gdnative.Real)
 	SetEmission(emission gdnative.Color)
-	SetEmissionEnergy(emissionEnergy gdnative.Float)
+	SetEmissionEnergy(emissionEnergy gdnative.Real)
 	SetEmissionOperator(operator gdnative.Int)
 	SetFeature(feature gdnative.Int, enable gdnative.Bool)
 	SetFlag(flag gdnative.Int, enable gdnative.Bool)
-	SetGrow(amount gdnative.Float)
+	SetGrow(amount gdnative.Real)
 	SetGrowEnabled(enable gdnative.Bool)
-	SetLineWidth(lineWidth gdnative.Float)
-	SetMetallic(metallic gdnative.Float)
+	SetLineWidth(lineWidth gdnative.Real)
+	SetMetallic(metallic gdnative.Real)
 	SetMetallicTextureChannel(channel gdnative.Int)
-	SetNormalScale(normalScale gdnative.Float)
+	SetNormalScale(normalScale gdnative.Real)
 	SetParticlesAnimHFrames(frames gdnative.Int)
 	SetParticlesAnimLoop(frames gdnative.Int)
 	SetParticlesAnimVFrames(frames gdnative.Int)
-	SetPointSize(pointSize gdnative.Float)
+	SetPointSize(pointSize gdnative.Real)
 	SetProximityFade(enabled gdnative.Bool)
-	SetProximityFadeDistance(distance gdnative.Float)
-	SetRefraction(refraction gdnative.Float)
+	SetProximityFadeDistance(distance gdnative.Real)
+	SetRefraction(refraction gdnative.Real)
 	SetRefractionTextureChannel(channel gdnative.Int)
-	SetRim(rim gdnative.Float)
-	SetRimTint(rimTint gdnative.Float)
-	SetRoughness(roughness gdnative.Float)
+	SetRim(rim gdnative.Real)
+	SetRimTint(rimTint gdnative.Real)
+	SetRoughness(roughness gdnative.Real)
 	SetRoughnessTextureChannel(channel gdnative.Int)
-	SetSpecular(specular gdnative.Float)
+	SetSpecular(specular gdnative.Real)
 	SetSpecularMode(specularMode gdnative.Int)
-	SetSubsurfaceScatteringStrength(strength gdnative.Float)
+	SetSubsurfaceScatteringStrength(strength gdnative.Real)
 	SetTexture(param gdnative.Int, texture TextureImplementer)
 	SetTransmission(transmission gdnative.Color)
 	SetUv1Offset(offset gdnative.Vector3)
 	SetUv1Scale(scale gdnative.Vector3)
-	SetUv1TriplanarBlendSharpness(sharpness gdnative.Float)
+	SetUv1TriplanarBlendSharpness(sharpness gdnative.Real)
 	SetUv2Offset(offset gdnative.Vector3)
 	SetUv2Scale(scale gdnative.Vector3)
-	SetUv2TriplanarBlendSharpness(sharpness gdnative.Float)
+	SetUv2TriplanarBlendSharpness(sharpness gdnative.Real)
 }

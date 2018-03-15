@@ -38,7 +38,7 @@ func (o *Range) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Range) GetAsRatio() gdnative.Float {
+func (o *Range) GetAsRatio() gdnative.Real {
 	//log.Println("Calling Range.GetAsRatio()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *Range) GetAsRatio() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *Range) GetAsRatio() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Range) GetMax() gdnative.Float {
+func (o *Range) GetMax() gdnative.Real {
 	//log.Println("Calling Range.GetMax()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *Range) GetMax() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *Range) GetMax() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Range) GetMin() gdnative.Float {
+func (o *Range) GetMin() gdnative.Real {
 	//log.Println("Calling Range.GetMin()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *Range) GetMin() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *Range) GetMin() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Range) GetPage() gdnative.Float {
+func (o *Range) GetPage() gdnative.Real {
 	//log.Println("Calling Range.GetPage()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *Range) GetPage() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,7 +130,7 @@ func (o *Range) GetPage() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Range) GetStep() gdnative.Float {
+func (o *Range) GetStep() gdnative.Real {
 	//log.Println("Calling Range.GetStep()")
 
 	// Build out the method's arguments
@@ -141,11 +141,11 @@ func (o *Range) GetStep() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -153,7 +153,7 @@ func (o *Range) GetStep() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Range) GetValue() gdnative.Float {
+func (o *Range) GetValue() gdnative.Real {
 	//log.Println("Calling Range.GetValue()")
 
 	// Build out the method's arguments
@@ -164,11 +164,11 @@ func (o *Range) GetValue() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -222,12 +222,12 @@ func (o *Range) IsUsingRoundedValues() gdnative.Bool {
         Undocumented
 	Args: [{ false value float}], Returns: void
 */
-func (o *Range) SetAsRatio(value gdnative.Float) {
+func (o *Range) SetAsRatio(value gdnative.Real) {
 	//log.Println("Calling Range.SetAsRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[0] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Range", "set_as_ratio")
@@ -264,12 +264,12 @@ func (o *Range) SetExpRatio(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false maximum float}], Returns: void
 */
-func (o *Range) SetMax(maximum gdnative.Float) {
+func (o *Range) SetMax(maximum gdnative.Real) {
 	//log.Println("Calling Range.SetMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(maximum)
+	ptrArguments[0] = gdnative.NewPointerFromReal(maximum)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Range", "set_max")
@@ -285,12 +285,12 @@ func (o *Range) SetMax(maximum gdnative.Float) {
         Undocumented
 	Args: [{ false minimum float}], Returns: void
 */
-func (o *Range) SetMin(minimum gdnative.Float) {
+func (o *Range) SetMin(minimum gdnative.Real) {
 	//log.Println("Calling Range.SetMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(minimum)
+	ptrArguments[0] = gdnative.NewPointerFromReal(minimum)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Range", "set_min")
@@ -306,12 +306,12 @@ func (o *Range) SetMin(minimum gdnative.Float) {
         Undocumented
 	Args: [{ false pagesize float}], Returns: void
 */
-func (o *Range) SetPage(pagesize gdnative.Float) {
+func (o *Range) SetPage(pagesize gdnative.Real) {
 	//log.Println("Calling Range.SetPage()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(pagesize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(pagesize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Range", "set_page")
@@ -327,12 +327,12 @@ func (o *Range) SetPage(pagesize gdnative.Float) {
         Undocumented
 	Args: [{ false step float}], Returns: void
 */
-func (o *Range) SetStep(step gdnative.Float) {
+func (o *Range) SetStep(step gdnative.Real) {
 	//log.Println("Calling Range.SetStep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(step)
+	ptrArguments[0] = gdnative.NewPointerFromReal(step)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Range", "set_step")
@@ -369,12 +369,12 @@ func (o *Range) SetUseRoundedValues(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false value float}], Returns: void
 */
-func (o *Range) SetValue(value gdnative.Float) {
+func (o *Range) SetValue(value gdnative.Real) {
 	//log.Println("Calling Range.SetValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[0] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Range", "set_value")
@@ -431,22 +431,22 @@ func (o *Range) Unshare() {
 // of the Range class.
 type RangeImplementer interface {
 	ControlImplementer
-	GetAsRatio() gdnative.Float
-	GetMax() gdnative.Float
-	GetMin() gdnative.Float
-	GetPage() gdnative.Float
-	GetStep() gdnative.Float
-	GetValue() gdnative.Float
+	GetAsRatio() gdnative.Real
+	GetMax() gdnative.Real
+	GetMin() gdnative.Real
+	GetPage() gdnative.Real
+	GetStep() gdnative.Real
+	GetValue() gdnative.Real
 	IsRatioExp() gdnative.Bool
 	IsUsingRoundedValues() gdnative.Bool
-	SetAsRatio(value gdnative.Float)
+	SetAsRatio(value gdnative.Real)
 	SetExpRatio(enabled gdnative.Bool)
-	SetMax(maximum gdnative.Float)
-	SetMin(minimum gdnative.Float)
-	SetPage(pagesize gdnative.Float)
-	SetStep(step gdnative.Float)
+	SetMax(maximum gdnative.Real)
+	SetMin(minimum gdnative.Real)
+	SetPage(pagesize gdnative.Real)
+	SetStep(step gdnative.Real)
 	SetUseRoundedValues(enabled gdnative.Bool)
-	SetValue(value gdnative.Float)
+	SetValue(value gdnative.Real)
 	Share(with ObjectImplementer)
 	Unshare()
 }

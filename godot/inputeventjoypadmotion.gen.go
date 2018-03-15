@@ -61,7 +61,7 @@ func (o *InputEventJoypadMotion) GetAxis() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *InputEventJoypadMotion) GetAxisValue() gdnative.Float {
+func (o *InputEventJoypadMotion) GetAxisValue() gdnative.Real {
 	//log.Println("Calling InputEventJoypadMotion.GetAxisValue()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *InputEventJoypadMotion) GetAxisValue() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -105,12 +105,12 @@ func (o *InputEventJoypadMotion) SetAxis(axis gdnative.Int) {
         Undocumented
 	Args: [{ false axis_value float}], Returns: void
 */
-func (o *InputEventJoypadMotion) SetAxisValue(axisValue gdnative.Float) {
+func (o *InputEventJoypadMotion) SetAxisValue(axisValue gdnative.Real) {
 	//log.Println("Calling InputEventJoypadMotion.SetAxisValue()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(axisValue)
+	ptrArguments[0] = gdnative.NewPointerFromReal(axisValue)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("InputEventJoypadMotion", "set_axis_value")
@@ -127,7 +127,7 @@ func (o *InputEventJoypadMotion) SetAxisValue(axisValue gdnative.Float) {
 type InputEventJoypadMotionImplementer interface {
 	InputEventImplementer
 	GetAxis() gdnative.Int
-	GetAxisValue() gdnative.Float
+	GetAxisValue() gdnative.Real
 	SetAxis(axis gdnative.Int)
-	SetAxisValue(axisValue gdnative.Float)
+	SetAxisValue(axisValue gdnative.Real)
 }

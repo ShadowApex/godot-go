@@ -307,13 +307,13 @@ func (o *Spatial) GetWorld() WorldImplementer {
         Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in global coordinate system.
 	Args: [{ false axis Vector3} { false angle float}], Returns: void
 */
-func (o *Spatial) GlobalRotate(axis gdnative.Vector3, angle gdnative.Float) {
+func (o *Spatial) GlobalRotate(axis gdnative.Vector3, angle gdnative.Real) {
 	//log.Println("Calling Spatial.GlobalRotate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromVector3(axis)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(angle)
+	ptrArguments[1] = gdnative.NewPointerFromReal(angle)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Spatial", "global_rotate")
@@ -571,13 +571,13 @@ func (o *Spatial) Orthonormalize() {
         Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians.
 	Args: [{ false axis Vector3} { false angle float}], Returns: void
 */
-func (o *Spatial) Rotate(axis gdnative.Vector3, angle gdnative.Float) {
+func (o *Spatial) Rotate(axis gdnative.Vector3, angle gdnative.Real) {
 	//log.Println("Calling Spatial.Rotate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromVector3(axis)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(angle)
+	ptrArguments[1] = gdnative.NewPointerFromReal(angle)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Spatial", "rotate")
@@ -593,13 +593,13 @@ func (o *Spatial) Rotate(axis gdnative.Vector3, angle gdnative.Float) {
         Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system.
 	Args: [{ false axis Vector3} { false angle float}], Returns: void
 */
-func (o *Spatial) RotateObjectLocal(axis gdnative.Vector3, angle gdnative.Float) {
+func (o *Spatial) RotateObjectLocal(axis gdnative.Vector3, angle gdnative.Real) {
 	//log.Println("Calling Spatial.RotateObjectLocal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromVector3(axis)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(angle)
+	ptrArguments[1] = gdnative.NewPointerFromReal(angle)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Spatial", "rotate_object_local")
@@ -615,12 +615,12 @@ func (o *Spatial) RotateObjectLocal(axis gdnative.Vector3, angle gdnative.Float)
         Rotates the local transformation around the X axis by angle in radians
 	Args: [{ false angle float}], Returns: void
 */
-func (o *Spatial) RotateX(angle gdnative.Float) {
+func (o *Spatial) RotateX(angle gdnative.Real) {
 	//log.Println("Calling Spatial.RotateX()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(angle)
+	ptrArguments[0] = gdnative.NewPointerFromReal(angle)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Spatial", "rotate_x")
@@ -636,12 +636,12 @@ func (o *Spatial) RotateX(angle gdnative.Float) {
         Rotates the local transformation around the Y axis by angle in radians.
 	Args: [{ false angle float}], Returns: void
 */
-func (o *Spatial) RotateY(angle gdnative.Float) {
+func (o *Spatial) RotateY(angle gdnative.Real) {
 	//log.Println("Calling Spatial.RotateY()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(angle)
+	ptrArguments[0] = gdnative.NewPointerFromReal(angle)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Spatial", "rotate_y")
@@ -657,12 +657,12 @@ func (o *Spatial) RotateY(angle gdnative.Float) {
         Rotates the local transformation around the Z axis by angle in radians.
 	Args: [{ false angle float}], Returns: void
 */
-func (o *Spatial) RotateZ(angle gdnative.Float) {
+func (o *Spatial) RotateZ(angle gdnative.Real) {
 	//log.Println("Calling Spatial.RotateZ()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(angle)
+	ptrArguments[0] = gdnative.NewPointerFromReal(angle)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Spatial", "rotate_z")
@@ -1111,7 +1111,7 @@ type SpatialImplementer interface {
 	GetTransform() gdnative.Transform
 	GetTranslation() gdnative.Vector3
 	GetWorld() WorldImplementer
-	GlobalRotate(axis gdnative.Vector3, angle gdnative.Float)
+	GlobalRotate(axis gdnative.Vector3, angle gdnative.Real)
 	GlobalScale(scale gdnative.Vector3)
 	GlobalTranslate(offset gdnative.Vector3)
 	Hide()
@@ -1123,11 +1123,11 @@ type SpatialImplementer interface {
 	LookAt(target gdnative.Vector3, up gdnative.Vector3)
 	LookAtFromPosition(position gdnative.Vector3, target gdnative.Vector3, up gdnative.Vector3)
 	Orthonormalize()
-	Rotate(axis gdnative.Vector3, angle gdnative.Float)
-	RotateObjectLocal(axis gdnative.Vector3, angle gdnative.Float)
-	RotateX(angle gdnative.Float)
-	RotateY(angle gdnative.Float)
-	RotateZ(angle gdnative.Float)
+	Rotate(axis gdnative.Vector3, angle gdnative.Real)
+	RotateObjectLocal(axis gdnative.Vector3, angle gdnative.Real)
+	RotateX(angle gdnative.Real)
+	RotateY(angle gdnative.Real)
+	RotateZ(angle gdnative.Real)
 	ScaleObjectLocal(scale gdnative.Vector3)
 	SetAsToplevel(enable gdnative.Bool)
 	SetGizmo(gizmo SpatialGizmoImplementer)

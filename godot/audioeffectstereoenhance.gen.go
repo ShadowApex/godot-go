@@ -38,7 +38,7 @@ func (o *AudioEffectStereoEnhance) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectStereoEnhance) GetPanPullout() gdnative.Float {
+func (o *AudioEffectStereoEnhance) GetPanPullout() gdnative.Real {
 	//log.Println("Calling AudioEffectStereoEnhance.GetPanPullout()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *AudioEffectStereoEnhance) GetPanPullout() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *AudioEffectStereoEnhance) GetPanPullout() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectStereoEnhance) GetSurround() gdnative.Float {
+func (o *AudioEffectStereoEnhance) GetSurround() gdnative.Real {
 	//log.Println("Calling AudioEffectStereoEnhance.GetSurround()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *AudioEffectStereoEnhance) GetSurround() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *AudioEffectStereoEnhance) GetSurround() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectStereoEnhance) GetTimePullout() gdnative.Float {
+func (o *AudioEffectStereoEnhance) GetTimePullout() gdnative.Real {
 	//log.Println("Calling AudioEffectStereoEnhance.GetTimePullout()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *AudioEffectStereoEnhance) GetTimePullout() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,12 +107,12 @@ func (o *AudioEffectStereoEnhance) GetTimePullout() gdnative.Float {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectStereoEnhance) SetPanPullout(amount gdnative.Float) {
+func (o *AudioEffectStereoEnhance) SetPanPullout(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectStereoEnhance.SetPanPullout()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectStereoEnhance", "set_pan_pullout")
@@ -128,12 +128,12 @@ func (o *AudioEffectStereoEnhance) SetPanPullout(amount gdnative.Float) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectStereoEnhance) SetSurround(amount gdnative.Float) {
+func (o *AudioEffectStereoEnhance) SetSurround(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectStereoEnhance.SetSurround()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectStereoEnhance", "set_surround")
@@ -149,12 +149,12 @@ func (o *AudioEffectStereoEnhance) SetSurround(amount gdnative.Float) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectStereoEnhance) SetTimePullout(amount gdnative.Float) {
+func (o *AudioEffectStereoEnhance) SetTimePullout(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectStereoEnhance.SetTimePullout()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectStereoEnhance", "set_time_pullout")
@@ -170,10 +170,10 @@ func (o *AudioEffectStereoEnhance) SetTimePullout(amount gdnative.Float) {
 // of the AudioEffectStereoEnhance class.
 type AudioEffectStereoEnhanceImplementer interface {
 	AudioEffectImplementer
-	GetPanPullout() gdnative.Float
-	GetSurround() gdnative.Float
-	GetTimePullout() gdnative.Float
-	SetPanPullout(amount gdnative.Float)
-	SetSurround(amount gdnative.Float)
-	SetTimePullout(amount gdnative.Float)
+	GetPanPullout() gdnative.Real
+	GetSurround() gdnative.Real
+	GetTimePullout() gdnative.Real
+	SetPanPullout(amount gdnative.Real)
+	SetSurround(amount gdnative.Real)
+	SetTimePullout(amount gdnative.Real)
 }

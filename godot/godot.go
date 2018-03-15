@@ -379,11 +379,18 @@ func createPropertySetter(classString, propertyString string, propertyType refle
 		// we need to convert our variant into an object.
 		objectImplType := reflect.TypeOf((*ObjectImplementer)(nil)).Elem()
 		if propertyType.Implements(objectImplType) {
+
+			// Create the variant as an object so we can get its class type.
+			propAsObject := &Object{}
+			propAsObject.SetBaseObject(property.AsObject())
+			typeString := propAsObject.GetClass()
 			if debug {
-				log.Println("Setting property '" + propertyString + "' as Object on instance (" + instanceString + ")")
+				log.Println("Setting property '" + propertyString + "' with type '" + string(typeString) + "' as Object on instance (" + instanceString + ")")
 			}
-			object := getActualClass(gdnative.String(classString), property.AsObject())
-			propertyField.Set(reflect.ValueOf(object))
+
+			// Get the actual class object.
+			obj := getActualClass(typeString, propAsObject.GetBaseObject())
+			propertyField.Set(reflect.ValueOf(obj))
 			return
 		}
 
@@ -461,10 +468,11 @@ func createPropertyAttributes(field reflect.StructField) *gdnative.PropertyAttri
 
 	// rset_type
 	if rsetType, ok := field.Tag.Lookup("rset_type"); ok {
-		if propertyAttrs.RsetType, ok = gdnative.MethodRpcModeLookupMap[rsetType]; !ok {
+		rsetTypeStr := "MethodRpcMode" + rsetType
+		if propertyAttrs.RsetType, ok = gdnative.MethodRpcModeLookupMap[rsetTypeStr]; !ok {
 			validTypes := ""
 			for key, _ := range gdnative.MethodRpcModeLookupMap {
-				validTypes += " " + key
+				validTypes += " " + strings.Replace(key, "MethodRpcMode", "", 1)
 			}
 			panic("rset_type must be one of the following: " + validTypes)
 		}
@@ -474,10 +482,11 @@ func createPropertyAttributes(field reflect.StructField) *gdnative.PropertyAttri
 
 	// usage
 	if usage, ok := field.Tag.Lookup("usage"); ok {
-		if propertyAttrs.Usage, ok = gdnative.PropertyUsageFlagsLookupMap[usage]; !ok {
+		usageStr := "PropertyUsage" + usage
+		if propertyAttrs.Usage, ok = gdnative.PropertyUsageFlagsLookupMap[usageStr]; !ok {
 			validTypes := ""
 			for key, _ := range gdnative.PropertyUsageFlagsLookupMap {
-				validTypes += " " + key
+				validTypes += " " + strings.Replace(key, "PropertyUsage", "", 1)
 			}
 			panic("usage must be one of the following: " + validTypes)
 		}
@@ -487,10 +496,11 @@ func createPropertyAttributes(field reflect.StructField) *gdnative.PropertyAttri
 
 	// hint
 	if hint, ok := field.Tag.Lookup("hint"); ok {
-		if propertyAttrs.Hint, ok = gdnative.PropertyHintLookupMap[hint]; !ok {
+		hintStr := "PropertyHint" + hint
+		if propertyAttrs.Hint, ok = gdnative.PropertyHintLookupMap[hintStr]; !ok {
 			validTypes := ""
 			for key, _ := range gdnative.PropertyHintLookupMap {
-				validTypes += " " + key
+				validTypes += " " + strings.Replace(key, "PropertyHint", "", 1)
 			}
 			panic("hint must be one of the following: " + validTypes)
 		}
@@ -696,6 +706,9 @@ func VariantTypeToConstant(t reflect.Type) gdnative.VariantType {
 	case "gdnative.PoolColorArray":
 		return gdnative.VariantTypePoolColorArray
 	}
+	if strings.HasPrefix(t.String(), "godot.") {
+		panic("Unknown type of exported godot field: " + t.String() + ". You probably need to use *" + t.String() + " or " + t.String() + "Implementer for this field.")
+	}
 	panic("Unknown type of exported godot field: " + t.String())
 }
 
@@ -706,6 +719,7 @@ func toGoMethodName(methodName string) string {
 	if strings.HasPrefix(methodName, "_") {
 		goMethodName = "X_" + goMethodName
 	}
+
 	if debug {
 		log.Println("    Godot method name:", methodName)
 		log.Println("    Go mapped method name:", goMethodName)
@@ -725,6 +739,15 @@ func toGodotMethodName(goMethodName string) string {
 	}
 	methodName = casee.ToSnakeCase(methodName)
 	methodName = privatePrefix + methodName
+
+	// handle signal binding functions that start with _on_
+	if strings.HasPrefix(methodName, "_on_") {
+		// Grab the character after _on_
+		runes := []rune(methodName)
+		runes[4] = unicode.ToUpper(runes[4])
+		methodName = string(runes)
+	}
+
 	if debug {
 		log.Println("    Go method name:", goMethodName)
 		log.Println("    Godot mapped method name:", methodName)

@@ -38,7 +38,7 @@ func (o *LineShape2D) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *LineShape2D) GetD() gdnative.Float {
+func (o *LineShape2D) GetD() gdnative.Real {
 	//log.Println("Calling LineShape2D.GetD()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *LineShape2D) GetD() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,12 +84,12 @@ func (o *LineShape2D) GetNormal() gdnative.Vector2 {
         Undocumented
 	Args: [{ false d float}], Returns: void
 */
-func (o *LineShape2D) SetD(d gdnative.Float) {
+func (o *LineShape2D) SetD(d gdnative.Real) {
 	//log.Println("Calling LineShape2D.SetD()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(d)
+	ptrArguments[0] = gdnative.NewPointerFromReal(d)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("LineShape2D", "set_d")
@@ -126,8 +126,8 @@ func (o *LineShape2D) SetNormal(normal gdnative.Vector2) {
 // of the LineShape2D class.
 type LineShape2DImplementer interface {
 	Shape2DImplementer
-	GetD() gdnative.Float
+	GetD() gdnative.Real
 	GetNormal() gdnative.Vector2
-	SetD(d gdnative.Float)
+	SetD(d gdnative.Real)
 	SetNormal(normal gdnative.Vector2)
 }

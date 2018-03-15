@@ -278,14 +278,14 @@ func (o *Image) ClearMipmaps() {
         Compresses the image to use less memory. Can not directly access pixel data while the image is compressed. Returns error if the chosen compression mode is not available. See [code]COMPRESS_*[/code] constants.
 	Args: [{ false mode int} { false source int} { false lossy_quality float}], Returns: enum.Error
 */
-func (o *Image) Compress(mode gdnative.Int, source gdnative.Int, lossyQuality gdnative.Float) gdnative.Error {
+func (o *Image) Compress(mode gdnative.Int, source gdnative.Int, lossyQuality gdnative.Real) gdnative.Error {
 	//log.Println("Calling Image.Compress()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromInt(mode)
 	ptrArguments[1] = gdnative.NewPointerFromInt(source)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(lossyQuality)
+	ptrArguments[2] = gdnative.NewPointerFromReal(lossyQuality)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Image", "compress")

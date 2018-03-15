@@ -236,7 +236,7 @@ func (o *SpriteBase3D) GetOffset() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpriteBase3D) GetOpacity() gdnative.Float {
+func (o *SpriteBase3D) GetOpacity() gdnative.Real {
 	//log.Println("Calling SpriteBase3D.GetOpacity()")
 
 	// Build out the method's arguments
@@ -247,11 +247,11 @@ func (o *SpriteBase3D) GetOpacity() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -259,7 +259,7 @@ func (o *SpriteBase3D) GetOpacity() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SpriteBase3D) GetPixelSize() gdnative.Float {
+func (o *SpriteBase3D) GetPixelSize() gdnative.Real {
 	//log.Println("Calling SpriteBase3D.GetPixelSize()")
 
 	// Build out the method's arguments
@@ -270,11 +270,11 @@ func (o *SpriteBase3D) GetPixelSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -520,12 +520,12 @@ func (o *SpriteBase3D) SetOffset(offset gdnative.Vector2) {
         Undocumented
 	Args: [{ false opacity float}], Returns: void
 */
-func (o *SpriteBase3D) SetOpacity(opacity gdnative.Float) {
+func (o *SpriteBase3D) SetOpacity(opacity gdnative.Real) {
 	//log.Println("Calling SpriteBase3D.SetOpacity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(opacity)
+	ptrArguments[0] = gdnative.NewPointerFromReal(opacity)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpriteBase3D", "set_opacity")
@@ -541,12 +541,12 @@ func (o *SpriteBase3D) SetOpacity(opacity gdnative.Float) {
         Undocumented
 	Args: [{ false pixel_size float}], Returns: void
 */
-func (o *SpriteBase3D) SetPixelSize(pixelSize gdnative.Float) {
+func (o *SpriteBase3D) SetPixelSize(pixelSize gdnative.Real) {
 	//log.Println("Calling SpriteBase3D.SetPixelSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(pixelSize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(pixelSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SpriteBase3D", "set_pixel_size")
@@ -568,8 +568,8 @@ type SpriteBase3DImplementer interface {
 	GetItemRect() gdnative.Rect2
 	GetModulate() gdnative.Color
 	GetOffset() gdnative.Vector2
-	GetOpacity() gdnative.Float
-	GetPixelSize() gdnative.Float
+	GetOpacity() gdnative.Real
+	GetPixelSize() gdnative.Real
 	IsCentered() gdnative.Bool
 	IsFlippedH() gdnative.Bool
 	IsFlippedV() gdnative.Bool
@@ -581,6 +581,6 @@ type SpriteBase3DImplementer interface {
 	SetFlipV(flipV gdnative.Bool)
 	SetModulate(modulate gdnative.Color)
 	SetOffset(offset gdnative.Vector2)
-	SetOpacity(opacity gdnative.Float)
-	SetPixelSize(pixelSize gdnative.Float)
+	SetOpacity(opacity gdnative.Real)
+	SetPixelSize(pixelSize gdnative.Real)
 }

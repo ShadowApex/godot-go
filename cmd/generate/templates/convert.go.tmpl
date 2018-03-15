@@ -18,6 +18,17 @@ import (
 // getActualClass will return the concrete class type of the godot object based on 
 // the given class name.
 func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplementer {
+	// Check to see if we already have an instance of this object in our Go instance registry.
+	if debug {
+		log.Println("Checking to see if", obj.ID(), "is in registry:", InstanceRegistry)
+	}
+	if instance, ok := InstanceRegistry.Get(obj.ID()); ok {
+		if debug {
+			log.Println("Class instance already found in registry!")
+		}
+		return instance.(ObjectImplementer)
+	}
+
 	switch className {
 		{{ range $i, $api := $view.APIs -}}
 			{{ if $view.IsValidClass $api.Name $api.BaseClass -}}

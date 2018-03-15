@@ -146,7 +146,7 @@ func (o *Shape2D) CollideWithMotionAndGetContacts(localXform gdnative.Transform2
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Shape2D) GetCustomSolverBias() gdnative.Float {
+func (o *Shape2D) GetCustomSolverBias() gdnative.Real {
 	//log.Println("Calling Shape2D.GetCustomSolverBias()")
 
 	// Build out the method's arguments
@@ -157,11 +157,11 @@ func (o *Shape2D) GetCustomSolverBias() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -169,12 +169,12 @@ func (o *Shape2D) GetCustomSolverBias() gdnative.Float {
         Undocumented
 	Args: [{ false bias float}], Returns: void
 */
-func (o *Shape2D) SetCustomSolverBias(bias gdnative.Float) {
+func (o *Shape2D) SetCustomSolverBias(bias gdnative.Real) {
 	//log.Println("Calling Shape2D.SetCustomSolverBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(bias)
+	ptrArguments[0] = gdnative.NewPointerFromReal(bias)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Shape2D", "set_custom_solver_bias")
@@ -194,6 +194,6 @@ type Shape2DImplementer interface {
 	CollideAndGetContacts(localXform gdnative.Transform2D, withShape Shape2DImplementer, shapeXform gdnative.Transform2D) gdnative.Variant
 	CollideWithMotion(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2DImplementer, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Bool
 	CollideWithMotionAndGetContacts(localXform gdnative.Transform2D, localMotion gdnative.Vector2, withShape Shape2DImplementer, shapeXform gdnative.Transform2D, shapeMotion gdnative.Vector2) gdnative.Variant
-	GetCustomSolverBias() gdnative.Float
-	SetCustomSolverBias(bias gdnative.Float)
+	GetCustomSolverBias() gdnative.Real
+	SetCustomSolverBias(bias gdnative.Real)
 }

@@ -38,7 +38,7 @@ func (o *InterpolatedCamera) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *InterpolatedCamera) GetSpeed() gdnative.Float {
+func (o *InterpolatedCamera) GetSpeed() gdnative.Real {
 	//log.Println("Calling InterpolatedCamera.GetSpeed()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *InterpolatedCamera) GetSpeed() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -128,12 +128,12 @@ func (o *InterpolatedCamera) SetInterpolationEnabled(targetPath gdnative.Bool) {
         Undocumented
 	Args: [{ false speed float}], Returns: void
 */
-func (o *InterpolatedCamera) SetSpeed(speed gdnative.Float) {
+func (o *InterpolatedCamera) SetSpeed(speed gdnative.Real) {
 	//log.Println("Calling InterpolatedCamera.SetSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(speed)
+	ptrArguments[0] = gdnative.NewPointerFromReal(speed)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("InterpolatedCamera", "set_speed")
@@ -191,11 +191,11 @@ func (o *InterpolatedCamera) SetTargetPath(targetPath gdnative.NodePath) {
 // of the InterpolatedCamera class.
 type InterpolatedCameraImplementer interface {
 	CameraImplementer
-	GetSpeed() gdnative.Float
+	GetSpeed() gdnative.Real
 	GetTargetPath() gdnative.NodePath
 	IsInterpolationEnabled() gdnative.Bool
 	SetInterpolationEnabled(targetPath gdnative.Bool)
-	SetSpeed(speed gdnative.Float)
+	SetSpeed(speed gdnative.Real)
 	SetTarget(target ObjectImplementer)
 	SetTargetPath(targetPath gdnative.NodePath)
 }

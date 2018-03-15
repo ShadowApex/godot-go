@@ -38,7 +38,7 @@ func (o *AudioStream) BaseClass() string {
 
 	Args: [], Returns: float
 */
-func (o *AudioStream) GetLength() gdnative.Float {
+func (o *AudioStream) GetLength() gdnative.Real {
 	//log.Println("Calling AudioStream.GetLength()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *AudioStream) GetLength() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,5 +61,5 @@ func (o *AudioStream) GetLength() gdnative.Float {
 // of the AudioStream class.
 type AudioStreamImplementer interface {
 	ResourceImplementer
-	GetLength() gdnative.Float
+	GetLength() gdnative.Real
 }

@@ -328,7 +328,7 @@ func (o *TileMap) GetClipUv() gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *TileMap) GetCollisionBounce() gdnative.Float {
+func (o *TileMap) GetCollisionBounce() gdnative.Real {
 	//log.Println("Calling TileMap.GetCollisionBounce()")
 
 	// Build out the method's arguments
@@ -339,11 +339,11 @@ func (o *TileMap) GetCollisionBounce() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -351,7 +351,7 @@ func (o *TileMap) GetCollisionBounce() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *TileMap) GetCollisionFriction() gdnative.Float {
+func (o *TileMap) GetCollisionFriction() gdnative.Real {
 	//log.Println("Calling TileMap.GetCollisionFriction()")
 
 	// Build out the method's arguments
@@ -362,11 +362,11 @@ func (o *TileMap) GetCollisionFriction() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -953,12 +953,12 @@ func (o *TileMap) SetClipUv(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false value float}], Returns: void
 */
-func (o *TileMap) SetCollisionBounce(value gdnative.Float) {
+func (o *TileMap) SetCollisionBounce(value gdnative.Real) {
 	//log.Println("Calling TileMap.SetCollisionBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[0] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TileMap", "set_collision_bounce")
@@ -974,12 +974,12 @@ func (o *TileMap) SetCollisionBounce(value gdnative.Float) {
         Undocumented
 	Args: [{ false value float}], Returns: void
 */
-func (o *TileMap) SetCollisionFriction(value gdnative.Float) {
+func (o *TileMap) SetCollisionFriction(value gdnative.Real) {
 	//log.Println("Calling TileMap.SetCollisionFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[0] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TileMap", "set_collision_friction")
@@ -1349,8 +1349,8 @@ type TileMapImplementer interface {
 	GetCellSize() gdnative.Vector2
 	GetCellv(position gdnative.Vector2) gdnative.Int
 	GetClipUv() gdnative.Bool
-	GetCollisionBounce() gdnative.Float
-	GetCollisionFriction() gdnative.Float
+	GetCollisionBounce() gdnative.Real
+	GetCollisionFriction() gdnative.Real
 	GetCollisionLayer() gdnative.Int
 	GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool
 	GetCollisionMask() gdnative.Int
@@ -1372,8 +1372,8 @@ type TileMapImplementer interface {
 	SetCellSize(size gdnative.Vector2)
 	SetCellv(position gdnative.Vector2, tile gdnative.Int, flipX gdnative.Bool, flipY gdnative.Bool, transpose gdnative.Bool)
 	SetClipUv(enable gdnative.Bool)
-	SetCollisionBounce(value gdnative.Float)
-	SetCollisionFriction(value gdnative.Float)
+	SetCollisionBounce(value gdnative.Real)
+	SetCollisionFriction(value gdnative.Real)
 	SetCollisionLayer(layer gdnative.Int)
 	SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool)
 	SetCollisionMask(mask gdnative.Int)

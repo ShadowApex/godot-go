@@ -47,7 +47,7 @@ func (o *PinJoint) BaseClass() string {
         Undocumented
 	Args: [{ false param int}], Returns: float
 */
-func (o *PinJoint) GetParam(param gdnative.Int) gdnative.Float {
+func (o *PinJoint) GetParam(param gdnative.Int) gdnative.Real {
 	//log.Println("Calling PinJoint.GetParam()")
 
 	// Build out the method's arguments
@@ -59,11 +59,11 @@ func (o *PinJoint) GetParam(param gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -71,13 +71,13 @@ func (o *PinJoint) GetParam(param gdnative.Int) gdnative.Float {
         Undocumented
 	Args: [{ false param int} { false value float}], Returns: void
 */
-func (o *PinJoint) SetParam(param gdnative.Int, value gdnative.Float) {
+func (o *PinJoint) SetParam(param gdnative.Int, value gdnative.Real) {
 	//log.Println("Calling PinJoint.SetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(param)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[1] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PinJoint", "set_param")
@@ -93,6 +93,6 @@ func (o *PinJoint) SetParam(param gdnative.Int, value gdnative.Float) {
 // of the PinJoint class.
 type PinJointImplementer interface {
 	JointImplementer
-	GetParam(param gdnative.Int) gdnative.Float
-	SetParam(param gdnative.Int, value gdnative.Float)
+	GetParam(param gdnative.Int) gdnative.Real
+	SetParam(param gdnative.Int, value gdnative.Real)
 }

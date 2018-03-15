@@ -38,7 +38,7 @@ func (o *AudioEffectAmplify) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectAmplify) GetVolumeDb() gdnative.Float {
+func (o *AudioEffectAmplify) GetVolumeDb() gdnative.Real {
 	//log.Println("Calling AudioEffectAmplify.GetVolumeDb()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *AudioEffectAmplify) GetVolumeDb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,12 +61,12 @@ func (o *AudioEffectAmplify) GetVolumeDb() gdnative.Float {
         Undocumented
 	Args: [{ false volume float}], Returns: void
 */
-func (o *AudioEffectAmplify) SetVolumeDb(volume gdnative.Float) {
+func (o *AudioEffectAmplify) SetVolumeDb(volume gdnative.Real) {
 	//log.Println("Calling AudioEffectAmplify.SetVolumeDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(volume)
+	ptrArguments[0] = gdnative.NewPointerFromReal(volume)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectAmplify", "set_volume_db")
@@ -82,6 +82,6 @@ func (o *AudioEffectAmplify) SetVolumeDb(volume gdnative.Float) {
 // of the AudioEffectAmplify class.
 type AudioEffectAmplifyImplementer interface {
 	AudioEffectImplementer
-	GetVolumeDb() gdnative.Float
-	SetVolumeDb(volume gdnative.Float)
+	GetVolumeDb() gdnative.Real
+	SetVolumeDb(volume gdnative.Real)
 }

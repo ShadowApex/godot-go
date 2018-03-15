@@ -38,7 +38,7 @@ func (o *DampedSpringJoint2D) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *DampedSpringJoint2D) GetDamping() gdnative.Float {
+func (o *DampedSpringJoint2D) GetDamping() gdnative.Real {
 	//log.Println("Calling DampedSpringJoint2D.GetDamping()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *DampedSpringJoint2D) GetDamping() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *DampedSpringJoint2D) GetDamping() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *DampedSpringJoint2D) GetLength() gdnative.Float {
+func (o *DampedSpringJoint2D) GetLength() gdnative.Real {
 	//log.Println("Calling DampedSpringJoint2D.GetLength()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *DampedSpringJoint2D) GetLength() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *DampedSpringJoint2D) GetLength() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *DampedSpringJoint2D) GetRestLength() gdnative.Float {
+func (o *DampedSpringJoint2D) GetRestLength() gdnative.Real {
 	//log.Println("Calling DampedSpringJoint2D.GetRestLength()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *DampedSpringJoint2D) GetRestLength() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *DampedSpringJoint2D) GetRestLength() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *DampedSpringJoint2D) GetStiffness() gdnative.Float {
+func (o *DampedSpringJoint2D) GetStiffness() gdnative.Real {
 	//log.Println("Calling DampedSpringJoint2D.GetStiffness()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *DampedSpringJoint2D) GetStiffness() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,12 +130,12 @@ func (o *DampedSpringJoint2D) GetStiffness() gdnative.Float {
         Undocumented
 	Args: [{ false damping float}], Returns: void
 */
-func (o *DampedSpringJoint2D) SetDamping(damping gdnative.Float) {
+func (o *DampedSpringJoint2D) SetDamping(damping gdnative.Real) {
 	//log.Println("Calling DampedSpringJoint2D.SetDamping()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(damping)
+	ptrArguments[0] = gdnative.NewPointerFromReal(damping)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "set_damping")
@@ -151,12 +151,12 @@ func (o *DampedSpringJoint2D) SetDamping(damping gdnative.Float) {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *DampedSpringJoint2D) SetLength(length gdnative.Float) {
+func (o *DampedSpringJoint2D) SetLength(length gdnative.Real) {
 	//log.Println("Calling DampedSpringJoint2D.SetLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "set_length")
@@ -172,12 +172,12 @@ func (o *DampedSpringJoint2D) SetLength(length gdnative.Float) {
         Undocumented
 	Args: [{ false rest_length float}], Returns: void
 */
-func (o *DampedSpringJoint2D) SetRestLength(restLength gdnative.Float) {
+func (o *DampedSpringJoint2D) SetRestLength(restLength gdnative.Real) {
 	//log.Println("Calling DampedSpringJoint2D.SetRestLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(restLength)
+	ptrArguments[0] = gdnative.NewPointerFromReal(restLength)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "set_rest_length")
@@ -193,12 +193,12 @@ func (o *DampedSpringJoint2D) SetRestLength(restLength gdnative.Float) {
         Undocumented
 	Args: [{ false stiffness float}], Returns: void
 */
-func (o *DampedSpringJoint2D) SetStiffness(stiffness gdnative.Float) {
+func (o *DampedSpringJoint2D) SetStiffness(stiffness gdnative.Real) {
 	//log.Println("Calling DampedSpringJoint2D.SetStiffness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(stiffness)
+	ptrArguments[0] = gdnative.NewPointerFromReal(stiffness)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("DampedSpringJoint2D", "set_stiffness")
@@ -214,12 +214,12 @@ func (o *DampedSpringJoint2D) SetStiffness(stiffness gdnative.Float) {
 // of the DampedSpringJoint2D class.
 type DampedSpringJoint2DImplementer interface {
 	Joint2DImplementer
-	GetDamping() gdnative.Float
-	GetLength() gdnative.Float
-	GetRestLength() gdnative.Float
-	GetStiffness() gdnative.Float
-	SetDamping(damping gdnative.Float)
-	SetLength(length gdnative.Float)
-	SetRestLength(restLength gdnative.Float)
-	SetStiffness(stiffness gdnative.Float)
+	GetDamping() gdnative.Real
+	GetLength() gdnative.Real
+	GetRestLength() gdnative.Real
+	GetStiffness() gdnative.Real
+	SetDamping(damping gdnative.Real)
+	SetLength(length gdnative.Real)
+	SetRestLength(restLength gdnative.Real)
+	SetStiffness(stiffness gdnative.Real)
 }

@@ -464,9 +464,9 @@ func (e Vector3Axis) getBase() C.godot_vector3_axis {
 }
 
 const (
-	Vector3AxisX Vector3Axis = iota
-	Vector3AxisY
-	Vector3AxisZ
+	Vector3AxisX Vector3Axis = 0
+	Vector3AxisY Vector3Axis = 1
+	Vector3AxisZ Vector3Axis = 2
 )
 
 // Vector3AxisLookupMap is a string-based lookup table of constants for Vector3Axis.

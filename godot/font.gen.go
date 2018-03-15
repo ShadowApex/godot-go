@@ -63,7 +63,7 @@ func (o *Font) Draw(canvasItem gdnative.Rid, position gdnative.Vector2, string g
         Draw character "char" into a canvas item using the font at a given position, with "modulate" color, and optionally kerning if "next" is passed. clipping the width. "position" specifies the baseline, not the top. To draw from the top, [i]ascent[/i] must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
 	Args: [{ false canvas_item RID} { false position Vector2} { false char int} {-1 true next int} {1,1,1,1 true modulate Color}], Returns: float
 */
-func (o *Font) DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color) gdnative.Float {
+func (o *Font) DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color) gdnative.Real {
 	//log.Println("Calling Font.DrawChar()")
 
 	// Build out the method's arguments
@@ -79,11 +79,11 @@ func (o *Font) DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -91,7 +91,7 @@ func (o *Font) DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char
         Return the font ascent (number of pixels above the baseline).
 	Args: [], Returns: float
 */
-func (o *Font) GetAscent() gdnative.Float {
+func (o *Font) GetAscent() gdnative.Real {
 	//log.Println("Calling Font.GetAscent()")
 
 	// Build out the method's arguments
@@ -102,11 +102,11 @@ func (o *Font) GetAscent() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -114,7 +114,7 @@ func (o *Font) GetAscent() gdnative.Float {
         Return the font descent (number of pixels below the baseline).
 	Args: [], Returns: float
 */
-func (o *Font) GetDescent() gdnative.Float {
+func (o *Font) GetDescent() gdnative.Real {
 	//log.Println("Calling Font.GetDescent()")
 
 	// Build out the method's arguments
@@ -125,11 +125,11 @@ func (o *Font) GetDescent() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -137,7 +137,7 @@ func (o *Font) GetDescent() gdnative.Float {
         Return the total font height (ascent plus descent) in pixels.
 	Args: [], Returns: float
 */
-func (o *Font) GetHeight() gdnative.Float {
+func (o *Font) GetHeight() gdnative.Real {
 	//log.Println("Calling Font.GetHeight()")
 
 	// Build out the method's arguments
@@ -148,11 +148,11 @@ func (o *Font) GetHeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -228,10 +228,10 @@ func (o *Font) UpdateChanges() {
 type FontImplementer interface {
 	ResourceImplementer
 	Draw(canvasItem gdnative.Rid, position gdnative.Vector2, string gdnative.String, modulate gdnative.Color, clipW gdnative.Int)
-	DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color) gdnative.Float
-	GetAscent() gdnative.Float
-	GetDescent() gdnative.Float
-	GetHeight() gdnative.Float
+	DrawChar(canvasItem gdnative.Rid, position gdnative.Vector2, char gdnative.Int, next gdnative.Int, modulate gdnative.Color) gdnative.Real
+	GetAscent() gdnative.Real
+	GetDescent() gdnative.Real
+	GetHeight() gdnative.Real
 	GetStringSize(string gdnative.String) gdnative.Vector2
 	IsDistanceFieldHint() gdnative.Bool
 	UpdateChanges()

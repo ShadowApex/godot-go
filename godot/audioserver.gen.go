@@ -292,7 +292,7 @@ func (o *audioServer) GetBusName(busIdx gdnative.Int) gdnative.String {
         Returns the peak volume of the left speaker at bus index [code]bus_idx[/code] and channel index [code]channel[/code].
 	Args: [{ false bus_idx int} { false channel int}], Returns: float
 */
-func (o *audioServer) GetBusPeakVolumeLeftDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Float {
+func (o *audioServer) GetBusPeakVolumeLeftDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling AudioServer.GetBusPeakVolumeLeftDb()")
 
@@ -306,11 +306,11 @@ func (o *audioServer) GetBusPeakVolumeLeftDb(busIdx gdnative.Int, channel gdnati
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -318,7 +318,7 @@ func (o *audioServer) GetBusPeakVolumeLeftDb(busIdx gdnative.Int, channel gdnati
         Returns the peak volume of the right speaker at bus index [code]bus_idx[/code] and channel index [code]channel[/code].
 	Args: [{ false bus_idx int} { false channel int}], Returns: float
 */
-func (o *audioServer) GetBusPeakVolumeRightDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Float {
+func (o *audioServer) GetBusPeakVolumeRightDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling AudioServer.GetBusPeakVolumeRightDb()")
 
@@ -332,11 +332,11 @@ func (o *audioServer) GetBusPeakVolumeRightDb(busIdx gdnative.Int, channel gdnat
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -369,7 +369,7 @@ func (o *audioServer) GetBusSend(busIdx gdnative.Int) gdnative.String {
         Returns the volume of the bus at index [code]bus_idx[/code] in dB.
 	Args: [{ false bus_idx int}], Returns: float
 */
-func (o *audioServer) GetBusVolumeDb(busIdx gdnative.Int) gdnative.Float {
+func (o *audioServer) GetBusVolumeDb(busIdx gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling AudioServer.GetBusVolumeDb()")
 
@@ -382,11 +382,11 @@ func (o *audioServer) GetBusVolumeDb(busIdx gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -394,7 +394,7 @@ func (o *audioServer) GetBusVolumeDb(busIdx gdnative.Int) gdnative.Float {
         Returns the sample rate at the output of the audioserver.
 	Args: [], Returns: float
 */
-func (o *audioServer) GetMixRate() gdnative.Float {
+func (o *audioServer) GetMixRate() gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling AudioServer.GetMixRate()")
 
@@ -406,11 +406,11 @@ func (o *audioServer) GetMixRate() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -815,14 +815,14 @@ func (o *audioServer) SetBusSolo(busIdx gdnative.Int, enable gdnative.Bool) {
         Sets the volume of the bus at index [code]bus_idx[/code] to [code]volume_db[/code].
 	Args: [{ false bus_idx int} { false volume_db float}], Returns: void
 */
-func (o *audioServer) SetBusVolumeDb(busIdx gdnative.Int, volumeDb gdnative.Float) {
+func (o *audioServer) SetBusVolumeDb(busIdx gdnative.Int, volumeDb gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling AudioServer.SetBusVolumeDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(busIdx)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(volumeDb)
+	ptrArguments[1] = gdnative.NewPointerFromReal(volumeDb)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioServer", "set_bus_volume_db")
@@ -891,11 +891,11 @@ type AudioServerImplementer interface {
 	GetBusEffectCount(busIdx gdnative.Int) gdnative.Int
 	GetBusIndex(busName gdnative.String) gdnative.Int
 	GetBusName(busIdx gdnative.Int) gdnative.String
-	GetBusPeakVolumeLeftDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Float
-	GetBusPeakVolumeRightDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Float
+	GetBusPeakVolumeLeftDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Real
+	GetBusPeakVolumeRightDb(busIdx gdnative.Int, channel gdnative.Int) gdnative.Real
 	GetBusSend(busIdx gdnative.Int) gdnative.String
-	GetBusVolumeDb(busIdx gdnative.Int) gdnative.Float
-	GetMixRate() gdnative.Float
+	GetBusVolumeDb(busIdx gdnative.Int) gdnative.Real
+	GetMixRate() gdnative.Real
 	IsBusBypassingEffects(busIdx gdnative.Int) gdnative.Bool
 	IsBusEffectEnabled(busIdx gdnative.Int, effectIdx gdnative.Int) gdnative.Bool
 	IsBusMute(busIdx gdnative.Int) gdnative.Bool
@@ -912,7 +912,7 @@ type AudioServerImplementer interface {
 	SetBusName(busIdx gdnative.Int, name gdnative.String)
 	SetBusSend(busIdx gdnative.Int, send gdnative.String)
 	SetBusSolo(busIdx gdnative.Int, enable gdnative.Bool)
-	SetBusVolumeDb(busIdx gdnative.Int, volumeDb gdnative.Float)
+	SetBusVolumeDb(busIdx gdnative.Int, volumeDb gdnative.Real)
 	SwapBusEffects(busIdx gdnative.Int, effectIdx gdnative.Int, byEffectIdx gdnative.Int)
 	Unlock()
 }

@@ -38,7 +38,7 @@ func (o *RayShape) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RayShape) GetLength() gdnative.Float {
+func (o *RayShape) GetLength() gdnative.Real {
 	//log.Println("Calling RayShape.GetLength()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *RayShape) GetLength() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,12 +61,12 @@ func (o *RayShape) GetLength() gdnative.Float {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *RayShape) SetLength(length gdnative.Float) {
+func (o *RayShape) SetLength(length gdnative.Real) {
 	//log.Println("Calling RayShape.SetLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RayShape", "set_length")
@@ -82,6 +82,6 @@ func (o *RayShape) SetLength(length gdnative.Float) {
 // of the RayShape class.
 type RayShapeImplementer interface {
 	ShapeImplementer
-	GetLength() gdnative.Float
-	SetLength(length gdnative.Float)
+	GetLength() gdnative.Real
+	SetLength(length gdnative.Real)
 }

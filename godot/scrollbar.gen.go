@@ -100,7 +100,7 @@ func (o *ScrollBar) X_GuiInput(arg0 InputEventImplementer) {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ScrollBar) GetCustomStep() gdnative.Float {
+func (o *ScrollBar) GetCustomStep() gdnative.Real {
 	//log.Println("Calling ScrollBar.GetCustomStep()")
 
 	// Build out the method's arguments
@@ -111,11 +111,11 @@ func (o *ScrollBar) GetCustomStep() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -123,12 +123,12 @@ func (o *ScrollBar) GetCustomStep() gdnative.Float {
         Undocumented
 	Args: [{ false step float}], Returns: void
 */
-func (o *ScrollBar) SetCustomStep(step gdnative.Float) {
+func (o *ScrollBar) SetCustomStep(step gdnative.Real) {
 	//log.Println("Calling ScrollBar.SetCustomStep()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(step)
+	ptrArguments[0] = gdnative.NewPointerFromReal(step)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ScrollBar", "set_custom_step")
@@ -146,6 +146,6 @@ type ScrollBarImplementer interface {
 	RangeImplementer
 	X_DragSlaveExit()
 	X_DragSlaveInput(arg0 InputEventImplementer)
-	GetCustomStep() gdnative.Float
-	SetCustomStep(step gdnative.Float)
+	GetCustomStep() gdnative.Real
+	SetCustomStep(step gdnative.Real)
 }

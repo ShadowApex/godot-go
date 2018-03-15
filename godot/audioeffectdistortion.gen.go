@@ -49,7 +49,7 @@ func (o *AudioEffectDistortion) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectDistortion) GetDrive() gdnative.Float {
+func (o *AudioEffectDistortion) GetDrive() gdnative.Real {
 	//log.Println("Calling AudioEffectDistortion.GetDrive()")
 
 	// Build out the method's arguments
@@ -60,11 +60,11 @@ func (o *AudioEffectDistortion) GetDrive() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -72,7 +72,7 @@ func (o *AudioEffectDistortion) GetDrive() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectDistortion) GetKeepHfHz() gdnative.Float {
+func (o *AudioEffectDistortion) GetKeepHfHz() gdnative.Real {
 	//log.Println("Calling AudioEffectDistortion.GetKeepHfHz()")
 
 	// Build out the method's arguments
@@ -83,11 +83,11 @@ func (o *AudioEffectDistortion) GetKeepHfHz() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -118,7 +118,7 @@ func (o *AudioEffectDistortion) GetMode() AudioEffectDistortionMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectDistortion) GetPostGain() gdnative.Float {
+func (o *AudioEffectDistortion) GetPostGain() gdnative.Real {
 	//log.Println("Calling AudioEffectDistortion.GetPostGain()")
 
 	// Build out the method's arguments
@@ -129,11 +129,11 @@ func (o *AudioEffectDistortion) GetPostGain() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -141,7 +141,7 @@ func (o *AudioEffectDistortion) GetPostGain() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectDistortion) GetPreGain() gdnative.Float {
+func (o *AudioEffectDistortion) GetPreGain() gdnative.Real {
 	//log.Println("Calling AudioEffectDistortion.GetPreGain()")
 
 	// Build out the method's arguments
@@ -152,11 +152,11 @@ func (o *AudioEffectDistortion) GetPreGain() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -164,12 +164,12 @@ func (o *AudioEffectDistortion) GetPreGain() gdnative.Float {
         Undocumented
 	Args: [{ false drive float}], Returns: void
 */
-func (o *AudioEffectDistortion) SetDrive(drive gdnative.Float) {
+func (o *AudioEffectDistortion) SetDrive(drive gdnative.Real) {
 	//log.Println("Calling AudioEffectDistortion.SetDrive()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(drive)
+	ptrArguments[0] = gdnative.NewPointerFromReal(drive)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectDistortion", "set_drive")
@@ -185,12 +185,12 @@ func (o *AudioEffectDistortion) SetDrive(drive gdnative.Float) {
         Undocumented
 	Args: [{ false keep_hf_hz float}], Returns: void
 */
-func (o *AudioEffectDistortion) SetKeepHfHz(keepHfHz gdnative.Float) {
+func (o *AudioEffectDistortion) SetKeepHfHz(keepHfHz gdnative.Real) {
 	//log.Println("Calling AudioEffectDistortion.SetKeepHfHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(keepHfHz)
+	ptrArguments[0] = gdnative.NewPointerFromReal(keepHfHz)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectDistortion", "set_keep_hf_hz")
@@ -227,12 +227,12 @@ func (o *AudioEffectDistortion) SetMode(mode gdnative.Int) {
         Undocumented
 	Args: [{ false post_gain float}], Returns: void
 */
-func (o *AudioEffectDistortion) SetPostGain(postGain gdnative.Float) {
+func (o *AudioEffectDistortion) SetPostGain(postGain gdnative.Real) {
 	//log.Println("Calling AudioEffectDistortion.SetPostGain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(postGain)
+	ptrArguments[0] = gdnative.NewPointerFromReal(postGain)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectDistortion", "set_post_gain")
@@ -248,12 +248,12 @@ func (o *AudioEffectDistortion) SetPostGain(postGain gdnative.Float) {
         Undocumented
 	Args: [{ false pre_gain float}], Returns: void
 */
-func (o *AudioEffectDistortion) SetPreGain(preGain gdnative.Float) {
+func (o *AudioEffectDistortion) SetPreGain(preGain gdnative.Real) {
 	//log.Println("Calling AudioEffectDistortion.SetPreGain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(preGain)
+	ptrArguments[0] = gdnative.NewPointerFromReal(preGain)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectDistortion", "set_pre_gain")
@@ -269,13 +269,13 @@ func (o *AudioEffectDistortion) SetPreGain(preGain gdnative.Float) {
 // of the AudioEffectDistortion class.
 type AudioEffectDistortionImplementer interface {
 	AudioEffectImplementer
-	GetDrive() gdnative.Float
-	GetKeepHfHz() gdnative.Float
-	GetPostGain() gdnative.Float
-	GetPreGain() gdnative.Float
-	SetDrive(drive gdnative.Float)
-	SetKeepHfHz(keepHfHz gdnative.Float)
+	GetDrive() gdnative.Real
+	GetKeepHfHz() gdnative.Real
+	GetPostGain() gdnative.Real
+	GetPreGain() gdnative.Real
+	SetDrive(drive gdnative.Real)
+	SetKeepHfHz(keepHfHz gdnative.Real)
 	SetMode(mode gdnative.Int)
-	SetPostGain(postGain gdnative.Float)
-	SetPreGain(preGain gdnative.Float)
+	SetPostGain(postGain gdnative.Real)
+	SetPreGain(preGain gdnative.Real)
 }

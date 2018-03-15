@@ -94,7 +94,7 @@ func (o *performance) BaseClass() string {
         Returns the value of one of the available monitors. You should provide one of this class's constants as the argument, like this: [codeblock] print(Performance.get_monitor(Performance.TIME_FPS)) # Prints the FPS to the console [/codeblock]
 	Args: [{ false monitor int}], Returns: float
 */
-func (o *performance) GetMonitor(monitor gdnative.Int) gdnative.Float {
+func (o *performance) GetMonitor(monitor gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling Performance.GetMonitor()")
 
@@ -107,11 +107,11 @@ func (o *performance) GetMonitor(monitor gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -119,5 +119,5 @@ func (o *performance) GetMonitor(monitor gdnative.Int) gdnative.Float {
 // of the Performance class.
 type PerformanceImplementer interface {
 	ObjectImplementer
-	GetMonitor(monitor gdnative.Int) gdnative.Float
+	GetMonitor(monitor gdnative.Int) gdnative.Real
 }

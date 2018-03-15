@@ -124,12 +124,12 @@ func (o *Popup) PopupCenteredMinsize(minsize gdnative.Vector2) {
         Popup (show the control in modal form) in the center of the screen, scaled at a ratio of size of the screen.
 	Args: [{0.75 true ratio float}], Returns: void
 */
-func (o *Popup) PopupCenteredRatio(ratio gdnative.Float) {
+func (o *Popup) PopupCenteredRatio(ratio gdnative.Real) {
 	//log.Println("Calling Popup.PopupCenteredRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ratio)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ratio)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Popup", "popup_centered_ratio")
@@ -170,6 +170,6 @@ type PopupImplementer interface {
 	PopupMethod(bounds gdnative.Rect2)
 	PopupCentered(size gdnative.Vector2)
 	PopupCenteredMinsize(minsize gdnative.Vector2)
-	PopupCenteredRatio(ratio gdnative.Float)
+	PopupCenteredRatio(ratio gdnative.Real)
 	SetExclusive(enable gdnative.Bool)
 }

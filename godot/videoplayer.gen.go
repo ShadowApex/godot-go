@@ -167,7 +167,7 @@ func (o *VideoPlayer) GetStreamName() gdnative.String {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VideoPlayer) GetStreamPosition() gdnative.Float {
+func (o *VideoPlayer) GetStreamPosition() gdnative.Real {
 	//log.Println("Calling VideoPlayer.GetStreamPosition()")
 
 	// Build out the method's arguments
@@ -178,11 +178,11 @@ func (o *VideoPlayer) GetStreamPosition() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -227,7 +227,7 @@ func (o *VideoPlayer) GetVideoTexture() TextureImplementer {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VideoPlayer) GetVolume() gdnative.Float {
+func (o *VideoPlayer) GetVolume() gdnative.Real {
 	//log.Println("Calling VideoPlayer.GetVolume()")
 
 	// Build out the method's arguments
@@ -238,11 +238,11 @@ func (o *VideoPlayer) GetVolume() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -250,7 +250,7 @@ func (o *VideoPlayer) GetVolume() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VideoPlayer) GetVolumeDb() gdnative.Float {
+func (o *VideoPlayer) GetVolumeDb() gdnative.Real {
 	//log.Println("Calling VideoPlayer.GetVolumeDb()")
 
 	// Build out the method's arguments
@@ -261,11 +261,11 @@ func (o *VideoPlayer) GetVolumeDb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -532,12 +532,12 @@ func (o *VideoPlayer) SetStream(stream VideoStreamImplementer) {
         Undocumented
 	Args: [{ false position float}], Returns: void
 */
-func (o *VideoPlayer) SetStreamPosition(position gdnative.Float) {
+func (o *VideoPlayer) SetStreamPosition(position gdnative.Real) {
 	//log.Println("Calling VideoPlayer.SetStreamPosition()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(position)
+	ptrArguments[0] = gdnative.NewPointerFromReal(position)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VideoPlayer", "set_stream_position")
@@ -553,12 +553,12 @@ func (o *VideoPlayer) SetStreamPosition(position gdnative.Float) {
         Undocumented
 	Args: [{ false volume float}], Returns: void
 */
-func (o *VideoPlayer) SetVolume(volume gdnative.Float) {
+func (o *VideoPlayer) SetVolume(volume gdnative.Real) {
 	//log.Println("Calling VideoPlayer.SetVolume()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(volume)
+	ptrArguments[0] = gdnative.NewPointerFromReal(volume)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VideoPlayer", "set_volume")
@@ -574,12 +574,12 @@ func (o *VideoPlayer) SetVolume(volume gdnative.Float) {
         Undocumented
 	Args: [{ false db float}], Returns: void
 */
-func (o *VideoPlayer) SetVolumeDb(db gdnative.Float) {
+func (o *VideoPlayer) SetVolumeDb(db gdnative.Real) {
 	//log.Println("Calling VideoPlayer.SetVolumeDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(db)
+	ptrArguments[0] = gdnative.NewPointerFromReal(db)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VideoPlayer", "set_volume_db")
@@ -620,10 +620,10 @@ type VideoPlayerImplementer interface {
 	GetBus() gdnative.String
 	GetStream() VideoStreamImplementer
 	GetStreamName() gdnative.String
-	GetStreamPosition() gdnative.Float
+	GetStreamPosition() gdnative.Real
 	GetVideoTexture() TextureImplementer
-	GetVolume() gdnative.Float
-	GetVolumeDb() gdnative.Float
+	GetVolume() gdnative.Real
+	GetVolumeDb() gdnative.Real
 	HasAutoplay() gdnative.Bool
 	HasExpand() gdnative.Bool
 	IsPaused() gdnative.Bool
@@ -636,8 +636,8 @@ type VideoPlayerImplementer interface {
 	SetExpand(enable gdnative.Bool)
 	SetPaused(paused gdnative.Bool)
 	SetStream(stream VideoStreamImplementer)
-	SetStreamPosition(position gdnative.Float)
-	SetVolume(volume gdnative.Float)
-	SetVolumeDb(db gdnative.Float)
+	SetStreamPosition(position gdnative.Real)
+	SetVolume(volume gdnative.Real)
+	SetVolumeDb(db gdnative.Real)
 	Stop()
 }

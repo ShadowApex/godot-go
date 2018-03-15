@@ -38,7 +38,7 @@ func (o *CollisionPolygon) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CollisionPolygon) GetDepth() gdnative.Float {
+func (o *CollisionPolygon) GetDepth() gdnative.Real {
 	//log.Println("Calling CollisionPolygon.GetDepth()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *CollisionPolygon) GetDepth() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,12 +107,12 @@ func (o *CollisionPolygon) IsDisabled() gdnative.Bool {
         Undocumented
 	Args: [{ false depth float}], Returns: void
 */
-func (o *CollisionPolygon) SetDepth(depth gdnative.Float) {
+func (o *CollisionPolygon) SetDepth(depth gdnative.Real) {
 	//log.Println("Calling CollisionPolygon.SetDepth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(depth)
+	ptrArguments[0] = gdnative.NewPointerFromReal(depth)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CollisionPolygon", "set_depth")
@@ -170,10 +170,10 @@ func (o *CollisionPolygon) SetPolygon(polygon gdnative.PoolVector2Array) {
 // of the CollisionPolygon class.
 type CollisionPolygonImplementer interface {
 	SpatialImplementer
-	GetDepth() gdnative.Float
+	GetDepth() gdnative.Real
 	GetPolygon() gdnative.PoolVector2Array
 	IsDisabled() gdnative.Bool
-	SetDepth(depth gdnative.Float)
+	SetDepth(depth gdnative.Real)
 	SetDisabled(disabled gdnative.Bool)
 	SetPolygon(polygon gdnative.PoolVector2Array)
 }

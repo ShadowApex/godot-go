@@ -38,7 +38,7 @@ func (o *GrooveJoint2D) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GrooveJoint2D) GetInitialOffset() gdnative.Float {
+func (o *GrooveJoint2D) GetInitialOffset() gdnative.Real {
 	//log.Println("Calling GrooveJoint2D.GetInitialOffset()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *GrooveJoint2D) GetInitialOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *GrooveJoint2D) GetInitialOffset() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GrooveJoint2D) GetLength() gdnative.Float {
+func (o *GrooveJoint2D) GetLength() gdnative.Real {
 	//log.Println("Calling GrooveJoint2D.GetLength()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *GrooveJoint2D) GetLength() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,12 +84,12 @@ func (o *GrooveJoint2D) GetLength() gdnative.Float {
         Undocumented
 	Args: [{ false offset float}], Returns: void
 */
-func (o *GrooveJoint2D) SetInitialOffset(offset gdnative.Float) {
+func (o *GrooveJoint2D) SetInitialOffset(offset gdnative.Real) {
 	//log.Println("Calling GrooveJoint2D.SetInitialOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[0] = gdnative.NewPointerFromReal(offset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GrooveJoint2D", "set_initial_offset")
@@ -105,12 +105,12 @@ func (o *GrooveJoint2D) SetInitialOffset(offset gdnative.Float) {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *GrooveJoint2D) SetLength(length gdnative.Float) {
+func (o *GrooveJoint2D) SetLength(length gdnative.Real) {
 	//log.Println("Calling GrooveJoint2D.SetLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GrooveJoint2D", "set_length")
@@ -126,8 +126,8 @@ func (o *GrooveJoint2D) SetLength(length gdnative.Float) {
 // of the GrooveJoint2D class.
 type GrooveJoint2DImplementer interface {
 	Joint2DImplementer
-	GetInitialOffset() gdnative.Float
-	GetLength() gdnative.Float
-	SetInitialOffset(offset gdnative.Float)
-	SetLength(length gdnative.Float)
+	GetInitialOffset() gdnative.Real
+	GetLength() gdnative.Real
+	SetInitialOffset(offset gdnative.Real)
+	SetLength(length gdnative.Real)
 }

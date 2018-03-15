@@ -46,7 +46,7 @@ func (o *Timer) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Timer) GetTimeLeft() gdnative.Float {
+func (o *Timer) GetTimeLeft() gdnative.Real {
 	//log.Println("Calling Timer.GetTimeLeft()")
 
 	// Build out the method's arguments
@@ -57,11 +57,11 @@ func (o *Timer) GetTimeLeft() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -92,7 +92,7 @@ func (o *Timer) GetTimerProcessMode() TimerTimerProcessMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Timer) GetWaitTime() gdnative.Float {
+func (o *Timer) GetWaitTime() gdnative.Real {
 	//log.Println("Calling Timer.GetWaitTime()")
 
 	// Build out the method's arguments
@@ -103,11 +103,11 @@ func (o *Timer) GetWaitTime() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -291,12 +291,12 @@ func (o *Timer) SetTimerProcessMode(mode gdnative.Int) {
         Undocumented
 	Args: [{ false time_sec float}], Returns: void
 */
-func (o *Timer) SetWaitTime(timeSec gdnative.Float) {
+func (o *Timer) SetWaitTime(timeSec gdnative.Real) {
 	//log.Println("Calling Timer.SetWaitTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(timeSec)
+	ptrArguments[0] = gdnative.NewPointerFromReal(timeSec)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Timer", "set_wait_time")
@@ -352,8 +352,8 @@ func (o *Timer) Stop() {
 // of the Timer class.
 type TimerImplementer interface {
 	NodeImplementer
-	GetTimeLeft() gdnative.Float
-	GetWaitTime() gdnative.Float
+	GetTimeLeft() gdnative.Real
+	GetWaitTime() gdnative.Real
 	HasAutostart() gdnative.Bool
 	IsOneShot() gdnative.Bool
 	IsPaused() gdnative.Bool
@@ -362,7 +362,7 @@ type TimerImplementer interface {
 	SetOneShot(enable gdnative.Bool)
 	SetPaused(paused gdnative.Bool)
 	SetTimerProcessMode(mode gdnative.Int)
-	SetWaitTime(timeSec gdnative.Float)
+	SetWaitTime(timeSec gdnative.Real)
 	Start()
 	Stop()
 }

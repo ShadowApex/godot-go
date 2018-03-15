@@ -38,7 +38,7 @@ func (o *VehicleBody) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleBody) GetBrake() gdnative.Float {
+func (o *VehicleBody) GetBrake() gdnative.Real {
 	//log.Println("Calling VehicleBody.GetBrake()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *VehicleBody) GetBrake() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *VehicleBody) GetBrake() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleBody) GetEngineForce() gdnative.Float {
+func (o *VehicleBody) GetEngineForce() gdnative.Real {
 	//log.Println("Calling VehicleBody.GetEngineForce()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *VehicleBody) GetEngineForce() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *VehicleBody) GetEngineForce() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleBody) GetSteering() gdnative.Float {
+func (o *VehicleBody) GetSteering() gdnative.Real {
 	//log.Println("Calling VehicleBody.GetSteering()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *VehicleBody) GetSteering() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,12 +107,12 @@ func (o *VehicleBody) GetSteering() gdnative.Float {
         Undocumented
 	Args: [{ false brake float}], Returns: void
 */
-func (o *VehicleBody) SetBrake(brake gdnative.Float) {
+func (o *VehicleBody) SetBrake(brake gdnative.Real) {
 	//log.Println("Calling VehicleBody.SetBrake()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(brake)
+	ptrArguments[0] = gdnative.NewPointerFromReal(brake)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleBody", "set_brake")
@@ -128,12 +128,12 @@ func (o *VehicleBody) SetBrake(brake gdnative.Float) {
         Undocumented
 	Args: [{ false engine_force float}], Returns: void
 */
-func (o *VehicleBody) SetEngineForce(engineForce gdnative.Float) {
+func (o *VehicleBody) SetEngineForce(engineForce gdnative.Real) {
 	//log.Println("Calling VehicleBody.SetEngineForce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(engineForce)
+	ptrArguments[0] = gdnative.NewPointerFromReal(engineForce)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleBody", "set_engine_force")
@@ -149,12 +149,12 @@ func (o *VehicleBody) SetEngineForce(engineForce gdnative.Float) {
         Undocumented
 	Args: [{ false steering float}], Returns: void
 */
-func (o *VehicleBody) SetSteering(steering gdnative.Float) {
+func (o *VehicleBody) SetSteering(steering gdnative.Real) {
 	//log.Println("Calling VehicleBody.SetSteering()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(steering)
+	ptrArguments[0] = gdnative.NewPointerFromReal(steering)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleBody", "set_steering")
@@ -170,10 +170,10 @@ func (o *VehicleBody) SetSteering(steering gdnative.Float) {
 // of the VehicleBody class.
 type VehicleBodyImplementer interface {
 	RigidBodyImplementer
-	GetBrake() gdnative.Float
-	GetEngineForce() gdnative.Float
-	GetSteering() gdnative.Float
-	SetBrake(brake gdnative.Float)
-	SetEngineForce(engineForce gdnative.Float)
-	SetSteering(steering gdnative.Float)
+	GetBrake() gdnative.Real
+	GetEngineForce() gdnative.Real
+	GetSteering() gdnative.Real
+	SetBrake(brake gdnative.Real)
+	SetEngineForce(engineForce gdnative.Real)
+	SetSteering(steering gdnative.Real)
 }

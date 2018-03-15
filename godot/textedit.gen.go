@@ -141,12 +141,12 @@ func (o *TextEdit) X_PushCurrentOp() {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *TextEdit) X_ScrollMoved(arg0 gdnative.Float) {
+func (o *TextEdit) X_ScrollMoved(arg0 gdnative.Real) {
 	//log.Println("Calling TextEdit.X_ScrollMoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TextEdit", "_scroll_moved")
@@ -375,7 +375,7 @@ func (o *TextEdit) CursorGetBlinkEnabled() gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *TextEdit) CursorGetBlinkSpeed() gdnative.Float {
+func (o *TextEdit) CursorGetBlinkSpeed() gdnative.Real {
 	//log.Println("Calling TextEdit.CursorGetBlinkSpeed()")
 
 	// Build out the method's arguments
@@ -386,11 +386,11 @@ func (o *TextEdit) CursorGetBlinkSpeed() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -488,12 +488,12 @@ func (o *TextEdit) CursorSetBlinkEnabled(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false blink_speed float}], Returns: void
 */
-func (o *TextEdit) CursorSetBlinkSpeed(blinkSpeed gdnative.Float) {
+func (o *TextEdit) CursorSetBlinkSpeed(blinkSpeed gdnative.Real) {
 	//log.Println("Calling TextEdit.CursorSetBlinkSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(blinkSpeed)
+	ptrArguments[0] = gdnative.NewPointerFromReal(blinkSpeed)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TextEdit", "cursor_set_blink_speed")
@@ -878,7 +878,7 @@ func (o *TextEdit) GetText() gdnative.String {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *TextEdit) GetVScrollSpeed() gdnative.Float {
+func (o *TextEdit) GetVScrollSpeed() gdnative.Real {
 	//log.Println("Calling TextEdit.GetVScrollSpeed()")
 
 	// Build out the method's arguments
@@ -889,11 +889,11 @@ func (o *TextEdit) GetVScrollSpeed() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1654,12 +1654,12 @@ func (o *TextEdit) SetText(text gdnative.String) {
         Undocumented
 	Args: [{ false speed float}], Returns: void
 */
-func (o *TextEdit) SetVScrollSpeed(speed gdnative.Float) {
+func (o *TextEdit) SetVScrollSpeed(speed gdnative.Real) {
 	//log.Println("Calling TextEdit.SetVScrollSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(speed)
+	ptrArguments[0] = gdnative.NewPointerFromReal(speed)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TextEdit", "set_v_scroll_speed")
@@ -1781,7 +1781,7 @@ type TextEditImplementer interface {
 	X_ClickSelectionHeld()
 	X_CursorChangedEmit()
 	X_PushCurrentOp()
-	X_ScrollMoved(arg0 gdnative.Float)
+	X_ScrollMoved(arg0 gdnative.Real)
 	X_TextChangedEmit()
 	X_ToggleDrawCaret()
 	X_VScrollInput()
@@ -1792,12 +1792,12 @@ type TextEditImplementer interface {
 	ClearUndoHistory()
 	Copy()
 	CursorGetBlinkEnabled() gdnative.Bool
-	CursorGetBlinkSpeed() gdnative.Float
+	CursorGetBlinkSpeed() gdnative.Real
 	CursorGetColumn() gdnative.Int
 	CursorGetLine() gdnative.Int
 	CursorIsBlockMode() gdnative.Bool
 	CursorSetBlinkEnabled(enable gdnative.Bool)
-	CursorSetBlinkSpeed(blinkSpeed gdnative.Float)
+	CursorSetBlinkSpeed(blinkSpeed gdnative.Real)
 	CursorSetBlockMode(enable gdnative.Bool)
 	CursorSetColumn(column gdnative.Int, adjustViewport gdnative.Bool)
 	CursorSetLine(line gdnative.Int, adjustViewport gdnative.Bool, canBeHidden gdnative.Bool)
@@ -1814,7 +1814,7 @@ type TextEditImplementer interface {
 	GetSelectionToColumn() gdnative.Int
 	GetSelectionToLine() gdnative.Int
 	GetText() gdnative.String
-	GetVScrollSpeed() gdnative.Float
+	GetVScrollSpeed() gdnative.Real
 	GetWordUnderCursor() gdnative.String
 	InsertTextAtCursor(text gdnative.String)
 	IsContextMenuEnabled() gdnative.Bool
@@ -1849,7 +1849,7 @@ type TextEditImplementer interface {
 	SetSmoothScrollEnable(enable gdnative.Bool)
 	SetSyntaxColoring(enable gdnative.Bool)
 	SetText(text gdnative.String)
-	SetVScrollSpeed(speed gdnative.Float)
+	SetVScrollSpeed(speed gdnative.Real)
 	SetWrap(enable gdnative.Bool)
 	ToggleFoldLine(line gdnative.Int)
 	Undo()

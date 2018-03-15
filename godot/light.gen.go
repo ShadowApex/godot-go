@@ -138,7 +138,7 @@ func (o *Light) GetCullMask() gdnative.Int {
         Undocumented
 	Args: [{ false param int}], Returns: float
 */
-func (o *Light) GetParam(param gdnative.Int) gdnative.Float {
+func (o *Light) GetParam(param gdnative.Int) gdnative.Real {
 	//log.Println("Calling Light.GetParam()")
 
 	// Build out the method's arguments
@@ -150,11 +150,11 @@ func (o *Light) GetParam(param gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -382,13 +382,13 @@ func (o *Light) SetNegative(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false param int} { false value float}], Returns: void
 */
-func (o *Light) SetParam(param gdnative.Int, value gdnative.Float) {
+func (o *Light) SetParam(param gdnative.Int, value gdnative.Real) {
 	//log.Println("Calling Light.SetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(param)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[1] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Light", "set_param")
@@ -469,7 +469,7 @@ type LightImplementer interface {
 	VisualInstanceImplementer
 	GetColor() gdnative.Color
 	GetCullMask() gdnative.Int
-	GetParam(param gdnative.Int) gdnative.Float
+	GetParam(param gdnative.Int) gdnative.Real
 	GetShadowColor() gdnative.Color
 	GetShadowReverseCullFace() gdnative.Bool
 	HasShadow() gdnative.Bool
@@ -480,7 +480,7 @@ type LightImplementer interface {
 	SetCullMask(cullMask gdnative.Int)
 	SetEditorOnly(editorOnly gdnative.Bool)
 	SetNegative(enabled gdnative.Bool)
-	SetParam(param gdnative.Int, value gdnative.Float)
+	SetParam(param gdnative.Int, value gdnative.Real)
 	SetShadow(enabled gdnative.Bool)
 	SetShadowColor(shadowColor gdnative.Color)
 	SetShadowReverseCullFace(enable gdnative.Bool)

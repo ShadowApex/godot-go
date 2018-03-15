@@ -38,7 +38,7 @@ func (o *Joint2D) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Joint2D) GetBias() gdnative.Float {
+func (o *Joint2D) GetBias() gdnative.Real {
 	//log.Println("Calling Joint2D.GetBias()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *Joint2D) GetBias() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,12 +130,12 @@ func (o *Joint2D) GetNodeB() gdnative.NodePath {
         Undocumented
 	Args: [{ false bias float}], Returns: void
 */
-func (o *Joint2D) SetBias(bias gdnative.Float) {
+func (o *Joint2D) SetBias(bias gdnative.Real) {
 	//log.Println("Calling Joint2D.SetBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(bias)
+	ptrArguments[0] = gdnative.NewPointerFromReal(bias)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Joint2D", "set_bias")
@@ -214,11 +214,11 @@ func (o *Joint2D) SetNodeB(node gdnative.NodePath) {
 // of the Joint2D class.
 type Joint2DImplementer interface {
 	Node2DImplementer
-	GetBias() gdnative.Float
+	GetBias() gdnative.Real
 	GetExcludeNodesFromCollision() gdnative.Bool
 	GetNodeA() gdnative.NodePath
 	GetNodeB() gdnative.NodePath
-	SetBias(bias gdnative.Float)
+	SetBias(bias gdnative.Real)
 	SetExcludeNodesFromCollision(enable gdnative.Bool)
 	SetNodeA(node gdnative.NodePath)
 	SetNodeB(node gdnative.NodePath)

@@ -85,7 +85,7 @@ func (o *KinematicBody) GetFloorVelocity() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *KinematicBody) GetSafeMargin() gdnative.Float {
+func (o *KinematicBody) GetSafeMargin() gdnative.Real {
 	//log.Println("Calling KinematicBody.GetSafeMargin()")
 
 	// Build out the method's arguments
@@ -96,11 +96,11 @@ func (o *KinematicBody) GetSafeMargin() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -276,16 +276,16 @@ func (o *KinematicBody) MoveAndCollide(relVec gdnative.Vector3) KinematicCollisi
         Moves the body along a vector. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [code]KinematicBody[/code] or [RigidBody], it will also be affected by the motion of the other body. You can use this to make moving or rotating platforms, or to make nodes push other nodes. [code]linear_velocity[/code] is a value in pixels per second. Unlike in for example [method move_and_collide], you should [i]not[/i] multiply it with [code]delta[/code] — this is done by the method. [code]floor_normal[/code] is the up direction, used to determine what is a wall and what is a floor or a ceiling. If set to the default value of [code]Vector3(0, 0, 0)[/code], everything is considered a wall. This is useful for topdown games. If the body is standing on a slope and the horizontal speed (relative to the floor's speed) goes below [code]slope_stop_min_velocity[/code], the body will stop completely. This prevents the body from sliding down slopes when you include gravity in [code]linear_velocity[/code]. When set to lower values, the body will not be able to stand still on steep slopes. If the body collides, it will change direction a maximum of [code]max_slides[/code] times before it stops. [code]floor_max_angle[/code] is the maximum angle (in radians) where a slope is still considered a floor (or a ceiling), rather than a wall. The default value equals 45 degrees. Returns the movement that remained when the body stopped. To get more detailed information about collisions that occurred, use [method get_slide_collision].
 	Args: [{ false linear_velocity Vector3} {(0, 0, 0) true floor_normal Vector3} {0.05 true slope_stop_min_velocity float} {4 true max_slides int} {0.785398 true floor_max_angle float}], Returns: Vector3
 */
-func (o *KinematicBody) MoveAndSlide(linearVelocity gdnative.Vector3, floorNormal gdnative.Vector3, slopeStopMinVelocity gdnative.Float, maxSlides gdnative.Int, floorMaxAngle gdnative.Float) gdnative.Vector3 {
+func (o *KinematicBody) MoveAndSlide(linearVelocity gdnative.Vector3, floorNormal gdnative.Vector3, slopeStopMinVelocity gdnative.Real, maxSlides gdnative.Int, floorMaxAngle gdnative.Real) gdnative.Vector3 {
 	//log.Println("Calling KinematicBody.MoveAndSlide()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
 	ptrArguments[0] = gdnative.NewPointerFromVector3(linearVelocity)
 	ptrArguments[1] = gdnative.NewPointerFromVector3(floorNormal)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(slopeStopMinVelocity)
+	ptrArguments[2] = gdnative.NewPointerFromReal(slopeStopMinVelocity)
 	ptrArguments[3] = gdnative.NewPointerFromInt(maxSlides)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(floorMaxAngle)
+	ptrArguments[4] = gdnative.NewPointerFromReal(floorMaxAngle)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("KinematicBody", "move_and_slide")
@@ -326,12 +326,12 @@ func (o *KinematicBody) SetAxisLock(axis gdnative.Int, lock gdnative.Bool) {
         Undocumented
 	Args: [{ false pixels float}], Returns: void
 */
-func (o *KinematicBody) SetSafeMargin(pixels gdnative.Float) {
+func (o *KinematicBody) SetSafeMargin(pixels gdnative.Real) {
 	//log.Println("Calling KinematicBody.SetSafeMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(pixels)
+	ptrArguments[0] = gdnative.NewPointerFromReal(pixels)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("KinematicBody", "set_safe_margin")
@@ -374,15 +374,15 @@ type KinematicBodyImplementer interface {
 	PhysicsBodyImplementer
 	GetAxisLock(axis gdnative.Int) gdnative.Bool
 	GetFloorVelocity() gdnative.Vector3
-	GetSafeMargin() gdnative.Float
+	GetSafeMargin() gdnative.Real
 	GetSlideCollision(slideIdx gdnative.Int) KinematicCollisionImplementer
 	GetSlideCount() gdnative.Int
 	IsOnCeiling() gdnative.Bool
 	IsOnFloor() gdnative.Bool
 	IsOnWall() gdnative.Bool
 	MoveAndCollide(relVec gdnative.Vector3) KinematicCollisionImplementer
-	MoveAndSlide(linearVelocity gdnative.Vector3, floorNormal gdnative.Vector3, slopeStopMinVelocity gdnative.Float, maxSlides gdnative.Int, floorMaxAngle gdnative.Float) gdnative.Vector3
+	MoveAndSlide(linearVelocity gdnative.Vector3, floorNormal gdnative.Vector3, slopeStopMinVelocity gdnative.Real, maxSlides gdnative.Int, floorMaxAngle gdnative.Real) gdnative.Vector3
 	SetAxisLock(axis gdnative.Int, lock gdnative.Bool)
-	SetSafeMargin(pixels gdnative.Float)
+	SetSafeMargin(pixels gdnative.Real)
 	TestMove(from gdnative.Transform, relVec gdnative.Vector3) gdnative.Bool
 }

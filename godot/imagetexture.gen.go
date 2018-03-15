@@ -137,7 +137,7 @@ func (o *ImageTexture) GetFormat() ImageFormat {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ImageTexture) GetLossyStorageQuality() gdnative.Float {
+func (o *ImageTexture) GetLossyStorageQuality() gdnative.Real {
 	//log.Println("Calling ImageTexture.GetLossyStorageQuality()")
 
 	// Build out the method's arguments
@@ -148,11 +148,11 @@ func (o *ImageTexture) GetLossyStorageQuality() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -225,12 +225,12 @@ func (o *ImageTexture) SetData(image ImageImplementer) {
         Undocumented
 	Args: [{ false quality float}], Returns: void
 */
-func (o *ImageTexture) SetLossyStorageQuality(quality gdnative.Float) {
+func (o *ImageTexture) SetLossyStorageQuality(quality gdnative.Real) {
 	//log.Println("Calling ImageTexture.SetLossyStorageQuality()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(quality)
+	ptrArguments[0] = gdnative.NewPointerFromReal(quality)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ImageTexture", "set_lossy_storage_quality")
@@ -291,10 +291,10 @@ type ImageTextureImplementer interface {
 	X_ReloadHook(rid gdnative.Rid)
 	Create(width gdnative.Int, height gdnative.Int, format gdnative.Int, flags gdnative.Int)
 	CreateFromImage(image ImageImplementer, flags gdnative.Int)
-	GetLossyStorageQuality() gdnative.Float
+	GetLossyStorageQuality() gdnative.Real
 	Load(path gdnative.String)
 	SetData(image ImageImplementer)
-	SetLossyStorageQuality(quality gdnative.Float)
+	SetLossyStorageQuality(quality gdnative.Real)
 	SetSizeOverride(size gdnative.Vector2)
 	SetStorage(mode gdnative.Int)
 }

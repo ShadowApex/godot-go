@@ -1108,7 +1108,7 @@ func (o *physics2DServer) BodyGetObjectInstanceId(body gdnative.Rid) gdnative.In
         Returns the value of a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
 	Args: [{ false body RID} { false param int}], Returns: float
 */
-func (o *physics2DServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physics2DServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.BodyGetParam()")
 
@@ -1122,11 +1122,11 @@ func (o *physics2DServer) BodyGetParam(body gdnative.Rid, param gdnative.Int) gd
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1545,7 +1545,7 @@ func (o *physics2DServer) BodySetOmitForceIntegration(body gdnative.Rid, enable 
         Sets a body parameter. A list of available parameters is on the BODY_PARAM_* constants.
 	Args: [{ false body RID} { false param int} { false value float}], Returns: void
 */
-func (o *physics2DServer) BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physics2DServer) BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.BodySetParam()")
 
@@ -1553,7 +1553,7 @@ func (o *physics2DServer) BodySetParam(body gdnative.Rid, param gdnative.Int, va
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(body)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Physics2DServer", "body_set_param")
@@ -1736,7 +1736,7 @@ func (o *physics2DServer) BodySetState(body gdnative.Rid, state gdnative.Int, va
         Returns whether a body can move from a given point in a given direction. Apart from the boolean return value, a [Physics2DTestMotionResult] can be passed to return additional information in.
 	Args: [{ false body RID} { false from Transform2D} { false motion Vector2} {0.08 true margin float} {Null true result Physics2DTestMotionResult}], Returns: bool
 */
-func (o *physics2DServer) BodyTestMotion(body gdnative.Rid, from gdnative.Transform2D, motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResultImplementer) gdnative.Bool {
+func (o *physics2DServer) BodyTestMotion(body gdnative.Rid, from gdnative.Transform2D, motion gdnative.Vector2, margin gdnative.Real, result Physics2DTestMotionResultImplementer) gdnative.Bool {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.BodyTestMotion()")
 
@@ -1745,7 +1745,7 @@ func (o *physics2DServer) BodyTestMotion(body gdnative.Rid, from gdnative.Transf
 	ptrArguments[0] = gdnative.NewPointerFromRid(body)
 	ptrArguments[1] = gdnative.NewPointerFromTransform2D(from)
 	ptrArguments[2] = gdnative.NewPointerFromVector2(motion)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(margin)
+	ptrArguments[3] = gdnative.NewPointerFromReal(margin)
 	ptrArguments[4] = gdnative.NewPointerFromObject(result.GetBaseObject())
 
 	// Get the method bind
@@ -1889,7 +1889,7 @@ func (o *physics2DServer) DampedSpringJointCreate(anchorA gdnative.Vector2, anch
         Returns the value of a damped spring joint parameter.
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
-func (o *physics2DServer) DampedStringJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physics2DServer) DampedStringJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.DampedStringJointGetParam()")
 
@@ -1903,11 +1903,11 @@ func (o *physics2DServer) DampedStringJointGetParam(joint gdnative.Rid, param gd
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1915,7 +1915,7 @@ func (o *physics2DServer) DampedStringJointGetParam(joint gdnative.Rid, param gd
         Sets a damped spring joint parameter. Parameters are explained in the DAMPED_STRING* constants.
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
-func (o *physics2DServer) DampedStringJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physics2DServer) DampedStringJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.DampedStringJointSetParam()")
 
@@ -1923,7 +1923,7 @@ func (o *physics2DServer) DampedStringJointSetParam(joint gdnative.Rid, param gd
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Physics2DServer", "damped_string_joint_set_param")
@@ -2015,7 +2015,7 @@ func (o *physics2DServer) GrooveJointCreate(groove1A gdnative.Vector2, groove2A 
         Returns the value of a joint parameter.
 	Args: [{ false joint RID} { false param int}], Returns: float
 */
-func (o *physics2DServer) JointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physics2DServer) JointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.JointGetParam()")
 
@@ -2029,11 +2029,11 @@ func (o *physics2DServer) JointGetParam(joint gdnative.Rid, param gdnative.Int) 
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -2066,7 +2066,7 @@ func (o *physics2DServer) JointGetType(joint gdnative.Rid) Physics2DServerJointT
         Sets a joint parameter. Parameters are explained in the JOINT_PARAM* constants.
 	Args: [{ false joint RID} { false param int} { false value float}], Returns: void
 */
-func (o *physics2DServer) JointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physics2DServer) JointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.JointSetParam()")
 
@@ -2074,7 +2074,7 @@ func (o *physics2DServer) JointSetParam(joint gdnative.Rid, param gdnative.Int, 
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(joint)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Physics2DServer", "joint_set_param")
@@ -2371,7 +2371,7 @@ func (o *physics2DServer) SpaceGetDirectState(space gdnative.Rid) Physics2DDirec
         Returns the value of a space parameter.
 	Args: [{ false space RID} { false param int}], Returns: float
 */
-func (o *physics2DServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Float {
+func (o *physics2DServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.SpaceGetParam()")
 
@@ -2385,11 +2385,11 @@ func (o *physics2DServer) SpaceGetParam(space gdnative.Rid, param gdnative.Int) 
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -2445,7 +2445,7 @@ func (o *physics2DServer) SpaceSetActive(space gdnative.Rid, active gdnative.Boo
         Sets the value for a space parameter. A list of available parameters is on the SPACE_PARAM_* constants.
 	Args: [{ false space RID} { false param int} { false value float}], Returns: void
 */
-func (o *physics2DServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *physics2DServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling Physics2DServer.SpaceSetParam()")
 
@@ -2453,7 +2453,7 @@ func (o *physics2DServer) SpaceSetParam(space gdnative.Rid, param gdnative.Int, 
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(space)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Physics2DServer", "space_set_param")
@@ -2503,7 +2503,7 @@ type Physics2DServerImplementer interface {
 	BodyGetDirectState(body gdnative.Rid) Physics2DDirectBodyStateImplementer
 	BodyGetMaxContactsReported(body gdnative.Rid) gdnative.Int
 	BodyGetObjectInstanceId(body gdnative.Rid) gdnative.Int
-	BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Float
+	BodyGetParam(body gdnative.Rid, param gdnative.Int) gdnative.Real
 	BodyGetShape(body gdnative.Rid, shapeIdx gdnative.Int) gdnative.Rid
 	BodyGetShapeCount(body gdnative.Rid) gdnative.Int
 	BodyGetShapeMetadata(body gdnative.Rid, shapeIdx gdnative.Int) gdnative.Variant
@@ -2521,7 +2521,7 @@ type Physics2DServerImplementer interface {
 	BodySetMaxContactsReported(body gdnative.Rid, amount gdnative.Int)
 	BodySetMode(body gdnative.Rid, mode gdnative.Int)
 	BodySetOmitForceIntegration(body gdnative.Rid, enable gdnative.Bool)
-	BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	BodySetParam(body gdnative.Rid, param gdnative.Int, value gdnative.Real)
 	BodySetShape(body gdnative.Rid, shapeIdx gdnative.Int, shape gdnative.Rid)
 	BodySetShapeAsOneWayCollision(body gdnative.Rid, shapeIdx gdnative.Int, enable gdnative.Bool)
 	BodySetShapeDisabled(body gdnative.Rid, shapeIdx gdnative.Int, disable gdnative.Bool)
@@ -2529,19 +2529,19 @@ type Physics2DServerImplementer interface {
 	BodySetShapeTransform(body gdnative.Rid, shapeIdx gdnative.Int, transform gdnative.Transform2D)
 	BodySetSpace(body gdnative.Rid, space gdnative.Rid)
 	BodySetState(body gdnative.Rid, state gdnative.Int, value gdnative.Variant)
-	BodyTestMotion(body gdnative.Rid, from gdnative.Transform2D, motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResultImplementer) gdnative.Bool
+	BodyTestMotion(body gdnative.Rid, from gdnative.Transform2D, motion gdnative.Vector2, margin gdnative.Real, result Physics2DTestMotionResultImplementer) gdnative.Bool
 	CapsuleShapeCreate() gdnative.Rid
 	CircleShapeCreate() gdnative.Rid
 	ConcavePolygonShapeCreate() gdnative.Rid
 	ConvexPolygonShapeCreate() gdnative.Rid
 	DampedSpringJointCreate(anchorA gdnative.Vector2, anchorB gdnative.Vector2, bodyA gdnative.Rid, bodyB gdnative.Rid) gdnative.Rid
-	DampedStringJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float
-	DampedStringJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	DampedStringJointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real
+	DampedStringJointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real)
 	FreeRid(rid gdnative.Rid)
 	GetProcessInfo(processInfo gdnative.Int) gdnative.Int
 	GrooveJointCreate(groove1A gdnative.Vector2, groove2A gdnative.Vector2, anchorB gdnative.Vector2, bodyA gdnative.Rid, bodyB gdnative.Rid) gdnative.Rid
-	JointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Float
-	JointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	JointGetParam(joint gdnative.Rid, param gdnative.Int) gdnative.Real
+	JointSetParam(joint gdnative.Rid, param gdnative.Int, value gdnative.Real)
 	LineShapeCreate() gdnative.Rid
 	PinJointCreate(anchor gdnative.Vector2, bodyA gdnative.Rid, bodyB gdnative.Rid) gdnative.Rid
 	RayShapeCreate() gdnative.Rid
@@ -2552,8 +2552,8 @@ type Physics2DServerImplementer interface {
 	ShapeSetData(shape gdnative.Rid, data gdnative.Variant)
 	SpaceCreate() gdnative.Rid
 	SpaceGetDirectState(space gdnative.Rid) Physics2DDirectSpaceStateImplementer
-	SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Float
+	SpaceGetParam(space gdnative.Rid, param gdnative.Int) gdnative.Real
 	SpaceIsActive(space gdnative.Rid) gdnative.Bool
 	SpaceSetActive(space gdnative.Rid, active gdnative.Bool)
-	SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	SpaceSetParam(space gdnative.Rid, param gdnative.Int, value gdnative.Real)
 }

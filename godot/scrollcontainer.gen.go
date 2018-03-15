@@ -59,12 +59,12 @@ func (o *ScrollContainer) X_GuiInput(arg0 InputEventImplementer) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *ScrollContainer) X_ScrollMoved(arg0 gdnative.Float) {
+func (o *ScrollContainer) X_ScrollMoved(arg0 gdnative.Real) {
 	//log.Println("Calling ScrollContainer.X_ScrollMoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ScrollContainer", "_scroll_moved")
@@ -276,7 +276,7 @@ func (o *ScrollContainer) SetVScroll(value gdnative.Int) {
 // of the ScrollContainer class.
 type ScrollContainerImplementer interface {
 	ContainerImplementer
-	X_ScrollMoved(arg0 gdnative.Float)
+	X_ScrollMoved(arg0 gdnative.Real)
 	X_UpdateScrollbarPosition()
 	GetHScroll() gdnative.Int
 	GetVScroll() gdnative.Int

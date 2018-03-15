@@ -207,7 +207,7 @@ func (o *LineEdit) CursorGetBlinkEnabled() gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *LineEdit) CursorGetBlinkSpeed() gdnative.Float {
+func (o *LineEdit) CursorGetBlinkSpeed() gdnative.Real {
 	//log.Println("Calling LineEdit.CursorGetBlinkSpeed()")
 
 	// Build out the method's arguments
@@ -218,11 +218,11 @@ func (o *LineEdit) CursorGetBlinkSpeed() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -251,12 +251,12 @@ func (o *LineEdit) CursorSetBlinkEnabled(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false blink_speed float}], Returns: void
 */
-func (o *LineEdit) CursorSetBlinkSpeed(blinkSpeed gdnative.Float) {
+func (o *LineEdit) CursorSetBlinkSpeed(blinkSpeed gdnative.Real) {
 	//log.Println("Calling LineEdit.CursorSetBlinkSpeed()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(blinkSpeed)
+	ptrArguments[0] = gdnative.NewPointerFromReal(blinkSpeed)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("LineEdit", "cursor_set_blink_speed")
@@ -444,7 +444,7 @@ func (o *LineEdit) GetPlaceholder() gdnative.String {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *LineEdit) GetPlaceholderAlpha() gdnative.Float {
+func (o *LineEdit) GetPlaceholderAlpha() gdnative.Real {
 	//log.Println("Calling LineEdit.GetPlaceholderAlpha()")
 
 	// Build out the method's arguments
@@ -455,11 +455,11 @@ func (o *LineEdit) GetPlaceholderAlpha() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -769,12 +769,12 @@ func (o *LineEdit) SetPlaceholder(text gdnative.String) {
         Undocumented
 	Args: [{ false alpha float}], Returns: void
 */
-func (o *LineEdit) SetPlaceholderAlpha(alpha gdnative.Float) {
+func (o *LineEdit) SetPlaceholderAlpha(alpha gdnative.Real) {
 	//log.Println("Calling LineEdit.SetPlaceholderAlpha()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(alpha)
+	ptrArguments[0] = gdnative.NewPointerFromReal(alpha)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("LineEdit", "set_placeholder_alpha")
@@ -838,16 +838,16 @@ type LineEditImplementer interface {
 	AppendAtCursor(text gdnative.String)
 	Clear()
 	CursorGetBlinkEnabled() gdnative.Bool
-	CursorGetBlinkSpeed() gdnative.Float
+	CursorGetBlinkSpeed() gdnative.Real
 	CursorSetBlinkEnabled(enabled gdnative.Bool)
-	CursorSetBlinkSpeed(blinkSpeed gdnative.Float)
+	CursorSetBlinkSpeed(blinkSpeed gdnative.Real)
 	Deselect()
 	GetCursorPosition() gdnative.Int
 	GetExpandToTextLength() gdnative.Bool
 	GetMaxLength() gdnative.Int
 	GetMenu() PopupMenuImplementer
 	GetPlaceholder() gdnative.String
-	GetPlaceholderAlpha() gdnative.Float
+	GetPlaceholderAlpha() gdnative.Real
 	GetText() gdnative.String
 	IsContextMenuEnabled() gdnative.Bool
 	IsEditable() gdnative.Bool
@@ -862,7 +862,7 @@ type LineEditImplementer interface {
 	SetExpandToTextLength(enabled gdnative.Bool)
 	SetMaxLength(chars gdnative.Int)
 	SetPlaceholder(text gdnative.String)
-	SetPlaceholderAlpha(alpha gdnative.Float)
+	SetPlaceholderAlpha(alpha gdnative.Real)
 	SetSecret(enabled gdnative.Bool)
 	SetText(text gdnative.String)
 }

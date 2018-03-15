@@ -150,13 +150,13 @@ func (o *EditorSpatialGizmo) AddMesh(mesh ArrayMeshImplementer, billboard gdnati
         Add an unscaled billboard for visualization. Call this function during [method redraw].
 	Args: [{ false material Material} {1 true default_scale float}], Returns: void
 */
-func (o *EditorSpatialGizmo) AddUnscaledBillboard(material MaterialImplementer, defaultScale gdnative.Float) {
+func (o *EditorSpatialGizmo) AddUnscaledBillboard(material MaterialImplementer, defaultScale gdnative.Real) {
 	//log.Println("Calling EditorSpatialGizmo.AddUnscaledBillboard()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromObject(material.GetBaseObject())
-	ptrArguments[1] = gdnative.NewPointerFromFloat(defaultScale)
+	ptrArguments[1] = gdnative.NewPointerFromReal(defaultScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("EditorSpatialGizmo", "add_unscaled_billboard")
@@ -332,7 +332,7 @@ type EditorSpatialGizmoImplementer interface {
 	AddHandles(handles gdnative.PoolVector3Array, billboard gdnative.Bool, secondary gdnative.Bool)
 	AddLines(lines gdnative.PoolVector3Array, material MaterialImplementer, billboard gdnative.Bool)
 	AddMesh(mesh ArrayMeshImplementer, billboard gdnative.Bool, skeleton gdnative.Rid)
-	AddUnscaledBillboard(material MaterialImplementer, defaultScale gdnative.Float)
+	AddUnscaledBillboard(material MaterialImplementer, defaultScale gdnative.Real)
 	Clear()
 	CommitHandle(index gdnative.Int, restore gdnative.Variant, cancel gdnative.Bool)
 	GetHandleName(index gdnative.Int) gdnative.String

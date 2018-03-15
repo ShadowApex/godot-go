@@ -157,7 +157,7 @@ func (o *AudioStreamPlayer) GetMixTarget() AudioStreamPlayerMixTarget {
         Returns the position in the [AudioStream].
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer) GetPlaybackPosition() gdnative.Float {
+func (o *AudioStreamPlayer) GetPlaybackPosition() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer.GetPlaybackPosition()")
 
 	// Build out the method's arguments
@@ -168,11 +168,11 @@ func (o *AudioStreamPlayer) GetPlaybackPosition() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -217,7 +217,7 @@ func (o *AudioStreamPlayer) GetStream() AudioStreamImplementer {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamPlayer) GetVolumeDb() gdnative.Float {
+func (o *AudioStreamPlayer) GetVolumeDb() gdnative.Real {
 	//log.Println("Calling AudioStreamPlayer.GetVolumeDb()")
 
 	// Build out the method's arguments
@@ -228,11 +228,11 @@ func (o *AudioStreamPlayer) GetVolumeDb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -286,12 +286,12 @@ func (o *AudioStreamPlayer) IsPlaying() gdnative.Bool {
         Plays the audio from the given position 'from_position', in seconds.
 	Args: [{0 true from_position float}], Returns: void
 */
-func (o *AudioStreamPlayer) Play(fromPosition gdnative.Float) {
+func (o *AudioStreamPlayer) Play(fromPosition gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer.Play()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(fromPosition)
+	ptrArguments[0] = gdnative.NewPointerFromReal(fromPosition)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "play")
@@ -307,12 +307,12 @@ func (o *AudioStreamPlayer) Play(fromPosition gdnative.Float) {
         Sets the position from which audio will be played, in seconds.
 	Args: [{ false to_position float}], Returns: void
 */
-func (o *AudioStreamPlayer) Seek(toPosition gdnative.Float) {
+func (o *AudioStreamPlayer) Seek(toPosition gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer.Seek()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(toPosition)
+	ptrArguments[0] = gdnative.NewPointerFromReal(toPosition)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "seek")
@@ -412,12 +412,12 @@ func (o *AudioStreamPlayer) SetStream(stream AudioStreamImplementer) {
         Undocumented
 	Args: [{ false volume_db float}], Returns: void
 */
-func (o *AudioStreamPlayer) SetVolumeDb(volumeDb gdnative.Float) {
+func (o *AudioStreamPlayer) SetVolumeDb(volumeDb gdnative.Real) {
 	//log.Println("Calling AudioStreamPlayer.SetVolumeDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(volumeDb)
+	ptrArguments[0] = gdnative.NewPointerFromReal(volumeDb)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamPlayer", "set_volume_db")
@@ -457,17 +457,17 @@ type AudioStreamPlayerImplementer interface {
 	X_IsActive() gdnative.Bool
 	X_SetPlaying(enable gdnative.Bool)
 	GetBus() gdnative.String
-	GetPlaybackPosition() gdnative.Float
+	GetPlaybackPosition() gdnative.Real
 	GetStream() AudioStreamImplementer
-	GetVolumeDb() gdnative.Float
+	GetVolumeDb() gdnative.Real
 	IsAutoplayEnabled() gdnative.Bool
 	IsPlaying() gdnative.Bool
-	Play(fromPosition gdnative.Float)
-	Seek(toPosition gdnative.Float)
+	Play(fromPosition gdnative.Real)
+	Seek(toPosition gdnative.Real)
 	SetAutoplay(enable gdnative.Bool)
 	SetBus(bus gdnative.String)
 	SetMixTarget(mixTarget gdnative.Int)
 	SetStream(stream AudioStreamImplementer)
-	SetVolumeDb(volumeDb gdnative.Float)
+	SetVolumeDb(volumeDb gdnative.Real)
 	Stop()
 }

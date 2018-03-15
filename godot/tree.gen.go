@@ -118,12 +118,12 @@ func (o *Tree) X_RangeClickTimeout() {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *Tree) X_ScrollMoved(arg0 gdnative.Float) {
+func (o *Tree) X_ScrollMoved(arg0 gdnative.Real) {
 	//log.Println("Calling Tree.X_ScrollMoved()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tree", "_scroll_moved")
@@ -180,12 +180,12 @@ func (o *Tree) X_TextEditorModalClose() {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *Tree) X_ValueEditorChanged(arg0 gdnative.Float) {
+func (o *Tree) X_ValueEditorChanged(arg0 gdnative.Real) {
 	//log.Println("Calling Tree.X_ValueEditorChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tree", "_value_editor_changed")
@@ -1123,10 +1123,10 @@ type TreeImplementer interface {
 	ControlImplementer
 	X_PopupSelect(arg0 gdnative.Int)
 	X_RangeClickTimeout()
-	X_ScrollMoved(arg0 gdnative.Float)
+	X_ScrollMoved(arg0 gdnative.Real)
 	X_TextEditorEnter(arg0 gdnative.String)
 	X_TextEditorModalClose()
-	X_ValueEditorChanged(arg0 gdnative.Float)
+	X_ValueEditorChanged(arg0 gdnative.Real)
 	AreColumnTitlesVisible() gdnative.Bool
 	Clear()
 	CreateItem(parent ObjectImplementer, idx gdnative.Int) ObjectImplementer

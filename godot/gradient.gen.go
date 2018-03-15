@@ -38,12 +38,12 @@ func (o *Gradient) BaseClass() string {
         Adds the specified color to the end of the ramp, with the specified offset
 	Args: [{ false offset float} { false color Color}], Returns: void
 */
-func (o *Gradient) AddPoint(offset gdnative.Float, color gdnative.Color) {
+func (o *Gradient) AddPoint(offset gdnative.Real, color gdnative.Color) {
 	//log.Println("Calling Gradient.AddPoint()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[0] = gdnative.NewPointerFromReal(offset)
 	ptrArguments[1] = gdnative.NewPointerFromColor(color)
 
 	// Get the method bind
@@ -107,7 +107,7 @@ func (o *Gradient) GetColors() gdnative.PoolColorArray {
         Returns the offset of the ramp color at index [i]point[/i]
 	Args: [{ false point int}], Returns: float
 */
-func (o *Gradient) GetOffset(point gdnative.Int) gdnative.Float {
+func (o *Gradient) GetOffset(point gdnative.Int) gdnative.Real {
 	//log.Println("Calling Gradient.GetOffset()")
 
 	// Build out the method's arguments
@@ -119,11 +119,11 @@ func (o *Gradient) GetOffset(point gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -177,12 +177,12 @@ func (o *Gradient) GetPointCount() gdnative.Int {
         Returns the interpolated color specified by [i]offset[/i]
 	Args: [{ false offset float}], Returns: Color
 */
-func (o *Gradient) Interpolate(offset gdnative.Float) gdnative.Color {
+func (o *Gradient) Interpolate(offset gdnative.Real) gdnative.Color {
 	//log.Println("Calling Gradient.Interpolate()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[0] = gdnative.NewPointerFromReal(offset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Gradient", "interpolate")
@@ -265,13 +265,13 @@ func (o *Gradient) SetColors(colors gdnative.PoolColorArray) {
         Sets the offset for the ramp color at index [i]point[/i]
 	Args: [{ false point int} { false offset float}], Returns: void
 */
-func (o *Gradient) SetOffset(point gdnative.Int, offset gdnative.Float) {
+func (o *Gradient) SetOffset(point gdnative.Int, offset gdnative.Real) {
 	//log.Println("Calling Gradient.SetOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(point)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[1] = gdnative.NewPointerFromReal(offset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Gradient", "set_offset")
@@ -308,16 +308,16 @@ func (o *Gradient) SetOffsets(offsets gdnative.PoolRealArray) {
 // of the Gradient class.
 type GradientImplementer interface {
 	ResourceImplementer
-	AddPoint(offset gdnative.Float, color gdnative.Color)
+	AddPoint(offset gdnative.Real, color gdnative.Color)
 	GetColor(point gdnative.Int) gdnative.Color
 	GetColors() gdnative.PoolColorArray
-	GetOffset(point gdnative.Int) gdnative.Float
+	GetOffset(point gdnative.Int) gdnative.Real
 	GetOffsets() gdnative.PoolRealArray
 	GetPointCount() gdnative.Int
-	Interpolate(offset gdnative.Float) gdnative.Color
+	Interpolate(offset gdnative.Real) gdnative.Color
 	RemovePoint(offset gdnative.Int)
 	SetColor(point gdnative.Int, color gdnative.Color)
 	SetColors(colors gdnative.PoolColorArray)
-	SetOffset(point gdnative.Int, offset gdnative.Float)
+	SetOffset(point gdnative.Int, offset gdnative.Real)
 	SetOffsets(offsets gdnative.PoolRealArray)
 }

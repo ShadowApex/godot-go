@@ -38,7 +38,7 @@ func (o *SceneTreeTimer) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SceneTreeTimer) GetTimeLeft() gdnative.Float {
+func (o *SceneTreeTimer) GetTimeLeft() gdnative.Real {
 	//log.Println("Calling SceneTreeTimer.GetTimeLeft()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *SceneTreeTimer) GetTimeLeft() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,12 +61,12 @@ func (o *SceneTreeTimer) GetTimeLeft() gdnative.Float {
         Undocumented
 	Args: [{ false time float}], Returns: void
 */
-func (o *SceneTreeTimer) SetTimeLeft(time gdnative.Float) {
+func (o *SceneTreeTimer) SetTimeLeft(time gdnative.Real) {
 	//log.Println("Calling SceneTreeTimer.SetTimeLeft()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(time)
+	ptrArguments[0] = gdnative.NewPointerFromReal(time)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SceneTreeTimer", "set_time_left")
@@ -82,6 +82,6 @@ func (o *SceneTreeTimer) SetTimeLeft(time gdnative.Float) {
 // of the SceneTreeTimer class.
 type SceneTreeTimerImplementer interface {
 	ReferenceImplementer
-	GetTimeLeft() gdnative.Float
-	SetTimeLeft(time gdnative.Float)
+	GetTimeLeft() gdnative.Real
+	SetTimeLeft(time gdnative.Real)
 }

@@ -177,7 +177,7 @@ func (o *StreamPeer) GetData(bytes gdnative.Int) gdnative.Array {
         Get a double-precision float from the stream.
 	Args: [], Returns: float
 */
-func (o *StreamPeer) GetDouble() gdnative.Float {
+func (o *StreamPeer) GetDouble() gdnative.Real {
 	//log.Println("Calling StreamPeer.GetDouble()")
 
 	// Build out the method's arguments
@@ -188,11 +188,11 @@ func (o *StreamPeer) GetDouble() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -200,7 +200,7 @@ func (o *StreamPeer) GetDouble() gdnative.Float {
         Get a single-precision float from the stream.
 	Args: [], Returns: float
 */
-func (o *StreamPeer) GetFloat() gdnative.Float {
+func (o *StreamPeer) GetFloat() gdnative.Real {
 	//log.Println("Calling StreamPeer.GetFloat()")
 
 	// Build out the method's arguments
@@ -211,11 +211,11 @@ func (o *StreamPeer) GetFloat() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -541,12 +541,12 @@ func (o *StreamPeer) PutData(data gdnative.PoolByteArray) gdnative.Error {
         Put a double-precision float into the stream.
 	Args: [{ false value float}], Returns: void
 */
-func (o *StreamPeer) PutDouble(value gdnative.Float) {
+func (o *StreamPeer) PutDouble(value gdnative.Real) {
 	//log.Println("Calling StreamPeer.PutDouble()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[0] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StreamPeer", "put_double")
@@ -562,12 +562,12 @@ func (o *StreamPeer) PutDouble(value gdnative.Float) {
         Put a single-precision float into the stream.
 	Args: [{ false value float}], Returns: void
 */
-func (o *StreamPeer) PutFloat(value gdnative.Float) {
+func (o *StreamPeer) PutFloat(value gdnative.Real) {
 	//log.Println("Calling StreamPeer.PutFloat()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[0] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StreamPeer", "put_float")
@@ -760,8 +760,8 @@ type StreamPeerImplementer interface {
 	Get8() gdnative.Int
 	GetAvailableBytes() gdnative.Int
 	GetData(bytes gdnative.Int) gdnative.Array
-	GetDouble() gdnative.Float
-	GetFloat() gdnative.Float
+	GetDouble() gdnative.Real
+	GetFloat() gdnative.Real
 	GetPartialData(bytes gdnative.Int) gdnative.Array
 	GetString(bytes gdnative.Int) gdnative.String
 	GetU16() gdnative.Int
@@ -775,8 +775,8 @@ type StreamPeerImplementer interface {
 	Put32(value gdnative.Int)
 	Put64(value gdnative.Int)
 	Put8(value gdnative.Int)
-	PutDouble(value gdnative.Float)
-	PutFloat(value gdnative.Float)
+	PutDouble(value gdnative.Real)
+	PutFloat(value gdnative.Real)
 	PutPartialData(data gdnative.PoolByteArray) gdnative.Array
 	PutU16(value gdnative.Int)
 	PutU32(value gdnative.Int)

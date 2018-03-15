@@ -46,11 +46,11 @@ func (e MethodRpcMode) getBase() C.godot_method_rpc_mode {
 }
 
 const (
-	MethodRpcModeDisabled MethodRpcMode = iota
-	MethodRpcModeRemote
-	MethodRpcModeSync
-	MethodRpcModeMaster
-	MethodRpcModeSlave
+	MethodRpcModeDisabled MethodRpcMode = 0
+	MethodRpcModeRemote   MethodRpcMode = 1
+	MethodRpcModeSync     MethodRpcMode = 2
+	MethodRpcModeMaster   MethodRpcMode = 3
+	MethodRpcModeSlave    MethodRpcMode = 4
 )
 
 // MethodRpcModeLookupMap is a string-based lookup table of constants for MethodRpcMode.
@@ -70,33 +70,40 @@ func (e PropertyHint) getBase() C.godot_property_hint {
 }
 
 const (
-	PropertyHintNone PropertyHint = iota
-	PropertyHintRange
-	PropertyHintExpRange
-	PropertyHintEnum
-	PropertyHintSpriteFrame
-	PropertyHintLayers2DRender
-	PropertyHintLayers2DPhysics
-	PropertyHintLayers3DRender
-	PropertyHintLayers3DPhysics
-	PropertyHintDir
-	PropertyHintGlobalDir
-	PropertyHintResourceType
-	PropertyHintMultilineText
-	PropertyHintColorNoAlpha
-	PropertyHintImageCompressLossy
-	PropertyHintImageCompressLossless
-	PropertyHintObjectId
-	PropertyHintTypeString
-	PropertyHintMethodOfVariantType
-	PropertyHintMethodOfBaseType
-	PropertyHintMethodOfInstance
-	PropertyHintMethodOfScript
-	PropertyHintPropertyOfVariantType
-	PropertyHintPropertyOfBaseType
-	PropertyHintPropertyOfInstance
-	PropertyHintPropertyOfScript
-	PropertyHintMax
+	PropertyHintNone                  PropertyHint = 0 // < no hint provided.
+	PropertyHintRange                 PropertyHint = 1 // < hint_text = "min,max,step,slider;
+	PropertyHintExpRange              PropertyHint = 2 // < hint_text = "min,max,step", exponential edit
+	PropertyHintEnum                  PropertyHint = 3 // < hint_text= "val1,val2,val3,etc"
+	PropertyHintExpEasing             PropertyHint = 4 //  exponential easing function (Math::ease)
+	PropertyHintLength                PropertyHint = 5 // < hint_text= "length" (as integer)
+	PropertyHintSpriteFrame           PropertyHint = 6
+	PropertyHintKeyAccel              PropertyHint = 7 // < hint_text= "length" (as integer)
+	PropertyHintFlags                 PropertyHint = 8 // < hint_text= "flag1,flag2,etc" (as bit flags)
+	PropertyHintLayers2DRender        PropertyHint = 9
+	PropertyHintLayers2DPhysics       PropertyHint = 10
+	PropertyHintLayers3DRender        PropertyHint = 11
+	PropertyHintLayers3DPhysics       PropertyHint = 12
+	PropertyHintFile                  PropertyHint = 13 // < a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
+	PropertyHintDir                   PropertyHint = 14 // < a directort path must be passed
+	PropertyHintGlobalFile            PropertyHint = 15 // < a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
+	PropertyHintGlobalDir             PropertyHint = 16 // < a directort path must be passed
+	PropertyHintResourceType          PropertyHint = 17 // < a resource object type
+	PropertyHintMultilineText         PropertyHint = 18 // < used for string properties that can contain multiple lines
+	PropertyHintColorNoAlpha          PropertyHint = 19 // < used for ignoring alpha component when editing a color
+	PropertyHintImageCompressLossy    PropertyHint = 20
+	PropertyHintImageCompressLossless PropertyHint = 21
+	PropertyHintObjectId              PropertyHint = 22
+	PropertyHintTypeString            PropertyHint = 23 // < a type string, the hint is the base type to choose
+	PropertyHintNodePathToEditedNode  PropertyHint = 24 // < so something else can provide this (used in scripts)
+	PropertyHintMethodOfVariantType   PropertyHint = 25 // < a method of a type
+	PropertyHintMethodOfBaseType      PropertyHint = 26 // < a method of a base type
+	PropertyHintMethodOfInstance      PropertyHint = 27 // < a method of an instance
+	PropertyHintMethodOfScript        PropertyHint = 28 // < a method of a script & base
+	PropertyHintPropertyOfVariantType PropertyHint = 29 // < a property of a type
+	PropertyHintPropertyOfBaseType    PropertyHint = 30 // < a property of a base type
+	PropertyHintPropertyOfInstance    PropertyHint = 31 // < a property of an instance
+	PropertyHintPropertyOfScript      PropertyHint = 32 // < a property of a script & base
+	PropertyHintMax                   PropertyHint = 33
 )
 
 // PropertyHintLookupMap is a string-based lookup table of constants for PropertyHint.
@@ -105,12 +112,18 @@ var PropertyHintLookupMap = map[string]PropertyHint{
 	"PropertyHintRange":                 PropertyHintRange,
 	"PropertyHintExpRange":              PropertyHintExpRange,
 	"PropertyHintEnum":                  PropertyHintEnum,
+	"PropertyHintExpEasing":             PropertyHintExpEasing,
+	"PropertyHintLength":                PropertyHintLength,
 	"PropertyHintSpriteFrame":           PropertyHintSpriteFrame,
+	"PropertyHintKeyAccel":              PropertyHintKeyAccel,
+	"PropertyHintFlags":                 PropertyHintFlags,
 	"PropertyHintLayers2DRender":        PropertyHintLayers2DRender,
 	"PropertyHintLayers2DPhysics":       PropertyHintLayers2DPhysics,
 	"PropertyHintLayers3DRender":        PropertyHintLayers3DRender,
 	"PropertyHintLayers3DPhysics":       PropertyHintLayers3DPhysics,
+	"PropertyHintFile":                  PropertyHintFile,
 	"PropertyHintDir":                   PropertyHintDir,
+	"PropertyHintGlobalFile":            PropertyHintGlobalFile,
 	"PropertyHintGlobalDir":             PropertyHintGlobalDir,
 	"PropertyHintResourceType":          PropertyHintResourceType,
 	"PropertyHintMultilineText":         PropertyHintMultilineText,
@@ -119,6 +132,7 @@ var PropertyHintLookupMap = map[string]PropertyHint{
 	"PropertyHintImageCompressLossless": PropertyHintImageCompressLossless,
 	"PropertyHintObjectId":              PropertyHintObjectId,
 	"PropertyHintTypeString":            PropertyHintTypeString,
+	"PropertyHintNodePathToEditedNode":  PropertyHintNodePathToEditedNode,
 	"PropertyHintMethodOfVariantType":   PropertyHintMethodOfVariantType,
 	"PropertyHintMethodOfBaseType":      PropertyHintMethodOfBaseType,
 	"PropertyHintMethodOfInstance":      PropertyHintMethodOfInstance,

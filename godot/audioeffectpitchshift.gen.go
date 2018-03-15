@@ -38,7 +38,7 @@ func (o *AudioEffectPitchShift) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectPitchShift) GetPitchScale() gdnative.Float {
+func (o *AudioEffectPitchShift) GetPitchScale() gdnative.Real {
 	//log.Println("Calling AudioEffectPitchShift.GetPitchScale()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *AudioEffectPitchShift) GetPitchScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,12 +61,12 @@ func (o *AudioEffectPitchShift) GetPitchScale() gdnative.Float {
         Undocumented
 	Args: [{ false rate float}], Returns: void
 */
-func (o *AudioEffectPitchShift) SetPitchScale(rate gdnative.Float) {
+func (o *AudioEffectPitchShift) SetPitchScale(rate gdnative.Real) {
 	//log.Println("Calling AudioEffectPitchShift.SetPitchScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(rate)
+	ptrArguments[0] = gdnative.NewPointerFromReal(rate)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectPitchShift", "set_pitch_scale")
@@ -82,6 +82,6 @@ func (o *AudioEffectPitchShift) SetPitchScale(rate gdnative.Float) {
 // of the AudioEffectPitchShift class.
 type AudioEffectPitchShiftImplementer interface {
 	AudioEffectImplementer
-	GetPitchScale() gdnative.Float
-	SetPitchScale(rate gdnative.Float)
+	GetPitchScale() gdnative.Real
+	SetPitchScale(rate gdnative.Real)
 }

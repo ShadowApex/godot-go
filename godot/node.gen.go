@@ -152,12 +152,12 @@ func (o *Node) X_Input(event InputEventImplementer) {
         Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the [code]delta[/code] variable should be constant. It is only called if physics processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_physics_process]. Corresponds to the NOTIFICATION_PHYSICS_PROCESS notification in [method Object._notification].
 	Args: [{ false delta float}], Returns: void
 */
-func (o *Node) X_PhysicsProcess(delta gdnative.Float) {
+func (o *Node) X_PhysicsProcess(delta gdnative.Real) {
 	//log.Println("Calling Node.X_PhysicsProcess()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[0] = gdnative.NewPointerFromReal(delta)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Node", "_physics_process")
@@ -173,12 +173,12 @@ func (o *Node) X_PhysicsProcess(delta gdnative.Float) {
         Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the [code]delta[/code] time since the previous frame is not constant. It is only called if processing is enabled, which is done automatically if this method is overridden, and can be toggled with [method set_process]. Corresponds to the NOTIFICATION_PROCESS notification in [method Object._notification].
 	Args: [{ false delta float}], Returns: void
 */
-func (o *Node) X_Process(delta gdnative.Float) {
+func (o *Node) X_Process(delta gdnative.Real) {
 	//log.Println("Calling Node.X_Process()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[0] = gdnative.NewPointerFromReal(delta)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Node", "_process")
@@ -850,7 +850,7 @@ func (o *Node) GetPauseMode() NodePauseMode {
         Returns the time elapsed since the last physics-bound frame (see [method _physics_process]). This is always a constant value in physics processing unless the frames per second is changed in [OS].
 	Args: [], Returns: float
 */
-func (o *Node) GetPhysicsProcessDeltaTime() gdnative.Float {
+func (o *Node) GetPhysicsProcessDeltaTime() gdnative.Real {
 	//log.Println("Calling Node.GetPhysicsProcessDeltaTime()")
 
 	// Build out the method's arguments
@@ -861,11 +861,11 @@ func (o *Node) GetPhysicsProcessDeltaTime() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -896,7 +896,7 @@ func (o *Node) GetPositionInParent() gdnative.Int {
         Returns the time elapsed (in seconds) since the last process callback. This value may vary from frame to frame.
 	Args: [], Returns: float
 */
-func (o *Node) GetProcessDeltaTime() gdnative.Float {
+func (o *Node) GetProcessDeltaTime() gdnative.Real {
 	//log.Println("Calling Node.GetProcessDeltaTime()")
 
 	// Build out the method's arguments
@@ -907,11 +907,11 @@ func (o *Node) GetProcessDeltaTime() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -2147,8 +2147,8 @@ type NodeImplementer interface {
 	X_ExitTree()
 	X_GetImportPath() gdnative.NodePath
 	X_Input(event InputEventImplementer)
-	X_PhysicsProcess(delta gdnative.Float)
-	X_Process(delta gdnative.Float)
+	X_PhysicsProcess(delta gdnative.Real)
+	X_Process(delta gdnative.Real)
 	X_Ready()
 	X_SetImportPath(importPath gdnative.NodePath)
 	X_UnhandledInput(event InputEventImplementer)
@@ -2173,9 +2173,9 @@ type NodeImplementer interface {
 	GetParent() NodeImplementer
 	GetPath() gdnative.NodePath
 	GetPathTo(node ObjectImplementer) gdnative.NodePath
-	GetPhysicsProcessDeltaTime() gdnative.Float
+	GetPhysicsProcessDeltaTime() gdnative.Real
 	GetPositionInParent() gdnative.Int
-	GetProcessDeltaTime() gdnative.Float
+	GetProcessDeltaTime() gdnative.Real
 	GetSceneInstanceLoadPlaceholder() gdnative.Bool
 	GetTree() SceneTreeImplementer
 	GetViewport() ViewportImplementer

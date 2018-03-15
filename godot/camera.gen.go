@@ -189,7 +189,7 @@ func (o *Camera) GetEnvironment() EnvironmentImplementer {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Camera) GetFov() gdnative.Float {
+func (o *Camera) GetFov() gdnative.Real {
 	//log.Println("Calling Camera.GetFov()")
 
 	// Build out the method's arguments
@@ -200,11 +200,11 @@ func (o *Camera) GetFov() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -212,7 +212,7 @@ func (o *Camera) GetFov() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Camera) GetHOffset() gdnative.Float {
+func (o *Camera) GetHOffset() gdnative.Real {
 	//log.Println("Calling Camera.GetHOffset()")
 
 	// Build out the method's arguments
@@ -223,11 +223,11 @@ func (o *Camera) GetHOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -281,7 +281,7 @@ func (o *Camera) GetProjection() CameraProjection {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Camera) GetSize() gdnative.Float {
+func (o *Camera) GetSize() gdnative.Real {
 	//log.Println("Calling Camera.GetSize()")
 
 	// Build out the method's arguments
@@ -292,11 +292,11 @@ func (o *Camera) GetSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -304,7 +304,7 @@ func (o *Camera) GetSize() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Camera) GetVOffset() gdnative.Float {
+func (o *Camera) GetVOffset() gdnative.Real {
 	//log.Println("Calling Camera.GetVOffset()")
 
 	// Build out the method's arguments
@@ -315,11 +315,11 @@ func (o *Camera) GetVOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -327,7 +327,7 @@ func (o *Camera) GetVOffset() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Camera) GetZfar() gdnative.Float {
+func (o *Camera) GetZfar() gdnative.Real {
 	//log.Println("Calling Camera.GetZfar()")
 
 	// Build out the method's arguments
@@ -338,11 +338,11 @@ func (o *Camera) GetZfar() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -350,7 +350,7 @@ func (o *Camera) GetZfar() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Camera) GetZnear() gdnative.Float {
+func (o *Camera) GetZnear() gdnative.Real {
 	//log.Println("Calling Camera.GetZnear()")
 
 	// Build out the method's arguments
@@ -361,11 +361,11 @@ func (o *Camera) GetZnear() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -620,12 +620,12 @@ func (o *Camera) SetEnvironment(env EnvironmentImplementer) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *Camera) SetFov(arg0 gdnative.Float) {
+func (o *Camera) SetFov(arg0 gdnative.Real) {
 	//log.Println("Calling Camera.SetFov()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "set_fov")
@@ -641,12 +641,12 @@ func (o *Camera) SetFov(arg0 gdnative.Float) {
         Undocumented
 	Args: [{ false ofs float}], Returns: void
 */
-func (o *Camera) SetHOffset(ofs gdnative.Float) {
+func (o *Camera) SetHOffset(ofs gdnative.Real) {
 	//log.Println("Calling Camera.SetHOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ofs)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ofs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "set_h_offset")
@@ -683,14 +683,14 @@ func (o *Camera) SetKeepAspectMode(mode gdnative.Int) {
         Set the camera projection to orthogonal mode, by specifying a width and the [i]near[/i] and [i]far[/i] clip planes in worldspace units. (As a hint, 2D games often use this projection, with values specified in pixels)
 	Args: [{ false size float} { false z_near float} { false z_far float}], Returns: void
 */
-func (o *Camera) SetOrthogonal(size gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
+func (o *Camera) SetOrthogonal(size gdnative.Real, zNear gdnative.Real, zFar gdnative.Real) {
 	//log.Println("Calling Camera.SetOrthogonal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(size)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(zNear)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(zFar)
+	ptrArguments[0] = gdnative.NewPointerFromReal(size)
+	ptrArguments[1] = gdnative.NewPointerFromReal(zNear)
+	ptrArguments[2] = gdnative.NewPointerFromReal(zFar)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "set_orthogonal")
@@ -706,14 +706,14 @@ func (o *Camera) SetOrthogonal(size gdnative.Float, zNear gdnative.Float, zFar g
         Set the camera projection to perspective mode, by specifying a [i]FOV[/i] Y angle in degrees (FOV means Field of View), and the [i]near[/i] and [i]far[/i] clip planes in worldspace units.
 	Args: [{ false fov float} { false z_near float} { false z_far float}], Returns: void
 */
-func (o *Camera) SetPerspective(fov gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
+func (o *Camera) SetPerspective(fov gdnative.Real, zNear gdnative.Real, zFar gdnative.Real) {
 	//log.Println("Calling Camera.SetPerspective()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(fov)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(zNear)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(zFar)
+	ptrArguments[0] = gdnative.NewPointerFromReal(fov)
+	ptrArguments[1] = gdnative.NewPointerFromReal(zNear)
+	ptrArguments[2] = gdnative.NewPointerFromReal(zFar)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "set_perspective")
@@ -750,12 +750,12 @@ func (o *Camera) SetProjection(arg0 gdnative.Int) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *Camera) SetSize(arg0 gdnative.Float) {
+func (o *Camera) SetSize(arg0 gdnative.Real) {
 	//log.Println("Calling Camera.SetSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "set_size")
@@ -771,12 +771,12 @@ func (o *Camera) SetSize(arg0 gdnative.Float) {
         Undocumented
 	Args: [{ false ofs float}], Returns: void
 */
-func (o *Camera) SetVOffset(ofs gdnative.Float) {
+func (o *Camera) SetVOffset(ofs gdnative.Real) {
 	//log.Println("Calling Camera.SetVOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ofs)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ofs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "set_v_offset")
@@ -792,12 +792,12 @@ func (o *Camera) SetVOffset(ofs gdnative.Float) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *Camera) SetZfar(arg0 gdnative.Float) {
+func (o *Camera) SetZfar(arg0 gdnative.Real) {
 	//log.Println("Calling Camera.SetZfar()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "set_zfar")
@@ -813,12 +813,12 @@ func (o *Camera) SetZfar(arg0 gdnative.Float) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *Camera) SetZnear(arg0 gdnative.Float) {
+func (o *Camera) SetZnear(arg0 gdnative.Real) {
 	//log.Println("Calling Camera.SetZnear()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Camera", "set_znear")
@@ -862,12 +862,12 @@ type CameraImplementer interface {
 	GetCameraTransform() gdnative.Transform
 	GetCullMask() gdnative.Int
 	GetEnvironment() EnvironmentImplementer
-	GetFov() gdnative.Float
-	GetHOffset() gdnative.Float
-	GetSize() gdnative.Float
-	GetVOffset() gdnative.Float
-	GetZfar() gdnative.Float
-	GetZnear() gdnative.Float
+	GetFov() gdnative.Real
+	GetHOffset() gdnative.Real
+	GetSize() gdnative.Real
+	GetVOffset() gdnative.Real
+	GetZfar() gdnative.Real
+	GetZnear() gdnative.Real
 	IsCurrent() gdnative.Bool
 	IsPositionBehind(worldPoint gdnative.Vector3) gdnative.Bool
 	MakeCurrent()
@@ -879,15 +879,15 @@ type CameraImplementer interface {
 	SetCurrent(arg0 gdnative.Bool)
 	SetDopplerTracking(mode gdnative.Int)
 	SetEnvironment(env EnvironmentImplementer)
-	SetFov(arg0 gdnative.Float)
-	SetHOffset(ofs gdnative.Float)
+	SetFov(arg0 gdnative.Real)
+	SetHOffset(ofs gdnative.Real)
 	SetKeepAspectMode(mode gdnative.Int)
-	SetOrthogonal(size gdnative.Float, zNear gdnative.Float, zFar gdnative.Float)
-	SetPerspective(fov gdnative.Float, zNear gdnative.Float, zFar gdnative.Float)
+	SetOrthogonal(size gdnative.Real, zNear gdnative.Real, zFar gdnative.Real)
+	SetPerspective(fov gdnative.Real, zNear gdnative.Real, zFar gdnative.Real)
 	SetProjection(arg0 gdnative.Int)
-	SetSize(arg0 gdnative.Float)
-	SetVOffset(ofs gdnative.Float)
-	SetZfar(arg0 gdnative.Float)
-	SetZnear(arg0 gdnative.Float)
+	SetSize(arg0 gdnative.Real)
+	SetVOffset(ofs gdnative.Real)
+	SetZfar(arg0 gdnative.Real)
+	SetZnear(arg0 gdnative.Real)
 	UnprojectPosition(worldPoint gdnative.Vector3) gdnative.Vector2
 }

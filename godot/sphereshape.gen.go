@@ -38,7 +38,7 @@ func (o *SphereShape) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *SphereShape) GetRadius() gdnative.Float {
+func (o *SphereShape) GetRadius() gdnative.Real {
 	//log.Println("Calling SphereShape.GetRadius()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *SphereShape) GetRadius() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,12 +61,12 @@ func (o *SphereShape) GetRadius() gdnative.Float {
         Undocumented
 	Args: [{ false radius float}], Returns: void
 */
-func (o *SphereShape) SetRadius(radius gdnative.Float) {
+func (o *SphereShape) SetRadius(radius gdnative.Real) {
 	//log.Println("Calling SphereShape.SetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radius)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("SphereShape", "set_radius")
@@ -82,6 +82,6 @@ func (o *SphereShape) SetRadius(radius gdnative.Float) {
 // of the SphereShape class.
 type SphereShapeImplementer interface {
 	ShapeImplementer
-	GetRadius() gdnative.Float
-	SetRadius(radius gdnative.Float)
+	GetRadius() gdnative.Real
+	SetRadius(radius gdnative.Real)
 }

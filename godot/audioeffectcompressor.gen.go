@@ -38,7 +38,7 @@ func (o *AudioEffectCompressor) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectCompressor) GetAttackUs() gdnative.Float {
+func (o *AudioEffectCompressor) GetAttackUs() gdnative.Real {
 	//log.Println("Calling AudioEffectCompressor.GetAttackUs()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *AudioEffectCompressor) GetAttackUs() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *AudioEffectCompressor) GetAttackUs() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectCompressor) GetGain() gdnative.Float {
+func (o *AudioEffectCompressor) GetGain() gdnative.Real {
 	//log.Println("Calling AudioEffectCompressor.GetGain()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *AudioEffectCompressor) GetGain() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *AudioEffectCompressor) GetGain() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectCompressor) GetMix() gdnative.Float {
+func (o *AudioEffectCompressor) GetMix() gdnative.Real {
 	//log.Println("Calling AudioEffectCompressor.GetMix()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *AudioEffectCompressor) GetMix() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *AudioEffectCompressor) GetMix() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectCompressor) GetRatio() gdnative.Float {
+func (o *AudioEffectCompressor) GetRatio() gdnative.Real {
 	//log.Println("Calling AudioEffectCompressor.GetRatio()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *AudioEffectCompressor) GetRatio() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,7 +130,7 @@ func (o *AudioEffectCompressor) GetRatio() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectCompressor) GetReleaseMs() gdnative.Float {
+func (o *AudioEffectCompressor) GetReleaseMs() gdnative.Real {
 	//log.Println("Calling AudioEffectCompressor.GetReleaseMs()")
 
 	// Build out the method's arguments
@@ -141,11 +141,11 @@ func (o *AudioEffectCompressor) GetReleaseMs() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -176,7 +176,7 @@ func (o *AudioEffectCompressor) GetSidechain() gdnative.String {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectCompressor) GetThreshold() gdnative.Float {
+func (o *AudioEffectCompressor) GetThreshold() gdnative.Real {
 	//log.Println("Calling AudioEffectCompressor.GetThreshold()")
 
 	// Build out the method's arguments
@@ -187,11 +187,11 @@ func (o *AudioEffectCompressor) GetThreshold() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -199,12 +199,12 @@ func (o *AudioEffectCompressor) GetThreshold() gdnative.Float {
         Undocumented
 	Args: [{ false attack_us float}], Returns: void
 */
-func (o *AudioEffectCompressor) SetAttackUs(attackUs gdnative.Float) {
+func (o *AudioEffectCompressor) SetAttackUs(attackUs gdnative.Real) {
 	//log.Println("Calling AudioEffectCompressor.SetAttackUs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(attackUs)
+	ptrArguments[0] = gdnative.NewPointerFromReal(attackUs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectCompressor", "set_attack_us")
@@ -220,12 +220,12 @@ func (o *AudioEffectCompressor) SetAttackUs(attackUs gdnative.Float) {
         Undocumented
 	Args: [{ false gain float}], Returns: void
 */
-func (o *AudioEffectCompressor) SetGain(gain gdnative.Float) {
+func (o *AudioEffectCompressor) SetGain(gain gdnative.Real) {
 	//log.Println("Calling AudioEffectCompressor.SetGain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(gain)
+	ptrArguments[0] = gdnative.NewPointerFromReal(gain)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectCompressor", "set_gain")
@@ -241,12 +241,12 @@ func (o *AudioEffectCompressor) SetGain(gain gdnative.Float) {
         Undocumented
 	Args: [{ false mix float}], Returns: void
 */
-func (o *AudioEffectCompressor) SetMix(mix gdnative.Float) {
+func (o *AudioEffectCompressor) SetMix(mix gdnative.Real) {
 	//log.Println("Calling AudioEffectCompressor.SetMix()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(mix)
+	ptrArguments[0] = gdnative.NewPointerFromReal(mix)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectCompressor", "set_mix")
@@ -262,12 +262,12 @@ func (o *AudioEffectCompressor) SetMix(mix gdnative.Float) {
         Undocumented
 	Args: [{ false ratio float}], Returns: void
 */
-func (o *AudioEffectCompressor) SetRatio(ratio gdnative.Float) {
+func (o *AudioEffectCompressor) SetRatio(ratio gdnative.Real) {
 	//log.Println("Calling AudioEffectCompressor.SetRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ratio)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ratio)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectCompressor", "set_ratio")
@@ -283,12 +283,12 @@ func (o *AudioEffectCompressor) SetRatio(ratio gdnative.Float) {
         Undocumented
 	Args: [{ false release_ms float}], Returns: void
 */
-func (o *AudioEffectCompressor) SetReleaseMs(releaseMs gdnative.Float) {
+func (o *AudioEffectCompressor) SetReleaseMs(releaseMs gdnative.Real) {
 	//log.Println("Calling AudioEffectCompressor.SetReleaseMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(releaseMs)
+	ptrArguments[0] = gdnative.NewPointerFromReal(releaseMs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectCompressor", "set_release_ms")
@@ -325,12 +325,12 @@ func (o *AudioEffectCompressor) SetSidechain(sidechain gdnative.String) {
         Undocumented
 	Args: [{ false threshold float}], Returns: void
 */
-func (o *AudioEffectCompressor) SetThreshold(threshold gdnative.Float) {
+func (o *AudioEffectCompressor) SetThreshold(threshold gdnative.Real) {
 	//log.Println("Calling AudioEffectCompressor.SetThreshold()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(threshold)
+	ptrArguments[0] = gdnative.NewPointerFromReal(threshold)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectCompressor", "set_threshold")
@@ -346,18 +346,18 @@ func (o *AudioEffectCompressor) SetThreshold(threshold gdnative.Float) {
 // of the AudioEffectCompressor class.
 type AudioEffectCompressorImplementer interface {
 	AudioEffectImplementer
-	GetAttackUs() gdnative.Float
-	GetGain() gdnative.Float
-	GetMix() gdnative.Float
-	GetRatio() gdnative.Float
-	GetReleaseMs() gdnative.Float
+	GetAttackUs() gdnative.Real
+	GetGain() gdnative.Real
+	GetMix() gdnative.Real
+	GetRatio() gdnative.Real
+	GetReleaseMs() gdnative.Real
 	GetSidechain() gdnative.String
-	GetThreshold() gdnative.Float
-	SetAttackUs(attackUs gdnative.Float)
-	SetGain(gain gdnative.Float)
-	SetMix(mix gdnative.Float)
-	SetRatio(ratio gdnative.Float)
-	SetReleaseMs(releaseMs gdnative.Float)
+	GetThreshold() gdnative.Real
+	SetAttackUs(attackUs gdnative.Real)
+	SetGain(gain gdnative.Real)
+	SetMix(mix gdnative.Real)
+	SetRatio(ratio gdnative.Real)
+	SetReleaseMs(releaseMs gdnative.Real)
 	SetSidechain(sidechain gdnative.String)
-	SetThreshold(threshold gdnative.Float)
+	SetThreshold(threshold gdnative.Real)
 }

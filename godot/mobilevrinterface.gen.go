@@ -38,7 +38,7 @@ func (o *MobileVRInterface) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *MobileVRInterface) GetDisplayToLens() gdnative.Float {
+func (o *MobileVRInterface) GetDisplayToLens() gdnative.Real {
 	//log.Println("Calling MobileVRInterface.GetDisplayToLens()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *MobileVRInterface) GetDisplayToLens() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *MobileVRInterface) GetDisplayToLens() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *MobileVRInterface) GetDisplayWidth() gdnative.Float {
+func (o *MobileVRInterface) GetDisplayWidth() gdnative.Real {
 	//log.Println("Calling MobileVRInterface.GetDisplayWidth()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *MobileVRInterface) GetDisplayWidth() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *MobileVRInterface) GetDisplayWidth() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *MobileVRInterface) GetIod() gdnative.Float {
+func (o *MobileVRInterface) GetIod() gdnative.Real {
 	//log.Println("Calling MobileVRInterface.GetIod()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *MobileVRInterface) GetIod() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *MobileVRInterface) GetIod() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *MobileVRInterface) GetK1() gdnative.Float {
+func (o *MobileVRInterface) GetK1() gdnative.Real {
 	//log.Println("Calling MobileVRInterface.GetK1()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *MobileVRInterface) GetK1() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,7 +130,7 @@ func (o *MobileVRInterface) GetK1() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *MobileVRInterface) GetK2() gdnative.Float {
+func (o *MobileVRInterface) GetK2() gdnative.Real {
 	//log.Println("Calling MobileVRInterface.GetK2()")
 
 	// Build out the method's arguments
@@ -141,11 +141,11 @@ func (o *MobileVRInterface) GetK2() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -153,7 +153,7 @@ func (o *MobileVRInterface) GetK2() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *MobileVRInterface) GetOversample() gdnative.Float {
+func (o *MobileVRInterface) GetOversample() gdnative.Real {
 	//log.Println("Calling MobileVRInterface.GetOversample()")
 
 	// Build out the method's arguments
@@ -164,11 +164,11 @@ func (o *MobileVRInterface) GetOversample() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -176,12 +176,12 @@ func (o *MobileVRInterface) GetOversample() gdnative.Float {
         Undocumented
 	Args: [{ false display_to_lens float}], Returns: void
 */
-func (o *MobileVRInterface) SetDisplayToLens(displayToLens gdnative.Float) {
+func (o *MobileVRInterface) SetDisplayToLens(displayToLens gdnative.Real) {
 	//log.Println("Calling MobileVRInterface.SetDisplayToLens()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(displayToLens)
+	ptrArguments[0] = gdnative.NewPointerFromReal(displayToLens)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MobileVRInterface", "set_display_to_lens")
@@ -197,12 +197,12 @@ func (o *MobileVRInterface) SetDisplayToLens(displayToLens gdnative.Float) {
         Undocumented
 	Args: [{ false display_width float}], Returns: void
 */
-func (o *MobileVRInterface) SetDisplayWidth(displayWidth gdnative.Float) {
+func (o *MobileVRInterface) SetDisplayWidth(displayWidth gdnative.Real) {
 	//log.Println("Calling MobileVRInterface.SetDisplayWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(displayWidth)
+	ptrArguments[0] = gdnative.NewPointerFromReal(displayWidth)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MobileVRInterface", "set_display_width")
@@ -218,12 +218,12 @@ func (o *MobileVRInterface) SetDisplayWidth(displayWidth gdnative.Float) {
         Undocumented
 	Args: [{ false iod float}], Returns: void
 */
-func (o *MobileVRInterface) SetIod(iod gdnative.Float) {
+func (o *MobileVRInterface) SetIod(iod gdnative.Real) {
 	//log.Println("Calling MobileVRInterface.SetIod()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(iod)
+	ptrArguments[0] = gdnative.NewPointerFromReal(iod)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MobileVRInterface", "set_iod")
@@ -239,12 +239,12 @@ func (o *MobileVRInterface) SetIod(iod gdnative.Float) {
         Undocumented
 	Args: [{ false k float}], Returns: void
 */
-func (o *MobileVRInterface) SetK1(k gdnative.Float) {
+func (o *MobileVRInterface) SetK1(k gdnative.Real) {
 	//log.Println("Calling MobileVRInterface.SetK1()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(k)
+	ptrArguments[0] = gdnative.NewPointerFromReal(k)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MobileVRInterface", "set_k1")
@@ -260,12 +260,12 @@ func (o *MobileVRInterface) SetK1(k gdnative.Float) {
         Undocumented
 	Args: [{ false k float}], Returns: void
 */
-func (o *MobileVRInterface) SetK2(k gdnative.Float) {
+func (o *MobileVRInterface) SetK2(k gdnative.Real) {
 	//log.Println("Calling MobileVRInterface.SetK2()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(k)
+	ptrArguments[0] = gdnative.NewPointerFromReal(k)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MobileVRInterface", "set_k2")
@@ -281,12 +281,12 @@ func (o *MobileVRInterface) SetK2(k gdnative.Float) {
         Undocumented
 	Args: [{ false oversample float}], Returns: void
 */
-func (o *MobileVRInterface) SetOversample(oversample gdnative.Float) {
+func (o *MobileVRInterface) SetOversample(oversample gdnative.Real) {
 	//log.Println("Calling MobileVRInterface.SetOversample()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(oversample)
+	ptrArguments[0] = gdnative.NewPointerFromReal(oversample)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MobileVRInterface", "set_oversample")
@@ -302,16 +302,16 @@ func (o *MobileVRInterface) SetOversample(oversample gdnative.Float) {
 // of the MobileVRInterface class.
 type MobileVRInterfaceImplementer interface {
 	ARVRInterfaceImplementer
-	GetDisplayToLens() gdnative.Float
-	GetDisplayWidth() gdnative.Float
-	GetIod() gdnative.Float
-	GetK1() gdnative.Float
-	GetK2() gdnative.Float
-	GetOversample() gdnative.Float
-	SetDisplayToLens(displayToLens gdnative.Float)
-	SetDisplayWidth(displayWidth gdnative.Float)
-	SetIod(iod gdnative.Float)
-	SetK1(k gdnative.Float)
-	SetK2(k gdnative.Float)
-	SetOversample(oversample gdnative.Float)
+	GetDisplayToLens() gdnative.Real
+	GetDisplayWidth() gdnative.Real
+	GetIod() gdnative.Real
+	GetK1() gdnative.Real
+	GetK2() gdnative.Real
+	GetOversample() gdnative.Real
+	SetDisplayToLens(displayToLens gdnative.Real)
+	SetDisplayWidth(displayWidth gdnative.Real)
+	SetIod(iod gdnative.Real)
+	SetK1(k gdnative.Real)
+	SetK2(k gdnative.Real)
+	SetOversample(oversample gdnative.Real)
 }

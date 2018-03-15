@@ -244,12 +244,12 @@ func (o *ColorPicker) X_UvInput(arg0 InputEventImplementer) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *ColorPicker) X_ValueChanged(arg0 gdnative.Float) {
+func (o *ColorPicker) X_ValueChanged(arg0 gdnative.Real) {
 	//log.Println("Calling ColorPicker.X_ValueChanged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ColorPicker", "_value_changed")
@@ -449,7 +449,7 @@ type ColorPickerImplementer interface {
 	X_TextTypeToggled()
 	X_UpdatePresets()
 	X_UvInput(arg0 InputEventImplementer)
-	X_ValueChanged(arg0 gdnative.Float)
+	X_ValueChanged(arg0 gdnative.Real)
 	X_WInput(arg0 InputEventImplementer)
 	AddPreset(color gdnative.Color)
 	GetPickColor() gdnative.Color

@@ -84,7 +84,7 @@ func (o *Physics2DShapeQueryParameters) GetExclude() gdnative.Array {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Physics2DShapeQueryParameters) GetMargin() gdnative.Float {
+func (o *Physics2DShapeQueryParameters) GetMargin() gdnative.Real {
 	//log.Println("Calling Physics2DShapeQueryParameters.GetMargin()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *Physics2DShapeQueryParameters) GetMargin() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -218,12 +218,12 @@ func (o *Physics2DShapeQueryParameters) SetExclude(exclude gdnative.Array) {
         Undocumented
 	Args: [{ false margin float}], Returns: void
 */
-func (o *Physics2DShapeQueryParameters) SetMargin(margin gdnative.Float) {
+func (o *Physics2DShapeQueryParameters) SetMargin(margin gdnative.Real) {
 	//log.Println("Calling Physics2DShapeQueryParameters.SetMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(margin)
+	ptrArguments[0] = gdnative.NewPointerFromReal(margin)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Physics2DShapeQueryParameters", "set_margin")
@@ -325,13 +325,13 @@ type Physics2DShapeQueryParametersImplementer interface {
 	ReferenceImplementer
 	GetCollisionLayer() gdnative.Int
 	GetExclude() gdnative.Array
-	GetMargin() gdnative.Float
+	GetMargin() gdnative.Real
 	GetMotion() gdnative.Vector2
 	GetShapeRid() gdnative.Rid
 	GetTransform() gdnative.Transform2D
 	SetCollisionLayer(collisionLayer gdnative.Int)
 	SetExclude(exclude gdnative.Array)
-	SetMargin(margin gdnative.Float)
+	SetMargin(margin gdnative.Real)
 	SetMotion(motion gdnative.Vector2)
 	SetShape(shape ResourceImplementer)
 	SetShapeRid(shape gdnative.Rid)

@@ -38,7 +38,7 @@ func (o *ARVROrigin) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ARVROrigin) GetWorldScale() gdnative.Float {
+func (o *ARVROrigin) GetWorldScale() gdnative.Real {
 	//log.Println("Calling ARVROrigin.GetWorldScale()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *ARVROrigin) GetWorldScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,12 +61,12 @@ func (o *ARVROrigin) GetWorldScale() gdnative.Float {
         Undocumented
 	Args: [{ false world_scale float}], Returns: void
 */
-func (o *ARVROrigin) SetWorldScale(worldScale gdnative.Float) {
+func (o *ARVROrigin) SetWorldScale(worldScale gdnative.Real) {
 	//log.Println("Calling ARVROrigin.SetWorldScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(worldScale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(worldScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ARVROrigin", "set_world_scale")
@@ -82,6 +82,6 @@ func (o *ARVROrigin) SetWorldScale(worldScale gdnative.Float) {
 // of the ARVROrigin class.
 type ARVROriginImplementer interface {
 	SpatialImplementer
-	GetWorldScale() gdnative.Float
-	SetWorldScale(worldScale gdnative.Float)
+	GetWorldScale() gdnative.Real
+	SetWorldScale(worldScale gdnative.Real)
 }

@@ -225,13 +225,13 @@ func (o *Control) X_GuiInput(event InputEventImplementer) {
         Undocumented
 	Args: [{ false margin int} { false anchor float}], Returns: void
 */
-func (o *Control) X_SetAnchor(margin gdnative.Int, anchor gdnative.Float) {
+func (o *Control) X_SetAnchor(margin gdnative.Int, anchor gdnative.Real) {
 	//log.Println("Calling Control.X_SetAnchor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(anchor)
+	ptrArguments[1] = gdnative.NewPointerFromReal(anchor)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Control", "_set_anchor")
@@ -528,7 +528,7 @@ func (o *Control) ForceDrag(data gdnative.Variant, preview ObjectImplementer) {
         Undocumented
 	Args: [{ false margin int}], Returns: float
 */
-func (o *Control) GetAnchor(margin gdnative.Int) gdnative.Float {
+func (o *Control) GetAnchor(margin gdnative.Int) gdnative.Real {
 	//log.Println("Calling Control.GetAnchor()")
 
 	// Build out the method's arguments
@@ -540,11 +540,11 @@ func (o *Control) GetAnchor(margin gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1079,7 +1079,7 @@ func (o *Control) GetIcon(name gdnative.String, aType gdnative.String) TextureIm
         Undocumented
 	Args: [{ false margin int}], Returns: float
 */
-func (o *Control) GetMargin(margin gdnative.Int) gdnative.Float {
+func (o *Control) GetMargin(margin gdnative.Int) gdnative.Real {
 	//log.Println("Calling Control.GetMargin()")
 
 	// Build out the method's arguments
@@ -1091,11 +1091,11 @@ func (o *Control) GetMargin(margin gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1278,7 +1278,7 @@ func (o *Control) GetRect() gdnative.Rect2 {
         Return the rotation (in radians)
 	Args: [], Returns: float
 */
-func (o *Control) GetRotation() gdnative.Float {
+func (o *Control) GetRotation() gdnative.Real {
 	//log.Println("Calling Control.GetRotation()")
 
 	// Build out the method's arguments
@@ -1289,11 +1289,11 @@ func (o *Control) GetRotation() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1301,7 +1301,7 @@ func (o *Control) GetRotation() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Control) GetRotationDegrees() gdnative.Float {
+func (o *Control) GetRotationDegrees() gdnative.Real {
 	//log.Println("Calling Control.GetRotationDegrees()")
 
 	// Build out the method's arguments
@@ -1312,11 +1312,11 @@ func (o *Control) GetRotationDegrees() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1370,7 +1370,7 @@ func (o *Control) GetSize() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Control) GetStretchRatio() gdnative.Float {
+func (o *Control) GetStretchRatio() gdnative.Real {
 	//log.Println("Calling Control.GetStretchRatio()")
 
 	// Build out the method's arguments
@@ -1381,11 +1381,11 @@ func (o *Control) GetStretchRatio() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1958,13 +1958,13 @@ func (o *Control) ReleaseFocus() {
 
 	Args: [{ false margin int} { false anchor float} {False true keep_margin bool} {True true push_opposite_anchor bool}], Returns: void
 */
-func (o *Control) SetAnchor(margin gdnative.Int, anchor gdnative.Float, keepMargin gdnative.Bool, pushOppositeAnchor gdnative.Bool) {
+func (o *Control) SetAnchor(margin gdnative.Int, anchor gdnative.Real, keepMargin gdnative.Bool, pushOppositeAnchor gdnative.Bool) {
 	//log.Println("Calling Control.SetAnchor()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(anchor)
+	ptrArguments[1] = gdnative.NewPointerFromReal(anchor)
 	ptrArguments[2] = gdnative.NewPointerFromBool(keepMargin)
 	ptrArguments[3] = gdnative.NewPointerFromBool(pushOppositeAnchor)
 
@@ -1982,14 +1982,14 @@ func (o *Control) SetAnchor(margin gdnative.Int, anchor gdnative.Float, keepMarg
 
 	Args: [{ false margin int} { false anchor float} { false offset float} {False true push_opposite_anchor bool}], Returns: void
 */
-func (o *Control) SetAnchorAndMargin(margin gdnative.Int, anchor gdnative.Float, offset gdnative.Float, pushOppositeAnchor gdnative.Bool) {
+func (o *Control) SetAnchorAndMargin(margin gdnative.Int, anchor gdnative.Real, offset gdnative.Real, pushOppositeAnchor gdnative.Bool) {
 	//log.Println("Calling Control.SetAnchorAndMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(anchor)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[1] = gdnative.NewPointerFromReal(anchor)
+	ptrArguments[2] = gdnative.NewPointerFromReal(offset)
 	ptrArguments[3] = gdnative.NewPointerFromBool(pushOppositeAnchor)
 
 	// Get the method bind
@@ -2346,13 +2346,13 @@ func (o *Control) SetHSizeFlags(flags gdnative.Int) {
         Undocumented
 	Args: [{ false margin int} { false offset float}], Returns: void
 */
-func (o *Control) SetMargin(margin gdnative.Int, offset gdnative.Float) {
+func (o *Control) SetMargin(margin gdnative.Int, offset gdnative.Real) {
 	//log.Println("Calling Control.SetMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[1] = gdnative.NewPointerFromReal(offset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Control", "set_margin")
@@ -2454,12 +2454,12 @@ func (o *Control) SetPosition(position gdnative.Vector2) {
         Set the rotation (in radians).
 	Args: [{ false radians float}], Returns: void
 */
-func (o *Control) SetRotation(radians gdnative.Float) {
+func (o *Control) SetRotation(radians gdnative.Real) {
 	//log.Println("Calling Control.SetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radians)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radians)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Control", "set_rotation")
@@ -2475,12 +2475,12 @@ func (o *Control) SetRotation(radians gdnative.Float) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *Control) SetRotationDegrees(degrees gdnative.Float) {
+func (o *Control) SetRotationDegrees(degrees gdnative.Real) {
 	//log.Println("Calling Control.SetRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Control", "set_rotation_degrees")
@@ -2538,12 +2538,12 @@ func (o *Control) SetSize(size gdnative.Vector2) {
         Undocumented
 	Args: [{ false ratio float}], Returns: void
 */
-func (o *Control) SetStretchRatio(ratio gdnative.Float) {
+func (o *Control) SetStretchRatio(ratio gdnative.Real) {
 	//log.Println("Calling Control.SetStretchRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ratio)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ratio)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Control", "set_stretch_ratio")
@@ -2689,7 +2689,7 @@ type ControlImplementer interface {
 	X_GetMinimumSize() gdnative.Vector2
 	X_GetTooltip() gdnative.String
 	X_GuiInput(event InputEventImplementer)
-	X_SetAnchor(margin gdnative.Int, anchor gdnative.Float)
+	X_SetAnchor(margin gdnative.Int, anchor gdnative.Real)
 	X_SizeChanged()
 	X_ThemeChanged()
 	X_UpdateMinimumSize()
@@ -2703,7 +2703,7 @@ type ControlImplementer interface {
 	CanDropData(position gdnative.Vector2, data gdnative.Variant) gdnative.Bool
 	DropData(position gdnative.Vector2, data gdnative.Variant)
 	ForceDrag(data gdnative.Variant, preview ObjectImplementer)
-	GetAnchor(margin gdnative.Int) gdnative.Float
+	GetAnchor(margin gdnative.Int) gdnative.Real
 	GetBegin() gdnative.Vector2
 	GetColor(name gdnative.String, aType gdnative.String) gdnative.Color
 	GetCombinedMinimumSize() gdnative.Vector2
@@ -2720,18 +2720,18 @@ type ControlImplementer interface {
 	GetGlobalRect() gdnative.Rect2
 	GetHSizeFlags() gdnative.Int
 	GetIcon(name gdnative.String, aType gdnative.String) TextureImplementer
-	GetMargin(margin gdnative.Int) gdnative.Float
+	GetMargin(margin gdnative.Int) gdnative.Real
 	GetMinimumSize() gdnative.Vector2
 	GetParentAreaSize() gdnative.Vector2
 	GetParentControl() ControlImplementer
 	GetPivotOffset() gdnative.Vector2
 	GetPosition() gdnative.Vector2
 	GetRect() gdnative.Rect2
-	GetRotation() gdnative.Float
-	GetRotationDegrees() gdnative.Float
+	GetRotation() gdnative.Real
+	GetRotationDegrees() gdnative.Real
 	GetScale() gdnative.Vector2
 	GetSize() gdnative.Vector2
-	GetStretchRatio() gdnative.Float
+	GetStretchRatio() gdnative.Real
 	GetStylebox(name gdnative.String, aType gdnative.String) StyleBoxImplementer
 	GetTheme() ThemeImplementer
 	GetTooltip(atPosition gdnative.Vector2) gdnative.String
@@ -2754,8 +2754,8 @@ type ControlImplementer interface {
 	IsClippingContents() gdnative.Bool
 	MinimumSizeChanged()
 	ReleaseFocus()
-	SetAnchor(margin gdnative.Int, anchor gdnative.Float, keepMargin gdnative.Bool, pushOppositeAnchor gdnative.Bool)
-	SetAnchorAndMargin(margin gdnative.Int, anchor gdnative.Float, offset gdnative.Float, pushOppositeAnchor gdnative.Bool)
+	SetAnchor(margin gdnative.Int, anchor gdnative.Real, keepMargin gdnative.Bool, pushOppositeAnchor gdnative.Bool)
+	SetAnchorAndMargin(margin gdnative.Int, anchor gdnative.Real, offset gdnative.Real, pushOppositeAnchor gdnative.Bool)
 	SetAnchorsAndMarginsPreset(preset gdnative.Int, resizeMode gdnative.Int, margin gdnative.Int)
 	SetAnchorsPreset(preset gdnative.Int, keepMargin gdnative.Bool)
 	SetBegin(position gdnative.Vector2)
@@ -2772,16 +2772,16 @@ type ControlImplementer interface {
 	SetGlobalPosition(position gdnative.Vector2)
 	SetHGrowDirection(direction gdnative.Int)
 	SetHSizeFlags(flags gdnative.Int)
-	SetMargin(margin gdnative.Int, offset gdnative.Float)
+	SetMargin(margin gdnative.Int, offset gdnative.Real)
 	SetMarginsPreset(preset gdnative.Int, resizeMode gdnative.Int, margin gdnative.Int)
 	SetMouseFilter(filter gdnative.Int)
 	SetPivotOffset(pivotOffset gdnative.Vector2)
 	SetPosition(position gdnative.Vector2)
-	SetRotation(radians gdnative.Float)
-	SetRotationDegrees(degrees gdnative.Float)
+	SetRotation(radians gdnative.Real)
+	SetRotationDegrees(degrees gdnative.Real)
 	SetScale(scale gdnative.Vector2)
 	SetSize(size gdnative.Vector2)
-	SetStretchRatio(ratio gdnative.Float)
+	SetStretchRatio(ratio gdnative.Real)
 	SetTheme(theme ThemeImplementer)
 	SetTooltip(tooltip gdnative.String)
 	SetVGrowDirection(direction gdnative.Int)

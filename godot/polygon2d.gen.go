@@ -107,7 +107,7 @@ func (o *Polygon2D) GetInvert() gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Polygon2D) GetInvertBorder() gdnative.Float {
+func (o *Polygon2D) GetInvertBorder() gdnative.Real {
 	//log.Println("Calling Polygon2D.GetInvertBorder()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *Polygon2D) GetInvertBorder() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -236,7 +236,7 @@ func (o *Polygon2D) GetTextureOffset() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Polygon2D) GetTextureRotation() gdnative.Float {
+func (o *Polygon2D) GetTextureRotation() gdnative.Real {
 	//log.Println("Calling Polygon2D.GetTextureRotation()")
 
 	// Build out the method's arguments
@@ -247,11 +247,11 @@ func (o *Polygon2D) GetTextureRotation() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -259,7 +259,7 @@ func (o *Polygon2D) GetTextureRotation() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Polygon2D) GetTextureRotationDegrees() gdnative.Float {
+func (o *Polygon2D) GetTextureRotationDegrees() gdnative.Real {
 	//log.Println("Calling Polygon2D.GetTextureRotationDegrees()")
 
 	// Build out the method's arguments
@@ -270,11 +270,11 @@ func (o *Polygon2D) GetTextureRotationDegrees() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -414,12 +414,12 @@ func (o *Polygon2D) SetInvert(invert gdnative.Bool) {
         Undocumented
 	Args: [{ false invert_border float}], Returns: void
 */
-func (o *Polygon2D) SetInvertBorder(invertBorder gdnative.Float) {
+func (o *Polygon2D) SetInvertBorder(invertBorder gdnative.Real) {
 	//log.Println("Calling Polygon2D.SetInvertBorder()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(invertBorder)
+	ptrArguments[0] = gdnative.NewPointerFromReal(invertBorder)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Polygon2D", "set_invert_border")
@@ -519,12 +519,12 @@ func (o *Polygon2D) SetTextureOffset(textureOffset gdnative.Vector2) {
         Undocumented
 	Args: [{ false texture_rotation float}], Returns: void
 */
-func (o *Polygon2D) SetTextureRotation(textureRotation gdnative.Float) {
+func (o *Polygon2D) SetTextureRotation(textureRotation gdnative.Real) {
 	//log.Println("Calling Polygon2D.SetTextureRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(textureRotation)
+	ptrArguments[0] = gdnative.NewPointerFromReal(textureRotation)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Polygon2D", "set_texture_rotation")
@@ -540,12 +540,12 @@ func (o *Polygon2D) SetTextureRotation(textureRotation gdnative.Float) {
         Undocumented
 	Args: [{ false texture_rotation float}], Returns: void
 */
-func (o *Polygon2D) SetTextureRotationDegrees(textureRotation gdnative.Float) {
+func (o *Polygon2D) SetTextureRotationDegrees(textureRotation gdnative.Real) {
 	//log.Println("Calling Polygon2D.SetTextureRotationDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(textureRotation)
+	ptrArguments[0] = gdnative.NewPointerFromReal(textureRotation)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Polygon2D", "set_texture_rotation_degrees")
@@ -627,26 +627,26 @@ type Polygon2DImplementer interface {
 	GetAntialiased() gdnative.Bool
 	GetColor() gdnative.Color
 	GetInvert() gdnative.Bool
-	GetInvertBorder() gdnative.Float
+	GetInvertBorder() gdnative.Real
 	GetOffset() gdnative.Vector2
 	GetPolygon() gdnative.PoolVector2Array
 	GetTexture() TextureImplementer
 	GetTextureOffset() gdnative.Vector2
-	GetTextureRotation() gdnative.Float
-	GetTextureRotationDegrees() gdnative.Float
+	GetTextureRotation() gdnative.Real
+	GetTextureRotationDegrees() gdnative.Real
 	GetTextureScale() gdnative.Vector2
 	GetUv() gdnative.PoolVector2Array
 	GetVertexColors() gdnative.PoolColorArray
 	SetAntialiased(antialiased gdnative.Bool)
 	SetColor(color gdnative.Color)
 	SetInvert(invert gdnative.Bool)
-	SetInvertBorder(invertBorder gdnative.Float)
+	SetInvertBorder(invertBorder gdnative.Real)
 	SetOffset(offset gdnative.Vector2)
 	SetPolygon(polygon gdnative.PoolVector2Array)
 	SetTexture(texture TextureImplementer)
 	SetTextureOffset(textureOffset gdnative.Vector2)
-	SetTextureRotation(textureRotation gdnative.Float)
-	SetTextureRotationDegrees(textureRotation gdnative.Float)
+	SetTextureRotation(textureRotation gdnative.Real)
+	SetTextureRotationDegrees(textureRotation gdnative.Real)
 	SetTextureScale(textureScale gdnative.Vector2)
 	SetUv(uv gdnative.PoolVector2Array)
 	SetVertexColors(vertexColors gdnative.PoolColorArray)

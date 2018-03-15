@@ -48,7 +48,7 @@ func (o *AudioEffectFilter) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectFilter) GetCutoff() gdnative.Float {
+func (o *AudioEffectFilter) GetCutoff() gdnative.Real {
 	//log.Println("Calling AudioEffectFilter.GetCutoff()")
 
 	// Build out the method's arguments
@@ -59,11 +59,11 @@ func (o *AudioEffectFilter) GetCutoff() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -94,7 +94,7 @@ func (o *AudioEffectFilter) GetDb() AudioEffectFilterFilterDB {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectFilter) GetGain() gdnative.Float {
+func (o *AudioEffectFilter) GetGain() gdnative.Real {
 	//log.Println("Calling AudioEffectFilter.GetGain()")
 
 	// Build out the method's arguments
@@ -105,11 +105,11 @@ func (o *AudioEffectFilter) GetGain() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -117,7 +117,7 @@ func (o *AudioEffectFilter) GetGain() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectFilter) GetResonance() gdnative.Float {
+func (o *AudioEffectFilter) GetResonance() gdnative.Real {
 	//log.Println("Calling AudioEffectFilter.GetResonance()")
 
 	// Build out the method's arguments
@@ -128,11 +128,11 @@ func (o *AudioEffectFilter) GetResonance() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -140,12 +140,12 @@ func (o *AudioEffectFilter) GetResonance() gdnative.Float {
         Undocumented
 	Args: [{ false freq float}], Returns: void
 */
-func (o *AudioEffectFilter) SetCutoff(freq gdnative.Float) {
+func (o *AudioEffectFilter) SetCutoff(freq gdnative.Real) {
 	//log.Println("Calling AudioEffectFilter.SetCutoff()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(freq)
+	ptrArguments[0] = gdnative.NewPointerFromReal(freq)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectFilter", "set_cutoff")
@@ -182,12 +182,12 @@ func (o *AudioEffectFilter) SetDb(amount gdnative.Int) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectFilter) SetGain(amount gdnative.Float) {
+func (o *AudioEffectFilter) SetGain(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectFilter.SetGain()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectFilter", "set_gain")
@@ -203,12 +203,12 @@ func (o *AudioEffectFilter) SetGain(amount gdnative.Float) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectFilter) SetResonance(amount gdnative.Float) {
+func (o *AudioEffectFilter) SetResonance(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectFilter.SetResonance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectFilter", "set_resonance")
@@ -224,11 +224,11 @@ func (o *AudioEffectFilter) SetResonance(amount gdnative.Float) {
 // of the AudioEffectFilter class.
 type AudioEffectFilterImplementer interface {
 	AudioEffectImplementer
-	GetCutoff() gdnative.Float
-	GetGain() gdnative.Float
-	GetResonance() gdnative.Float
-	SetCutoff(freq gdnative.Float)
+	GetCutoff() gdnative.Real
+	GetGain() gdnative.Real
+	GetResonance() gdnative.Real
+	SetCutoff(freq gdnative.Real)
 	SetDb(amount gdnative.Int)
-	SetGain(amount gdnative.Float)
-	SetResonance(amount gdnative.Float)
+	SetGain(amount gdnative.Real)
+	SetResonance(amount gdnative.Real)
 }

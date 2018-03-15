@@ -38,7 +38,7 @@ func (o *VehicleWheel) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetDampingCompression() gdnative.Float {
+func (o *VehicleWheel) GetDampingCompression() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetDampingCompression()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *VehicleWheel) GetDampingCompression() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *VehicleWheel) GetDampingCompression() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetDampingRelaxation() gdnative.Float {
+func (o *VehicleWheel) GetDampingRelaxation() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetDampingRelaxation()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *VehicleWheel) GetDampingRelaxation() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *VehicleWheel) GetDampingRelaxation() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetFrictionSlip() gdnative.Float {
+func (o *VehicleWheel) GetFrictionSlip() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetFrictionSlip()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *VehicleWheel) GetFrictionSlip() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *VehicleWheel) GetFrictionSlip() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetRadius() gdnative.Float {
+func (o *VehicleWheel) GetRadius() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetRadius()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *VehicleWheel) GetRadius() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,7 +130,7 @@ func (o *VehicleWheel) GetRadius() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetRollInfluence() gdnative.Float {
+func (o *VehicleWheel) GetRollInfluence() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetRollInfluence()")
 
 	// Build out the method's arguments
@@ -141,11 +141,11 @@ func (o *VehicleWheel) GetRollInfluence() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -153,7 +153,7 @@ func (o *VehicleWheel) GetRollInfluence() gdnative.Float {
         Returns a value between 0.0 and 1.0 that indicates whether this wheel is skidding. 0.0 is not skidding, 1.0 means the wheel has lost grip.
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetSkidinfo() gdnative.Float {
+func (o *VehicleWheel) GetSkidinfo() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetSkidinfo()")
 
 	// Build out the method's arguments
@@ -164,11 +164,11 @@ func (o *VehicleWheel) GetSkidinfo() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -176,7 +176,7 @@ func (o *VehicleWheel) GetSkidinfo() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetSuspensionMaxForce() gdnative.Float {
+func (o *VehicleWheel) GetSuspensionMaxForce() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetSuspensionMaxForce()")
 
 	// Build out the method's arguments
@@ -187,11 +187,11 @@ func (o *VehicleWheel) GetSuspensionMaxForce() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -199,7 +199,7 @@ func (o *VehicleWheel) GetSuspensionMaxForce() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetSuspensionRestLength() gdnative.Float {
+func (o *VehicleWheel) GetSuspensionRestLength() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetSuspensionRestLength()")
 
 	// Build out the method's arguments
@@ -210,11 +210,11 @@ func (o *VehicleWheel) GetSuspensionRestLength() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -222,7 +222,7 @@ func (o *VehicleWheel) GetSuspensionRestLength() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetSuspensionStiffness() gdnative.Float {
+func (o *VehicleWheel) GetSuspensionStiffness() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetSuspensionStiffness()")
 
 	// Build out the method's arguments
@@ -233,11 +233,11 @@ func (o *VehicleWheel) GetSuspensionStiffness() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -245,7 +245,7 @@ func (o *VehicleWheel) GetSuspensionStiffness() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *VehicleWheel) GetSuspensionTravel() gdnative.Float {
+func (o *VehicleWheel) GetSuspensionTravel() gdnative.Real {
 	//log.Println("Calling VehicleWheel.GetSuspensionTravel()")
 
 	// Build out the method's arguments
@@ -256,11 +256,11 @@ func (o *VehicleWheel) GetSuspensionTravel() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -337,12 +337,12 @@ func (o *VehicleWheel) IsUsedAsTraction() gdnative.Bool {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *VehicleWheel) SetDampingCompression(length gdnative.Float) {
+func (o *VehicleWheel) SetDampingCompression(length gdnative.Real) {
 	//log.Println("Calling VehicleWheel.SetDampingCompression()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleWheel", "set_damping_compression")
@@ -358,12 +358,12 @@ func (o *VehicleWheel) SetDampingCompression(length gdnative.Float) {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *VehicleWheel) SetDampingRelaxation(length gdnative.Float) {
+func (o *VehicleWheel) SetDampingRelaxation(length gdnative.Real) {
 	//log.Println("Calling VehicleWheel.SetDampingRelaxation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleWheel", "set_damping_relaxation")
@@ -379,12 +379,12 @@ func (o *VehicleWheel) SetDampingRelaxation(length gdnative.Float) {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *VehicleWheel) SetFrictionSlip(length gdnative.Float) {
+func (o *VehicleWheel) SetFrictionSlip(length gdnative.Real) {
 	//log.Println("Calling VehicleWheel.SetFrictionSlip()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleWheel", "set_friction_slip")
@@ -400,12 +400,12 @@ func (o *VehicleWheel) SetFrictionSlip(length gdnative.Float) {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *VehicleWheel) SetRadius(length gdnative.Float) {
+func (o *VehicleWheel) SetRadius(length gdnative.Real) {
 	//log.Println("Calling VehicleWheel.SetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleWheel", "set_radius")
@@ -421,12 +421,12 @@ func (o *VehicleWheel) SetRadius(length gdnative.Float) {
         Undocumented
 	Args: [{ false roll_influence float}], Returns: void
 */
-func (o *VehicleWheel) SetRollInfluence(rollInfluence gdnative.Float) {
+func (o *VehicleWheel) SetRollInfluence(rollInfluence gdnative.Real) {
 	//log.Println("Calling VehicleWheel.SetRollInfluence()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(rollInfluence)
+	ptrArguments[0] = gdnative.NewPointerFromReal(rollInfluence)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleWheel", "set_roll_influence")
@@ -442,12 +442,12 @@ func (o *VehicleWheel) SetRollInfluence(rollInfluence gdnative.Float) {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *VehicleWheel) SetSuspensionMaxForce(length gdnative.Float) {
+func (o *VehicleWheel) SetSuspensionMaxForce(length gdnative.Real) {
 	//log.Println("Calling VehicleWheel.SetSuspensionMaxForce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleWheel", "set_suspension_max_force")
@@ -463,12 +463,12 @@ func (o *VehicleWheel) SetSuspensionMaxForce(length gdnative.Float) {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *VehicleWheel) SetSuspensionRestLength(length gdnative.Float) {
+func (o *VehicleWheel) SetSuspensionRestLength(length gdnative.Real) {
 	//log.Println("Calling VehicleWheel.SetSuspensionRestLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleWheel", "set_suspension_rest_length")
@@ -484,12 +484,12 @@ func (o *VehicleWheel) SetSuspensionRestLength(length gdnative.Float) {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *VehicleWheel) SetSuspensionStiffness(length gdnative.Float) {
+func (o *VehicleWheel) SetSuspensionStiffness(length gdnative.Real) {
 	//log.Println("Calling VehicleWheel.SetSuspensionStiffness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleWheel", "set_suspension_stiffness")
@@ -505,12 +505,12 @@ func (o *VehicleWheel) SetSuspensionStiffness(length gdnative.Float) {
         Undocumented
 	Args: [{ false length float}], Returns: void
 */
-func (o *VehicleWheel) SetSuspensionTravel(length gdnative.Float) {
+func (o *VehicleWheel) SetSuspensionTravel(length gdnative.Real) {
 	//log.Println("Calling VehicleWheel.SetSuspensionTravel()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[0] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VehicleWheel", "set_suspension_travel")
@@ -568,28 +568,28 @@ func (o *VehicleWheel) SetUseAsTraction(enable gdnative.Bool) {
 // of the VehicleWheel class.
 type VehicleWheelImplementer interface {
 	SpatialImplementer
-	GetDampingCompression() gdnative.Float
-	GetDampingRelaxation() gdnative.Float
-	GetFrictionSlip() gdnative.Float
-	GetRadius() gdnative.Float
-	GetRollInfluence() gdnative.Float
-	GetSkidinfo() gdnative.Float
-	GetSuspensionMaxForce() gdnative.Float
-	GetSuspensionRestLength() gdnative.Float
-	GetSuspensionStiffness() gdnative.Float
-	GetSuspensionTravel() gdnative.Float
+	GetDampingCompression() gdnative.Real
+	GetDampingRelaxation() gdnative.Real
+	GetFrictionSlip() gdnative.Real
+	GetRadius() gdnative.Real
+	GetRollInfluence() gdnative.Real
+	GetSkidinfo() gdnative.Real
+	GetSuspensionMaxForce() gdnative.Real
+	GetSuspensionRestLength() gdnative.Real
+	GetSuspensionStiffness() gdnative.Real
+	GetSuspensionTravel() gdnative.Real
 	IsInContact() gdnative.Bool
 	IsUsedAsSteering() gdnative.Bool
 	IsUsedAsTraction() gdnative.Bool
-	SetDampingCompression(length gdnative.Float)
-	SetDampingRelaxation(length gdnative.Float)
-	SetFrictionSlip(length gdnative.Float)
-	SetRadius(length gdnative.Float)
-	SetRollInfluence(rollInfluence gdnative.Float)
-	SetSuspensionMaxForce(length gdnative.Float)
-	SetSuspensionRestLength(length gdnative.Float)
-	SetSuspensionStiffness(length gdnative.Float)
-	SetSuspensionTravel(length gdnative.Float)
+	SetDampingCompression(length gdnative.Real)
+	SetDampingRelaxation(length gdnative.Real)
+	SetFrictionSlip(length gdnative.Real)
+	SetRadius(length gdnative.Real)
+	SetRollInfluence(rollInfluence gdnative.Real)
+	SetSuspensionMaxForce(length gdnative.Real)
+	SetSuspensionRestLength(length gdnative.Real)
+	SetSuspensionStiffness(length gdnative.Real)
+	SetSuspensionTravel(length gdnative.Real)
 	SetUseAsSteering(enable gdnative.Bool)
 	SetUseAsTraction(enable gdnative.Bool)
 }

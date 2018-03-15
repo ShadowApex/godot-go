@@ -38,7 +38,7 @@ func (o *StaticBody2D) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *StaticBody2D) GetBounce() gdnative.Float {
+func (o *StaticBody2D) GetBounce() gdnative.Real {
 	//log.Println("Calling StaticBody2D.GetBounce()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *StaticBody2D) GetBounce() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *StaticBody2D) GetBounce() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *StaticBody2D) GetConstantAngularVelocity() gdnative.Float {
+func (o *StaticBody2D) GetConstantAngularVelocity() gdnative.Real {
 	//log.Println("Calling StaticBody2D.GetConstantAngularVelocity()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *StaticBody2D) GetConstantAngularVelocity() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *StaticBody2D) GetConstantLinearVelocity() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *StaticBody2D) GetFriction() gdnative.Float {
+func (o *StaticBody2D) GetFriction() gdnative.Real {
 	//log.Println("Calling StaticBody2D.GetFriction()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *StaticBody2D) GetFriction() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,12 +130,12 @@ func (o *StaticBody2D) GetFriction() gdnative.Float {
         Undocumented
 	Args: [{ false bounce float}], Returns: void
 */
-func (o *StaticBody2D) SetBounce(bounce gdnative.Float) {
+func (o *StaticBody2D) SetBounce(bounce gdnative.Real) {
 	//log.Println("Calling StaticBody2D.SetBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(bounce)
+	ptrArguments[0] = gdnative.NewPointerFromReal(bounce)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StaticBody2D", "set_bounce")
@@ -151,12 +151,12 @@ func (o *StaticBody2D) SetBounce(bounce gdnative.Float) {
         Undocumented
 	Args: [{ false vel float}], Returns: void
 */
-func (o *StaticBody2D) SetConstantAngularVelocity(vel gdnative.Float) {
+func (o *StaticBody2D) SetConstantAngularVelocity(vel gdnative.Real) {
 	//log.Println("Calling StaticBody2D.SetConstantAngularVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(vel)
+	ptrArguments[0] = gdnative.NewPointerFromReal(vel)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StaticBody2D", "set_constant_angular_velocity")
@@ -193,12 +193,12 @@ func (o *StaticBody2D) SetConstantLinearVelocity(vel gdnative.Vector2) {
         Undocumented
 	Args: [{ false friction float}], Returns: void
 */
-func (o *StaticBody2D) SetFriction(friction gdnative.Float) {
+func (o *StaticBody2D) SetFriction(friction gdnative.Real) {
 	//log.Println("Calling StaticBody2D.SetFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(friction)
+	ptrArguments[0] = gdnative.NewPointerFromReal(friction)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StaticBody2D", "set_friction")
@@ -214,12 +214,12 @@ func (o *StaticBody2D) SetFriction(friction gdnative.Float) {
 // of the StaticBody2D class.
 type StaticBody2DImplementer interface {
 	PhysicsBody2DImplementer
-	GetBounce() gdnative.Float
-	GetConstantAngularVelocity() gdnative.Float
+	GetBounce() gdnative.Real
+	GetConstantAngularVelocity() gdnative.Real
 	GetConstantLinearVelocity() gdnative.Vector2
-	GetFriction() gdnative.Float
-	SetBounce(bounce gdnative.Float)
-	SetConstantAngularVelocity(vel gdnative.Float)
+	GetFriction() gdnative.Real
+	SetBounce(bounce gdnative.Real)
+	SetConstantAngularVelocity(vel gdnative.Real)
 	SetConstantLinearVelocity(vel gdnative.Vector2)
-	SetFriction(friction gdnative.Float)
+	SetFriction(friction gdnative.Real)
 }

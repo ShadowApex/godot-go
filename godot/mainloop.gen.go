@@ -80,12 +80,12 @@ func (o *MainLoop) X_Finalize() {
         Called each idle frame with time since last call as an only argument.
 	Args: [{ false delta float}], Returns: void
 */
-func (o *MainLoop) X_Idle(delta gdnative.Float) {
+func (o *MainLoop) X_Idle(delta gdnative.Real) {
 	//log.Println("Calling MainLoop.X_Idle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[0] = gdnative.NewPointerFromReal(delta)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MainLoop", "_idle")
@@ -163,12 +163,12 @@ func (o *MainLoop) X_InputText(text gdnative.String) {
 
 	Args: [{ false delta float}], Returns: void
 */
-func (o *MainLoop) X_Iteration(delta gdnative.Float) {
+func (o *MainLoop) X_Iteration(delta gdnative.Real) {
 	//log.Println("Calling MainLoop.X_Iteration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[0] = gdnative.NewPointerFromReal(delta)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MainLoop", "_iteration")
@@ -204,12 +204,12 @@ func (o *MainLoop) Finish() {
 
 	Args: [{ false delta float}], Returns: bool
 */
-func (o *MainLoop) Idle(delta gdnative.Float) gdnative.Bool {
+func (o *MainLoop) Idle(delta gdnative.Real) gdnative.Bool {
 	//log.Println("Calling MainLoop.Idle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[0] = gdnative.NewPointerFromReal(delta)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MainLoop", "idle")
@@ -290,12 +290,12 @@ func (o *MainLoop) InputText(text gdnative.String) {
 
 	Args: [{ false delta float}], Returns: bool
 */
-func (o *MainLoop) Iteration(delta gdnative.Float) gdnative.Bool {
+func (o *MainLoop) Iteration(delta gdnative.Real) gdnative.Bool {
 	//log.Println("Calling MainLoop.Iteration()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[0] = gdnative.NewPointerFromReal(delta)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("MainLoop", "iteration")
@@ -316,15 +316,15 @@ type MainLoopImplementer interface {
 	ObjectImplementer
 	X_DropFiles(files gdnative.PoolStringArray, screen gdnative.Int)
 	X_Finalize()
-	X_Idle(delta gdnative.Float)
+	X_Idle(delta gdnative.Real)
 	X_Initialize()
 	X_InputEvent(ev InputEventImplementer)
 	X_InputText(text gdnative.String)
-	X_Iteration(delta gdnative.Float)
+	X_Iteration(delta gdnative.Real)
 	Finish()
-	Idle(delta gdnative.Float) gdnative.Bool
+	Idle(delta gdnative.Real) gdnative.Bool
 	Init()
 	InputEventMethod(ev InputEventImplementer)
 	InputText(text gdnative.String)
-	Iteration(delta gdnative.Float) gdnative.Bool
+	Iteration(delta gdnative.Real) gdnative.Bool
 }

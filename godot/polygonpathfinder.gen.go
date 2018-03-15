@@ -179,7 +179,7 @@ func (o *PolygonPathFinder) GetIntersections(from gdnative.Vector2, to gdnative.
 
 	Args: [{ false idx int}], Returns: float
 */
-func (o *PolygonPathFinder) GetPointPenalty(idx gdnative.Int) gdnative.Float {
+func (o *PolygonPathFinder) GetPointPenalty(idx gdnative.Int) gdnative.Real {
 	//log.Println("Calling PolygonPathFinder.GetPointPenalty()")
 
 	// Build out the method's arguments
@@ -191,11 +191,11 @@ func (o *PolygonPathFinder) GetPointPenalty(idx gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -227,13 +227,13 @@ func (o *PolygonPathFinder) IsPointInside(point gdnative.Vector2) gdnative.Bool 
 
 	Args: [{ false idx int} { false penalty float}], Returns: void
 */
-func (o *PolygonPathFinder) SetPointPenalty(idx gdnative.Int, penalty gdnative.Float) {
+func (o *PolygonPathFinder) SetPointPenalty(idx gdnative.Int, penalty gdnative.Real) {
 	//log.Println("Calling PolygonPathFinder.SetPointPenalty()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(idx)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(penalty)
+	ptrArguments[1] = gdnative.NewPointerFromReal(penalty)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PolygonPathFinder", "set_point_penalty")
@@ -277,8 +277,8 @@ type PolygonPathFinderImplementer interface {
 	GetBounds() gdnative.Rect2
 	GetClosestPoint(point gdnative.Vector2) gdnative.Vector2
 	GetIntersections(from gdnative.Vector2, to gdnative.Vector2) gdnative.PoolVector2Array
-	GetPointPenalty(idx gdnative.Int) gdnative.Float
+	GetPointPenalty(idx gdnative.Int) gdnative.Real
 	IsPointInside(point gdnative.Vector2) gdnative.Bool
-	SetPointPenalty(idx gdnative.Int, penalty gdnative.Float)
+	SetPointPenalty(idx gdnative.Int, penalty gdnative.Real)
 	Setup(points gdnative.PoolVector2Array, connections gdnative.PoolIntArray)
 }

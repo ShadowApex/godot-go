@@ -115,7 +115,7 @@ func (o *ReflectionProbe) GetExtents() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ReflectionProbe) GetIntensity() gdnative.Float {
+func (o *ReflectionProbe) GetIntensity() gdnative.Real {
 	//log.Println("Calling ReflectionProbe.GetIntensity()")
 
 	// Build out the method's arguments
@@ -126,11 +126,11 @@ func (o *ReflectionProbe) GetIntensity() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -161,7 +161,7 @@ func (o *ReflectionProbe) GetInteriorAmbient() gdnative.Color {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ReflectionProbe) GetInteriorAmbientEnergy() gdnative.Float {
+func (o *ReflectionProbe) GetInteriorAmbientEnergy() gdnative.Real {
 	//log.Println("Calling ReflectionProbe.GetInteriorAmbientEnergy()")
 
 	// Build out the method's arguments
@@ -172,11 +172,11 @@ func (o *ReflectionProbe) GetInteriorAmbientEnergy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -184,7 +184,7 @@ func (o *ReflectionProbe) GetInteriorAmbientEnergy() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ReflectionProbe) GetInteriorAmbientProbeContribution() gdnative.Float {
+func (o *ReflectionProbe) GetInteriorAmbientProbeContribution() gdnative.Real {
 	//log.Println("Calling ReflectionProbe.GetInteriorAmbientProbeContribution()")
 
 	// Build out the method's arguments
@@ -195,11 +195,11 @@ func (o *ReflectionProbe) GetInteriorAmbientProbeContribution() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -207,7 +207,7 @@ func (o *ReflectionProbe) GetInteriorAmbientProbeContribution() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ReflectionProbe) GetMaxDistance() gdnative.Float {
+func (o *ReflectionProbe) GetMaxDistance() gdnative.Real {
 	//log.Println("Calling ReflectionProbe.GetMaxDistance()")
 
 	// Build out the method's arguments
@@ -218,11 +218,11 @@ func (o *ReflectionProbe) GetMaxDistance() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -427,12 +427,12 @@ func (o *ReflectionProbe) SetExtents(extents gdnative.Vector3) {
         Undocumented
 	Args: [{ false intensity float}], Returns: void
 */
-func (o *ReflectionProbe) SetIntensity(intensity gdnative.Float) {
+func (o *ReflectionProbe) SetIntensity(intensity gdnative.Real) {
 	//log.Println("Calling ReflectionProbe.SetIntensity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(intensity)
+	ptrArguments[0] = gdnative.NewPointerFromReal(intensity)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ReflectionProbe", "set_intensity")
@@ -469,12 +469,12 @@ func (o *ReflectionProbe) SetInteriorAmbient(ambient gdnative.Color) {
         Undocumented
 	Args: [{ false ambient_energy float}], Returns: void
 */
-func (o *ReflectionProbe) SetInteriorAmbientEnergy(ambientEnergy gdnative.Float) {
+func (o *ReflectionProbe) SetInteriorAmbientEnergy(ambientEnergy gdnative.Real) {
 	//log.Println("Calling ReflectionProbe.SetInteriorAmbientEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ambientEnergy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ambientEnergy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ReflectionProbe", "set_interior_ambient_energy")
@@ -490,12 +490,12 @@ func (o *ReflectionProbe) SetInteriorAmbientEnergy(ambientEnergy gdnative.Float)
         Undocumented
 	Args: [{ false ambient_probe_contribution float}], Returns: void
 */
-func (o *ReflectionProbe) SetInteriorAmbientProbeContribution(ambientProbeContribution gdnative.Float) {
+func (o *ReflectionProbe) SetInteriorAmbientProbeContribution(ambientProbeContribution gdnative.Real) {
 	//log.Println("Calling ReflectionProbe.SetInteriorAmbientProbeContribution()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ambientProbeContribution)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ambientProbeContribution)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ReflectionProbe", "set_interior_ambient_probe_contribution")
@@ -511,12 +511,12 @@ func (o *ReflectionProbe) SetInteriorAmbientProbeContribution(ambientProbeContri
         Undocumented
 	Args: [{ false max_distance float}], Returns: void
 */
-func (o *ReflectionProbe) SetMaxDistance(maxDistance gdnative.Float) {
+func (o *ReflectionProbe) SetMaxDistance(maxDistance gdnative.Real) {
 	//log.Println("Calling ReflectionProbe.SetMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(maxDistance)
+	ptrArguments[0] = gdnative.NewPointerFromReal(maxDistance)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ReflectionProbe", "set_max_distance")
@@ -577,11 +577,11 @@ type ReflectionProbeImplementer interface {
 	AreShadowsEnabled() gdnative.Bool
 	GetCullMask() gdnative.Int
 	GetExtents() gdnative.Vector3
-	GetIntensity() gdnative.Float
+	GetIntensity() gdnative.Real
 	GetInteriorAmbient() gdnative.Color
-	GetInteriorAmbientEnergy() gdnative.Float
-	GetInteriorAmbientProbeContribution() gdnative.Float
-	GetMaxDistance() gdnative.Float
+	GetInteriorAmbientEnergy() gdnative.Real
+	GetInteriorAmbientProbeContribution() gdnative.Real
+	GetMaxDistance() gdnative.Real
 	GetOriginOffset() gdnative.Vector3
 	IsBoxProjectionEnabled() gdnative.Bool
 	IsSetAsInterior() gdnative.Bool
@@ -590,11 +590,11 @@ type ReflectionProbeImplementer interface {
 	SetEnableBoxProjection(enable gdnative.Bool)
 	SetEnableShadows(enable gdnative.Bool)
 	SetExtents(extents gdnative.Vector3)
-	SetIntensity(intensity gdnative.Float)
+	SetIntensity(intensity gdnative.Real)
 	SetInteriorAmbient(ambient gdnative.Color)
-	SetInteriorAmbientEnergy(ambientEnergy gdnative.Float)
-	SetInteriorAmbientProbeContribution(ambientProbeContribution gdnative.Float)
-	SetMaxDistance(maxDistance gdnative.Float)
+	SetInteriorAmbientEnergy(ambientEnergy gdnative.Real)
+	SetInteriorAmbientProbeContribution(ambientProbeContribution gdnative.Real)
+	SetMaxDistance(maxDistance gdnative.Real)
 	SetOriginOffset(originOffset gdnative.Vector3)
 	SetUpdateMode(mode gdnative.Int)
 }

@@ -62,7 +62,7 @@ func (o *HingeJoint) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *HingeJoint) X_GetLowerLimit() gdnative.Float {
+func (o *HingeJoint) X_GetLowerLimit() gdnative.Real {
 	//log.Println("Calling HingeJoint.X_GetLowerLimit()")
 
 	// Build out the method's arguments
@@ -73,11 +73,11 @@ func (o *HingeJoint) X_GetLowerLimit() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -85,7 +85,7 @@ func (o *HingeJoint) X_GetLowerLimit() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *HingeJoint) X_GetUpperLimit() gdnative.Float {
+func (o *HingeJoint) X_GetUpperLimit() gdnative.Real {
 	//log.Println("Calling HingeJoint.X_GetUpperLimit()")
 
 	// Build out the method's arguments
@@ -96,11 +96,11 @@ func (o *HingeJoint) X_GetUpperLimit() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -108,12 +108,12 @@ func (o *HingeJoint) X_GetUpperLimit() gdnative.Float {
         Undocumented
 	Args: [{ false lower_limit float}], Returns: void
 */
-func (o *HingeJoint) X_SetLowerLimit(lowerLimit gdnative.Float) {
+func (o *HingeJoint) X_SetLowerLimit(lowerLimit gdnative.Real) {
 	//log.Println("Calling HingeJoint.X_SetLowerLimit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(lowerLimit)
+	ptrArguments[0] = gdnative.NewPointerFromReal(lowerLimit)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("HingeJoint", "_set_lower_limit")
@@ -129,12 +129,12 @@ func (o *HingeJoint) X_SetLowerLimit(lowerLimit gdnative.Float) {
         Undocumented
 	Args: [{ false upper_limit float}], Returns: void
 */
-func (o *HingeJoint) X_SetUpperLimit(upperLimit gdnative.Float) {
+func (o *HingeJoint) X_SetUpperLimit(upperLimit gdnative.Real) {
 	//log.Println("Calling HingeJoint.X_SetUpperLimit()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(upperLimit)
+	ptrArguments[0] = gdnative.NewPointerFromReal(upperLimit)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("HingeJoint", "_set_upper_limit")
@@ -174,7 +174,7 @@ func (o *HingeJoint) GetFlag(flag gdnative.Int) gdnative.Bool {
         Undocumented
 	Args: [{ false param int}], Returns: float
 */
-func (o *HingeJoint) GetParam(param gdnative.Int) gdnative.Float {
+func (o *HingeJoint) GetParam(param gdnative.Int) gdnative.Real {
 	//log.Println("Calling HingeJoint.GetParam()")
 
 	// Build out the method's arguments
@@ -186,11 +186,11 @@ func (o *HingeJoint) GetParam(param gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -220,13 +220,13 @@ func (o *HingeJoint) SetFlag(flag gdnative.Int, enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false param int} { false value float}], Returns: void
 */
-func (o *HingeJoint) SetParam(param gdnative.Int, value gdnative.Float) {
+func (o *HingeJoint) SetParam(param gdnative.Int, value gdnative.Real) {
 	//log.Println("Calling HingeJoint.SetParam()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(param)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[1] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("HingeJoint", "set_param")
@@ -242,12 +242,12 @@ func (o *HingeJoint) SetParam(param gdnative.Int, value gdnative.Float) {
 // of the HingeJoint class.
 type HingeJointImplementer interface {
 	JointImplementer
-	X_GetLowerLimit() gdnative.Float
-	X_GetUpperLimit() gdnative.Float
-	X_SetLowerLimit(lowerLimit gdnative.Float)
-	X_SetUpperLimit(upperLimit gdnative.Float)
+	X_GetLowerLimit() gdnative.Real
+	X_GetUpperLimit() gdnative.Real
+	X_SetLowerLimit(lowerLimit gdnative.Real)
+	X_SetUpperLimit(upperLimit gdnative.Real)
 	GetFlag(flag gdnative.Int) gdnative.Bool
-	GetParam(param gdnative.Int) gdnative.Float
+	GetParam(param gdnative.Int) gdnative.Real
 	SetFlag(flag gdnative.Int, enabled gdnative.Bool)
-	SetParam(param gdnative.Int, value gdnative.Float)
+	SetParam(param gdnative.Int, value gdnative.Real)
 }

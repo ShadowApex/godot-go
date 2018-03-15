@@ -161,7 +161,7 @@ func (o *CanvasItem) X_EditGetRect() gdnative.Rect2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CanvasItem) X_EditGetRotation() gdnative.Float {
+func (o *CanvasItem) X_EditGetRotation() gdnative.Real {
 	//log.Println("Calling CanvasItem.X_EditGetRotation()")
 
 	// Build out the method's arguments
@@ -172,11 +172,11 @@ func (o *CanvasItem) X_EditGetRotation() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -270,12 +270,12 @@ func (o *CanvasItem) X_EditSetRect(rect gdnative.Rect2) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *CanvasItem) X_EditSetRotation(degrees gdnative.Float) {
+func (o *CanvasItem) X_EditSetRotation(degrees gdnative.Real) {
 	//log.Println("Calling CanvasItem.X_EditSetRotation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CanvasItem", "_edit_set_rotation")
@@ -488,7 +488,7 @@ func (o *CanvasItem) X_UpdateCallback() {
         Draws a string character using a custom font. Returns the advance, depending on the char width and kerning with an optional next char.
 	Args: [{ false font Font} { false position Vector2} { false char String} { false next String} {1,1,1,1 true modulate Color}], Returns: float
 */
-func (o *CanvasItem) DrawChar(font FontImplementer, position gdnative.Vector2, char gdnative.String, next gdnative.String, modulate gdnative.Color) gdnative.Float {
+func (o *CanvasItem) DrawChar(font FontImplementer, position gdnative.Vector2, char gdnative.String, next gdnative.String, modulate gdnative.Color) gdnative.Real {
 	//log.Println("Calling CanvasItem.DrawChar()")
 
 	// Build out the method's arguments
@@ -504,11 +504,11 @@ func (o *CanvasItem) DrawChar(font FontImplementer, position gdnative.Vector2, c
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -516,13 +516,13 @@ func (o *CanvasItem) DrawChar(font FontImplementer, position gdnative.Vector2, c
         Draws a colored circle.
 	Args: [{ false position Vector2} { false radius float} { false color Color}], Returns: void
 */
-func (o *CanvasItem) DrawCircle(position gdnative.Vector2, radius gdnative.Float, color gdnative.Color) {
+func (o *CanvasItem) DrawCircle(position gdnative.Vector2, radius gdnative.Real, color gdnative.Color) {
 	//log.Println("Calling CanvasItem.DrawCircle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[1] = gdnative.NewPointerFromReal(radius)
 	ptrArguments[2] = gdnative.NewPointerFromColor(color)
 
 	// Get the method bind
@@ -565,7 +565,7 @@ func (o *CanvasItem) DrawColoredPolygon(points gdnative.PoolVector2Array, color 
         Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased.
 	Args: [{ false from Vector2} { false to Vector2} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawLine(from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool) {
+func (o *CanvasItem) DrawLine(from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool) {
 	//log.Println("Calling CanvasItem.DrawLine()")
 
 	// Build out the method's arguments
@@ -573,7 +573,7 @@ func (o *CanvasItem) DrawLine(from gdnative.Vector2, to gdnative.Vector2, color 
 	ptrArguments[0] = gdnative.NewPointerFromVector2(from)
 	ptrArguments[1] = gdnative.NewPointerFromVector2(to)
 	ptrArguments[2] = gdnative.NewPointerFromColor(color)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[3] = gdnative.NewPointerFromReal(width)
 	ptrArguments[4] = gdnative.NewPointerFromBool(antialiased)
 
 	// Get the method bind
@@ -590,14 +590,14 @@ func (o *CanvasItem) DrawLine(from gdnative.Vector2, to gdnative.Vector2, color 
         Draws multiple, parallel lines with a uniform [code]color[/code] and [code]width[/code] and optional antialiasing.
 	Args: [{ false points PoolVector2Array} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawMultiline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool) {
+func (o *CanvasItem) DrawMultiline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool) {
 	//log.Println("Calling CanvasItem.DrawMultiline()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
 	ptrArguments[1] = gdnative.NewPointerFromColor(color)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[2] = gdnative.NewPointerFromReal(width)
 	ptrArguments[3] = gdnative.NewPointerFromBool(antialiased)
 
 	// Get the method bind
@@ -614,14 +614,14 @@ func (o *CanvasItem) DrawMultiline(points gdnative.PoolVector2Array, color gdnat
         Draws multiple, parallel lines with a uniform [code]width[/code], segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between [code]points[/code] and [code]colors[/code].
 	Args: [{ false points PoolVector2Array} { false colors PoolColorArray} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawMultilineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
+func (o *CanvasItem) DrawMultilineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Real, antialiased gdnative.Bool) {
 	//log.Println("Calling CanvasItem.DrawMultilineColors()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
 	ptrArguments[1] = gdnative.NewPointerFromPoolColorArray(colors)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[2] = gdnative.NewPointerFromReal(width)
 	ptrArguments[3] = gdnative.NewPointerFromBool(antialiased)
 
 	// Get the method bind
@@ -664,14 +664,14 @@ func (o *CanvasItem) DrawPolygon(points gdnative.PoolVector2Array, colors gdnati
         Draws interconnected line segments with a uniform [code]color[/code] and [code]width[/code] and optional antialiasing.
 	Args: [{ false points PoolVector2Array} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawPolyline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool) {
+func (o *CanvasItem) DrawPolyline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool) {
 	//log.Println("Calling CanvasItem.DrawPolyline()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
 	ptrArguments[1] = gdnative.NewPointerFromColor(color)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[2] = gdnative.NewPointerFromReal(width)
 	ptrArguments[3] = gdnative.NewPointerFromBool(antialiased)
 
 	// Get the method bind
@@ -688,14 +688,14 @@ func (o *CanvasItem) DrawPolyline(points gdnative.PoolVector2Array, color gdnati
         Draws interconnected line segments with a uniform [code]width[/code], segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between [code]points[/code] and [code]colors[/code].
 	Args: [{ false points PoolVector2Array} { false colors PoolColorArray} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *CanvasItem) DrawPolylineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
+func (o *CanvasItem) DrawPolylineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Real, antialiased gdnative.Bool) {
 	//log.Println("Calling CanvasItem.DrawPolylineColors()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromPoolVector2Array(points)
 	ptrArguments[1] = gdnative.NewPointerFromPoolColorArray(colors)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[2] = gdnative.NewPointerFromReal(width)
 	ptrArguments[3] = gdnative.NewPointerFromBool(antialiased)
 
 	// Get the method bind
@@ -712,7 +712,7 @@ func (o *CanvasItem) DrawPolylineColors(points gdnative.PoolVector2Array, colors
         Draws a custom primitive, 1 point for a point, 2 points for a line, 3 points for a triangle and 4 points for a quad.
 	Args: [{ false points PoolVector2Array} { false colors PoolColorArray} { false uvs PoolVector2Array} {Null true texture Texture} {1 true width float} {Null true normal_map Texture}], Returns: void
 */
-func (o *CanvasItem) DrawPrimitive(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, width gdnative.Float, normalMap TextureImplementer) {
+func (o *CanvasItem) DrawPrimitive(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, width gdnative.Real, normalMap TextureImplementer) {
 	//log.Println("Calling CanvasItem.DrawPrimitive()")
 
 	// Build out the method's arguments
@@ -721,7 +721,7 @@ func (o *CanvasItem) DrawPrimitive(points gdnative.PoolVector2Array, colors gdna
 	ptrArguments[1] = gdnative.NewPointerFromPoolColorArray(colors)
 	ptrArguments[2] = gdnative.NewPointerFromPoolVector2Array(uvs)
 	ptrArguments[3] = gdnative.NewPointerFromObject(texture.GetBaseObject())
-	ptrArguments[4] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[4] = gdnative.NewPointerFromReal(width)
 	ptrArguments[5] = gdnative.NewPointerFromObject(normalMap.GetBaseObject())
 
 	// Get the method bind
@@ -761,13 +761,13 @@ func (o *CanvasItem) DrawRect(rect gdnative.Rect2, color gdnative.Color, filled 
         Sets a custom transform for drawing via components. Anything drawn afterwards will be transformed by this.
 	Args: [{ false position Vector2} { false rotation float} { false scale Vector2}], Returns: void
 */
-func (o *CanvasItem) DrawSetTransform(position gdnative.Vector2, rotation gdnative.Float, scale gdnative.Vector2) {
+func (o *CanvasItem) DrawSetTransform(position gdnative.Vector2, rotation gdnative.Real, scale gdnative.Vector2) {
 	//log.Println("Calling CanvasItem.DrawSetTransform()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromVector2(position)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(rotation)
+	ptrArguments[1] = gdnative.NewPointerFromReal(rotation)
 	ptrArguments[2] = gdnative.NewPointerFromVector2(scale)
 
 	// Get the method bind
@@ -1800,12 +1800,12 @@ type CanvasItemImplementer interface {
 	X_EditGetPivot() gdnative.Vector2
 	X_EditGetPosition() gdnative.Vector2
 	X_EditGetRect() gdnative.Rect2
-	X_EditGetRotation() gdnative.Float
+	X_EditGetRotation() gdnative.Real
 	X_EditGetState() gdnative.Dictionary
 	X_EditSetPivot(pivot gdnative.Vector2)
 	X_EditSetPosition(position gdnative.Vector2)
 	X_EditSetRect(rect gdnative.Rect2)
-	X_EditSetRotation(degrees gdnative.Float)
+	X_EditSetRotation(degrees gdnative.Real)
 	X_EditSetState(state gdnative.Dictionary)
 	X_EditUsePivot() gdnative.Bool
 	X_EditUsePosition() gdnative.Bool
@@ -1815,18 +1815,18 @@ type CanvasItemImplementer interface {
 	X_SetOnTop(onTop gdnative.Bool)
 	X_ToplevelRaiseSelf()
 	X_UpdateCallback()
-	DrawChar(font FontImplementer, position gdnative.Vector2, char gdnative.String, next gdnative.String, modulate gdnative.Color) gdnative.Float
-	DrawCircle(position gdnative.Vector2, radius gdnative.Float, color gdnative.Color)
+	DrawChar(font FontImplementer, position gdnative.Vector2, char gdnative.String, next gdnative.String, modulate gdnative.Color) gdnative.Real
+	DrawCircle(position gdnative.Vector2, radius gdnative.Real, color gdnative.Color)
 	DrawColoredPolygon(points gdnative.PoolVector2Array, color gdnative.Color, uvs gdnative.PoolVector2Array, texture TextureImplementer, normalMap TextureImplementer, antialiased gdnative.Bool)
-	DrawLine(from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool)
-	DrawMultiline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool)
-	DrawMultilineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool)
+	DrawLine(from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool)
+	DrawMultiline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool)
+	DrawMultilineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Real, antialiased gdnative.Bool)
 	DrawPolygon(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, normalMap TextureImplementer, antialiased gdnative.Bool)
-	DrawPolyline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool)
-	DrawPolylineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool)
-	DrawPrimitive(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, width gdnative.Float, normalMap TextureImplementer)
+	DrawPolyline(points gdnative.PoolVector2Array, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool)
+	DrawPolylineColors(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Real, antialiased gdnative.Bool)
+	DrawPrimitive(points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture TextureImplementer, width gdnative.Real, normalMap TextureImplementer)
 	DrawRect(rect gdnative.Rect2, color gdnative.Color, filled gdnative.Bool)
-	DrawSetTransform(position gdnative.Vector2, rotation gdnative.Float, scale gdnative.Vector2)
+	DrawSetTransform(position gdnative.Vector2, rotation gdnative.Real, scale gdnative.Vector2)
 	DrawSetTransformMatrix(xform gdnative.Transform2D)
 	DrawString(font FontImplementer, position gdnative.Vector2, text gdnative.String, modulate gdnative.Color, clipW gdnative.Int)
 	DrawStyleBox(styleBox StyleBoxImplementer, rect gdnative.Rect2)

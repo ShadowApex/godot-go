@@ -114,7 +114,7 @@ func (o *ProceduralSky) GetGroundBottomColor() gdnative.Color {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetGroundCurve() gdnative.Float {
+func (o *ProceduralSky) GetGroundCurve() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetGroundCurve()")
 
 	// Build out the method's arguments
@@ -125,11 +125,11 @@ func (o *ProceduralSky) GetGroundCurve() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -137,7 +137,7 @@ func (o *ProceduralSky) GetGroundCurve() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetGroundEnergy() gdnative.Float {
+func (o *ProceduralSky) GetGroundEnergy() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetGroundEnergy()")
 
 	// Build out the method's arguments
@@ -148,11 +148,11 @@ func (o *ProceduralSky) GetGroundEnergy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -183,7 +183,7 @@ func (o *ProceduralSky) GetGroundHorizonColor() gdnative.Color {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetSkyCurve() gdnative.Float {
+func (o *ProceduralSky) GetSkyCurve() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetSkyCurve()")
 
 	// Build out the method's arguments
@@ -194,11 +194,11 @@ func (o *ProceduralSky) GetSkyCurve() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -206,7 +206,7 @@ func (o *ProceduralSky) GetSkyCurve() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetSkyEnergy() gdnative.Float {
+func (o *ProceduralSky) GetSkyEnergy() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetSkyEnergy()")
 
 	// Build out the method's arguments
@@ -217,11 +217,11 @@ func (o *ProceduralSky) GetSkyEnergy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -275,7 +275,7 @@ func (o *ProceduralSky) GetSkyTopColor() gdnative.Color {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetSunAngleMax() gdnative.Float {
+func (o *ProceduralSky) GetSunAngleMax() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetSunAngleMax()")
 
 	// Build out the method's arguments
@@ -286,11 +286,11 @@ func (o *ProceduralSky) GetSunAngleMax() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -298,7 +298,7 @@ func (o *ProceduralSky) GetSunAngleMax() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetSunAngleMin() gdnative.Float {
+func (o *ProceduralSky) GetSunAngleMin() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetSunAngleMin()")
 
 	// Build out the method's arguments
@@ -309,11 +309,11 @@ func (o *ProceduralSky) GetSunAngleMin() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -344,7 +344,7 @@ func (o *ProceduralSky) GetSunColor() gdnative.Color {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetSunCurve() gdnative.Float {
+func (o *ProceduralSky) GetSunCurve() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetSunCurve()")
 
 	// Build out the method's arguments
@@ -355,11 +355,11 @@ func (o *ProceduralSky) GetSunCurve() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -367,7 +367,7 @@ func (o *ProceduralSky) GetSunCurve() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetSunEnergy() gdnative.Float {
+func (o *ProceduralSky) GetSunEnergy() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetSunEnergy()")
 
 	// Build out the method's arguments
@@ -378,11 +378,11 @@ func (o *ProceduralSky) GetSunEnergy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -390,7 +390,7 @@ func (o *ProceduralSky) GetSunEnergy() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetSunLatitude() gdnative.Float {
+func (o *ProceduralSky) GetSunLatitude() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetSunLatitude()")
 
 	// Build out the method's arguments
@@ -401,11 +401,11 @@ func (o *ProceduralSky) GetSunLatitude() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -413,7 +413,7 @@ func (o *ProceduralSky) GetSunLatitude() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *ProceduralSky) GetSunLongitude() gdnative.Float {
+func (o *ProceduralSky) GetSunLongitude() gdnative.Real {
 	//log.Println("Calling ProceduralSky.GetSunLongitude()")
 
 	// Build out the method's arguments
@@ -424,11 +424,11 @@ func (o *ProceduralSky) GetSunLongitude() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -480,12 +480,12 @@ func (o *ProceduralSky) SetGroundBottomColor(color gdnative.Color) {
         Undocumented
 	Args: [{ false curve float}], Returns: void
 */
-func (o *ProceduralSky) SetGroundCurve(curve gdnative.Float) {
+func (o *ProceduralSky) SetGroundCurve(curve gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetGroundCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(curve)
+	ptrArguments[0] = gdnative.NewPointerFromReal(curve)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_ground_curve")
@@ -501,12 +501,12 @@ func (o *ProceduralSky) SetGroundCurve(curve gdnative.Float) {
         Undocumented
 	Args: [{ false energy float}], Returns: void
 */
-func (o *ProceduralSky) SetGroundEnergy(energy gdnative.Float) {
+func (o *ProceduralSky) SetGroundEnergy(energy gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetGroundEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_ground_energy")
@@ -543,12 +543,12 @@ func (o *ProceduralSky) SetGroundHorizonColor(color gdnative.Color) {
         Undocumented
 	Args: [{ false curve float}], Returns: void
 */
-func (o *ProceduralSky) SetSkyCurve(curve gdnative.Float) {
+func (o *ProceduralSky) SetSkyCurve(curve gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetSkyCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(curve)
+	ptrArguments[0] = gdnative.NewPointerFromReal(curve)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_sky_curve")
@@ -564,12 +564,12 @@ func (o *ProceduralSky) SetSkyCurve(curve gdnative.Float) {
         Undocumented
 	Args: [{ false energy float}], Returns: void
 */
-func (o *ProceduralSky) SetSkyEnergy(energy gdnative.Float) {
+func (o *ProceduralSky) SetSkyEnergy(energy gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetSkyEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_sky_energy")
@@ -627,12 +627,12 @@ func (o *ProceduralSky) SetSkyTopColor(color gdnative.Color) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *ProceduralSky) SetSunAngleMax(degrees gdnative.Float) {
+func (o *ProceduralSky) SetSunAngleMax(degrees gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetSunAngleMax()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_sun_angle_max")
@@ -648,12 +648,12 @@ func (o *ProceduralSky) SetSunAngleMax(degrees gdnative.Float) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *ProceduralSky) SetSunAngleMin(degrees gdnative.Float) {
+func (o *ProceduralSky) SetSunAngleMin(degrees gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetSunAngleMin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_sun_angle_min")
@@ -690,12 +690,12 @@ func (o *ProceduralSky) SetSunColor(color gdnative.Color) {
         Undocumented
 	Args: [{ false curve float}], Returns: void
 */
-func (o *ProceduralSky) SetSunCurve(curve gdnative.Float) {
+func (o *ProceduralSky) SetSunCurve(curve gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetSunCurve()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(curve)
+	ptrArguments[0] = gdnative.NewPointerFromReal(curve)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_sun_curve")
@@ -711,12 +711,12 @@ func (o *ProceduralSky) SetSunCurve(curve gdnative.Float) {
         Undocumented
 	Args: [{ false energy float}], Returns: void
 */
-func (o *ProceduralSky) SetSunEnergy(energy gdnative.Float) {
+func (o *ProceduralSky) SetSunEnergy(energy gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetSunEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_sun_energy")
@@ -732,12 +732,12 @@ func (o *ProceduralSky) SetSunEnergy(energy gdnative.Float) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *ProceduralSky) SetSunLatitude(degrees gdnative.Float) {
+func (o *ProceduralSky) SetSunLatitude(degrees gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetSunLatitude()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_sun_latitude")
@@ -753,12 +753,12 @@ func (o *ProceduralSky) SetSunLatitude(degrees gdnative.Float) {
         Undocumented
 	Args: [{ false degrees float}], Returns: void
 */
-func (o *ProceduralSky) SetSunLongitude(degrees gdnative.Float) {
+func (o *ProceduralSky) SetSunLongitude(degrees gdnative.Real) {
 	//log.Println("Calling ProceduralSky.SetSunLongitude()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(degrees)
+	ptrArguments[0] = gdnative.NewPointerFromReal(degrees)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ProceduralSky", "set_sun_longitude")
@@ -798,34 +798,34 @@ type ProceduralSkyImplementer interface {
 	X_ThreadDone(image ImageImplementer)
 	X_UpdateSky()
 	GetGroundBottomColor() gdnative.Color
-	GetGroundCurve() gdnative.Float
-	GetGroundEnergy() gdnative.Float
+	GetGroundCurve() gdnative.Real
+	GetGroundEnergy() gdnative.Real
 	GetGroundHorizonColor() gdnative.Color
-	GetSkyCurve() gdnative.Float
-	GetSkyEnergy() gdnative.Float
+	GetSkyCurve() gdnative.Real
+	GetSkyEnergy() gdnative.Real
 	GetSkyHorizonColor() gdnative.Color
 	GetSkyTopColor() gdnative.Color
-	GetSunAngleMax() gdnative.Float
-	GetSunAngleMin() gdnative.Float
+	GetSunAngleMax() gdnative.Real
+	GetSunAngleMin() gdnative.Real
 	GetSunColor() gdnative.Color
-	GetSunCurve() gdnative.Float
-	GetSunEnergy() gdnative.Float
-	GetSunLatitude() gdnative.Float
-	GetSunLongitude() gdnative.Float
+	GetSunCurve() gdnative.Real
+	GetSunEnergy() gdnative.Real
+	GetSunLatitude() gdnative.Real
+	GetSunLongitude() gdnative.Real
 	SetGroundBottomColor(color gdnative.Color)
-	SetGroundCurve(curve gdnative.Float)
-	SetGroundEnergy(energy gdnative.Float)
+	SetGroundCurve(curve gdnative.Real)
+	SetGroundEnergy(energy gdnative.Real)
 	SetGroundHorizonColor(color gdnative.Color)
-	SetSkyCurve(curve gdnative.Float)
-	SetSkyEnergy(energy gdnative.Float)
+	SetSkyCurve(curve gdnative.Real)
+	SetSkyEnergy(energy gdnative.Real)
 	SetSkyHorizonColor(color gdnative.Color)
 	SetSkyTopColor(color gdnative.Color)
-	SetSunAngleMax(degrees gdnative.Float)
-	SetSunAngleMin(degrees gdnative.Float)
+	SetSunAngleMax(degrees gdnative.Real)
+	SetSunAngleMin(degrees gdnative.Real)
 	SetSunColor(color gdnative.Color)
-	SetSunCurve(curve gdnative.Float)
-	SetSunEnergy(energy gdnative.Float)
-	SetSunLatitude(degrees gdnative.Float)
-	SetSunLongitude(degrees gdnative.Float)
+	SetSunCurve(curve gdnative.Real)
+	SetSunEnergy(energy gdnative.Real)
+	SetSunLatitude(degrees gdnative.Real)
+	SetSunLongitude(degrees gdnative.Real)
 	SetTextureSize(size gdnative.Int)
 }

@@ -137,7 +137,7 @@ func (o *EditorFileSystem) GetFilesystemPath(path gdnative.String) EditorFileSys
         Return the scan progress for 0 to 1 if the FS is being scanned.
 	Args: [], Returns: float
 */
-func (o *EditorFileSystem) GetScanningProgress() gdnative.Float {
+func (o *EditorFileSystem) GetScanningProgress() gdnative.Real {
 	//log.Println("Calling EditorFileSystem.GetScanningProgress()")
 
 	// Build out the method's arguments
@@ -148,11 +148,11 @@ func (o *EditorFileSystem) GetScanningProgress() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -247,7 +247,7 @@ type EditorFileSystemImplementer interface {
 	GetFileType(path gdnative.String) gdnative.String
 	GetFilesystem() EditorFileSystemDirectoryImplementer
 	GetFilesystemPath(path gdnative.String) EditorFileSystemDirectoryImplementer
-	GetScanningProgress() gdnative.Float
+	GetScanningProgress() gdnative.Real
 	IsScanning() gdnative.Bool
 	Scan()
 	ScanSources()

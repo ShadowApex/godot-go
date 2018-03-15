@@ -83,7 +83,7 @@ func (o *Light2D) GetColor() gdnative.Color {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Light2D) GetEnergy() gdnative.Float {
+func (o *Light2D) GetEnergy() gdnative.Real {
 	//log.Println("Calling Light2D.GetEnergy()")
 
 	// Build out the method's arguments
@@ -94,11 +94,11 @@ func (o *Light2D) GetEnergy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -106,7 +106,7 @@ func (o *Light2D) GetEnergy() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Light2D) GetHeight() gdnative.Float {
+func (o *Light2D) GetHeight() gdnative.Real {
 	//log.Println("Calling Light2D.GetHeight()")
 
 	// Build out the method's arguments
@@ -117,11 +117,11 @@ func (o *Light2D) GetHeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -313,7 +313,7 @@ func (o *Light2D) GetShadowFilter() Light2DShadowFilter {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Light2D) GetShadowGradientLength() gdnative.Float {
+func (o *Light2D) GetShadowGradientLength() gdnative.Real {
 	//log.Println("Calling Light2D.GetShadowGradientLength()")
 
 	// Build out the method's arguments
@@ -324,11 +324,11 @@ func (o *Light2D) GetShadowGradientLength() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -336,7 +336,7 @@ func (o *Light2D) GetShadowGradientLength() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Light2D) GetShadowSmooth() gdnative.Float {
+func (o *Light2D) GetShadowSmooth() gdnative.Real {
 	//log.Println("Calling Light2D.GetShadowSmooth()")
 
 	// Build out the method's arguments
@@ -347,11 +347,11 @@ func (o *Light2D) GetShadowSmooth() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -419,7 +419,7 @@ func (o *Light2D) GetTextureOffset() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Light2D) GetTextureScale() gdnative.Float {
+func (o *Light2D) GetTextureScale() gdnative.Real {
 	//log.Println("Calling Light2D.GetTextureScale()")
 
 	// Build out the method's arguments
@@ -430,11 +430,11 @@ func (o *Light2D) GetTextureScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -620,12 +620,12 @@ func (o *Light2D) SetEnabled(enabled gdnative.Bool) {
         Undocumented
 	Args: [{ false energy float}], Returns: void
 */
-func (o *Light2D) SetEnergy(energy gdnative.Float) {
+func (o *Light2D) SetEnergy(energy gdnative.Real) {
 	//log.Println("Calling Light2D.SetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Light2D", "set_energy")
@@ -641,12 +641,12 @@ func (o *Light2D) SetEnergy(energy gdnative.Float) {
         Undocumented
 	Args: [{ false height float}], Returns: void
 */
-func (o *Light2D) SetHeight(height gdnative.Float) {
+func (o *Light2D) SetHeight(height gdnative.Real) {
 	//log.Println("Calling Light2D.SetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(height)
+	ptrArguments[0] = gdnative.NewPointerFromReal(height)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Light2D", "set_height")
@@ -851,12 +851,12 @@ func (o *Light2D) SetShadowFilter(filter gdnative.Int) {
         Undocumented
 	Args: [{ false multiplier float}], Returns: void
 */
-func (o *Light2D) SetShadowGradientLength(multiplier gdnative.Float) {
+func (o *Light2D) SetShadowGradientLength(multiplier gdnative.Real) {
 	//log.Println("Calling Light2D.SetShadowGradientLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(multiplier)
+	ptrArguments[0] = gdnative.NewPointerFromReal(multiplier)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Light2D", "set_shadow_gradient_length")
@@ -872,12 +872,12 @@ func (o *Light2D) SetShadowGradientLength(multiplier gdnative.Float) {
         Undocumented
 	Args: [{ false smooth float}], Returns: void
 */
-func (o *Light2D) SetShadowSmooth(smooth gdnative.Float) {
+func (o *Light2D) SetShadowSmooth(smooth gdnative.Real) {
 	//log.Println("Calling Light2D.SetShadowSmooth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(smooth)
+	ptrArguments[0] = gdnative.NewPointerFromReal(smooth)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Light2D", "set_shadow_smooth")
@@ -935,12 +935,12 @@ func (o *Light2D) SetTextureOffset(textureOffset gdnative.Vector2) {
         Undocumented
 	Args: [{ false texture_scale float}], Returns: void
 */
-func (o *Light2D) SetTextureScale(textureScale gdnative.Float) {
+func (o *Light2D) SetTextureScale(textureScale gdnative.Real) {
 	//log.Println("Calling Light2D.SetTextureScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(textureScale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(textureScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Light2D", "set_texture_scale")
@@ -999,19 +999,19 @@ func (o *Light2D) SetZRangeMin(z gdnative.Int) {
 type Light2DImplementer interface {
 	Node2DImplementer
 	GetColor() gdnative.Color
-	GetEnergy() gdnative.Float
-	GetHeight() gdnative.Float
+	GetEnergy() gdnative.Real
+	GetHeight() gdnative.Real
 	GetItemCullMask() gdnative.Int
 	GetItemShadowCullMask() gdnative.Int
 	GetLayerRangeMax() gdnative.Int
 	GetLayerRangeMin() gdnative.Int
 	GetShadowBufferSize() gdnative.Int
 	GetShadowColor() gdnative.Color
-	GetShadowGradientLength() gdnative.Float
-	GetShadowSmooth() gdnative.Float
+	GetShadowGradientLength() gdnative.Real
+	GetShadowSmooth() gdnative.Real
 	GetTexture() TextureImplementer
 	GetTextureOffset() gdnative.Vector2
-	GetTextureScale() gdnative.Float
+	GetTextureScale() gdnative.Real
 	GetZRangeMax() gdnative.Int
 	GetZRangeMin() gdnative.Int
 	IsEditorOnly() gdnative.Bool
@@ -1020,8 +1020,8 @@ type Light2DImplementer interface {
 	SetColor(color gdnative.Color)
 	SetEditorOnly(editorOnly gdnative.Bool)
 	SetEnabled(enabled gdnative.Bool)
-	SetEnergy(energy gdnative.Float)
-	SetHeight(height gdnative.Float)
+	SetEnergy(energy gdnative.Real)
+	SetHeight(height gdnative.Real)
 	SetItemCullMask(itemCullMask gdnative.Int)
 	SetItemShadowCullMask(itemShadowCullMask gdnative.Int)
 	SetLayerRangeMax(layer gdnative.Int)
@@ -1031,11 +1031,11 @@ type Light2DImplementer interface {
 	SetShadowColor(shadowColor gdnative.Color)
 	SetShadowEnabled(enabled gdnative.Bool)
 	SetShadowFilter(filter gdnative.Int)
-	SetShadowGradientLength(multiplier gdnative.Float)
-	SetShadowSmooth(smooth gdnative.Float)
+	SetShadowGradientLength(multiplier gdnative.Real)
+	SetShadowSmooth(smooth gdnative.Real)
 	SetTexture(texture TextureImplementer)
 	SetTextureOffset(textureOffset gdnative.Vector2)
-	SetTextureScale(textureScale gdnative.Float)
+	SetTextureScale(textureScale gdnative.Real)
 	SetZRangeMax(z gdnative.Int)
 	SetZRangeMin(z gdnative.Int)
 }

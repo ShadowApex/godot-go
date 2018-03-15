@@ -38,7 +38,7 @@ func (o *CylinderMesh) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CylinderMesh) GetBottomRadius() gdnative.Float {
+func (o *CylinderMesh) GetBottomRadius() gdnative.Real {
 	//log.Println("Calling CylinderMesh.GetBottomRadius()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *CylinderMesh) GetBottomRadius() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *CylinderMesh) GetBottomRadius() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CylinderMesh) GetHeight() gdnative.Float {
+func (o *CylinderMesh) GetHeight() gdnative.Real {
 	//log.Println("Calling CylinderMesh.GetHeight()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *CylinderMesh) GetHeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,7 +130,7 @@ func (o *CylinderMesh) GetRings() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CylinderMesh) GetTopRadius() gdnative.Float {
+func (o *CylinderMesh) GetTopRadius() gdnative.Real {
 	//log.Println("Calling CylinderMesh.GetTopRadius()")
 
 	// Build out the method's arguments
@@ -141,11 +141,11 @@ func (o *CylinderMesh) GetTopRadius() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -153,12 +153,12 @@ func (o *CylinderMesh) GetTopRadius() gdnative.Float {
         Undocumented
 	Args: [{ false radius float}], Returns: void
 */
-func (o *CylinderMesh) SetBottomRadius(radius gdnative.Float) {
+func (o *CylinderMesh) SetBottomRadius(radius gdnative.Real) {
 	//log.Println("Calling CylinderMesh.SetBottomRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radius)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CylinderMesh", "set_bottom_radius")
@@ -174,12 +174,12 @@ func (o *CylinderMesh) SetBottomRadius(radius gdnative.Float) {
         Undocumented
 	Args: [{ false height float}], Returns: void
 */
-func (o *CylinderMesh) SetHeight(height gdnative.Float) {
+func (o *CylinderMesh) SetHeight(height gdnative.Real) {
 	//log.Println("Calling CylinderMesh.SetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(height)
+	ptrArguments[0] = gdnative.NewPointerFromReal(height)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CylinderMesh", "set_height")
@@ -237,12 +237,12 @@ func (o *CylinderMesh) SetRings(rings gdnative.Int) {
         Undocumented
 	Args: [{ false radius float}], Returns: void
 */
-func (o *CylinderMesh) SetTopRadius(radius gdnative.Float) {
+func (o *CylinderMesh) SetTopRadius(radius gdnative.Real) {
 	//log.Println("Calling CylinderMesh.SetTopRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radius)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CylinderMesh", "set_top_radius")
@@ -258,14 +258,14 @@ func (o *CylinderMesh) SetTopRadius(radius gdnative.Float) {
 // of the CylinderMesh class.
 type CylinderMeshImplementer interface {
 	PrimitiveMeshImplementer
-	GetBottomRadius() gdnative.Float
-	GetHeight() gdnative.Float
+	GetBottomRadius() gdnative.Real
+	GetHeight() gdnative.Real
 	GetRadialSegments() gdnative.Int
 	GetRings() gdnative.Int
-	GetTopRadius() gdnative.Float
-	SetBottomRadius(radius gdnative.Float)
-	SetHeight(height gdnative.Float)
+	GetTopRadius() gdnative.Real
+	SetBottomRadius(radius gdnative.Real)
+	SetHeight(height gdnative.Real)
 	SetRadialSegments(segments gdnative.Int)
 	SetRings(rings gdnative.Int)
-	SetTopRadius(radius gdnative.Float)
+	SetTopRadius(radius gdnative.Real)
 }

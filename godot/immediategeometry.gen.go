@@ -38,14 +38,14 @@ func (o *ImmediateGeometry) BaseClass() string {
         Simple helper to draw a uvsphere, with given latitudes, longitude and radius.
 	Args: [{ false lats int} { false lons int} { false radius float} {True true add_uv bool}], Returns: void
 */
-func (o *ImmediateGeometry) AddSphere(lats gdnative.Int, lons gdnative.Int, radius gdnative.Float, addUv gdnative.Bool) {
+func (o *ImmediateGeometry) AddSphere(lats gdnative.Int, lons gdnative.Int, radius gdnative.Real, addUv gdnative.Bool) {
 	//log.Println("Calling ImmediateGeometry.AddSphere()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromInt(lats)
 	ptrArguments[1] = gdnative.NewPointerFromInt(lons)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[2] = gdnative.NewPointerFromReal(radius)
 	ptrArguments[3] = gdnative.NewPointerFromBool(addUv)
 
 	// Get the method bind
@@ -250,7 +250,7 @@ func (o *ImmediateGeometry) SetUv2(uv gdnative.Vector2) {
 // of the ImmediateGeometry class.
 type ImmediateGeometryImplementer interface {
 	GeometryInstanceImplementer
-	AddSphere(lats gdnative.Int, lons gdnative.Int, radius gdnative.Float, addUv gdnative.Bool)
+	AddSphere(lats gdnative.Int, lons gdnative.Int, radius gdnative.Real, addUv gdnative.Bool)
 	AddVertex(position gdnative.Vector3)
 	Begin(primitive gdnative.Int, texture TextureImplementer)
 	Clear()

@@ -201,12 +201,10 @@ import "C"
 		
 		const (
 		{{ range $j, $propdef := $typedef.Properties -}}
-			{{ if eq $j 0 -}}
-				{{ $propdef.GoName }} {{ $typedef.GoName }} = iota
-			{{ else -}}
-				{{ $propdef.GoName }}
+			{{ if (ne $propdef.GoName "") -}}
+				{{ $propdef.GoName }} {{ $typedef.GoName }} = {{ $j }} {{ if $propdef.Comment }}// {{ $propdef.Comment }}{{ end }}
 			{{ end -}}
-		{{ end }}
+		{{ end -}}
 		)
 
 		// {{ $typedef.GoName }}LookupMap is a string-based lookup table of constants for {{ $typedef.GoName }}.

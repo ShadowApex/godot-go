@@ -38,7 +38,7 @@ func (o *AudioEffectLimiter) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectLimiter) GetCeilingDb() gdnative.Float {
+func (o *AudioEffectLimiter) GetCeilingDb() gdnative.Real {
 	//log.Println("Calling AudioEffectLimiter.GetCeilingDb()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *AudioEffectLimiter) GetCeilingDb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *AudioEffectLimiter) GetCeilingDb() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectLimiter) GetSoftClipDb() gdnative.Float {
+func (o *AudioEffectLimiter) GetSoftClipDb() gdnative.Real {
 	//log.Println("Calling AudioEffectLimiter.GetSoftClipDb()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *AudioEffectLimiter) GetSoftClipDb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *AudioEffectLimiter) GetSoftClipDb() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectLimiter) GetSoftClipRatio() gdnative.Float {
+func (o *AudioEffectLimiter) GetSoftClipRatio() gdnative.Real {
 	//log.Println("Calling AudioEffectLimiter.GetSoftClipRatio()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *AudioEffectLimiter) GetSoftClipRatio() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *AudioEffectLimiter) GetSoftClipRatio() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectLimiter) GetThresholdDb() gdnative.Float {
+func (o *AudioEffectLimiter) GetThresholdDb() gdnative.Real {
 	//log.Println("Calling AudioEffectLimiter.GetThresholdDb()")
 
 	// Build out the method's arguments
@@ -118,11 +118,11 @@ func (o *AudioEffectLimiter) GetThresholdDb() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -130,12 +130,12 @@ func (o *AudioEffectLimiter) GetThresholdDb() gdnative.Float {
         Undocumented
 	Args: [{ false ceiling float}], Returns: void
 */
-func (o *AudioEffectLimiter) SetCeilingDb(ceiling gdnative.Float) {
+func (o *AudioEffectLimiter) SetCeilingDb(ceiling gdnative.Real) {
 	//log.Println("Calling AudioEffectLimiter.SetCeilingDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(ceiling)
+	ptrArguments[0] = gdnative.NewPointerFromReal(ceiling)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "set_ceiling_db")
@@ -151,12 +151,12 @@ func (o *AudioEffectLimiter) SetCeilingDb(ceiling gdnative.Float) {
         Undocumented
 	Args: [{ false soft_clip float}], Returns: void
 */
-func (o *AudioEffectLimiter) SetSoftClipDb(softClip gdnative.Float) {
+func (o *AudioEffectLimiter) SetSoftClipDb(softClip gdnative.Real) {
 	//log.Println("Calling AudioEffectLimiter.SetSoftClipDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(softClip)
+	ptrArguments[0] = gdnative.NewPointerFromReal(softClip)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "set_soft_clip_db")
@@ -172,12 +172,12 @@ func (o *AudioEffectLimiter) SetSoftClipDb(softClip gdnative.Float) {
         Undocumented
 	Args: [{ false soft_clip float}], Returns: void
 */
-func (o *AudioEffectLimiter) SetSoftClipRatio(softClip gdnative.Float) {
+func (o *AudioEffectLimiter) SetSoftClipRatio(softClip gdnative.Real) {
 	//log.Println("Calling AudioEffectLimiter.SetSoftClipRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(softClip)
+	ptrArguments[0] = gdnative.NewPointerFromReal(softClip)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "set_soft_clip_ratio")
@@ -193,12 +193,12 @@ func (o *AudioEffectLimiter) SetSoftClipRatio(softClip gdnative.Float) {
         Undocumented
 	Args: [{ false threshold float}], Returns: void
 */
-func (o *AudioEffectLimiter) SetThresholdDb(threshold gdnative.Float) {
+func (o *AudioEffectLimiter) SetThresholdDb(threshold gdnative.Real) {
 	//log.Println("Calling AudioEffectLimiter.SetThresholdDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(threshold)
+	ptrArguments[0] = gdnative.NewPointerFromReal(threshold)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectLimiter", "set_threshold_db")
@@ -214,12 +214,12 @@ func (o *AudioEffectLimiter) SetThresholdDb(threshold gdnative.Float) {
 // of the AudioEffectLimiter class.
 type AudioEffectLimiterImplementer interface {
 	AudioEffectImplementer
-	GetCeilingDb() gdnative.Float
-	GetSoftClipDb() gdnative.Float
-	GetSoftClipRatio() gdnative.Float
-	GetThresholdDb() gdnative.Float
-	SetCeilingDb(ceiling gdnative.Float)
-	SetSoftClipDb(softClip gdnative.Float)
-	SetSoftClipRatio(softClip gdnative.Float)
-	SetThresholdDb(threshold gdnative.Float)
+	GetCeilingDb() gdnative.Real
+	GetSoftClipDb() gdnative.Real
+	GetSoftClipRatio() gdnative.Real
+	GetThresholdDb() gdnative.Real
+	SetCeilingDb(ceiling gdnative.Real)
+	SetSoftClipDb(softClip gdnative.Real)
+	SetSoftClipRatio(softClip gdnative.Real)
+	SetThresholdDb(threshold gdnative.Real)
 }

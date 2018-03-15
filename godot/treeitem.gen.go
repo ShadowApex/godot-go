@@ -659,7 +659,7 @@ func (o *TreeItem) GetPrevVisible() TreeItemImplementer {
 
 	Args: [{ false column int}], Returns: float
 */
-func (o *TreeItem) GetRange(column gdnative.Int) gdnative.Float {
+func (o *TreeItem) GetRange(column gdnative.Int) gdnative.Real {
 	//log.Println("Calling TreeItem.GetRange()")
 
 	// Build out the method's arguments
@@ -671,11 +671,11 @@ func (o *TreeItem) GetRange(column gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1404,13 +1404,13 @@ func (o *TreeItem) SetMetadata(column gdnative.Int, meta gdnative.Variant) {
 
 	Args: [{ false column int} { false value float}], Returns: void
 */
-func (o *TreeItem) SetRange(column gdnative.Int, value gdnative.Float) {
+func (o *TreeItem) SetRange(column gdnative.Int, value gdnative.Real) {
 	//log.Println("Calling TreeItem.SetRange()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(column)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[1] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TreeItem", "set_range")
@@ -1426,15 +1426,15 @@ func (o *TreeItem) SetRange(column gdnative.Int, value gdnative.Float) {
 
 	Args: [{ false column int} { false min float} { false max float} { false step float} {False true expr bool}], Returns: void
 */
-func (o *TreeItem) SetRangeConfig(column gdnative.Int, min gdnative.Float, max gdnative.Float, step gdnative.Float, expr gdnative.Bool) {
+func (o *TreeItem) SetRangeConfig(column gdnative.Int, min gdnative.Real, max gdnative.Real, step gdnative.Real, expr gdnative.Bool) {
 	//log.Println("Calling TreeItem.SetRangeConfig()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
 	ptrArguments[0] = gdnative.NewPointerFromInt(column)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(min)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(max)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(step)
+	ptrArguments[1] = gdnative.NewPointerFromReal(min)
+	ptrArguments[2] = gdnative.NewPointerFromReal(max)
+	ptrArguments[3] = gdnative.NewPointerFromReal(step)
 	ptrArguments[4] = gdnative.NewPointerFromBool(expr)
 
 	// Get the method bind
@@ -1559,7 +1559,7 @@ type TreeItemImplementer interface {
 	GetParent() TreeItemImplementer
 	GetPrev() TreeItemImplementer
 	GetPrevVisible() TreeItemImplementer
-	GetRange(column gdnative.Int) gdnative.Float
+	GetRange(column gdnative.Int) gdnative.Real
 	GetRangeConfig(column gdnative.Int) gdnative.Dictionary
 	GetText(column gdnative.Int) gdnative.String
 	GetTooltip(column gdnative.Int) gdnative.String
@@ -1591,8 +1591,8 @@ type TreeItemImplementer interface {
 	SetIconMaxWidth(column gdnative.Int, width gdnative.Int)
 	SetIconRegion(column gdnative.Int, region gdnative.Rect2)
 	SetMetadata(column gdnative.Int, meta gdnative.Variant)
-	SetRange(column gdnative.Int, value gdnative.Float)
-	SetRangeConfig(column gdnative.Int, min gdnative.Float, max gdnative.Float, step gdnative.Float, expr gdnative.Bool)
+	SetRange(column gdnative.Int, value gdnative.Real)
+	SetRangeConfig(column gdnative.Int, min gdnative.Real, max gdnative.Real, step gdnative.Real, expr gdnative.Bool)
 	SetSelectable(column gdnative.Int, selectable gdnative.Bool)
 	SetText(column gdnative.Int, text gdnative.String)
 	SetTextAlign(column gdnative.Int, textAlign gdnative.Int)

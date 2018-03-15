@@ -183,7 +183,7 @@ func (o *Area) X_BodyInout(arg0 gdnative.Int, arg1 gdnative.Rid, arg2 gdnative.I
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Area) GetAngularDamp() gdnative.Float {
+func (o *Area) GetAngularDamp() gdnative.Real {
 	//log.Println("Calling Area.GetAngularDamp()")
 
 	// Build out the method's arguments
@@ -194,11 +194,11 @@ func (o *Area) GetAngularDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -323,7 +323,7 @@ func (o *Area) GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Area) GetGravity() gdnative.Float {
+func (o *Area) GetGravity() gdnative.Real {
 	//log.Println("Calling Area.GetGravity()")
 
 	// Build out the method's arguments
@@ -334,11 +334,11 @@ func (o *Area) GetGravity() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -346,7 +346,7 @@ func (o *Area) GetGravity() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Area) GetGravityDistanceScale() gdnative.Float {
+func (o *Area) GetGravityDistanceScale() gdnative.Real {
 	//log.Println("Calling Area.GetGravityDistanceScale()")
 
 	// Build out the method's arguments
@@ -357,11 +357,11 @@ func (o *Area) GetGravityDistanceScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -392,7 +392,7 @@ func (o *Area) GetGravityVector() gdnative.Vector3 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Area) GetLinearDamp() gdnative.Float {
+func (o *Area) GetLinearDamp() gdnative.Real {
 	//log.Println("Calling Area.GetLinearDamp()")
 
 	// Build out the method's arguments
@@ -403,11 +403,11 @@ func (o *Area) GetLinearDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -461,7 +461,7 @@ func (o *Area) GetOverlappingBodies() gdnative.Array {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Area) GetPriority() gdnative.Float {
+func (o *Area) GetPriority() gdnative.Real {
 	//log.Println("Calling Area.GetPriority()")
 
 	// Build out the method's arguments
@@ -472,11 +472,11 @@ func (o *Area) GetPriority() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -484,7 +484,7 @@ func (o *Area) GetPriority() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Area) GetReverbAmount() gdnative.Float {
+func (o *Area) GetReverbAmount() gdnative.Real {
 	//log.Println("Calling Area.GetReverbAmount()")
 
 	// Build out the method's arguments
@@ -495,11 +495,11 @@ func (o *Area) GetReverbAmount() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -530,7 +530,7 @@ func (o *Area) GetReverbBus() gdnative.String {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Area) GetReverbUniformity() gdnative.Float {
+func (o *Area) GetReverbUniformity() gdnative.Real {
 	//log.Println("Calling Area.GetReverbUniformity()")
 
 	// Build out the method's arguments
@@ -541,11 +541,11 @@ func (o *Area) GetReverbUniformity() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -739,12 +739,12 @@ func (o *Area) OverlapsBody(body ObjectImplementer) gdnative.Bool {
         Undocumented
 	Args: [{ false angular_damp float}], Returns: void
 */
-func (o *Area) SetAngularDamp(angularDamp gdnative.Float) {
+func (o *Area) SetAngularDamp(angularDamp gdnative.Real) {
 	//log.Println("Calling Area.SetAngularDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(angularDamp)
+	ptrArguments[0] = gdnative.NewPointerFromReal(angularDamp)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Area", "set_angular_damp")
@@ -888,12 +888,12 @@ func (o *Area) SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool) {
         Undocumented
 	Args: [{ false gravity float}], Returns: void
 */
-func (o *Area) SetGravity(gravity gdnative.Float) {
+func (o *Area) SetGravity(gravity gdnative.Real) {
 	//log.Println("Calling Area.SetGravity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(gravity)
+	ptrArguments[0] = gdnative.NewPointerFromReal(gravity)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Area", "set_gravity")
@@ -909,12 +909,12 @@ func (o *Area) SetGravity(gravity gdnative.Float) {
         Undocumented
 	Args: [{ false distance_scale float}], Returns: void
 */
-func (o *Area) SetGravityDistanceScale(distanceScale gdnative.Float) {
+func (o *Area) SetGravityDistanceScale(distanceScale gdnative.Real) {
 	//log.Println("Calling Area.SetGravityDistanceScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(distanceScale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(distanceScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Area", "set_gravity_distance_scale")
@@ -972,12 +972,12 @@ func (o *Area) SetGravityVector(vector gdnative.Vector3) {
         Undocumented
 	Args: [{ false linear_damp float}], Returns: void
 */
-func (o *Area) SetLinearDamp(linearDamp gdnative.Float) {
+func (o *Area) SetLinearDamp(linearDamp gdnative.Real) {
 	//log.Println("Calling Area.SetLinearDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(linearDamp)
+	ptrArguments[0] = gdnative.NewPointerFromReal(linearDamp)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Area", "set_linear_damp")
@@ -1035,12 +1035,12 @@ func (o *Area) SetMonitoring(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false priority float}], Returns: void
 */
-func (o *Area) SetPriority(priority gdnative.Float) {
+func (o *Area) SetPriority(priority gdnative.Real) {
 	//log.Println("Calling Area.SetPriority()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(priority)
+	ptrArguments[0] = gdnative.NewPointerFromReal(priority)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Area", "set_priority")
@@ -1056,12 +1056,12 @@ func (o *Area) SetPriority(priority gdnative.Float) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *Area) SetReverbAmount(amount gdnative.Float) {
+func (o *Area) SetReverbAmount(amount gdnative.Real) {
 	//log.Println("Calling Area.SetReverbAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Area", "set_reverb_amount")
@@ -1098,12 +1098,12 @@ func (o *Area) SetReverbBus(name gdnative.String) {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *Area) SetReverbUniformity(amount gdnative.Float) {
+func (o *Area) SetReverbUniformity(amount gdnative.Real) {
 	//log.Println("Calling Area.SetReverbUniformity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Area", "set_reverb_uniformity")
@@ -1167,22 +1167,22 @@ type AreaImplementer interface {
 	X_BodyEnterTree(id gdnative.Int)
 	X_BodyExitTree(id gdnative.Int)
 	X_BodyInout(arg0 gdnative.Int, arg1 gdnative.Rid, arg2 gdnative.Int, arg3 gdnative.Int, arg4 gdnative.Int)
-	GetAngularDamp() gdnative.Float
+	GetAngularDamp() gdnative.Real
 	GetAudioBus() gdnative.String
 	GetCollisionLayer() gdnative.Int
 	GetCollisionLayerBit(bit gdnative.Int) gdnative.Bool
 	GetCollisionMask() gdnative.Int
 	GetCollisionMaskBit(bit gdnative.Int) gdnative.Bool
-	GetGravity() gdnative.Float
-	GetGravityDistanceScale() gdnative.Float
+	GetGravity() gdnative.Real
+	GetGravityDistanceScale() gdnative.Real
 	GetGravityVector() gdnative.Vector3
-	GetLinearDamp() gdnative.Float
+	GetLinearDamp() gdnative.Real
 	GetOverlappingAreas() gdnative.Array
 	GetOverlappingBodies() gdnative.Array
-	GetPriority() gdnative.Float
-	GetReverbAmount() gdnative.Float
+	GetPriority() gdnative.Real
+	GetReverbAmount() gdnative.Real
 	GetReverbBus() gdnative.String
-	GetReverbUniformity() gdnative.Float
+	GetReverbUniformity() gdnative.Real
 	IsGravityAPoint() gdnative.Bool
 	IsMonitorable() gdnative.Bool
 	IsMonitoring() gdnative.Bool
@@ -1190,24 +1190,24 @@ type AreaImplementer interface {
 	IsUsingReverbBus() gdnative.Bool
 	OverlapsArea(area ObjectImplementer) gdnative.Bool
 	OverlapsBody(body ObjectImplementer) gdnative.Bool
-	SetAngularDamp(angularDamp gdnative.Float)
+	SetAngularDamp(angularDamp gdnative.Real)
 	SetAudioBus(name gdnative.String)
 	SetAudioBusOverride(enable gdnative.Bool)
 	SetCollisionLayer(collisionLayer gdnative.Int)
 	SetCollisionLayerBit(bit gdnative.Int, value gdnative.Bool)
 	SetCollisionMask(collisionMask gdnative.Int)
 	SetCollisionMaskBit(bit gdnative.Int, value gdnative.Bool)
-	SetGravity(gravity gdnative.Float)
-	SetGravityDistanceScale(distanceScale gdnative.Float)
+	SetGravity(gravity gdnative.Real)
+	SetGravityDistanceScale(distanceScale gdnative.Real)
 	SetGravityIsPoint(enable gdnative.Bool)
 	SetGravityVector(vector gdnative.Vector3)
-	SetLinearDamp(linearDamp gdnative.Float)
+	SetLinearDamp(linearDamp gdnative.Real)
 	SetMonitorable(enable gdnative.Bool)
 	SetMonitoring(enable gdnative.Bool)
-	SetPriority(priority gdnative.Float)
-	SetReverbAmount(amount gdnative.Float)
+	SetPriority(priority gdnative.Real)
+	SetReverbAmount(amount gdnative.Real)
 	SetReverbBus(name gdnative.String)
-	SetReverbUniformity(amount gdnative.Float)
+	SetReverbUniformity(amount gdnative.Real)
 	SetSpaceOverrideMode(enable gdnative.Int)
 	SetUseReverbBus(enable gdnative.Bool)
 }

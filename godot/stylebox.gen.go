@@ -83,7 +83,7 @@ func (o *StyleBox) GetCenterSize() gdnative.Vector2 {
         Undocumented
 	Args: [{ false margin int}], Returns: float
 */
-func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Float {
+func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Real {
 	//log.Println("Calling StyleBox.GetDefaultMargin()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -107,7 +107,7 @@ func (o *StyleBox) GetDefaultMargin(margin gdnative.Int) gdnative.Float {
         Return the offset of margin "margin" (see MARGIN_* enum).
 	Args: [{ false margin int}], Returns: float
 */
-func (o *StyleBox) GetMargin(margin gdnative.Int) gdnative.Float {
+func (o *StyleBox) GetMargin(margin gdnative.Int) gdnative.Real {
 	//log.Println("Calling StyleBox.GetMargin()")
 
 	// Build out the method's arguments
@@ -119,11 +119,11 @@ func (o *StyleBox) GetMargin(margin gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -177,13 +177,13 @@ func (o *StyleBox) GetOffset() gdnative.Vector2 {
         Undocumented
 	Args: [{ false margin int} { false offset float}], Returns: void
 */
-func (o *StyleBox) SetDefaultMargin(margin gdnative.Int, offset gdnative.Float) {
+func (o *StyleBox) SetDefaultMargin(margin gdnative.Int, offset gdnative.Real) {
 	//log.Println("Calling StyleBox.SetDefaultMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(offset)
+	ptrArguments[1] = gdnative.NewPointerFromReal(offset)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StyleBox", "set_default_margin")
@@ -226,10 +226,10 @@ type StyleBoxImplementer interface {
 	ResourceImplementer
 	Draw(canvasItem gdnative.Rid, rect gdnative.Rect2)
 	GetCenterSize() gdnative.Vector2
-	GetDefaultMargin(margin gdnative.Int) gdnative.Float
-	GetMargin(margin gdnative.Int) gdnative.Float
+	GetDefaultMargin(margin gdnative.Int) gdnative.Real
+	GetMargin(margin gdnative.Int) gdnative.Real
 	GetMinimumSize() gdnative.Vector2
 	GetOffset() gdnative.Vector2
-	SetDefaultMargin(margin gdnative.Int, offset gdnative.Float)
+	SetDefaultMargin(margin gdnative.Int, offset gdnative.Real)
 	TestMask(point gdnative.Vector2, rect gdnative.Rect2) gdnative.Bool
 }

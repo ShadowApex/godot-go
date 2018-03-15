@@ -170,7 +170,7 @@ func (o *BitmapFont) X_SetTextures(arg0 gdnative.Array) {
         Adds a character to the font, where [code]character[/code] is the unicode value, [code]texture[/code] is the texture index, [code]rect[/code] is the region in the texture (in pixels!), [code]align[/code] is the (optional) alignment for the character and [code]advance[/code] is the (optional) advance.
 	Args: [{ false character int} { false texture int} { false rect Rect2} {(0, 0) true align Vector2} {-1 true advance float}], Returns: void
 */
-func (o *BitmapFont) AddChar(character gdnative.Int, texture gdnative.Int, rect gdnative.Rect2, align gdnative.Vector2, advance gdnative.Float) {
+func (o *BitmapFont) AddChar(character gdnative.Int, texture gdnative.Int, rect gdnative.Rect2, align gdnative.Vector2, advance gdnative.Real) {
 	//log.Println("Calling BitmapFont.AddChar()")
 
 	// Build out the method's arguments
@@ -179,7 +179,7 @@ func (o *BitmapFont) AddChar(character gdnative.Int, texture gdnative.Int, rect 
 	ptrArguments[1] = gdnative.NewPointerFromInt(texture)
 	ptrArguments[2] = gdnative.NewPointerFromRect2(rect)
 	ptrArguments[3] = gdnative.NewPointerFromVector2(align)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(advance)
+	ptrArguments[4] = gdnative.NewPointerFromReal(advance)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("BitmapFont", "add_char")
@@ -431,12 +431,12 @@ func (o *BitmapFont) GetTextureCount() gdnative.Int {
         Undocumented
 	Args: [{ false px float}], Returns: void
 */
-func (o *BitmapFont) SetAscent(px gdnative.Float) {
+func (o *BitmapFont) SetAscent(px gdnative.Real) {
 	//log.Println("Calling BitmapFont.SetAscent()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(px)
+	ptrArguments[0] = gdnative.NewPointerFromReal(px)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("BitmapFont", "set_ascent")
@@ -494,12 +494,12 @@ func (o *BitmapFont) SetFallback(fallback BitmapFontImplementer) {
         Undocumented
 	Args: [{ false px float}], Returns: void
 */
-func (o *BitmapFont) SetHeight(px gdnative.Float) {
+func (o *BitmapFont) SetHeight(px gdnative.Real) {
 	//log.Println("Calling BitmapFont.SetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(px)
+	ptrArguments[0] = gdnative.NewPointerFromReal(px)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("BitmapFont", "set_height")
@@ -521,7 +521,7 @@ type BitmapFontImplementer interface {
 	X_SetChars(arg0 gdnative.PoolIntArray)
 	X_SetKernings(arg0 gdnative.PoolIntArray)
 	X_SetTextures(arg0 gdnative.Array)
-	AddChar(character gdnative.Int, texture gdnative.Int, rect gdnative.Rect2, align gdnative.Vector2, advance gdnative.Float)
+	AddChar(character gdnative.Int, texture gdnative.Int, rect gdnative.Rect2, align gdnative.Vector2, advance gdnative.Real)
 	AddKerningPair(charA gdnative.Int, charB gdnative.Int, kerning gdnative.Int)
 	AddTexture(texture TextureImplementer)
 	Clear()
@@ -530,8 +530,8 @@ type BitmapFontImplementer interface {
 	GetKerningPair(charA gdnative.Int, charB gdnative.Int) gdnative.Int
 	GetTexture(idx gdnative.Int) TextureImplementer
 	GetTextureCount() gdnative.Int
-	SetAscent(px gdnative.Float)
+	SetAscent(px gdnative.Real)
 	SetDistanceFieldHint(enable gdnative.Bool)
 	SetFallback(fallback BitmapFontImplementer)
-	SetHeight(px gdnative.Float)
+	SetHeight(px gdnative.Real)
 }

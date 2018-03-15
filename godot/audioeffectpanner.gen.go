@@ -38,7 +38,7 @@ func (o *AudioEffectPanner) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectPanner) GetPan() gdnative.Float {
+func (o *AudioEffectPanner) GetPan() gdnative.Real {
 	//log.Println("Calling AudioEffectPanner.GetPan()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *AudioEffectPanner) GetPan() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,12 +61,12 @@ func (o *AudioEffectPanner) GetPan() gdnative.Float {
         Undocumented
 	Args: [{ false cpanume float}], Returns: void
 */
-func (o *AudioEffectPanner) SetPan(cpanume gdnative.Float) {
+func (o *AudioEffectPanner) SetPan(cpanume gdnative.Real) {
 	//log.Println("Calling AudioEffectPanner.SetPan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(cpanume)
+	ptrArguments[0] = gdnative.NewPointerFromReal(cpanume)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectPanner", "set_pan")
@@ -82,6 +82,6 @@ func (o *AudioEffectPanner) SetPan(cpanume gdnative.Float) {
 // of the AudioEffectPanner class.
 type AudioEffectPannerImplementer interface {
 	AudioEffectImplementer
-	GetPan() gdnative.Float
-	SetPan(cpanume gdnative.Float)
+	GetPan() gdnative.Real
+	SetPan(cpanume gdnative.Real)
 }

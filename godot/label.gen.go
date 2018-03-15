@@ -173,7 +173,7 @@ func (o *Label) GetMaxLinesVisible() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Label) GetPercentVisible() gdnative.Float {
+func (o *Label) GetPercentVisible() gdnative.Real {
 	//log.Println("Calling Label.GetPercentVisible()")
 
 	// Build out the method's arguments
@@ -184,11 +184,11 @@ func (o *Label) GetPercentVisible() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -485,12 +485,12 @@ func (o *Label) SetMaxLinesVisible(linesVisible gdnative.Int) {
         Undocumented
 	Args: [{ false percent_visible float}], Returns: void
 */
-func (o *Label) SetPercentVisible(percentVisible gdnative.Float) {
+func (o *Label) SetPercentVisible(percentVisible gdnative.Real) {
 	//log.Println("Calling Label.SetPercentVisible()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(percentVisible)
+	ptrArguments[0] = gdnative.NewPointerFromReal(percentVisible)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Label", "set_percent_visible")
@@ -594,7 +594,7 @@ type LabelImplementer interface {
 	GetLineHeight() gdnative.Int
 	GetLinesSkipped() gdnative.Int
 	GetMaxLinesVisible() gdnative.Int
-	GetPercentVisible() gdnative.Float
+	GetPercentVisible() gdnative.Real
 	GetText() gdnative.String
 	GetTotalCharacterCount() gdnative.Int
 	GetVisibleCharacters() gdnative.Int
@@ -607,7 +607,7 @@ type LabelImplementer interface {
 	SetClipText(enable gdnative.Bool)
 	SetLinesSkipped(linesSkipped gdnative.Int)
 	SetMaxLinesVisible(linesVisible gdnative.Int)
-	SetPercentVisible(percentVisible gdnative.Float)
+	SetPercentVisible(percentVisible gdnative.Real)
 	SetText(text gdnative.String)
 	SetUppercase(enable gdnative.Bool)
 	SetValign(valign gdnative.Int)

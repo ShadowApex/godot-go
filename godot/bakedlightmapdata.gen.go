@@ -194,7 +194,7 @@ func (o *BakedLightmapData) GetCellSubdiv() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *BakedLightmapData) GetEnergy() gdnative.Float {
+func (o *BakedLightmapData) GetEnergy() gdnative.Real {
 	//log.Println("Calling BakedLightmapData.GetEnergy()")
 
 	// Build out the method's arguments
@@ -205,11 +205,11 @@ func (o *BakedLightmapData) GetEnergy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -388,12 +388,12 @@ func (o *BakedLightmapData) SetCellSubdiv(cellSubdiv gdnative.Int) {
         Undocumented
 	Args: [{ false energy float}], Returns: void
 */
-func (o *BakedLightmapData) SetEnergy(energy gdnative.Float) {
+func (o *BakedLightmapData) SetEnergy(energy gdnative.Real) {
 	//log.Println("Calling BakedLightmapData.SetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("BakedLightmapData", "set_energy")
@@ -437,7 +437,7 @@ type BakedLightmapDataImplementer interface {
 	GetBounds() gdnative.Aabb
 	GetCellSpaceTransform() gdnative.Transform
 	GetCellSubdiv() gdnative.Int
-	GetEnergy() gdnative.Float
+	GetEnergy() gdnative.Real
 	GetOctree() gdnative.PoolByteArray
 	GetUserCount() gdnative.Int
 	GetUserLightmap(userIdx gdnative.Int) TextureImplementer
@@ -445,6 +445,6 @@ type BakedLightmapDataImplementer interface {
 	SetBounds(bounds gdnative.Aabb)
 	SetCellSpaceTransform(xform gdnative.Transform)
 	SetCellSubdiv(cellSubdiv gdnative.Int)
-	SetEnergy(energy gdnative.Float)
+	SetEnergy(energy gdnative.Real)
 	SetOctree(octree gdnative.PoolByteArray)
 }

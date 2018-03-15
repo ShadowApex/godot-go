@@ -612,16 +612,16 @@ func (o *visualServer) CameraSetEnvironment(camera gdnative.Rid, env gdnative.Ri
 
 	Args: [{ false camera RID} { false size float} { false z_near float} { false z_far float}], Returns: void
 */
-func (o *visualServer) CameraSetOrthogonal(camera gdnative.Rid, size gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
+func (o *visualServer) CameraSetOrthogonal(camera gdnative.Rid, size gdnative.Real, zNear gdnative.Real, zFar gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CameraSetOrthogonal()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromRid(camera)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(size)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(zNear)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(zFar)
+	ptrArguments[1] = gdnative.NewPointerFromReal(size)
+	ptrArguments[2] = gdnative.NewPointerFromReal(zNear)
+	ptrArguments[3] = gdnative.NewPointerFromReal(zFar)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "camera_set_orthogonal")
@@ -637,16 +637,16 @@ func (o *visualServer) CameraSetOrthogonal(camera gdnative.Rid, size gdnative.Fl
 
 	Args: [{ false camera RID} { false fovy_degrees float} { false z_near float} { false z_far float}], Returns: void
 */
-func (o *visualServer) CameraSetPerspective(camera gdnative.Rid, fovyDegrees gdnative.Float, zNear gdnative.Float, zFar gdnative.Float) {
+func (o *visualServer) CameraSetPerspective(camera gdnative.Rid, fovyDegrees gdnative.Real, zNear gdnative.Real, zFar gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CameraSetPerspective()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromRid(camera)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(fovyDegrees)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(zNear)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(zFar)
+	ptrArguments[1] = gdnative.NewPointerFromReal(fovyDegrees)
+	ptrArguments[2] = gdnative.NewPointerFromReal(zNear)
+	ptrArguments[3] = gdnative.NewPointerFromReal(zFar)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "camera_set_perspective")
@@ -732,7 +732,7 @@ func (o *visualServer) CanvasCreate() gdnative.Rid {
         Adds a circle command to the [CanvasItem]'s draw commands.
 	Args: [{ false item RID} { false pos Vector2} { false radius float} { false color Color}], Returns: void
 */
-func (o *visualServer) CanvasItemAddCircle(item gdnative.Rid, pos gdnative.Vector2, radius gdnative.Float, color gdnative.Color) {
+func (o *visualServer) CanvasItemAddCircle(item gdnative.Rid, pos gdnative.Vector2, radius gdnative.Real, color gdnative.Color) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CanvasItemAddCircle()")
 
@@ -740,7 +740,7 @@ func (o *visualServer) CanvasItemAddCircle(item gdnative.Rid, pos gdnative.Vecto
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromRid(item)
 	ptrArguments[1] = gdnative.NewPointerFromVector2(pos)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[2] = gdnative.NewPointerFromReal(radius)
 	ptrArguments[3] = gdnative.NewPointerFromColor(color)
 
 	// Get the method bind
@@ -780,7 +780,7 @@ func (o *visualServer) CanvasItemAddClipIgnore(item gdnative.Rid, ignore gdnativ
         Adds a line command to the [CanvasItem]'s draw commands.
 	Args: [{ false item RID} { false from Vector2} { false to Vector2} { false color Color} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *visualServer) CanvasItemAddLine(item gdnative.Rid, from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool) {
+func (o *visualServer) CanvasItemAddLine(item gdnative.Rid, from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CanvasItemAddLine()")
 
@@ -790,7 +790,7 @@ func (o *visualServer) CanvasItemAddLine(item gdnative.Rid, from gdnative.Vector
 	ptrArguments[1] = gdnative.NewPointerFromVector2(from)
 	ptrArguments[2] = gdnative.NewPointerFromVector2(to)
 	ptrArguments[3] = gdnative.NewPointerFromColor(color)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[4] = gdnative.NewPointerFromReal(width)
 	ptrArguments[5] = gdnative.NewPointerFromBool(antialiased)
 
 	// Get the method bind
@@ -942,7 +942,7 @@ func (o *visualServer) CanvasItemAddPolygon(item gdnative.Rid, points gdnative.P
         Adds a polyline, which is a line from multiple points with a width, to the [CanvasItem]'s draw commands.
 	Args: [{ false item RID} { false points PoolVector2Array} { false colors PoolColorArray} {1 true width float} {False true antialiased bool}], Returns: void
 */
-func (o *visualServer) CanvasItemAddPolyline(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool) {
+func (o *visualServer) CanvasItemAddPolyline(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Real, antialiased gdnative.Bool) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CanvasItemAddPolyline()")
 
@@ -951,7 +951,7 @@ func (o *visualServer) CanvasItemAddPolyline(item gdnative.Rid, points gdnative.
 	ptrArguments[0] = gdnative.NewPointerFromRid(item)
 	ptrArguments[1] = gdnative.NewPointerFromPoolVector2Array(points)
 	ptrArguments[2] = gdnative.NewPointerFromPoolColorArray(colors)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[3] = gdnative.NewPointerFromReal(width)
 	ptrArguments[4] = gdnative.NewPointerFromBool(antialiased)
 
 	// Get the method bind
@@ -968,7 +968,7 @@ func (o *visualServer) CanvasItemAddPolyline(item gdnative.Rid, points gdnative.
         Adds a primitive to the [CanvasItem]'s draw commands.
 	Args: [{ false item RID} { false points PoolVector2Array} { false colors PoolColorArray} { false uvs PoolVector2Array} { false texture RID} {1 true width float} {[RID] true normal_map RID}], Returns: void
 */
-func (o *visualServer) CanvasItemAddPrimitive(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.Rid, width gdnative.Float, normalMap gdnative.Rid) {
+func (o *visualServer) CanvasItemAddPrimitive(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.Rid, width gdnative.Real, normalMap gdnative.Rid) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CanvasItemAddPrimitive()")
 
@@ -979,7 +979,7 @@ func (o *visualServer) CanvasItemAddPrimitive(item gdnative.Rid, points gdnative
 	ptrArguments[2] = gdnative.NewPointerFromPoolColorArray(colors)
 	ptrArguments[3] = gdnative.NewPointerFromPoolVector2Array(uvs)
 	ptrArguments[4] = gdnative.NewPointerFromRid(texture)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[5] = gdnative.NewPointerFromReal(width)
 	ptrArguments[6] = gdnative.NewPointerFromRid(normalMap)
 
 	// Get the method bind
@@ -1800,14 +1800,14 @@ func (o *visualServer) CanvasLightSetEnabled(light gdnative.Rid, enabled gdnativ
         Sets a canvas light's energy.
 	Args: [{ false light RID} { false energy float}], Returns: void
 */
-func (o *visualServer) CanvasLightSetEnergy(light gdnative.Rid, energy gdnative.Float) {
+func (o *visualServer) CanvasLightSetEnergy(light gdnative.Rid, energy gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CanvasLightSetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(light)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[1] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_energy")
@@ -1823,14 +1823,14 @@ func (o *visualServer) CanvasLightSetEnergy(light gdnative.Rid, energy gdnative.
         Sets a canvas light's height.
 	Args: [{ false light RID} { false height float}], Returns: void
 */
-func (o *visualServer) CanvasLightSetHeight(light gdnative.Rid, height gdnative.Float) {
+func (o *visualServer) CanvasLightSetHeight(light gdnative.Rid, height gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CanvasLightSetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(light)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(height)
+	ptrArguments[1] = gdnative.NewPointerFromReal(height)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_height")
@@ -1939,14 +1939,14 @@ func (o *visualServer) CanvasLightSetMode(light gdnative.Rid, mode gdnative.Int)
 
 	Args: [{ false light RID} { false scale float}], Returns: void
 */
-func (o *visualServer) CanvasLightSetScale(light gdnative.Rid, scale gdnative.Float) {
+func (o *visualServer) CanvasLightSetScale(light gdnative.Rid, scale gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CanvasLightSetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(light)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(scale)
+	ptrArguments[1] = gdnative.NewPointerFromReal(scale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_scale")
@@ -2054,14 +2054,14 @@ func (o *visualServer) CanvasLightSetShadowFilter(light gdnative.Rid, filter gdn
         Sets the length of the shadow's gradient.
 	Args: [{ false light RID} { false length float}], Returns: void
 */
-func (o *visualServer) CanvasLightSetShadowGradientLength(light gdnative.Rid, length gdnative.Float) {
+func (o *visualServer) CanvasLightSetShadowGradientLength(light gdnative.Rid, length gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CanvasLightSetShadowGradientLength()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(light)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(length)
+	ptrArguments[1] = gdnative.NewPointerFromReal(length)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_shadow_gradient_length")
@@ -2077,14 +2077,14 @@ func (o *visualServer) CanvasLightSetShadowGradientLength(light gdnative.Rid, le
         Smoothens the shadow. The lower, the more smooth.
 	Args: [{ false light RID} { false smooth float}], Returns: void
 */
-func (o *visualServer) CanvasLightSetShadowSmooth(light gdnative.Rid, smooth gdnative.Float) {
+func (o *visualServer) CanvasLightSetShadowSmooth(light gdnative.Rid, smooth gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.CanvasLightSetShadowSmooth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(light)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(smooth)
+	ptrArguments[1] = gdnative.NewPointerFromReal(smooth)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "canvas_light_set_shadow_smooth")
@@ -2404,7 +2404,7 @@ func (o *visualServer) EnvironmentCreate() gdnative.Rid {
 
 	Args: [{ false env RID} { false enable bool} { false brightness float} { false contrast float} { false saturation float} { false ramp RID}], Returns: void
 */
-func (o *visualServer) EnvironmentSetAdjustment(env gdnative.Rid, enable gdnative.Bool, brightness gdnative.Float, contrast gdnative.Float, saturation gdnative.Float, ramp gdnative.Rid) {
+func (o *visualServer) EnvironmentSetAdjustment(env gdnative.Rid, enable gdnative.Bool, brightness gdnative.Real, contrast gdnative.Real, saturation gdnative.Real, ramp gdnative.Rid) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetAdjustment()")
 
@@ -2412,9 +2412,9 @@ func (o *visualServer) EnvironmentSetAdjustment(env gdnative.Rid, enable gdnativ
 	ptrArguments := make([]gdnative.Pointer, 6, 6)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(brightness)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(contrast)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(saturation)
+	ptrArguments[2] = gdnative.NewPointerFromReal(brightness)
+	ptrArguments[3] = gdnative.NewPointerFromReal(contrast)
+	ptrArguments[4] = gdnative.NewPointerFromReal(saturation)
 	ptrArguments[5] = gdnative.NewPointerFromRid(ramp)
 
 	// Get the method bind
@@ -2431,7 +2431,7 @@ func (o *visualServer) EnvironmentSetAdjustment(env gdnative.Rid, enable gdnativ
 
 	Args: [{ false env RID} { false color Color} {1 true energy float} {0 true sky_contibution float}], Returns: void
 */
-func (o *visualServer) EnvironmentSetAmbientLight(env gdnative.Rid, color gdnative.Color, energy gdnative.Float, skyContibution gdnative.Float) {
+func (o *visualServer) EnvironmentSetAmbientLight(env gdnative.Rid, color gdnative.Color, energy gdnative.Real, skyContibution gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetAmbientLight()")
 
@@ -2439,8 +2439,8 @@ func (o *visualServer) EnvironmentSetAmbientLight(env gdnative.Rid, color gdnati
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromColor(color)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(energy)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(skyContibution)
+	ptrArguments[2] = gdnative.NewPointerFromReal(energy)
+	ptrArguments[3] = gdnative.NewPointerFromReal(skyContibution)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_ambient_light")
@@ -2502,14 +2502,14 @@ func (o *visualServer) EnvironmentSetBgColor(env gdnative.Rid, color gdnative.Co
 
 	Args: [{ false env RID} { false energy float}], Returns: void
 */
-func (o *visualServer) EnvironmentSetBgEnergy(env gdnative.Rid, energy gdnative.Float) {
+func (o *visualServer) EnvironmentSetBgEnergy(env gdnative.Rid, energy gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetBgEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[1] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_bg_energy")
@@ -2548,7 +2548,7 @@ func (o *visualServer) EnvironmentSetCanvasMaxLayer(env gdnative.Rid, maxLayer g
 
 	Args: [{ false env RID} { false enable bool} { false distance float} { false transition float} { false far_amount float} { false quality int}], Returns: void
 */
-func (o *visualServer) EnvironmentSetDofBlurFar(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int) {
+func (o *visualServer) EnvironmentSetDofBlurFar(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Real, transition gdnative.Real, farAmount gdnative.Real, quality gdnative.Int) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetDofBlurFar()")
 
@@ -2556,9 +2556,9 @@ func (o *visualServer) EnvironmentSetDofBlurFar(env gdnative.Rid, enable gdnativ
 	ptrArguments := make([]gdnative.Pointer, 6, 6)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(distance)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(transition)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(farAmount)
+	ptrArguments[2] = gdnative.NewPointerFromReal(distance)
+	ptrArguments[3] = gdnative.NewPointerFromReal(transition)
+	ptrArguments[4] = gdnative.NewPointerFromReal(farAmount)
 	ptrArguments[5] = gdnative.NewPointerFromInt(quality)
 
 	// Get the method bind
@@ -2575,7 +2575,7 @@ func (o *visualServer) EnvironmentSetDofBlurFar(env gdnative.Rid, enable gdnativ
 
 	Args: [{ false env RID} { false enable bool} { false distance float} { false transition float} { false far_amount float} { false quality int}], Returns: void
 */
-func (o *visualServer) EnvironmentSetDofBlurNear(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int) {
+func (o *visualServer) EnvironmentSetDofBlurNear(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Real, transition gdnative.Real, farAmount gdnative.Real, quality gdnative.Int) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetDofBlurNear()")
 
@@ -2583,9 +2583,9 @@ func (o *visualServer) EnvironmentSetDofBlurNear(env gdnative.Rid, enable gdnati
 	ptrArguments := make([]gdnative.Pointer, 6, 6)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(distance)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(transition)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(farAmount)
+	ptrArguments[2] = gdnative.NewPointerFromReal(distance)
+	ptrArguments[3] = gdnative.NewPointerFromReal(transition)
+	ptrArguments[4] = gdnative.NewPointerFromReal(farAmount)
 	ptrArguments[5] = gdnative.NewPointerFromInt(quality)
 
 	// Get the method bind
@@ -2602,7 +2602,7 @@ func (o *visualServer) EnvironmentSetDofBlurNear(env gdnative.Rid, enable gdnati
 
 	Args: [{ false env RID} { false enable bool} { false color Color} { false sun_color Color} { false sun_amount float}], Returns: void
 */
-func (o *visualServer) EnvironmentSetFog(env gdnative.Rid, enable gdnative.Bool, color gdnative.Color, sunColor gdnative.Color, sunAmount gdnative.Float) {
+func (o *visualServer) EnvironmentSetFog(env gdnative.Rid, enable gdnative.Bool, color gdnative.Color, sunColor gdnative.Color, sunAmount gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetFog()")
 
@@ -2612,7 +2612,7 @@ func (o *visualServer) EnvironmentSetFog(env gdnative.Rid, enable gdnative.Bool,
 	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
 	ptrArguments[2] = gdnative.NewPointerFromColor(color)
 	ptrArguments[3] = gdnative.NewPointerFromColor(sunColor)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(sunAmount)
+	ptrArguments[4] = gdnative.NewPointerFromReal(sunAmount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_fog")
@@ -2628,7 +2628,7 @@ func (o *visualServer) EnvironmentSetFog(env gdnative.Rid, enable gdnative.Bool,
 
 	Args: [{ false env RID} { false enable bool} { false depth_begin float} { false depth_curve float} { false transmit bool} { false transmit_curve float}], Returns: void
 */
-func (o *visualServer) EnvironmentSetFogDepth(env gdnative.Rid, enable gdnative.Bool, depthBegin gdnative.Float, depthCurve gdnative.Float, transmit gdnative.Bool, transmitCurve gdnative.Float) {
+func (o *visualServer) EnvironmentSetFogDepth(env gdnative.Rid, enable gdnative.Bool, depthBegin gdnative.Real, depthCurve gdnative.Real, transmit gdnative.Bool, transmitCurve gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetFogDepth()")
 
@@ -2636,10 +2636,10 @@ func (o *visualServer) EnvironmentSetFogDepth(env gdnative.Rid, enable gdnative.
 	ptrArguments := make([]gdnative.Pointer, 6, 6)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(depthBegin)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(depthCurve)
+	ptrArguments[2] = gdnative.NewPointerFromReal(depthBegin)
+	ptrArguments[3] = gdnative.NewPointerFromReal(depthCurve)
 	ptrArguments[4] = gdnative.NewPointerFromBool(transmit)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(transmitCurve)
+	ptrArguments[5] = gdnative.NewPointerFromReal(transmitCurve)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_fog_depth")
@@ -2655,7 +2655,7 @@ func (o *visualServer) EnvironmentSetFogDepth(env gdnative.Rid, enable gdnative.
 
 	Args: [{ false env RID} { false enable bool} { false min_height float} { false max_height float} { false height_curve float}], Returns: void
 */
-func (o *visualServer) EnvironmentSetFogHeight(env gdnative.Rid, enable gdnative.Bool, minHeight gdnative.Float, maxHeight gdnative.Float, heightCurve gdnative.Float) {
+func (o *visualServer) EnvironmentSetFogHeight(env gdnative.Rid, enable gdnative.Bool, minHeight gdnative.Real, maxHeight gdnative.Real, heightCurve gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetFogHeight()")
 
@@ -2663,9 +2663,9 @@ func (o *visualServer) EnvironmentSetFogHeight(env gdnative.Rid, enable gdnative
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(minHeight)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(maxHeight)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(heightCurve)
+	ptrArguments[2] = gdnative.NewPointerFromReal(minHeight)
+	ptrArguments[3] = gdnative.NewPointerFromReal(maxHeight)
+	ptrArguments[4] = gdnative.NewPointerFromReal(heightCurve)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_fog_height")
@@ -2681,7 +2681,7 @@ func (o *visualServer) EnvironmentSetFogHeight(env gdnative.Rid, enable gdnative
 
 	Args: [{ false env RID} { false enable bool} { false level_flags int} { false intensity float} { false strength float} { false bloom_threshold float} { false blend_mode int} { false hdr_bleed_threshold float} { false hdr_bleed_scale float} { false bicubic_upscale bool}], Returns: void
 */
-func (o *visualServer) EnvironmentSetGlow(env gdnative.Rid, enable gdnative.Bool, levelFlags gdnative.Int, intensity gdnative.Float, strength gdnative.Float, bloomThreshold gdnative.Float, blendMode gdnative.Int, hdrBleedThreshold gdnative.Float, hdrBleedScale gdnative.Float, bicubicUpscale gdnative.Bool) {
+func (o *visualServer) EnvironmentSetGlow(env gdnative.Rid, enable gdnative.Bool, levelFlags gdnative.Int, intensity gdnative.Real, strength gdnative.Real, bloomThreshold gdnative.Real, blendMode gdnative.Int, hdrBleedThreshold gdnative.Real, hdrBleedScale gdnative.Real, bicubicUpscale gdnative.Bool) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetGlow()")
 
@@ -2690,12 +2690,12 @@ func (o *visualServer) EnvironmentSetGlow(env gdnative.Rid, enable gdnative.Bool
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
 	ptrArguments[2] = gdnative.NewPointerFromInt(levelFlags)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(intensity)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(strength)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(bloomThreshold)
+	ptrArguments[3] = gdnative.NewPointerFromReal(intensity)
+	ptrArguments[4] = gdnative.NewPointerFromReal(strength)
+	ptrArguments[5] = gdnative.NewPointerFromReal(bloomThreshold)
 	ptrArguments[6] = gdnative.NewPointerFromInt(blendMode)
-	ptrArguments[7] = gdnative.NewPointerFromFloat(hdrBleedThreshold)
-	ptrArguments[8] = gdnative.NewPointerFromFloat(hdrBleedScale)
+	ptrArguments[7] = gdnative.NewPointerFromReal(hdrBleedThreshold)
+	ptrArguments[8] = gdnative.NewPointerFromReal(hdrBleedScale)
 	ptrArguments[9] = gdnative.NewPointerFromBool(bicubicUpscale)
 
 	// Get the method bind
@@ -2735,14 +2735,14 @@ func (o *visualServer) EnvironmentSetSky(env gdnative.Rid, sky gdnative.Rid) {
 
 	Args: [{ false env RID} { false scale float}], Returns: void
 */
-func (o *visualServer) EnvironmentSetSkyCustomFov(env gdnative.Rid, scale gdnative.Float) {
+func (o *visualServer) EnvironmentSetSkyCustomFov(env gdnative.Rid, scale gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetSkyCustomFov()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(scale)
+	ptrArguments[1] = gdnative.NewPointerFromReal(scale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_sky_custom_fov")
@@ -2758,7 +2758,7 @@ func (o *visualServer) EnvironmentSetSkyCustomFov(env gdnative.Rid, scale gdnati
 
 	Args: [{ false env RID} { false enable bool} { false radius float} { false intensity float} { false radius2 float} { false intensity2 float} { false bias float} { false light_affect float} { false color Color} { false quality int} { false blur int} { false bilateral_sharpness float}], Returns: void
 */
-func (o *visualServer) EnvironmentSetSsao(env gdnative.Rid, enable gdnative.Bool, radius gdnative.Float, intensity gdnative.Float, radius2 gdnative.Float, intensity2 gdnative.Float, bias gdnative.Float, lightAffect gdnative.Float, color gdnative.Color, quality gdnative.Int, blur gdnative.Int, bilateralSharpness gdnative.Float) {
+func (o *visualServer) EnvironmentSetSsao(env gdnative.Rid, enable gdnative.Bool, radius gdnative.Real, intensity gdnative.Real, radius2 gdnative.Real, intensity2 gdnative.Real, bias gdnative.Real, lightAffect gdnative.Real, color gdnative.Color, quality gdnative.Int, blur gdnative.Int, bilateralSharpness gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetSsao()")
 
@@ -2766,16 +2766,16 @@ func (o *visualServer) EnvironmentSetSsao(env gdnative.Rid, enable gdnative.Bool
 	ptrArguments := make([]gdnative.Pointer, 12, 12)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(radius)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(intensity)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(radius2)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(intensity2)
-	ptrArguments[6] = gdnative.NewPointerFromFloat(bias)
-	ptrArguments[7] = gdnative.NewPointerFromFloat(lightAffect)
+	ptrArguments[2] = gdnative.NewPointerFromReal(radius)
+	ptrArguments[3] = gdnative.NewPointerFromReal(intensity)
+	ptrArguments[4] = gdnative.NewPointerFromReal(radius2)
+	ptrArguments[5] = gdnative.NewPointerFromReal(intensity2)
+	ptrArguments[6] = gdnative.NewPointerFromReal(bias)
+	ptrArguments[7] = gdnative.NewPointerFromReal(lightAffect)
 	ptrArguments[8] = gdnative.NewPointerFromColor(color)
 	ptrArguments[9] = gdnative.NewPointerFromInt(quality)
 	ptrArguments[10] = gdnative.NewPointerFromInt(blur)
-	ptrArguments[11] = gdnative.NewPointerFromFloat(bilateralSharpness)
+	ptrArguments[11] = gdnative.NewPointerFromReal(bilateralSharpness)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_ssao")
@@ -2791,7 +2791,7 @@ func (o *visualServer) EnvironmentSetSsao(env gdnative.Rid, enable gdnative.Bool
 
 	Args: [{ false env RID} { false enable bool} { false max_steps int} { false fade_in float} { false fade_out float} { false depth_tolerance float} { false roughness bool}], Returns: void
 */
-func (o *visualServer) EnvironmentSetSsr(env gdnative.Rid, enable gdnative.Bool, maxSteps gdnative.Int, fadeIn gdnative.Float, fadeOut gdnative.Float, depthTolerance gdnative.Float, roughness gdnative.Bool) {
+func (o *visualServer) EnvironmentSetSsr(env gdnative.Rid, enable gdnative.Bool, maxSteps gdnative.Int, fadeIn gdnative.Real, fadeOut gdnative.Real, depthTolerance gdnative.Real, roughness gdnative.Bool) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetSsr()")
 
@@ -2800,9 +2800,9 @@ func (o *visualServer) EnvironmentSetSsr(env gdnative.Rid, enable gdnative.Bool,
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromBool(enable)
 	ptrArguments[2] = gdnative.NewPointerFromInt(maxSteps)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(fadeIn)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(fadeOut)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(depthTolerance)
+	ptrArguments[3] = gdnative.NewPointerFromReal(fadeIn)
+	ptrArguments[4] = gdnative.NewPointerFromReal(fadeOut)
+	ptrArguments[5] = gdnative.NewPointerFromReal(depthTolerance)
 	ptrArguments[6] = gdnative.NewPointerFromBool(roughness)
 
 	// Get the method bind
@@ -2819,7 +2819,7 @@ func (o *visualServer) EnvironmentSetSsr(env gdnative.Rid, enable gdnative.Bool,
 
 	Args: [{ false env RID} { false tone_mapper int} { false exposure float} { false white float} { false auto_exposure bool} { false min_luminance float} { false max_luminance float} { false auto_exp_speed float} { false auto_exp_grey float}], Returns: void
 */
-func (o *visualServer) EnvironmentSetTonemap(env gdnative.Rid, toneMapper gdnative.Int, exposure gdnative.Float, white gdnative.Float, autoExposure gdnative.Bool, minLuminance gdnative.Float, maxLuminance gdnative.Float, autoExpSpeed gdnative.Float, autoExpGrey gdnative.Float) {
+func (o *visualServer) EnvironmentSetTonemap(env gdnative.Rid, toneMapper gdnative.Int, exposure gdnative.Real, white gdnative.Real, autoExposure gdnative.Bool, minLuminance gdnative.Real, maxLuminance gdnative.Real, autoExpSpeed gdnative.Real, autoExpGrey gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.EnvironmentSetTonemap()")
 
@@ -2827,13 +2827,13 @@ func (o *visualServer) EnvironmentSetTonemap(env gdnative.Rid, toneMapper gdnati
 	ptrArguments := make([]gdnative.Pointer, 9, 9)
 	ptrArguments[0] = gdnative.NewPointerFromRid(env)
 	ptrArguments[1] = gdnative.NewPointerFromInt(toneMapper)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(exposure)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(white)
+	ptrArguments[2] = gdnative.NewPointerFromReal(exposure)
+	ptrArguments[3] = gdnative.NewPointerFromReal(white)
 	ptrArguments[4] = gdnative.NewPointerFromBool(autoExposure)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(minLuminance)
-	ptrArguments[6] = gdnative.NewPointerFromFloat(maxLuminance)
-	ptrArguments[7] = gdnative.NewPointerFromFloat(autoExpSpeed)
-	ptrArguments[8] = gdnative.NewPointerFromFloat(autoExpGrey)
+	ptrArguments[5] = gdnative.NewPointerFromReal(minLuminance)
+	ptrArguments[6] = gdnative.NewPointerFromReal(maxLuminance)
+	ptrArguments[7] = gdnative.NewPointerFromReal(autoExpSpeed)
+	ptrArguments[8] = gdnative.NewPointerFromReal(autoExpGrey)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "environment_set_tonemap")
@@ -3056,7 +3056,7 @@ func (o *visualServer) GiProbeCreate() gdnative.Rid {
 
 	Args: [{ false arg0 RID}], Returns: float
 */
-func (o *visualServer) GiProbeGetBias(arg0 gdnative.Rid) gdnative.Float {
+func (o *visualServer) GiProbeGetBias(arg0 gdnative.Rid) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeGetBias()")
 
@@ -3069,11 +3069,11 @@ func (o *visualServer) GiProbeGetBias(arg0 gdnative.Rid) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -3106,7 +3106,7 @@ func (o *visualServer) GiProbeGetBounds(probe gdnative.Rid) gdnative.Aabb {
 
 	Args: [{ false probe RID}], Returns: float
 */
-func (o *visualServer) GiProbeGetCellSize(probe gdnative.Rid) gdnative.Float {
+func (o *visualServer) GiProbeGetCellSize(probe gdnative.Rid) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeGetCellSize()")
 
@@ -3119,11 +3119,11 @@ func (o *visualServer) GiProbeGetCellSize(probe gdnative.Rid) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -3181,7 +3181,7 @@ func (o *visualServer) GiProbeGetDynamicRange(arg0 gdnative.Rid) gdnative.Int {
 
 	Args: [{ false arg0 RID}], Returns: float
 */
-func (o *visualServer) GiProbeGetEnergy(arg0 gdnative.Rid) gdnative.Float {
+func (o *visualServer) GiProbeGetEnergy(arg0 gdnative.Rid) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeGetEnergy()")
 
@@ -3194,11 +3194,11 @@ func (o *visualServer) GiProbeGetEnergy(arg0 gdnative.Rid) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -3206,7 +3206,7 @@ func (o *visualServer) GiProbeGetEnergy(arg0 gdnative.Rid) gdnative.Float {
 
 	Args: [{ false arg0 RID}], Returns: float
 */
-func (o *visualServer) GiProbeGetNormalBias(arg0 gdnative.Rid) gdnative.Float {
+func (o *visualServer) GiProbeGetNormalBias(arg0 gdnative.Rid) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeGetNormalBias()")
 
@@ -3219,11 +3219,11 @@ func (o *visualServer) GiProbeGetNormalBias(arg0 gdnative.Rid) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -3231,7 +3231,7 @@ func (o *visualServer) GiProbeGetNormalBias(arg0 gdnative.Rid) gdnative.Float {
 
 	Args: [{ false arg0 RID}], Returns: float
 */
-func (o *visualServer) GiProbeGetPropagation(arg0 gdnative.Rid) gdnative.Float {
+func (o *visualServer) GiProbeGetPropagation(arg0 gdnative.Rid) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeGetPropagation()")
 
@@ -3244,11 +3244,11 @@ func (o *visualServer) GiProbeGetPropagation(arg0 gdnative.Rid) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -3331,14 +3331,14 @@ func (o *visualServer) GiProbeIsInterior(arg0 gdnative.Rid) gdnative.Bool {
 
 	Args: [{ false bias RID} { false arg1 float}], Returns: void
 */
-func (o *visualServer) GiProbeSetBias(bias gdnative.Rid, arg1 gdnative.Float) {
+func (o *visualServer) GiProbeSetBias(bias gdnative.Rid, arg1 gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeSetBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(bias)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+	ptrArguments[1] = gdnative.NewPointerFromReal(arg1)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_bias")
@@ -3377,14 +3377,14 @@ func (o *visualServer) GiProbeSetBounds(probe gdnative.Rid, bounds gdnative.Aabb
 
 	Args: [{ false probe RID} { false range float}], Returns: void
 */
-func (o *visualServer) GiProbeSetCellSize(probe gdnative.Rid, rng gdnative.Float) {
+func (o *visualServer) GiProbeSetCellSize(probe gdnative.Rid, rng gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeSetCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(rng)
+	ptrArguments[1] = gdnative.NewPointerFromReal(rng)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_cell_size")
@@ -3469,14 +3469,14 @@ func (o *visualServer) GiProbeSetDynamicRange(rng gdnative.Rid, arg1 gdnative.In
 
 	Args: [{ false energy RID} { false arg1 float}], Returns: void
 */
-func (o *visualServer) GiProbeSetEnergy(energy gdnative.Rid, arg1 gdnative.Float) {
+func (o *visualServer) GiProbeSetEnergy(energy gdnative.Rid, arg1 gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeSetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(energy)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+	ptrArguments[1] = gdnative.NewPointerFromReal(arg1)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_energy")
@@ -3515,14 +3515,14 @@ func (o *visualServer) GiProbeSetInterior(enable gdnative.Rid, arg1 gdnative.Boo
 
 	Args: [{ false bias RID} { false arg1 float}], Returns: void
 */
-func (o *visualServer) GiProbeSetNormalBias(bias gdnative.Rid, arg1 gdnative.Float) {
+func (o *visualServer) GiProbeSetNormalBias(bias gdnative.Rid, arg1 gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeSetNormalBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(bias)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+	ptrArguments[1] = gdnative.NewPointerFromReal(arg1)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_normal_bias")
@@ -3538,14 +3538,14 @@ func (o *visualServer) GiProbeSetNormalBias(bias gdnative.Rid, arg1 gdnative.Flo
 
 	Args: [{ false propagation RID} { false arg1 float}], Returns: void
 */
-func (o *visualServer) GiProbeSetPropagation(propagation gdnative.Rid, arg1 gdnative.Float) {
+func (o *visualServer) GiProbeSetPropagation(propagation gdnative.Rid, arg1 gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.GiProbeSetPropagation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(propagation)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+	ptrArguments[1] = gdnative.NewPointerFromReal(arg1)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "gi_probe_set_propagation")
@@ -4122,17 +4122,17 @@ func (o *visualServer) InstanceGeometrySetCastShadowsSetting(instance gdnative.R
 
 	Args: [{ false instance RID} { false min float} { false max float} { false min_margin float} { false max_margin float}], Returns: void
 */
-func (o *visualServer) InstanceGeometrySetDrawRange(instance gdnative.Rid, min gdnative.Float, max gdnative.Float, minMargin gdnative.Float, maxMargin gdnative.Float) {
+func (o *visualServer) InstanceGeometrySetDrawRange(instance gdnative.Rid, min gdnative.Real, max gdnative.Real, minMargin gdnative.Real, maxMargin gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.InstanceGeometrySetDrawRange()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 5, 5)
 	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(min)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(max)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(minMargin)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(maxMargin)
+	ptrArguments[1] = gdnative.NewPointerFromReal(min)
+	ptrArguments[2] = gdnative.NewPointerFromReal(max)
+	ptrArguments[3] = gdnative.NewPointerFromReal(minMargin)
+	ptrArguments[4] = gdnative.NewPointerFromReal(maxMargin)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "instance_geometry_set_draw_range")
@@ -4218,7 +4218,7 @@ func (o *visualServer) InstanceSetBase(instance gdnative.Rid, base gdnative.Rid)
 
 	Args: [{ false instance RID} { false shape int} { false weight float}], Returns: void
 */
-func (o *visualServer) InstanceSetBlendShapeWeight(instance gdnative.Rid, shape gdnative.Int, weight gdnative.Float) {
+func (o *visualServer) InstanceSetBlendShapeWeight(instance gdnative.Rid, shape gdnative.Int, weight gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.InstanceSetBlendShapeWeight()")
 
@@ -4226,7 +4226,7 @@ func (o *visualServer) InstanceSetBlendShapeWeight(instance gdnative.Rid, shape 
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
 	ptrArguments[1] = gdnative.NewPointerFromInt(shape)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(weight)
+	ptrArguments[2] = gdnative.NewPointerFromReal(weight)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_blend_shape_weight")
@@ -4288,14 +4288,14 @@ func (o *visualServer) InstanceSetExterior(instance gdnative.Rid, enabled gdnati
 
 	Args: [{ false instance RID} { false margin float}], Returns: void
 */
-func (o *visualServer) InstanceSetExtraVisibilityMargin(instance gdnative.Rid, margin gdnative.Float) {
+func (o *visualServer) InstanceSetExtraVisibilityMargin(instance gdnative.Rid, margin gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.InstanceSetExtraVisibilityMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(instance)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(margin)
+	ptrArguments[1] = gdnative.NewPointerFromReal(margin)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "instance_set_extra_visibility_margin")
@@ -4714,7 +4714,7 @@ func (o *visualServer) LightSetNegative(light gdnative.Rid, enable gdnative.Bool
 
 	Args: [{ false light RID} { false param int} { false value float}], Returns: void
 */
-func (o *visualServer) LightSetParam(light gdnative.Rid, param gdnative.Int, value gdnative.Float) {
+func (o *visualServer) LightSetParam(light gdnative.Rid, param gdnative.Int, value gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.LightSetParam()")
 
@@ -4722,7 +4722,7 @@ func (o *visualServer) LightSetParam(light gdnative.Rid, param gdnative.Int, val
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromRid(light)
 	ptrArguments[1] = gdnative.NewPointerFromInt(param)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(value)
+	ptrArguments[2] = gdnative.NewPointerFromReal(value)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "light_set_param")
@@ -4879,7 +4879,7 @@ func (o *visualServer) LightmapCaptureGetBounds(capture gdnative.Rid) gdnative.A
 
 	Args: [{ false capture RID}], Returns: float
 */
-func (o *visualServer) LightmapCaptureGetEnergy(capture gdnative.Rid) gdnative.Float {
+func (o *visualServer) LightmapCaptureGetEnergy(capture gdnative.Rid) gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.LightmapCaptureGetEnergy()")
 
@@ -4892,11 +4892,11 @@ func (o *visualServer) LightmapCaptureGetEnergy(capture gdnative.Rid) gdnative.F
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -5002,14 +5002,14 @@ func (o *visualServer) LightmapCaptureSetBounds(capture gdnative.Rid, bounds gdn
 
 	Args: [{ false capture RID} { false energy float}], Returns: void
 */
-func (o *visualServer) LightmapCaptureSetEnergy(capture gdnative.Rid, energy gdnative.Float) {
+func (o *visualServer) LightmapCaptureSetEnergy(capture gdnative.Rid, energy gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.LightmapCaptureSetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(capture)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[1] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "lightmap_capture_set_energy")
@@ -5094,7 +5094,7 @@ func (o *visualServer) LightmapCaptureSetOctreeCellTransform(capture gdnative.Ri
         Returns a mesh of a sphere with the given amount of horizontal and vertical subdivisions.
 	Args: [{ false latitudes int} { false longitudes int} { false radius float}], Returns: RID
 */
-func (o *visualServer) MakeSphereMesh(latitudes gdnative.Int, longitudes gdnative.Int, radius gdnative.Float) gdnative.Rid {
+func (o *visualServer) MakeSphereMesh(latitudes gdnative.Int, longitudes gdnative.Int, radius gdnative.Real) gdnative.Rid {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.MakeSphereMesh()")
 
@@ -5102,7 +5102,7 @@ func (o *visualServer) MakeSphereMesh(latitudes gdnative.Int, longitudes gdnativ
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromInt(latitudes)
 	ptrArguments[1] = gdnative.NewPointerFromInt(longitudes)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[2] = gdnative.NewPointerFromReal(radius)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "make_sphere_mesh")
@@ -5196,14 +5196,14 @@ func (o *visualServer) MaterialGetShader(shaderMaterial gdnative.Rid) gdnative.R
         Sets a materials line width.
 	Args: [{ false material RID} { false width float}], Returns: void
 */
-func (o *visualServer) MaterialSetLineWidth(material gdnative.Rid, width gdnative.Float) {
+func (o *visualServer) MaterialSetLineWidth(material gdnative.Rid, width gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.MaterialSetLineWidth()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(material)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(width)
+	ptrArguments[1] = gdnative.NewPointerFromReal(width)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "material_set_line_width")
@@ -6489,14 +6489,14 @@ func (o *visualServer) ParticlesSetEmitting(particles gdnative.Rid, emitting gdn
 
 	Args: [{ false particles RID} { false ratio float}], Returns: void
 */
-func (o *visualServer) ParticlesSetExplosivenessRatio(particles gdnative.Rid, ratio gdnative.Float) {
+func (o *visualServer) ParticlesSetExplosivenessRatio(particles gdnative.Rid, ratio gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.ParticlesSetExplosivenessRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(ratio)
+	ptrArguments[1] = gdnative.NewPointerFromReal(ratio)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_explosiveness_ratio")
@@ -6558,14 +6558,14 @@ func (o *visualServer) ParticlesSetFractionalDelta(particles gdnative.Rid, enabl
 
 	Args: [{ false particles RID} { false lifetime float}], Returns: void
 */
-func (o *visualServer) ParticlesSetLifetime(particles gdnative.Rid, lifetime gdnative.Float) {
+func (o *visualServer) ParticlesSetLifetime(particles gdnative.Rid, lifetime gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.ParticlesSetLifetime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(lifetime)
+	ptrArguments[1] = gdnative.NewPointerFromReal(lifetime)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_lifetime")
@@ -6604,14 +6604,14 @@ func (o *visualServer) ParticlesSetOneShot(particles gdnative.Rid, oneShot gdnat
 
 	Args: [{ false particles RID} { false time float}], Returns: void
 */
-func (o *visualServer) ParticlesSetPreProcessTime(particles gdnative.Rid, time gdnative.Float) {
+func (o *visualServer) ParticlesSetPreProcessTime(particles gdnative.Rid, time gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.ParticlesSetPreProcessTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(time)
+	ptrArguments[1] = gdnative.NewPointerFromReal(time)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_pre_process_time")
@@ -6650,14 +6650,14 @@ func (o *visualServer) ParticlesSetProcessMaterial(particles gdnative.Rid, mater
 
 	Args: [{ false particles RID} { false ratio float}], Returns: void
 */
-func (o *visualServer) ParticlesSetRandomnessRatio(particles gdnative.Rid, ratio gdnative.Float) {
+func (o *visualServer) ParticlesSetRandomnessRatio(particles gdnative.Rid, ratio gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.ParticlesSetRandomnessRatio()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(ratio)
+	ptrArguments[1] = gdnative.NewPointerFromReal(ratio)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_randomness_ratio")
@@ -6673,14 +6673,14 @@ func (o *visualServer) ParticlesSetRandomnessRatio(particles gdnative.Rid, ratio
 
 	Args: [{ false particles RID} { false scale float}], Returns: void
 */
-func (o *visualServer) ParticlesSetSpeedScale(particles gdnative.Rid, scale gdnative.Float) {
+func (o *visualServer) ParticlesSetSpeedScale(particles gdnative.Rid, scale gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.ParticlesSetSpeedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(particles)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(scale)
+	ptrArguments[1] = gdnative.NewPointerFromReal(scale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "particles_set_speed_scale")
@@ -6858,14 +6858,14 @@ func (o *visualServer) ReflectionProbeSetExtents(probe gdnative.Rid, extents gdn
 
 	Args: [{ false probe RID} { false intensity float}], Returns: void
 */
-func (o *visualServer) ReflectionProbeSetIntensity(probe gdnative.Rid, intensity gdnative.Float) {
+func (o *visualServer) ReflectionProbeSetIntensity(probe gdnative.Rid, intensity gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.ReflectionProbeSetIntensity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(intensity)
+	ptrArguments[1] = gdnative.NewPointerFromReal(intensity)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_intensity")
@@ -6904,14 +6904,14 @@ func (o *visualServer) ReflectionProbeSetInteriorAmbient(probe gdnative.Rid, col
 
 	Args: [{ false probe RID} { false energy float}], Returns: void
 */
-func (o *visualServer) ReflectionProbeSetInteriorAmbientEnergy(probe gdnative.Rid, energy gdnative.Float) {
+func (o *visualServer) ReflectionProbeSetInteriorAmbientEnergy(probe gdnative.Rid, energy gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.ReflectionProbeSetInteriorAmbientEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[1] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_interior_ambient_energy")
@@ -6927,14 +6927,14 @@ func (o *visualServer) ReflectionProbeSetInteriorAmbientEnergy(probe gdnative.Ri
 
 	Args: [{ false probe RID} { false contrib float}], Returns: void
 */
-func (o *visualServer) ReflectionProbeSetInteriorAmbientProbeContribution(probe gdnative.Rid, contrib gdnative.Float) {
+func (o *visualServer) ReflectionProbeSetInteriorAmbientProbeContribution(probe gdnative.Rid, contrib gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.ReflectionProbeSetInteriorAmbientProbeContribution()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(contrib)
+	ptrArguments[1] = gdnative.NewPointerFromReal(contrib)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_interior_ambient_probe_contribution")
@@ -6950,14 +6950,14 @@ func (o *visualServer) ReflectionProbeSetInteriorAmbientProbeContribution(probe 
 
 	Args: [{ false probe RID} { false distance float}], Returns: void
 */
-func (o *visualServer) ReflectionProbeSetMaxDistance(probe gdnative.Rid, distance gdnative.Float) {
+func (o *visualServer) ReflectionProbeSetMaxDistance(probe gdnative.Rid, distance gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling VisualServer.ReflectionProbeSetMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromRid(probe)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(distance)
+	ptrArguments[1] = gdnative.NewPointerFromReal(distance)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("VisualServer", "reflection_probe_set_max_distance")
@@ -8774,21 +8774,21 @@ type VisualServerImplementer interface {
 	CameraCreate() gdnative.Rid
 	CameraSetCullMask(camera gdnative.Rid, layers gdnative.Int)
 	CameraSetEnvironment(camera gdnative.Rid, env gdnative.Rid)
-	CameraSetOrthogonal(camera gdnative.Rid, size gdnative.Float, zNear gdnative.Float, zFar gdnative.Float)
-	CameraSetPerspective(camera gdnative.Rid, fovyDegrees gdnative.Float, zNear gdnative.Float, zFar gdnative.Float)
+	CameraSetOrthogonal(camera gdnative.Rid, size gdnative.Real, zNear gdnative.Real, zFar gdnative.Real)
+	CameraSetPerspective(camera gdnative.Rid, fovyDegrees gdnative.Real, zNear gdnative.Real, zFar gdnative.Real)
 	CameraSetTransform(camera gdnative.Rid, transform gdnative.Transform)
 	CameraSetUseVerticalAspect(camera gdnative.Rid, enable gdnative.Bool)
 	CanvasCreate() gdnative.Rid
-	CanvasItemAddCircle(item gdnative.Rid, pos gdnative.Vector2, radius gdnative.Float, color gdnative.Color)
+	CanvasItemAddCircle(item gdnative.Rid, pos gdnative.Vector2, radius gdnative.Real, color gdnative.Color)
 	CanvasItemAddClipIgnore(item gdnative.Rid, ignore gdnative.Bool)
-	CanvasItemAddLine(item gdnative.Rid, from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Float, antialiased gdnative.Bool)
+	CanvasItemAddLine(item gdnative.Rid, from gdnative.Vector2, to gdnative.Vector2, color gdnative.Color, width gdnative.Real, antialiased gdnative.Bool)
 	CanvasItemAddMesh(item gdnative.Rid, mesh gdnative.Rid, skeleton gdnative.Rid)
 	CanvasItemAddMultimesh(item gdnative.Rid, mesh gdnative.Rid, skeleton gdnative.Rid)
 	CanvasItemAddNinePatch(item gdnative.Rid, rect gdnative.Rect2, source gdnative.Rect2, texture gdnative.Rid, topleft gdnative.Vector2, bottomright gdnative.Vector2, xAxisMode gdnative.Int, yAxisMode gdnative.Int, drawCenter gdnative.Bool, modulate gdnative.Color, normalMap gdnative.Rid)
 	CanvasItemAddParticles(item gdnative.Rid, particles gdnative.Rid, texture gdnative.Rid, normalMap gdnative.Rid, hFrames gdnative.Int, vFrames gdnative.Int)
 	CanvasItemAddPolygon(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.Rid, normalMap gdnative.Rid, antialiased gdnative.Bool)
-	CanvasItemAddPolyline(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Float, antialiased gdnative.Bool)
-	CanvasItemAddPrimitive(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.Rid, width gdnative.Float, normalMap gdnative.Rid)
+	CanvasItemAddPolyline(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, width gdnative.Real, antialiased gdnative.Bool)
+	CanvasItemAddPrimitive(item gdnative.Rid, points gdnative.PoolVector2Array, colors gdnative.PoolColorArray, uvs gdnative.PoolVector2Array, texture gdnative.Rid, width gdnative.Real, normalMap gdnative.Rid)
 	CanvasItemAddRect(item gdnative.Rid, rect gdnative.Rect2, color gdnative.Color)
 	CanvasItemAddSetTransform(item gdnative.Rid, transform gdnative.Transform2D)
 	CanvasItemAddTextureRect(item gdnative.Rid, rect gdnative.Rect2, texture gdnative.Rid, tile gdnative.Bool, modulate gdnative.Color, transpose gdnative.Bool, normalMap gdnative.Rid)
@@ -8823,19 +8823,19 @@ type VisualServerImplementer interface {
 	CanvasLightOccluderSetTransform(occluder gdnative.Rid, transform gdnative.Transform2D)
 	CanvasLightSetColor(light gdnative.Rid, color gdnative.Color)
 	CanvasLightSetEnabled(light gdnative.Rid, enabled gdnative.Bool)
-	CanvasLightSetEnergy(light gdnative.Rid, energy gdnative.Float)
-	CanvasLightSetHeight(light gdnative.Rid, height gdnative.Float)
+	CanvasLightSetEnergy(light gdnative.Rid, energy gdnative.Real)
+	CanvasLightSetHeight(light gdnative.Rid, height gdnative.Real)
 	CanvasLightSetItemCullMask(light gdnative.Rid, mask gdnative.Int)
 	CanvasLightSetItemShadowCullMask(light gdnative.Rid, mask gdnative.Int)
 	CanvasLightSetLayerRange(light gdnative.Rid, minLayer gdnative.Int, maxLayer gdnative.Int)
 	CanvasLightSetMode(light gdnative.Rid, mode gdnative.Int)
-	CanvasLightSetScale(light gdnative.Rid, scale gdnative.Float)
+	CanvasLightSetScale(light gdnative.Rid, scale gdnative.Real)
 	CanvasLightSetShadowBufferSize(light gdnative.Rid, size gdnative.Int)
 	CanvasLightSetShadowColor(light gdnative.Rid, color gdnative.Color)
 	CanvasLightSetShadowEnabled(light gdnative.Rid, enabled gdnative.Bool)
 	CanvasLightSetShadowFilter(light gdnative.Rid, filter gdnative.Int)
-	CanvasLightSetShadowGradientLength(light gdnative.Rid, length gdnative.Float)
-	CanvasLightSetShadowSmooth(light gdnative.Rid, smooth gdnative.Float)
+	CanvasLightSetShadowGradientLength(light gdnative.Rid, length gdnative.Real)
+	CanvasLightSetShadowSmooth(light gdnative.Rid, smooth gdnative.Real)
 	CanvasLightSetTexture(light gdnative.Rid, texture gdnative.Rid)
 	CanvasLightSetTextureOffset(light gdnative.Rid, offset gdnative.Vector2)
 	CanvasLightSetTransform(light gdnative.Rid, transform gdnative.Transform2D)
@@ -8849,23 +8849,23 @@ type VisualServerImplementer interface {
 	DirectionalLightCreate() gdnative.Rid
 	Draw(swapBuffers gdnative.Bool)
 	EnvironmentCreate() gdnative.Rid
-	EnvironmentSetAdjustment(env gdnative.Rid, enable gdnative.Bool, brightness gdnative.Float, contrast gdnative.Float, saturation gdnative.Float, ramp gdnative.Rid)
-	EnvironmentSetAmbientLight(env gdnative.Rid, color gdnative.Color, energy gdnative.Float, skyContibution gdnative.Float)
+	EnvironmentSetAdjustment(env gdnative.Rid, enable gdnative.Bool, brightness gdnative.Real, contrast gdnative.Real, saturation gdnative.Real, ramp gdnative.Rid)
+	EnvironmentSetAmbientLight(env gdnative.Rid, color gdnative.Color, energy gdnative.Real, skyContibution gdnative.Real)
 	EnvironmentSetBackground(env gdnative.Rid, bg gdnative.Int)
 	EnvironmentSetBgColor(env gdnative.Rid, color gdnative.Color)
-	EnvironmentSetBgEnergy(env gdnative.Rid, energy gdnative.Float)
+	EnvironmentSetBgEnergy(env gdnative.Rid, energy gdnative.Real)
 	EnvironmentSetCanvasMaxLayer(env gdnative.Rid, maxLayer gdnative.Int)
-	EnvironmentSetDofBlurFar(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int)
-	EnvironmentSetDofBlurNear(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Float, transition gdnative.Float, farAmount gdnative.Float, quality gdnative.Int)
-	EnvironmentSetFog(env gdnative.Rid, enable gdnative.Bool, color gdnative.Color, sunColor gdnative.Color, sunAmount gdnative.Float)
-	EnvironmentSetFogDepth(env gdnative.Rid, enable gdnative.Bool, depthBegin gdnative.Float, depthCurve gdnative.Float, transmit gdnative.Bool, transmitCurve gdnative.Float)
-	EnvironmentSetFogHeight(env gdnative.Rid, enable gdnative.Bool, minHeight gdnative.Float, maxHeight gdnative.Float, heightCurve gdnative.Float)
-	EnvironmentSetGlow(env gdnative.Rid, enable gdnative.Bool, levelFlags gdnative.Int, intensity gdnative.Float, strength gdnative.Float, bloomThreshold gdnative.Float, blendMode gdnative.Int, hdrBleedThreshold gdnative.Float, hdrBleedScale gdnative.Float, bicubicUpscale gdnative.Bool)
+	EnvironmentSetDofBlurFar(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Real, transition gdnative.Real, farAmount gdnative.Real, quality gdnative.Int)
+	EnvironmentSetDofBlurNear(env gdnative.Rid, enable gdnative.Bool, distance gdnative.Real, transition gdnative.Real, farAmount gdnative.Real, quality gdnative.Int)
+	EnvironmentSetFog(env gdnative.Rid, enable gdnative.Bool, color gdnative.Color, sunColor gdnative.Color, sunAmount gdnative.Real)
+	EnvironmentSetFogDepth(env gdnative.Rid, enable gdnative.Bool, depthBegin gdnative.Real, depthCurve gdnative.Real, transmit gdnative.Bool, transmitCurve gdnative.Real)
+	EnvironmentSetFogHeight(env gdnative.Rid, enable gdnative.Bool, minHeight gdnative.Real, maxHeight gdnative.Real, heightCurve gdnative.Real)
+	EnvironmentSetGlow(env gdnative.Rid, enable gdnative.Bool, levelFlags gdnative.Int, intensity gdnative.Real, strength gdnative.Real, bloomThreshold gdnative.Real, blendMode gdnative.Int, hdrBleedThreshold gdnative.Real, hdrBleedScale gdnative.Real, bicubicUpscale gdnative.Bool)
 	EnvironmentSetSky(env gdnative.Rid, sky gdnative.Rid)
-	EnvironmentSetSkyCustomFov(env gdnative.Rid, scale gdnative.Float)
-	EnvironmentSetSsao(env gdnative.Rid, enable gdnative.Bool, radius gdnative.Float, intensity gdnative.Float, radius2 gdnative.Float, intensity2 gdnative.Float, bias gdnative.Float, lightAffect gdnative.Float, color gdnative.Color, quality gdnative.Int, blur gdnative.Int, bilateralSharpness gdnative.Float)
-	EnvironmentSetSsr(env gdnative.Rid, enable gdnative.Bool, maxSteps gdnative.Int, fadeIn gdnative.Float, fadeOut gdnative.Float, depthTolerance gdnative.Float, roughness gdnative.Bool)
-	EnvironmentSetTonemap(env gdnative.Rid, toneMapper gdnative.Int, exposure gdnative.Float, white gdnative.Float, autoExposure gdnative.Bool, minLuminance gdnative.Float, maxLuminance gdnative.Float, autoExpSpeed gdnative.Float, autoExpGrey gdnative.Float)
+	EnvironmentSetSkyCustomFov(env gdnative.Rid, scale gdnative.Real)
+	EnvironmentSetSsao(env gdnative.Rid, enable gdnative.Bool, radius gdnative.Real, intensity gdnative.Real, radius2 gdnative.Real, intensity2 gdnative.Real, bias gdnative.Real, lightAffect gdnative.Real, color gdnative.Color, quality gdnative.Int, blur gdnative.Int, bilateralSharpness gdnative.Real)
+	EnvironmentSetSsr(env gdnative.Rid, enable gdnative.Bool, maxSteps gdnative.Int, fadeIn gdnative.Real, fadeOut gdnative.Real, depthTolerance gdnative.Real, roughness gdnative.Bool)
+	EnvironmentSetTonemap(env gdnative.Rid, toneMapper gdnative.Int, exposure gdnative.Real, white gdnative.Real, autoExposure gdnative.Bool, minLuminance gdnative.Real, maxLuminance gdnative.Real, autoExpSpeed gdnative.Real, autoExpGrey gdnative.Real)
 	Finish()
 	ForceDraw(swapBuffers gdnative.Bool)
 	ForceSync()
@@ -8875,27 +8875,27 @@ type VisualServerImplementer interface {
 	GetTestTexture() gdnative.Rid
 	GetWhiteTexture() gdnative.Rid
 	GiProbeCreate() gdnative.Rid
-	GiProbeGetBias(arg0 gdnative.Rid) gdnative.Float
+	GiProbeGetBias(arg0 gdnative.Rid) gdnative.Real
 	GiProbeGetBounds(probe gdnative.Rid) gdnative.Aabb
-	GiProbeGetCellSize(probe gdnative.Rid) gdnative.Float
+	GiProbeGetCellSize(probe gdnative.Rid) gdnative.Real
 	GiProbeGetDynamicData(arg0 gdnative.Rid) gdnative.PoolIntArray
 	GiProbeGetDynamicRange(arg0 gdnative.Rid) gdnative.Int
-	GiProbeGetEnergy(arg0 gdnative.Rid) gdnative.Float
-	GiProbeGetNormalBias(arg0 gdnative.Rid) gdnative.Float
-	GiProbeGetPropagation(arg0 gdnative.Rid) gdnative.Float
+	GiProbeGetEnergy(arg0 gdnative.Rid) gdnative.Real
+	GiProbeGetNormalBias(arg0 gdnative.Rid) gdnative.Real
+	GiProbeGetPropagation(arg0 gdnative.Rid) gdnative.Real
 	GiProbeGetToCellXform(arg0 gdnative.Rid) gdnative.Transform
 	GiProbeIsCompressed(arg0 gdnative.Rid) gdnative.Bool
 	GiProbeIsInterior(arg0 gdnative.Rid) gdnative.Bool
-	GiProbeSetBias(bias gdnative.Rid, arg1 gdnative.Float)
+	GiProbeSetBias(bias gdnative.Rid, arg1 gdnative.Real)
 	GiProbeSetBounds(probe gdnative.Rid, bounds gdnative.Aabb)
-	GiProbeSetCellSize(probe gdnative.Rid, rng gdnative.Float)
+	GiProbeSetCellSize(probe gdnative.Rid, rng gdnative.Real)
 	GiProbeSetCompress(enable gdnative.Rid, arg1 gdnative.Bool)
 	GiProbeSetDynamicData(data gdnative.Rid, arg1 gdnative.PoolIntArray)
 	GiProbeSetDynamicRange(rng gdnative.Rid, arg1 gdnative.Int)
-	GiProbeSetEnergy(energy gdnative.Rid, arg1 gdnative.Float)
+	GiProbeSetEnergy(energy gdnative.Rid, arg1 gdnative.Real)
 	GiProbeSetInterior(enable gdnative.Rid, arg1 gdnative.Bool)
-	GiProbeSetNormalBias(bias gdnative.Rid, arg1 gdnative.Float)
-	GiProbeSetPropagation(propagation gdnative.Rid, arg1 gdnative.Float)
+	GiProbeSetNormalBias(bias gdnative.Rid, arg1 gdnative.Real)
+	GiProbeSetPropagation(propagation gdnative.Rid, arg1 gdnative.Real)
 	GiProbeSetToCellXform(xform gdnative.Rid, arg1 gdnative.Transform)
 	HasChanged() gdnative.Bool
 	HasFeature(feature gdnative.Int) gdnative.Bool
@@ -8920,14 +8920,14 @@ type VisualServerImplementer interface {
 	InstanceCreate2(base gdnative.Rid, scenario gdnative.Rid) gdnative.Rid
 	InstanceGeometrySetAsInstanceLod(instance gdnative.Rid, asLodOfInstance gdnative.Rid)
 	InstanceGeometrySetCastShadowsSetting(instance gdnative.Rid, shadowCastingSetting gdnative.Int)
-	InstanceGeometrySetDrawRange(instance gdnative.Rid, min gdnative.Float, max gdnative.Float, minMargin gdnative.Float, maxMargin gdnative.Float)
+	InstanceGeometrySetDrawRange(instance gdnative.Rid, min gdnative.Real, max gdnative.Real, minMargin gdnative.Real, maxMargin gdnative.Real)
 	InstanceGeometrySetFlag(instance gdnative.Rid, flag gdnative.Int, enabled gdnative.Bool)
 	InstanceGeometrySetMaterialOverride(instance gdnative.Rid, material gdnative.Rid)
 	InstanceSetBase(instance gdnative.Rid, base gdnative.Rid)
-	InstanceSetBlendShapeWeight(instance gdnative.Rid, shape gdnative.Int, weight gdnative.Float)
+	InstanceSetBlendShapeWeight(instance gdnative.Rid, shape gdnative.Int, weight gdnative.Real)
 	InstanceSetCustomAabb(instance gdnative.Rid, aabb gdnative.Aabb)
 	InstanceSetExterior(instance gdnative.Rid, enabled gdnative.Bool)
-	InstanceSetExtraVisibilityMargin(instance gdnative.Rid, margin gdnative.Float)
+	InstanceSetExtraVisibilityMargin(instance gdnative.Rid, margin gdnative.Real)
 	InstanceSetLayerMask(instance gdnative.Rid, mask gdnative.Int)
 	InstanceSetScenario(instance gdnative.Rid, scenario gdnative.Rid)
 	InstanceSetSurfaceMaterial(instance gdnative.Rid, surface gdnative.Int, material gdnative.Rid)
@@ -8945,27 +8945,27 @@ type VisualServerImplementer interface {
 	LightSetColor(light gdnative.Rid, color gdnative.Color)
 	LightSetCullMask(light gdnative.Rid, mask gdnative.Int)
 	LightSetNegative(light gdnative.Rid, enable gdnative.Bool)
-	LightSetParam(light gdnative.Rid, param gdnative.Int, value gdnative.Float)
+	LightSetParam(light gdnative.Rid, param gdnative.Int, value gdnative.Real)
 	LightSetProjector(light gdnative.Rid, texture gdnative.Rid)
 	LightSetReverseCullFaceMode(light gdnative.Rid, enabled gdnative.Bool)
 	LightSetShadow(light gdnative.Rid, enabled gdnative.Bool)
 	LightSetShadowColor(light gdnative.Rid, color gdnative.Color)
 	LightmapCaptureCreate() gdnative.Rid
 	LightmapCaptureGetBounds(capture gdnative.Rid) gdnative.Aabb
-	LightmapCaptureGetEnergy(capture gdnative.Rid) gdnative.Float
+	LightmapCaptureGetEnergy(capture gdnative.Rid) gdnative.Real
 	LightmapCaptureGetOctree(capture gdnative.Rid) gdnative.PoolByteArray
 	LightmapCaptureGetOctreeCellSubdiv(capture gdnative.Rid) gdnative.Int
 	LightmapCaptureGetOctreeCellTransform(capture gdnative.Rid) gdnative.Transform
 	LightmapCaptureSetBounds(capture gdnative.Rid, bounds gdnative.Aabb)
-	LightmapCaptureSetEnergy(capture gdnative.Rid, energy gdnative.Float)
+	LightmapCaptureSetEnergy(capture gdnative.Rid, energy gdnative.Real)
 	LightmapCaptureSetOctree(capture gdnative.Rid, octree gdnative.PoolByteArray)
 	LightmapCaptureSetOctreeCellSubdiv(capture gdnative.Rid, subdiv gdnative.Int)
 	LightmapCaptureSetOctreeCellTransform(capture gdnative.Rid, xform gdnative.Transform)
-	MakeSphereMesh(latitudes gdnative.Int, longitudes gdnative.Int, radius gdnative.Float) gdnative.Rid
+	MakeSphereMesh(latitudes gdnative.Int, longitudes gdnative.Int, radius gdnative.Real) gdnative.Rid
 	MaterialCreate() gdnative.Rid
 	MaterialGetParam(material gdnative.Rid, parameter gdnative.String) gdnative.Variant
 	MaterialGetShader(shaderMaterial gdnative.Rid) gdnative.Rid
-	MaterialSetLineWidth(material gdnative.Rid, width gdnative.Float)
+	MaterialSetLineWidth(material gdnative.Rid, width gdnative.Real)
 	MaterialSetNextPass(material gdnative.Rid, nextMaterial gdnative.Rid)
 	MaterialSetParam(material gdnative.Rid, parameter gdnative.String, value gdnative.Variant)
 	MaterialSetRenderPriority(material gdnative.Rid, priority gdnative.Int)
@@ -9016,15 +9016,15 @@ type VisualServerImplementer interface {
 	ParticlesSetDrawPasses(particles gdnative.Rid, count gdnative.Int)
 	ParticlesSetEmissionTransform(particles gdnative.Rid, transform gdnative.Transform)
 	ParticlesSetEmitting(particles gdnative.Rid, emitting gdnative.Bool)
-	ParticlesSetExplosivenessRatio(particles gdnative.Rid, ratio gdnative.Float)
+	ParticlesSetExplosivenessRatio(particles gdnative.Rid, ratio gdnative.Real)
 	ParticlesSetFixedFps(particles gdnative.Rid, fps gdnative.Int)
 	ParticlesSetFractionalDelta(particles gdnative.Rid, enable gdnative.Bool)
-	ParticlesSetLifetime(particles gdnative.Rid, lifetime gdnative.Float)
+	ParticlesSetLifetime(particles gdnative.Rid, lifetime gdnative.Real)
 	ParticlesSetOneShot(particles gdnative.Rid, oneShot gdnative.Bool)
-	ParticlesSetPreProcessTime(particles gdnative.Rid, time gdnative.Float)
+	ParticlesSetPreProcessTime(particles gdnative.Rid, time gdnative.Real)
 	ParticlesSetProcessMaterial(particles gdnative.Rid, material gdnative.Rid)
-	ParticlesSetRandomnessRatio(particles gdnative.Rid, ratio gdnative.Float)
-	ParticlesSetSpeedScale(particles gdnative.Rid, scale gdnative.Float)
+	ParticlesSetRandomnessRatio(particles gdnative.Rid, ratio gdnative.Real)
+	ParticlesSetSpeedScale(particles gdnative.Rid, scale gdnative.Real)
 	ParticlesSetUseLocalCoordinates(particles gdnative.Rid, enable gdnative.Bool)
 	ReflectionProbeCreate() gdnative.Rid
 	ReflectionProbeSetAsInterior(probe gdnative.Rid, enable gdnative.Bool)
@@ -9032,11 +9032,11 @@ type VisualServerImplementer interface {
 	ReflectionProbeSetEnableBoxProjection(probe gdnative.Rid, enable gdnative.Bool)
 	ReflectionProbeSetEnableShadows(probe gdnative.Rid, enable gdnative.Bool)
 	ReflectionProbeSetExtents(probe gdnative.Rid, extents gdnative.Vector3)
-	ReflectionProbeSetIntensity(probe gdnative.Rid, intensity gdnative.Float)
+	ReflectionProbeSetIntensity(probe gdnative.Rid, intensity gdnative.Real)
 	ReflectionProbeSetInteriorAmbient(probe gdnative.Rid, color gdnative.Color)
-	ReflectionProbeSetInteriorAmbientEnergy(probe gdnative.Rid, energy gdnative.Float)
-	ReflectionProbeSetInteriorAmbientProbeContribution(probe gdnative.Rid, contrib gdnative.Float)
-	ReflectionProbeSetMaxDistance(probe gdnative.Rid, distance gdnative.Float)
+	ReflectionProbeSetInteriorAmbientEnergy(probe gdnative.Rid, energy gdnative.Real)
+	ReflectionProbeSetInteriorAmbientProbeContribution(probe gdnative.Rid, contrib gdnative.Real)
+	ReflectionProbeSetMaxDistance(probe gdnative.Rid, distance gdnative.Real)
 	ReflectionProbeSetOriginOffset(probe gdnative.Rid, offset gdnative.Vector3)
 	ReflectionProbeSetUpdateMode(probe gdnative.Rid, mode gdnative.Int)
 	RequestFrameDrawnCallback(where ObjectImplementer, method gdnative.String, userdata gdnative.Variant)

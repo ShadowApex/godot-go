@@ -38,7 +38,7 @@ func (o *GIProbeData) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GIProbeData) GetBias() gdnative.Float {
+func (o *GIProbeData) GetBias() gdnative.Real {
 	//log.Println("Calling GIProbeData.GetBias()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *GIProbeData) GetBias() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *GIProbeData) GetBounds() gdnative.Aabb {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GIProbeData) GetCellSize() gdnative.Float {
+func (o *GIProbeData) GetCellSize() gdnative.Real {
 	//log.Println("Calling GIProbeData.GetCellSize()")
 
 	// Build out the method's arguments
@@ -95,11 +95,11 @@ func (o *GIProbeData) GetCellSize() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -153,7 +153,7 @@ func (o *GIProbeData) GetDynamicRange() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GIProbeData) GetEnergy() gdnative.Float {
+func (o *GIProbeData) GetEnergy() gdnative.Real {
 	//log.Println("Calling GIProbeData.GetEnergy()")
 
 	// Build out the method's arguments
@@ -164,11 +164,11 @@ func (o *GIProbeData) GetEnergy() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -176,7 +176,7 @@ func (o *GIProbeData) GetEnergy() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GIProbeData) GetNormalBias() gdnative.Float {
+func (o *GIProbeData) GetNormalBias() gdnative.Real {
 	//log.Println("Calling GIProbeData.GetNormalBias()")
 
 	// Build out the method's arguments
@@ -187,11 +187,11 @@ func (o *GIProbeData) GetNormalBias() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -199,7 +199,7 @@ func (o *GIProbeData) GetNormalBias() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GIProbeData) GetPropagation() gdnative.Float {
+func (o *GIProbeData) GetPropagation() gdnative.Real {
 	//log.Println("Calling GIProbeData.GetPropagation()")
 
 	// Build out the method's arguments
@@ -210,11 +210,11 @@ func (o *GIProbeData) GetPropagation() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -291,12 +291,12 @@ func (o *GIProbeData) IsInterior() gdnative.Bool {
         Undocumented
 	Args: [{ false bias float}], Returns: void
 */
-func (o *GIProbeData) SetBias(bias gdnative.Float) {
+func (o *GIProbeData) SetBias(bias gdnative.Real) {
 	//log.Println("Calling GIProbeData.SetBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(bias)
+	ptrArguments[0] = gdnative.NewPointerFromReal(bias)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GIProbeData", "set_bias")
@@ -333,12 +333,12 @@ func (o *GIProbeData) SetBounds(bounds gdnative.Aabb) {
         Undocumented
 	Args: [{ false cell_size float}], Returns: void
 */
-func (o *GIProbeData) SetCellSize(cellSize gdnative.Float) {
+func (o *GIProbeData) SetCellSize(cellSize gdnative.Real) {
 	//log.Println("Calling GIProbeData.SetCellSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(cellSize)
+	ptrArguments[0] = gdnative.NewPointerFromReal(cellSize)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GIProbeData", "set_cell_size")
@@ -417,12 +417,12 @@ func (o *GIProbeData) SetDynamicRange(dynamicRange gdnative.Int) {
         Undocumented
 	Args: [{ false energy float}], Returns: void
 */
-func (o *GIProbeData) SetEnergy(energy gdnative.Float) {
+func (o *GIProbeData) SetEnergy(energy gdnative.Real) {
 	//log.Println("Calling GIProbeData.SetEnergy()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(energy)
+	ptrArguments[0] = gdnative.NewPointerFromReal(energy)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GIProbeData", "set_energy")
@@ -459,12 +459,12 @@ func (o *GIProbeData) SetInterior(interior gdnative.Bool) {
         Undocumented
 	Args: [{ false bias float}], Returns: void
 */
-func (o *GIProbeData) SetNormalBias(bias gdnative.Float) {
+func (o *GIProbeData) SetNormalBias(bias gdnative.Real) {
 	//log.Println("Calling GIProbeData.SetNormalBias()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(bias)
+	ptrArguments[0] = gdnative.NewPointerFromReal(bias)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GIProbeData", "set_normal_bias")
@@ -480,12 +480,12 @@ func (o *GIProbeData) SetNormalBias(bias gdnative.Float) {
         Undocumented
 	Args: [{ false propagation float}], Returns: void
 */
-func (o *GIProbeData) SetPropagation(propagation gdnative.Float) {
+func (o *GIProbeData) SetPropagation(propagation gdnative.Real) {
 	//log.Println("Calling GIProbeData.SetPropagation()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(propagation)
+	ptrArguments[0] = gdnative.NewPointerFromReal(propagation)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GIProbeData", "set_propagation")
@@ -522,26 +522,26 @@ func (o *GIProbeData) SetToCellXform(toCellXform gdnative.Transform) {
 // of the GIProbeData class.
 type GIProbeDataImplementer interface {
 	ResourceImplementer
-	GetBias() gdnative.Float
+	GetBias() gdnative.Real
 	GetBounds() gdnative.Aabb
-	GetCellSize() gdnative.Float
+	GetCellSize() gdnative.Real
 	GetDynamicData() gdnative.PoolIntArray
 	GetDynamicRange() gdnative.Int
-	GetEnergy() gdnative.Float
-	GetNormalBias() gdnative.Float
-	GetPropagation() gdnative.Float
+	GetEnergy() gdnative.Real
+	GetNormalBias() gdnative.Real
+	GetPropagation() gdnative.Real
 	GetToCellXform() gdnative.Transform
 	IsCompressed() gdnative.Bool
 	IsInterior() gdnative.Bool
-	SetBias(bias gdnative.Float)
+	SetBias(bias gdnative.Real)
 	SetBounds(bounds gdnative.Aabb)
-	SetCellSize(cellSize gdnative.Float)
+	SetCellSize(cellSize gdnative.Real)
 	SetCompress(compress gdnative.Bool)
 	SetDynamicData(dynamicData gdnative.PoolIntArray)
 	SetDynamicRange(dynamicRange gdnative.Int)
-	SetEnergy(energy gdnative.Float)
+	SetEnergy(energy gdnative.Real)
 	SetInterior(interior gdnative.Bool)
-	SetNormalBias(bias gdnative.Float)
-	SetPropagation(propagation gdnative.Float)
+	SetNormalBias(bias gdnative.Real)
+	SetPropagation(propagation gdnative.Real)
 	SetToCellXform(toCellXform gdnative.Transform)
 }

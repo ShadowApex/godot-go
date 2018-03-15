@@ -47,7 +47,7 @@ func (o *StyleBoxTexture) BaseClass() string {
         Undocumented
 	Args: [{ false margin int}], Returns: float
 */
-func (o *StyleBoxTexture) GetExpandMarginSize(margin gdnative.Int) gdnative.Float {
+func (o *StyleBoxTexture) GetExpandMarginSize(margin gdnative.Int) gdnative.Real {
 	//log.Println("Calling StyleBoxTexture.GetExpandMarginSize()")
 
 	// Build out the method's arguments
@@ -59,11 +59,11 @@ func (o *StyleBoxTexture) GetExpandMarginSize(margin gdnative.Int) gdnative.Floa
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -94,7 +94,7 @@ func (o *StyleBoxTexture) GetHAxisStretchMode() StyleBoxTextureAxisStretchMode {
         Undocumented
 	Args: [{ false margin int}], Returns: float
 */
-func (o *StyleBoxTexture) GetMarginSize(margin gdnative.Int) gdnative.Float {
+func (o *StyleBoxTexture) GetMarginSize(margin gdnative.Int) gdnative.Real {
 	//log.Println("Calling StyleBoxTexture.GetMarginSize()")
 
 	// Build out the method's arguments
@@ -106,11 +106,11 @@ func (o *StyleBoxTexture) GetMarginSize(margin gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -305,12 +305,12 @@ func (o *StyleBoxTexture) SetDrawCenter(enable gdnative.Bool) {
 
 	Args: [{ false size float}], Returns: void
 */
-func (o *StyleBoxTexture) SetExpandMarginAll(size gdnative.Float) {
+func (o *StyleBoxTexture) SetExpandMarginAll(size gdnative.Real) {
 	//log.Println("Calling StyleBoxTexture.SetExpandMarginAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(size)
+	ptrArguments[0] = gdnative.NewPointerFromReal(size)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_expand_margin_all")
@@ -326,15 +326,15 @@ func (o *StyleBoxTexture) SetExpandMarginAll(size gdnative.Float) {
 
 	Args: [{ false size_left float} { false size_top float} { false size_right float} { false size_bottom float}], Returns: void
 */
-func (o *StyleBoxTexture) SetExpandMarginIndividual(sizeLeft gdnative.Float, sizeTop gdnative.Float, sizeRight gdnative.Float, sizeBottom gdnative.Float) {
+func (o *StyleBoxTexture) SetExpandMarginIndividual(sizeLeft gdnative.Real, sizeTop gdnative.Real, sizeRight gdnative.Real, sizeBottom gdnative.Real) {
 	//log.Println("Calling StyleBoxTexture.SetExpandMarginIndividual()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(sizeLeft)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(sizeTop)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(sizeRight)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(sizeBottom)
+	ptrArguments[0] = gdnative.NewPointerFromReal(sizeLeft)
+	ptrArguments[1] = gdnative.NewPointerFromReal(sizeTop)
+	ptrArguments[2] = gdnative.NewPointerFromReal(sizeRight)
+	ptrArguments[3] = gdnative.NewPointerFromReal(sizeBottom)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_expand_margin_individual")
@@ -350,13 +350,13 @@ func (o *StyleBoxTexture) SetExpandMarginIndividual(sizeLeft gdnative.Float, siz
         Undocumented
 	Args: [{ false margin int} { false size float}], Returns: void
 */
-func (o *StyleBoxTexture) SetExpandMarginSize(margin gdnative.Int, size gdnative.Float) {
+func (o *StyleBoxTexture) SetExpandMarginSize(margin gdnative.Int, size gdnative.Real) {
 	//log.Println("Calling StyleBoxTexture.SetExpandMarginSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(size)
+	ptrArguments[1] = gdnative.NewPointerFromReal(size)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_expand_margin_size")
@@ -393,13 +393,13 @@ func (o *StyleBoxTexture) SetHAxisStretchMode(mode gdnative.Int) {
         Undocumented
 	Args: [{ false margin int} { false size float}], Returns: void
 */
-func (o *StyleBoxTexture) SetMarginSize(margin gdnative.Int, size gdnative.Float) {
+func (o *StyleBoxTexture) SetMarginSize(margin gdnative.Int, size gdnative.Real) {
 	//log.Println("Calling StyleBoxTexture.SetMarginSize()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(size)
+	ptrArguments[1] = gdnative.NewPointerFromReal(size)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StyleBoxTexture", "set_margin_size")
@@ -520,19 +520,19 @@ func (o *StyleBoxTexture) SetVAxisStretchMode(mode gdnative.Int) {
 // of the StyleBoxTexture class.
 type StyleBoxTextureImplementer interface {
 	StyleBoxImplementer
-	GetExpandMarginSize(margin gdnative.Int) gdnative.Float
-	GetMarginSize(margin gdnative.Int) gdnative.Float
+	GetExpandMarginSize(margin gdnative.Int) gdnative.Real
+	GetMarginSize(margin gdnative.Int) gdnative.Real
 	GetModulate() gdnative.Color
 	GetNormalMap() ResourceImplementer
 	GetRegionRect() gdnative.Rect2
 	GetTexture() ResourceImplementer
 	IsDrawCenterEnabled() gdnative.Bool
 	SetDrawCenter(enable gdnative.Bool)
-	SetExpandMarginAll(size gdnative.Float)
-	SetExpandMarginIndividual(sizeLeft gdnative.Float, sizeTop gdnative.Float, sizeRight gdnative.Float, sizeBottom gdnative.Float)
-	SetExpandMarginSize(margin gdnative.Int, size gdnative.Float)
+	SetExpandMarginAll(size gdnative.Real)
+	SetExpandMarginIndividual(sizeLeft gdnative.Real, sizeTop gdnative.Real, sizeRight gdnative.Real, sizeBottom gdnative.Real)
+	SetExpandMarginSize(margin gdnative.Int, size gdnative.Real)
 	SetHAxisStretchMode(mode gdnative.Int)
-	SetMarginSize(margin gdnative.Int, size gdnative.Float)
+	SetMarginSize(margin gdnative.Int, size gdnative.Real)
 	SetModulate(color gdnative.Color)
 	SetNormalMap(normalMap ResourceImplementer)
 	SetRegionRect(region gdnative.Rect2)

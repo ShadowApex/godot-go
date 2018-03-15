@@ -180,7 +180,7 @@ func (o *EditorImportPlugin) GetPresetName(preset gdnative.Int) gdnative.String 
         Get the priority of this plugin for the recognized extension. Higher priority plugins will be preferred. Default value is 1.0.
 	Args: [], Returns: float
 */
-func (o *EditorImportPlugin) GetPriority() gdnative.Float {
+func (o *EditorImportPlugin) GetPriority() gdnative.Real {
 	//log.Println("Calling EditorImportPlugin.GetPriority()")
 
 	// Build out the method's arguments
@@ -191,11 +191,11 @@ func (o *EditorImportPlugin) GetPriority() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -329,7 +329,7 @@ type EditorImportPluginImplementer interface {
 	GetOptionVisibility(option gdnative.String, options gdnative.Dictionary) gdnative.Bool
 	GetPresetCount() gdnative.Int
 	GetPresetName(preset gdnative.Int) gdnative.String
-	GetPriority() gdnative.Float
+	GetPriority() gdnative.Real
 	GetRecognizedExtensions() gdnative.Array
 	GetResourceType() gdnative.String
 	GetSaveExtension() gdnative.String

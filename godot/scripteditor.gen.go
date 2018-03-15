@@ -807,12 +807,12 @@ func (o *ScriptEditor) X_ScriptSelected(arg0 gdnative.Int) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *ScriptEditor) X_ScriptSplitDragged(arg0 gdnative.Float) {
+func (o *ScriptEditor) X_ScriptSplitDragged(arg0 gdnative.Real) {
 	//log.Println("Calling ScriptEditor.X_ScriptSplitDragged()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ScriptEditor", "_script_split_dragged")
@@ -1144,7 +1144,7 @@ type ScriptEditorImplementer interface {
 	X_ScriptCreated(arg0 ScriptImplementer)
 	X_ScriptListGuiInput(arg0 InputEventImplementer)
 	X_ScriptSelected(arg0 gdnative.Int)
-	X_ScriptSplitDragged(arg0 gdnative.Float)
+	X_ScriptSplitDragged(arg0 gdnative.Real)
 	X_ShowDebugger(arg0 gdnative.Bool)
 	X_TabChanged(arg0 gdnative.Int)
 	X_TreeChanged()

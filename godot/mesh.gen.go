@@ -140,12 +140,12 @@ func (o *Mesh) CreateConvexShape() ShapeImplementer {
         Calculate an outline mesh at a defined offset (margin) from the original mesh. Note: Typically returns the vertices in reverse order (e.g. clockwise to anti-clockwise).
 	Args: [{ false margin float}], Returns: Mesh
 */
-func (o *Mesh) CreateOutline(margin gdnative.Float) MeshImplementer {
+func (o *Mesh) CreateOutline(margin gdnative.Real) MeshImplementer {
 	//log.Println("Calling Mesh.CreateOutline()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(margin)
+	ptrArguments[0] = gdnative.NewPointerFromReal(margin)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Mesh", "create_outline")
@@ -320,7 +320,7 @@ func (o *Mesh) SetLightmapSizeHint(size gdnative.Vector2) {
 type MeshImplementer interface {
 	ResourceImplementer
 	CreateConvexShape() ShapeImplementer
-	CreateOutline(margin gdnative.Float) MeshImplementer
+	CreateOutline(margin gdnative.Real) MeshImplementer
 	CreateTrimeshShape() ShapeImplementer
 	GenerateTriangleMesh() TriangleMeshImplementer
 	GetFaces() gdnative.PoolVector3Array

@@ -317,7 +317,7 @@ func (o *arvrServer) GetTrackerCount() gdnative.Int {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *arvrServer) GetWorldScale() gdnative.Float {
+func (o *arvrServer) GetWorldScale() gdnative.Real {
 	o.ensureSingleton()
 	//log.Println("Calling ARVRServer.GetWorldScale()")
 
@@ -329,11 +329,11 @@ func (o *arvrServer) GetWorldScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -363,13 +363,13 @@ func (o *arvrServer) SetPrimaryInterface(intrfce ARVRInterfaceImplementer) {
         Undocumented
 	Args: [{ false arg0 float}], Returns: void
 */
-func (o *arvrServer) SetWorldScale(arg0 gdnative.Float) {
+func (o *arvrServer) SetWorldScale(arg0 gdnative.Real) {
 	o.ensureSingleton()
 	//log.Println("Calling ARVRServer.SetWorldScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(arg0)
+	ptrArguments[0] = gdnative.NewPointerFromReal(arg0)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ARVRServer", "set_world_scale")
@@ -393,7 +393,7 @@ type ARVRServerImplementer interface {
 	GetReferenceFrame() gdnative.Transform
 	GetTracker(idx gdnative.Int) ARVRPositionalTrackerImplementer
 	GetTrackerCount() gdnative.Int
-	GetWorldScale() gdnative.Float
+	GetWorldScale() gdnative.Real
 	SetPrimaryInterface(intrfce ARVRInterfaceImplementer)
-	SetWorldScale(arg0 gdnative.Float)
+	SetWorldScale(arg0 gdnative.Real)
 }

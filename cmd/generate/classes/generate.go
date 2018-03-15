@@ -78,6 +78,9 @@ func (v View) GetImports() []string {
 }
 
 func (v View) GoName(str string) string {
+	if str == "float" {
+		str = "real"
+	}
 	return casee.ToPascalCase(strings.Replace(str, "godot_", "", 1))
 }
 
@@ -98,6 +101,9 @@ func (v View) GoEmptyReturnType(str string) string {
 func (v View) GoNewFromPointerType(str string) string {
 	if strings.Contains(str, "enum") || strings.Contains(str, "Enum") {
 		return "Int"
+	}
+	if str == "float" {
+		str = "real"
 	}
 	str = strings.Replace(str, "*", "", 1)
 	str = strings.TrimSpace(str)
@@ -196,6 +202,9 @@ func (v View) GoValue(returnString string) string {
 	if v.IsGodotClass(returnString) {
 		return returnString
 	} else {
+		if returnString == "float" {
+			returnString = "real"
+		}
 		return "gdnative." + casee.ToPascalCase(returnString)
 	}
 }

@@ -38,7 +38,7 @@ func (o *PinJoint2D) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *PinJoint2D) GetSoftness() gdnative.Float {
+func (o *PinJoint2D) GetSoftness() gdnative.Real {
 	//log.Println("Calling PinJoint2D.GetSoftness()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *PinJoint2D) GetSoftness() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,12 +61,12 @@ func (o *PinJoint2D) GetSoftness() gdnative.Float {
         Undocumented
 	Args: [{ false softness float}], Returns: void
 */
-func (o *PinJoint2D) SetSoftness(softness gdnative.Float) {
+func (o *PinJoint2D) SetSoftness(softness gdnative.Real) {
 	//log.Println("Calling PinJoint2D.SetSoftness()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(softness)
+	ptrArguments[0] = gdnative.NewPointerFromReal(softness)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("PinJoint2D", "set_softness")
@@ -82,6 +82,6 @@ func (o *PinJoint2D) SetSoftness(softness gdnative.Float) {
 // of the PinJoint2D class.
 type PinJoint2DImplementer interface {
 	Joint2DImplementer
-	GetSoftness() gdnative.Float
-	SetSoftness(softness gdnative.Float)
+	GetSoftness() gdnative.Real
+	SetSoftness(softness gdnative.Real)
 }

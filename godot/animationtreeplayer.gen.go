@@ -84,12 +84,12 @@ func (o *AnimationTreePlayer) AddNode(aType gdnative.Int, id gdnative.String) {
         Shifts position in the animation timeline. Delta is the time in seconds to shift.
 	Args: [{ false delta float}], Returns: void
 */
-func (o *AnimationTreePlayer) Advance(delta gdnative.Float) {
+func (o *AnimationTreePlayer) Advance(delta gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.Advance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(delta)
+	ptrArguments[0] = gdnative.NewPointerFromReal(delta)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "advance")
@@ -260,7 +260,7 @@ func (o *AnimationTreePlayer) AreNodesConnected(id gdnative.String, dstId gdnati
         Returns the blend amount of a Blend2 node given its name.
 	Args: [{ false id String}], Returns: float
 */
-func (o *AnimationTreePlayer) Blend2NodeGetAmount(id gdnative.String) gdnative.Float {
+func (o *AnimationTreePlayer) Blend2NodeGetAmount(id gdnative.String) gdnative.Real {
 	//log.Println("Calling AnimationTreePlayer.Blend2NodeGetAmount()")
 
 	// Build out the method's arguments
@@ -272,11 +272,11 @@ func (o *AnimationTreePlayer) Blend2NodeGetAmount(id gdnative.String) gdnative.F
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -284,13 +284,13 @@ func (o *AnimationTreePlayer) Blend2NodeGetAmount(id gdnative.String) gdnative.F
         Sets the blend amount of a Blend2 node given its name and value. A Blend2 Node blends two animations with the amount between 0 and 1. At 0, Output is input a. Towards 1, the influence of a gets lessened, the influence of b gets raised. At 1, Output is input b.
 	Args: [{ false id String} { false blend float}], Returns: void
 */
-func (o *AnimationTreePlayer) Blend2NodeSetAmount(id gdnative.String, blend gdnative.Float) {
+func (o *AnimationTreePlayer) Blend2NodeSetAmount(id gdnative.String, blend gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.Blend2NodeSetAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(blend)
+	ptrArguments[1] = gdnative.NewPointerFromReal(blend)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "blend2_node_set_amount")
@@ -329,7 +329,7 @@ func (o *AnimationTreePlayer) Blend2NodeSetFilterPath(id gdnative.String, path g
         Returns the blend amount of a Blend3 node given its name.
 	Args: [{ false id String}], Returns: float
 */
-func (o *AnimationTreePlayer) Blend3NodeGetAmount(id gdnative.String) gdnative.Float {
+func (o *AnimationTreePlayer) Blend3NodeGetAmount(id gdnative.String) gdnative.Real {
 	//log.Println("Calling AnimationTreePlayer.Blend3NodeGetAmount()")
 
 	// Build out the method's arguments
@@ -341,11 +341,11 @@ func (o *AnimationTreePlayer) Blend3NodeGetAmount(id gdnative.String) gdnative.F
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -353,13 +353,13 @@ func (o *AnimationTreePlayer) Blend3NodeGetAmount(id gdnative.String) gdnative.F
         Sets the blend amount of a Blend3 node given its name and value. A Blend3 Node blends three animations with the amount between -1 and 1. At -1, Output is input b-. From -1 to 0, the influence of b- gets lessened, the influence of a gets raised and the influence of b+ is 0. At 0, Output is input a. From 0 to 1, the influence of a gets lessened, the influence of b+ gets raised and the influence of b+ is 0. At 1, Output is input b+.
 	Args: [{ false id String} { false blend float}], Returns: void
 */
-func (o *AnimationTreePlayer) Blend3NodeSetAmount(id gdnative.String, blend gdnative.Float) {
+func (o *AnimationTreePlayer) Blend3NodeSetAmount(id gdnative.String, blend gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.Blend3NodeSetAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(blend)
+	ptrArguments[1] = gdnative.NewPointerFromReal(blend)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "blend3_node_set_amount")
@@ -584,7 +584,7 @@ func (o *AnimationTreePlayer) IsActive() gdnative.Bool {
         Returns mix amount of a Mix node given its name.
 	Args: [{ false id String}], Returns: float
 */
-func (o *AnimationTreePlayer) MixNodeGetAmount(id gdnative.String) gdnative.Float {
+func (o *AnimationTreePlayer) MixNodeGetAmount(id gdnative.String) gdnative.Real {
 	//log.Println("Calling AnimationTreePlayer.MixNodeGetAmount()")
 
 	// Build out the method's arguments
@@ -596,11 +596,11 @@ func (o *AnimationTreePlayer) MixNodeGetAmount(id gdnative.String) gdnative.Floa
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -608,13 +608,13 @@ func (o *AnimationTreePlayer) MixNodeGetAmount(id gdnative.String) gdnative.Floa
         Sets mix amount of a Mix node given its name and value. A Mix node adds input b to input a by a the amount given by ratio.
 	Args: [{ false id String} { false ratio float}], Returns: void
 */
-func (o *AnimationTreePlayer) MixNodeSetAmount(id gdnative.String, ratio gdnative.Float) {
+func (o *AnimationTreePlayer) MixNodeSetAmount(id gdnative.String, ratio gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.MixNodeSetAmount()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(ratio)
+	ptrArguments[1] = gdnative.NewPointerFromReal(ratio)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "mix_node_set_amount")
@@ -798,7 +798,7 @@ func (o *AnimationTreePlayer) NodeSetPosition(id gdnative.String, screenPosition
         Returns autostart delay of a OneShot node given its name.
 	Args: [{ false id String}], Returns: float
 */
-func (o *AnimationTreePlayer) OneshotNodeGetAutorestartDelay(id gdnative.String) gdnative.Float {
+func (o *AnimationTreePlayer) OneshotNodeGetAutorestartDelay(id gdnative.String) gdnative.Real {
 	//log.Println("Calling AnimationTreePlayer.OneshotNodeGetAutorestartDelay()")
 
 	// Build out the method's arguments
@@ -810,11 +810,11 @@ func (o *AnimationTreePlayer) OneshotNodeGetAutorestartDelay(id gdnative.String)
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -822,7 +822,7 @@ func (o *AnimationTreePlayer) OneshotNodeGetAutorestartDelay(id gdnative.String)
         Returns autostart random delay of a OneShot node given its name.
 	Args: [{ false id String}], Returns: float
 */
-func (o *AnimationTreePlayer) OneshotNodeGetAutorestartRandomDelay(id gdnative.String) gdnative.Float {
+func (o *AnimationTreePlayer) OneshotNodeGetAutorestartRandomDelay(id gdnative.String) gdnative.Real {
 	//log.Println("Calling AnimationTreePlayer.OneshotNodeGetAutorestartRandomDelay()")
 
 	// Build out the method's arguments
@@ -834,11 +834,11 @@ func (o *AnimationTreePlayer) OneshotNodeGetAutorestartRandomDelay(id gdnative.S
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -846,7 +846,7 @@ func (o *AnimationTreePlayer) OneshotNodeGetAutorestartRandomDelay(id gdnative.S
         Returns fade in time of a OneShot node given its name.
 	Args: [{ false id String}], Returns: float
 */
-func (o *AnimationTreePlayer) OneshotNodeGetFadeinTime(id gdnative.String) gdnative.Float {
+func (o *AnimationTreePlayer) OneshotNodeGetFadeinTime(id gdnative.String) gdnative.Real {
 	//log.Println("Calling AnimationTreePlayer.OneshotNodeGetFadeinTime()")
 
 	// Build out the method's arguments
@@ -858,11 +858,11 @@ func (o *AnimationTreePlayer) OneshotNodeGetFadeinTime(id gdnative.String) gdnat
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -870,7 +870,7 @@ func (o *AnimationTreePlayer) OneshotNodeGetFadeinTime(id gdnative.String) gdnat
         Returns fade out time of a OneShot node given its name.
 	Args: [{ false id String}], Returns: float
 */
-func (o *AnimationTreePlayer) OneshotNodeGetFadeoutTime(id gdnative.String) gdnative.Float {
+func (o *AnimationTreePlayer) OneshotNodeGetFadeoutTime(id gdnative.String) gdnative.Real {
 	//log.Println("Calling AnimationTreePlayer.OneshotNodeGetFadeoutTime()")
 
 	// Build out the method's arguments
@@ -882,11 +882,11 @@ func (o *AnimationTreePlayer) OneshotNodeGetFadeoutTime(id gdnative.String) gdna
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -964,13 +964,13 @@ func (o *AnimationTreePlayer) OneshotNodeSetAutorestart(id gdnative.String, enab
         Sets autorestart delay of a OneShot node given its name and value in seconds.
 	Args: [{ false id String} { false delay_sec float}], Returns: void
 */
-func (o *AnimationTreePlayer) OneshotNodeSetAutorestartDelay(id gdnative.String, delaySec gdnative.Float) {
+func (o *AnimationTreePlayer) OneshotNodeSetAutorestartDelay(id gdnative.String, delaySec gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.OneshotNodeSetAutorestartDelay()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(delaySec)
+	ptrArguments[1] = gdnative.NewPointerFromReal(delaySec)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_autorestart_delay")
@@ -986,13 +986,13 @@ func (o *AnimationTreePlayer) OneshotNodeSetAutorestartDelay(id gdnative.String,
         Sets autorestart random delay of a OneShot node given its name and value in seconds.
 	Args: [{ false id String} { false rand_sec float}], Returns: void
 */
-func (o *AnimationTreePlayer) OneshotNodeSetAutorestartRandomDelay(id gdnative.String, randSec gdnative.Float) {
+func (o *AnimationTreePlayer) OneshotNodeSetAutorestartRandomDelay(id gdnative.String, randSec gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.OneshotNodeSetAutorestartRandomDelay()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(randSec)
+	ptrArguments[1] = gdnative.NewPointerFromReal(randSec)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_autorestart_random_delay")
@@ -1008,13 +1008,13 @@ func (o *AnimationTreePlayer) OneshotNodeSetAutorestartRandomDelay(id gdnative.S
         Sets fade in time of a OneShot node given its name and value in seconds.
 	Args: [{ false id String} { false time_sec float}], Returns: void
 */
-func (o *AnimationTreePlayer) OneshotNodeSetFadeinTime(id gdnative.String, timeSec gdnative.Float) {
+func (o *AnimationTreePlayer) OneshotNodeSetFadeinTime(id gdnative.String, timeSec gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.OneshotNodeSetFadeinTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(timeSec)
+	ptrArguments[1] = gdnative.NewPointerFromReal(timeSec)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_fadein_time")
@@ -1030,13 +1030,13 @@ func (o *AnimationTreePlayer) OneshotNodeSetFadeinTime(id gdnative.String, timeS
         Sets fade out time of a OneShot node given its name and value in seconds.
 	Args: [{ false id String} { false time_sec float}], Returns: void
 */
-func (o *AnimationTreePlayer) OneshotNodeSetFadeoutTime(id gdnative.String, timeSec gdnative.Float) {
+func (o *AnimationTreePlayer) OneshotNodeSetFadeoutTime(id gdnative.String, timeSec gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.OneshotNodeSetFadeoutTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(timeSec)
+	ptrArguments[1] = gdnative.NewPointerFromReal(timeSec)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "oneshot_node_set_fadeout_time")
@@ -1262,7 +1262,7 @@ func (o *AnimationTreePlayer) SetMasterPlayer(nodepath gdnative.NodePath) {
         Returns time scale value of the TimeScale node with name [code]id[/code].
 	Args: [{ false id String}], Returns: float
 */
-func (o *AnimationTreePlayer) TimescaleNodeGetScale(id gdnative.String) gdnative.Float {
+func (o *AnimationTreePlayer) TimescaleNodeGetScale(id gdnative.String) gdnative.Real {
 	//log.Println("Calling AnimationTreePlayer.TimescaleNodeGetScale()")
 
 	// Build out the method's arguments
@@ -1274,11 +1274,11 @@ func (o *AnimationTreePlayer) TimescaleNodeGetScale(id gdnative.String) gdnative
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1286,13 +1286,13 @@ func (o *AnimationTreePlayer) TimescaleNodeGetScale(id gdnative.String) gdnative
         Sets the time scale of the TimeScale node with name [code]id[/code] to [code]scale[/code]. The timescale node is used to speed [Animation]s up if the scale is above 1 or slow them down if it is below 1. If applied after a blend or mix, affects all input animations to that blend or mix.
 	Args: [{ false id String} { false scale float}], Returns: void
 */
-func (o *AnimationTreePlayer) TimescaleNodeSetScale(id gdnative.String, scale gdnative.Float) {
+func (o *AnimationTreePlayer) TimescaleNodeSetScale(id gdnative.String, scale gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.TimescaleNodeSetScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(scale)
+	ptrArguments[1] = gdnative.NewPointerFromReal(scale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "timescale_node_set_scale")
@@ -1308,13 +1308,13 @@ func (o *AnimationTreePlayer) TimescaleNodeSetScale(id gdnative.String, scale gd
         Sets the time seek value of the TimeSeek node with name [code]id[/code] to [code]seconds[/code] This functions as a seek in the [Animation] or the blend or mix of [Animation]s input in it.
 	Args: [{ false id String} { false seconds float}], Returns: void
 */
-func (o *AnimationTreePlayer) TimeseekNodeSeek(id gdnative.String, seconds gdnative.Float) {
+func (o *AnimationTreePlayer) TimeseekNodeSeek(id gdnative.String, seconds gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.TimeseekNodeSeek()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(seconds)
+	ptrArguments[1] = gdnative.NewPointerFromReal(seconds)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "timeseek_node_seek")
@@ -1400,7 +1400,7 @@ func (o *AnimationTreePlayer) TransitionNodeGetInputCount(id gdnative.String) gd
         Returns the cross fade time for the transition node with name [code]id[/code].
 	Args: [{ false id String}], Returns: float
 */
-func (o *AnimationTreePlayer) TransitionNodeGetXfadeTime(id gdnative.String) gdnative.Float {
+func (o *AnimationTreePlayer) TransitionNodeGetXfadeTime(id gdnative.String) gdnative.Real {
 	//log.Println("Calling AnimationTreePlayer.TransitionNodeGetXfadeTime()")
 
 	// Build out the method's arguments
@@ -1412,11 +1412,11 @@ func (o *AnimationTreePlayer) TransitionNodeGetXfadeTime(id gdnative.String) gdn
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -1516,13 +1516,13 @@ func (o *AnimationTreePlayer) TransitionNodeSetInputCount(id gdnative.String, co
         The transition node with name [code]id[/code] sets its cross fade time to [code]time_sec[/code].
 	Args: [{ false id String} { false time_sec float}], Returns: void
 */
-func (o *AnimationTreePlayer) TransitionNodeSetXfadeTime(id gdnative.String, timeSec gdnative.Float) {
+func (o *AnimationTreePlayer) TransitionNodeSetXfadeTime(id gdnative.String, timeSec gdnative.Real) {
 	//log.Println("Calling AnimationTreePlayer.TransitionNodeSetXfadeTime()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromString(id)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(timeSec)
+	ptrArguments[1] = gdnative.NewPointerFromReal(timeSec)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AnimationTreePlayer", "transition_node_set_xfade_time")
@@ -1539,18 +1539,18 @@ func (o *AnimationTreePlayer) TransitionNodeSetXfadeTime(id gdnative.String, tim
 type AnimationTreePlayerImplementer interface {
 	NodeImplementer
 	AddNode(aType gdnative.Int, id gdnative.String)
-	Advance(delta gdnative.Float)
+	Advance(delta gdnative.Real)
 	AnimationNodeGetAnimation(id gdnative.String) AnimationImplementer
 	AnimationNodeGetMasterAnimation(id gdnative.String) gdnative.String
 	AnimationNodeSetAnimation(id gdnative.String, animation AnimationImplementer)
 	AnimationNodeSetFilterPath(id gdnative.String, path gdnative.NodePath, enable gdnative.Bool)
 	AnimationNodeSetMasterAnimation(id gdnative.String, source gdnative.String)
 	AreNodesConnected(id gdnative.String, dstId gdnative.String, dstInputIdx gdnative.Int) gdnative.Bool
-	Blend2NodeGetAmount(id gdnative.String) gdnative.Float
-	Blend2NodeSetAmount(id gdnative.String, blend gdnative.Float)
+	Blend2NodeGetAmount(id gdnative.String) gdnative.Real
+	Blend2NodeSetAmount(id gdnative.String, blend gdnative.Real)
 	Blend2NodeSetFilterPath(id gdnative.String, path gdnative.NodePath, enable gdnative.Bool)
-	Blend3NodeGetAmount(id gdnative.String) gdnative.Float
-	Blend3NodeSetAmount(id gdnative.String, blend gdnative.Float)
+	Blend3NodeGetAmount(id gdnative.String) gdnative.Real
+	Blend3NodeSetAmount(id gdnative.String, blend gdnative.Real)
 	Blend4NodeGetAmount(id gdnative.String) gdnative.Vector2
 	Blend4NodeSetAmount(id gdnative.String, blend gdnative.Vector2)
 	DisconnectNodes(id gdnative.String, dstInputIdx gdnative.Int)
@@ -1558,24 +1558,24 @@ type AnimationTreePlayerImplementer interface {
 	GetMasterPlayer() gdnative.NodePath
 	GetNodeList() gdnative.PoolStringArray
 	IsActive() gdnative.Bool
-	MixNodeGetAmount(id gdnative.String) gdnative.Float
-	MixNodeSetAmount(id gdnative.String, ratio gdnative.Float)
+	MixNodeGetAmount(id gdnative.String) gdnative.Real
+	MixNodeSetAmount(id gdnative.String, ratio gdnative.Real)
 	NodeExists(node gdnative.String) gdnative.Bool
 	NodeGetInputCount(id gdnative.String) gdnative.Int
 	NodeGetInputSource(id gdnative.String, idx gdnative.Int) gdnative.String
 	NodeGetPosition(id gdnative.String) gdnative.Vector2
 	NodeSetPosition(id gdnative.String, screenPosition gdnative.Vector2)
-	OneshotNodeGetAutorestartDelay(id gdnative.String) gdnative.Float
-	OneshotNodeGetAutorestartRandomDelay(id gdnative.String) gdnative.Float
-	OneshotNodeGetFadeinTime(id gdnative.String) gdnative.Float
-	OneshotNodeGetFadeoutTime(id gdnative.String) gdnative.Float
+	OneshotNodeGetAutorestartDelay(id gdnative.String) gdnative.Real
+	OneshotNodeGetAutorestartRandomDelay(id gdnative.String) gdnative.Real
+	OneshotNodeGetFadeinTime(id gdnative.String) gdnative.Real
+	OneshotNodeGetFadeoutTime(id gdnative.String) gdnative.Real
 	OneshotNodeHasAutorestart(id gdnative.String) gdnative.Bool
 	OneshotNodeIsActive(id gdnative.String) gdnative.Bool
 	OneshotNodeSetAutorestart(id gdnative.String, enable gdnative.Bool)
-	OneshotNodeSetAutorestartDelay(id gdnative.String, delaySec gdnative.Float)
-	OneshotNodeSetAutorestartRandomDelay(id gdnative.String, randSec gdnative.Float)
-	OneshotNodeSetFadeinTime(id gdnative.String, timeSec gdnative.Float)
-	OneshotNodeSetFadeoutTime(id gdnative.String, timeSec gdnative.Float)
+	OneshotNodeSetAutorestartDelay(id gdnative.String, delaySec gdnative.Real)
+	OneshotNodeSetAutorestartRandomDelay(id gdnative.String, randSec gdnative.Real)
+	OneshotNodeSetFadeinTime(id gdnative.String, timeSec gdnative.Real)
+	OneshotNodeSetFadeoutTime(id gdnative.String, timeSec gdnative.Real)
 	OneshotNodeSetFilterPath(id gdnative.String, path gdnative.NodePath, enable gdnative.Bool)
 	OneshotNodeStart(id gdnative.String)
 	OneshotNodeStop(id gdnative.String)
@@ -1586,16 +1586,16 @@ type AnimationTreePlayerImplementer interface {
 	SetAnimationProcessMode(mode gdnative.Int)
 	SetBasePath(path gdnative.NodePath)
 	SetMasterPlayer(nodepath gdnative.NodePath)
-	TimescaleNodeGetScale(id gdnative.String) gdnative.Float
-	TimescaleNodeSetScale(id gdnative.String, scale gdnative.Float)
-	TimeseekNodeSeek(id gdnative.String, seconds gdnative.Float)
+	TimescaleNodeGetScale(id gdnative.String) gdnative.Real
+	TimescaleNodeSetScale(id gdnative.String, scale gdnative.Real)
+	TimeseekNodeSeek(id gdnative.String, seconds gdnative.Real)
 	TransitionNodeDeleteInput(id gdnative.String, inputIdx gdnative.Int)
 	TransitionNodeGetCurrent(id gdnative.String) gdnative.Int
 	TransitionNodeGetInputCount(id gdnative.String) gdnative.Int
-	TransitionNodeGetXfadeTime(id gdnative.String) gdnative.Float
+	TransitionNodeGetXfadeTime(id gdnative.String) gdnative.Real
 	TransitionNodeHasInputAutoAdvance(id gdnative.String, inputIdx gdnative.Int) gdnative.Bool
 	TransitionNodeSetCurrent(id gdnative.String, inputIdx gdnative.Int)
 	TransitionNodeSetInputAutoAdvance(id gdnative.String, inputIdx gdnative.Int, enable gdnative.Bool)
 	TransitionNodeSetInputCount(id gdnative.String, count gdnative.Int)
-	TransitionNodeSetXfadeTime(id gdnative.String, timeSec gdnative.Float)
+	TransitionNodeSetXfadeTime(id gdnative.String, timeSec gdnative.Real)
 }

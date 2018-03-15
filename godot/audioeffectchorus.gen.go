@@ -38,7 +38,7 @@ func (o *AudioEffectChorus) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectChorus) GetDry() gdnative.Float {
+func (o *AudioEffectChorus) GetDry() gdnative.Real {
 	//log.Println("Calling AudioEffectChorus.GetDry()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *AudioEffectChorus) GetDry() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,7 +84,7 @@ func (o *AudioEffectChorus) GetVoiceCount() gdnative.Int {
         Undocumented
 	Args: [{ false voice_idx int}], Returns: float
 */
-func (o *AudioEffectChorus) GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Float {
+func (o *AudioEffectChorus) GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Real {
 	//log.Println("Calling AudioEffectChorus.GetVoiceCutoffHz()")
 
 	// Build out the method's arguments
@@ -96,11 +96,11 @@ func (o *AudioEffectChorus) GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Flo
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -108,7 +108,7 @@ func (o *AudioEffectChorus) GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Flo
         Undocumented
 	Args: [{ false voice_idx int}], Returns: float
 */
-func (o *AudioEffectChorus) GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Float {
+func (o *AudioEffectChorus) GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Real {
 	//log.Println("Calling AudioEffectChorus.GetVoiceDelayMs()")
 
 	// Build out the method's arguments
@@ -120,11 +120,11 @@ func (o *AudioEffectChorus) GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Floa
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -132,7 +132,7 @@ func (o *AudioEffectChorus) GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Floa
         Undocumented
 	Args: [{ false voice_idx int}], Returns: float
 */
-func (o *AudioEffectChorus) GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Float {
+func (o *AudioEffectChorus) GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Real {
 	//log.Println("Calling AudioEffectChorus.GetVoiceDepthMs()")
 
 	// Build out the method's arguments
@@ -144,11 +144,11 @@ func (o *AudioEffectChorus) GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Floa
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -156,7 +156,7 @@ func (o *AudioEffectChorus) GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Floa
         Undocumented
 	Args: [{ false voice_idx int}], Returns: float
 */
-func (o *AudioEffectChorus) GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Float {
+func (o *AudioEffectChorus) GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Real {
 	//log.Println("Calling AudioEffectChorus.GetVoiceLevelDb()")
 
 	// Build out the method's arguments
@@ -168,11 +168,11 @@ func (o *AudioEffectChorus) GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Floa
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -180,7 +180,7 @@ func (o *AudioEffectChorus) GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Floa
         Undocumented
 	Args: [{ false voice_idx int}], Returns: float
 */
-func (o *AudioEffectChorus) GetVoicePan(voiceIdx gdnative.Int) gdnative.Float {
+func (o *AudioEffectChorus) GetVoicePan(voiceIdx gdnative.Int) gdnative.Real {
 	//log.Println("Calling AudioEffectChorus.GetVoicePan()")
 
 	// Build out the method's arguments
@@ -192,11 +192,11 @@ func (o *AudioEffectChorus) GetVoicePan(voiceIdx gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -204,7 +204,7 @@ func (o *AudioEffectChorus) GetVoicePan(voiceIdx gdnative.Int) gdnative.Float {
         Undocumented
 	Args: [{ false voice_idx int}], Returns: float
 */
-func (o *AudioEffectChorus) GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Float {
+func (o *AudioEffectChorus) GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Real {
 	//log.Println("Calling AudioEffectChorus.GetVoiceRateHz()")
 
 	// Build out the method's arguments
@@ -216,11 +216,11 @@ func (o *AudioEffectChorus) GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Float
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -228,7 +228,7 @@ func (o *AudioEffectChorus) GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Float
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioEffectChorus) GetWet() gdnative.Float {
+func (o *AudioEffectChorus) GetWet() gdnative.Real {
 	//log.Println("Calling AudioEffectChorus.GetWet()")
 
 	// Build out the method's arguments
@@ -239,11 +239,11 @@ func (o *AudioEffectChorus) GetWet() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -251,12 +251,12 @@ func (o *AudioEffectChorus) GetWet() gdnative.Float {
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectChorus) SetDry(amount gdnative.Float) {
+func (o *AudioEffectChorus) SetDry(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectChorus.SetDry()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_dry")
@@ -293,13 +293,13 @@ func (o *AudioEffectChorus) SetVoiceCount(voices gdnative.Int) {
         Undocumented
 	Args: [{ false voice_idx int} { false cutoff_hz float}], Returns: void
 */
-func (o *AudioEffectChorus) SetVoiceCutoffHz(voiceIdx gdnative.Int, cutoffHz gdnative.Float) {
+func (o *AudioEffectChorus) SetVoiceCutoffHz(voiceIdx gdnative.Int, cutoffHz gdnative.Real) {
 	//log.Println("Calling AudioEffectChorus.SetVoiceCutoffHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(cutoffHz)
+	ptrArguments[1] = gdnative.NewPointerFromReal(cutoffHz)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_cutoff_hz")
@@ -315,13 +315,13 @@ func (o *AudioEffectChorus) SetVoiceCutoffHz(voiceIdx gdnative.Int, cutoffHz gdn
         Undocumented
 	Args: [{ false voice_idx int} { false delay_ms float}], Returns: void
 */
-func (o *AudioEffectChorus) SetVoiceDelayMs(voiceIdx gdnative.Int, delayMs gdnative.Float) {
+func (o *AudioEffectChorus) SetVoiceDelayMs(voiceIdx gdnative.Int, delayMs gdnative.Real) {
 	//log.Println("Calling AudioEffectChorus.SetVoiceDelayMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(delayMs)
+	ptrArguments[1] = gdnative.NewPointerFromReal(delayMs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_delay_ms")
@@ -337,13 +337,13 @@ func (o *AudioEffectChorus) SetVoiceDelayMs(voiceIdx gdnative.Int, delayMs gdnat
         Undocumented
 	Args: [{ false voice_idx int} { false depth_ms float}], Returns: void
 */
-func (o *AudioEffectChorus) SetVoiceDepthMs(voiceIdx gdnative.Int, depthMs gdnative.Float) {
+func (o *AudioEffectChorus) SetVoiceDepthMs(voiceIdx gdnative.Int, depthMs gdnative.Real) {
 	//log.Println("Calling AudioEffectChorus.SetVoiceDepthMs()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(depthMs)
+	ptrArguments[1] = gdnative.NewPointerFromReal(depthMs)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_depth_ms")
@@ -359,13 +359,13 @@ func (o *AudioEffectChorus) SetVoiceDepthMs(voiceIdx gdnative.Int, depthMs gdnat
         Undocumented
 	Args: [{ false voice_idx int} { false level_db float}], Returns: void
 */
-func (o *AudioEffectChorus) SetVoiceLevelDb(voiceIdx gdnative.Int, levelDb gdnative.Float) {
+func (o *AudioEffectChorus) SetVoiceLevelDb(voiceIdx gdnative.Int, levelDb gdnative.Real) {
 	//log.Println("Calling AudioEffectChorus.SetVoiceLevelDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(levelDb)
+	ptrArguments[1] = gdnative.NewPointerFromReal(levelDb)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_level_db")
@@ -381,13 +381,13 @@ func (o *AudioEffectChorus) SetVoiceLevelDb(voiceIdx gdnative.Int, levelDb gdnat
         Undocumented
 	Args: [{ false voice_idx int} { false pan float}], Returns: void
 */
-func (o *AudioEffectChorus) SetVoicePan(voiceIdx gdnative.Int, pan gdnative.Float) {
+func (o *AudioEffectChorus) SetVoicePan(voiceIdx gdnative.Int, pan gdnative.Real) {
 	//log.Println("Calling AudioEffectChorus.SetVoicePan()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(pan)
+	ptrArguments[1] = gdnative.NewPointerFromReal(pan)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_pan")
@@ -403,13 +403,13 @@ func (o *AudioEffectChorus) SetVoicePan(voiceIdx gdnative.Int, pan gdnative.Floa
         Undocumented
 	Args: [{ false voice_idx int} { false rate_hz float}], Returns: void
 */
-func (o *AudioEffectChorus) SetVoiceRateHz(voiceIdx gdnative.Int, rateHz gdnative.Float) {
+func (o *AudioEffectChorus) SetVoiceRateHz(voiceIdx gdnative.Int, rateHz gdnative.Real) {
 	//log.Println("Calling AudioEffectChorus.SetVoiceRateHz()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(voiceIdx)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(rateHz)
+	ptrArguments[1] = gdnative.NewPointerFromReal(rateHz)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_voice_rate_hz")
@@ -425,12 +425,12 @@ func (o *AudioEffectChorus) SetVoiceRateHz(voiceIdx gdnative.Int, rateHz gdnativ
         Undocumented
 	Args: [{ false amount float}], Returns: void
 */
-func (o *AudioEffectChorus) SetWet(amount gdnative.Float) {
+func (o *AudioEffectChorus) SetWet(amount gdnative.Real) {
 	//log.Println("Calling AudioEffectChorus.SetWet()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(amount)
+	ptrArguments[0] = gdnative.NewPointerFromReal(amount)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectChorus", "set_wet")
@@ -446,22 +446,22 @@ func (o *AudioEffectChorus) SetWet(amount gdnative.Float) {
 // of the AudioEffectChorus class.
 type AudioEffectChorusImplementer interface {
 	AudioEffectImplementer
-	GetDry() gdnative.Float
+	GetDry() gdnative.Real
 	GetVoiceCount() gdnative.Int
-	GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Float
-	GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Float
-	GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Float
-	GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Float
-	GetVoicePan(voiceIdx gdnative.Int) gdnative.Float
-	GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Float
-	GetWet() gdnative.Float
-	SetDry(amount gdnative.Float)
+	GetVoiceCutoffHz(voiceIdx gdnative.Int) gdnative.Real
+	GetVoiceDelayMs(voiceIdx gdnative.Int) gdnative.Real
+	GetVoiceDepthMs(voiceIdx gdnative.Int) gdnative.Real
+	GetVoiceLevelDb(voiceIdx gdnative.Int) gdnative.Real
+	GetVoicePan(voiceIdx gdnative.Int) gdnative.Real
+	GetVoiceRateHz(voiceIdx gdnative.Int) gdnative.Real
+	GetWet() gdnative.Real
+	SetDry(amount gdnative.Real)
 	SetVoiceCount(voices gdnative.Int)
-	SetVoiceCutoffHz(voiceIdx gdnative.Int, cutoffHz gdnative.Float)
-	SetVoiceDelayMs(voiceIdx gdnative.Int, delayMs gdnative.Float)
-	SetVoiceDepthMs(voiceIdx gdnative.Int, depthMs gdnative.Float)
-	SetVoiceLevelDb(voiceIdx gdnative.Int, levelDb gdnative.Float)
-	SetVoicePan(voiceIdx gdnative.Int, pan gdnative.Float)
-	SetVoiceRateHz(voiceIdx gdnative.Int, rateHz gdnative.Float)
-	SetWet(amount gdnative.Float)
+	SetVoiceCutoffHz(voiceIdx gdnative.Int, cutoffHz gdnative.Real)
+	SetVoiceDelayMs(voiceIdx gdnative.Int, delayMs gdnative.Real)
+	SetVoiceDepthMs(voiceIdx gdnative.Int, depthMs gdnative.Real)
+	SetVoiceLevelDb(voiceIdx gdnative.Int, levelDb gdnative.Real)
+	SetVoicePan(voiceIdx gdnative.Int, pan gdnative.Real)
+	SetVoiceRateHz(voiceIdx gdnative.Int, rateHz gdnative.Real)
+	SetWet(amount gdnative.Real)
 }

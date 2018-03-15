@@ -270,13 +270,13 @@ func (o *ArrayMesh) GetSurfaceCount() gdnative.Int {
 
 	Args: [{ false arg0 Transform} { false arg1 float}], Returns: enum.Error
 */
-func (o *ArrayMesh) LightmapUnwrap(arg0 gdnative.Transform, arg1 gdnative.Float) gdnative.Error {
+func (o *ArrayMesh) LightmapUnwrap(arg0 gdnative.Transform, arg1 gdnative.Real) gdnative.Error {
 	//log.Println("Calling ArrayMesh.LightmapUnwrap()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromTransform(arg0)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(arg1)
+	ptrArguments[1] = gdnative.NewPointerFromReal(arg1)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("ArrayMesh", "lightmap_unwrap")

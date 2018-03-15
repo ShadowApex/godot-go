@@ -82,7 +82,7 @@ func (o *AudioStreamOGGVorbis) X_SetData(data gdnative.PoolByteArray) {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *AudioStreamOGGVorbis) GetLoopOffset() gdnative.Float {
+func (o *AudioStreamOGGVorbis) GetLoopOffset() gdnative.Real {
 	//log.Println("Calling AudioStreamOGGVorbis.GetLoopOffset()")
 
 	// Build out the method's arguments
@@ -93,11 +93,11 @@ func (o *AudioStreamOGGVorbis) GetLoopOffset() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -149,12 +149,12 @@ func (o *AudioStreamOGGVorbis) SetLoop(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false seconds float}], Returns: void
 */
-func (o *AudioStreamOGGVorbis) SetLoopOffset(seconds gdnative.Float) {
+func (o *AudioStreamOGGVorbis) SetLoopOffset(seconds gdnative.Real) {
 	//log.Println("Calling AudioStreamOGGVorbis.SetLoopOffset()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(seconds)
+	ptrArguments[0] = gdnative.NewPointerFromReal(seconds)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioStreamOGGVorbis", "set_loop_offset")
@@ -172,8 +172,8 @@ type AudioStreamOGGVorbisImplementer interface {
 	AudioStreamImplementer
 	X_GetData() gdnative.PoolByteArray
 	X_SetData(data gdnative.PoolByteArray)
-	GetLoopOffset() gdnative.Float
+	GetLoopOffset() gdnative.Real
 	HasLoop() gdnative.Bool
 	SetLoop(enable gdnative.Bool)
-	SetLoopOffset(seconds gdnative.Float)
+	SetLoopOffset(seconds gdnative.Real)
 }

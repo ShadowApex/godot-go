@@ -1,8 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://libgodot.gdnlib" type="GDNativeLibrary" id=1]
+[ext_resource path="res://Mob.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="NativeScript" id=1]
+
+resource_name = "main.Main"
+class_name = "main.Main"
+library = ExtResource( 1 )
+
+[sub_resource type="Curve2D" id=2]
 
 bake_interval = 5.0
 _data = {
@@ -11,9 +19,10 @@ _data = {
 
 [node name="Main" type="Node" index="0"]
 
-[node name="Player" parent="." index="0" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+Mob = ExtResource( 2 )
 
-Speed = 400.0
+[node name="Player" parent="." index="0" instance=ExtResource( 3 )]
 
 [node name="MobTimer" type="Timer" parent="." index="1"]
 
@@ -43,7 +52,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="MobPath" type="Path2D" parent="." index="5"]
 
-curve = SubResource( 1 )
+curve = SubResource( 2 )
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" index="0"]
 

@@ -38,7 +38,7 @@ func (o *CapsuleShape2D) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CapsuleShape2D) GetHeight() gdnative.Float {
+func (o *CapsuleShape2D) GetHeight() gdnative.Real {
 	//log.Println("Calling CapsuleShape2D.GetHeight()")
 
 	// Build out the method's arguments
@@ -49,11 +49,11 @@ func (o *CapsuleShape2D) GetHeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -61,7 +61,7 @@ func (o *CapsuleShape2D) GetHeight() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *CapsuleShape2D) GetRadius() gdnative.Float {
+func (o *CapsuleShape2D) GetRadius() gdnative.Real {
 	//log.Println("Calling CapsuleShape2D.GetRadius()")
 
 	// Build out the method's arguments
@@ -72,11 +72,11 @@ func (o *CapsuleShape2D) GetRadius() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -84,12 +84,12 @@ func (o *CapsuleShape2D) GetRadius() gdnative.Float {
         Undocumented
 	Args: [{ false height float}], Returns: void
 */
-func (o *CapsuleShape2D) SetHeight(height gdnative.Float) {
+func (o *CapsuleShape2D) SetHeight(height gdnative.Real) {
 	//log.Println("Calling CapsuleShape2D.SetHeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(height)
+	ptrArguments[0] = gdnative.NewPointerFromReal(height)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CapsuleShape2D", "set_height")
@@ -105,12 +105,12 @@ func (o *CapsuleShape2D) SetHeight(height gdnative.Float) {
         Undocumented
 	Args: [{ false radius float}], Returns: void
 */
-func (o *CapsuleShape2D) SetRadius(radius gdnative.Float) {
+func (o *CapsuleShape2D) SetRadius(radius gdnative.Real) {
 	//log.Println("Calling CapsuleShape2D.SetRadius()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(radius)
+	ptrArguments[0] = gdnative.NewPointerFromReal(radius)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("CapsuleShape2D", "set_radius")
@@ -126,8 +126,8 @@ func (o *CapsuleShape2D) SetRadius(radius gdnative.Float) {
 // of the CapsuleShape2D class.
 type CapsuleShape2DImplementer interface {
 	Shape2DImplementer
-	GetHeight() gdnative.Float
-	GetRadius() gdnative.Float
-	SetHeight(height gdnative.Float)
-	SetRadius(radius gdnative.Float)
+	GetHeight() gdnative.Real
+	GetRadius() gdnative.Real
+	SetHeight(height gdnative.Real)
+	SetRadius(radius gdnative.Real)
 }

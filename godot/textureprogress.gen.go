@@ -50,7 +50,7 @@ func (o *TextureProgress) BaseClass() string {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *TextureProgress) GetFillDegrees() gdnative.Float {
+func (o *TextureProgress) GetFillDegrees() gdnative.Real {
 	//log.Println("Calling TextureProgress.GetFillDegrees()")
 
 	// Build out the method's arguments
@@ -61,11 +61,11 @@ func (o *TextureProgress) GetFillDegrees() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -216,7 +216,7 @@ func (o *TextureProgress) GetRadialCenterOffset() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *TextureProgress) GetRadialInitialAngle() gdnative.Float {
+func (o *TextureProgress) GetRadialInitialAngle() gdnative.Real {
 	//log.Println("Calling TextureProgress.GetRadialInitialAngle()")
 
 	// Build out the method's arguments
@@ -227,11 +227,11 @@ func (o *TextureProgress) GetRadialInitialAngle() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -300,12 +300,12 @@ func (o *TextureProgress) GetUnderTexture() TextureImplementer {
         Undocumented
 	Args: [{ false mode float}], Returns: void
 */
-func (o *TextureProgress) SetFillDegrees(mode gdnative.Float) {
+func (o *TextureProgress) SetFillDegrees(mode gdnative.Real) {
 	//log.Println("Calling TextureProgress.SetFillDegrees()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+	ptrArguments[0] = gdnative.NewPointerFromReal(mode)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TextureProgress", "set_fill_degrees")
@@ -426,12 +426,12 @@ func (o *TextureProgress) SetRadialCenterOffset(mode gdnative.Vector2) {
         Undocumented
 	Args: [{ false mode float}], Returns: void
 */
-func (o *TextureProgress) SetRadialInitialAngle(mode gdnative.Float) {
+func (o *TextureProgress) SetRadialInitialAngle(mode gdnative.Real) {
 	//log.Println("Calling TextureProgress.SetRadialInitialAngle()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+	ptrArguments[0] = gdnative.NewPointerFromReal(mode)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("TextureProgress", "set_radial_initial_angle")
@@ -490,22 +490,22 @@ func (o *TextureProgress) SetUnderTexture(tex TextureImplementer) {
 // of the TextureProgress class.
 type TextureProgressImplementer interface {
 	RangeImplementer
-	GetFillDegrees() gdnative.Float
+	GetFillDegrees() gdnative.Real
 	GetFillMode() gdnative.Int
 	GetNinePatchStretch() gdnative.Bool
 	GetOverTexture() TextureImplementer
 	GetProgressTexture() TextureImplementer
 	GetRadialCenterOffset() gdnative.Vector2
-	GetRadialInitialAngle() gdnative.Float
+	GetRadialInitialAngle() gdnative.Real
 	GetStretchMargin(margin gdnative.Int) gdnative.Int
 	GetUnderTexture() TextureImplementer
-	SetFillDegrees(mode gdnative.Float)
+	SetFillDegrees(mode gdnative.Real)
 	SetFillMode(mode gdnative.Int)
 	SetNinePatchStretch(stretch gdnative.Bool)
 	SetOverTexture(tex TextureImplementer)
 	SetProgressTexture(tex TextureImplementer)
 	SetRadialCenterOffset(mode gdnative.Vector2)
-	SetRadialInitialAngle(mode gdnative.Float)
+	SetRadialInitialAngle(mode gdnative.Real)
 	SetStretchMargin(margin gdnative.Int, value gdnative.Int)
 	SetUnderTexture(tex TextureImplementer)
 }

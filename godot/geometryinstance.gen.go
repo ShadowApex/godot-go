@@ -79,7 +79,7 @@ func (o *GeometryInstance) GetCastShadowsSetting() GeometryInstanceShadowCasting
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GeometryInstance) GetExtraCullMargin() gdnative.Float {
+func (o *GeometryInstance) GetExtraCullMargin() gdnative.Real {
 	//log.Println("Calling GeometryInstance.GetExtraCullMargin()")
 
 	// Build out the method's arguments
@@ -90,11 +90,11 @@ func (o *GeometryInstance) GetExtraCullMargin() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -126,7 +126,7 @@ func (o *GeometryInstance) GetFlag(flag gdnative.Int) gdnative.Bool {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GeometryInstance) GetLodMaxDistance() gdnative.Float {
+func (o *GeometryInstance) GetLodMaxDistance() gdnative.Real {
 	//log.Println("Calling GeometryInstance.GetLodMaxDistance()")
 
 	// Build out the method's arguments
@@ -137,11 +137,11 @@ func (o *GeometryInstance) GetLodMaxDistance() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -149,7 +149,7 @@ func (o *GeometryInstance) GetLodMaxDistance() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GeometryInstance) GetLodMaxHysteresis() gdnative.Float {
+func (o *GeometryInstance) GetLodMaxHysteresis() gdnative.Real {
 	//log.Println("Calling GeometryInstance.GetLodMaxHysteresis()")
 
 	// Build out the method's arguments
@@ -160,11 +160,11 @@ func (o *GeometryInstance) GetLodMaxHysteresis() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -172,7 +172,7 @@ func (o *GeometryInstance) GetLodMaxHysteresis() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GeometryInstance) GetLodMinDistance() gdnative.Float {
+func (o *GeometryInstance) GetLodMinDistance() gdnative.Real {
 	//log.Println("Calling GeometryInstance.GetLodMinDistance()")
 
 	// Build out the method's arguments
@@ -183,11 +183,11 @@ func (o *GeometryInstance) GetLodMinDistance() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -195,7 +195,7 @@ func (o *GeometryInstance) GetLodMinDistance() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *GeometryInstance) GetLodMinHysteresis() gdnative.Float {
+func (o *GeometryInstance) GetLodMinHysteresis() gdnative.Real {
 	//log.Println("Calling GeometryInstance.GetLodMinHysteresis()")
 
 	// Build out the method's arguments
@@ -206,11 +206,11 @@ func (o *GeometryInstance) GetLodMinHysteresis() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -276,12 +276,12 @@ func (o *GeometryInstance) SetCastShadowsSetting(shadowCastingSetting gdnative.I
         Undocumented
 	Args: [{ false margin float}], Returns: void
 */
-func (o *GeometryInstance) SetExtraCullMargin(margin gdnative.Float) {
+func (o *GeometryInstance) SetExtraCullMargin(margin gdnative.Real) {
 	//log.Println("Calling GeometryInstance.SetExtraCullMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(margin)
+	ptrArguments[0] = gdnative.NewPointerFromReal(margin)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_extra_cull_margin")
@@ -319,12 +319,12 @@ func (o *GeometryInstance) SetFlag(flag gdnative.Int, value gdnative.Bool) {
         Undocumented
 	Args: [{ false mode float}], Returns: void
 */
-func (o *GeometryInstance) SetLodMaxDistance(mode gdnative.Float) {
+func (o *GeometryInstance) SetLodMaxDistance(mode gdnative.Real) {
 	//log.Println("Calling GeometryInstance.SetLodMaxDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+	ptrArguments[0] = gdnative.NewPointerFromReal(mode)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_lod_max_distance")
@@ -340,12 +340,12 @@ func (o *GeometryInstance) SetLodMaxDistance(mode gdnative.Float) {
         Undocumented
 	Args: [{ false mode float}], Returns: void
 */
-func (o *GeometryInstance) SetLodMaxHysteresis(mode gdnative.Float) {
+func (o *GeometryInstance) SetLodMaxHysteresis(mode gdnative.Real) {
 	//log.Println("Calling GeometryInstance.SetLodMaxHysteresis()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+	ptrArguments[0] = gdnative.NewPointerFromReal(mode)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_lod_max_hysteresis")
@@ -361,12 +361,12 @@ func (o *GeometryInstance) SetLodMaxHysteresis(mode gdnative.Float) {
         Undocumented
 	Args: [{ false mode float}], Returns: void
 */
-func (o *GeometryInstance) SetLodMinDistance(mode gdnative.Float) {
+func (o *GeometryInstance) SetLodMinDistance(mode gdnative.Real) {
 	//log.Println("Calling GeometryInstance.SetLodMinDistance()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+	ptrArguments[0] = gdnative.NewPointerFromReal(mode)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_lod_min_distance")
@@ -382,12 +382,12 @@ func (o *GeometryInstance) SetLodMinDistance(mode gdnative.Float) {
         Undocumented
 	Args: [{ false mode float}], Returns: void
 */
-func (o *GeometryInstance) SetLodMinHysteresis(mode gdnative.Float) {
+func (o *GeometryInstance) SetLodMinHysteresis(mode gdnative.Real) {
 	//log.Println("Calling GeometryInstance.SetLodMinHysteresis()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(mode)
+	ptrArguments[0] = gdnative.NewPointerFromReal(mode)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("GeometryInstance", "set_lod_min_hysteresis")
@@ -424,19 +424,19 @@ func (o *GeometryInstance) SetMaterialOverride(material MaterialImplementer) {
 // of the GeometryInstance class.
 type GeometryInstanceImplementer interface {
 	VisualInstanceImplementer
-	GetExtraCullMargin() gdnative.Float
+	GetExtraCullMargin() gdnative.Real
 	GetFlag(flag gdnative.Int) gdnative.Bool
-	GetLodMaxDistance() gdnative.Float
-	GetLodMaxHysteresis() gdnative.Float
-	GetLodMinDistance() gdnative.Float
-	GetLodMinHysteresis() gdnative.Float
+	GetLodMaxDistance() gdnative.Real
+	GetLodMaxHysteresis() gdnative.Real
+	GetLodMinDistance() gdnative.Real
+	GetLodMinHysteresis() gdnative.Real
 	GetMaterialOverride() MaterialImplementer
 	SetCastShadowsSetting(shadowCastingSetting gdnative.Int)
-	SetExtraCullMargin(margin gdnative.Float)
+	SetExtraCullMargin(margin gdnative.Real)
 	SetFlag(flag gdnative.Int, value gdnative.Bool)
-	SetLodMaxDistance(mode gdnative.Float)
-	SetLodMaxHysteresis(mode gdnative.Float)
-	SetLodMinDistance(mode gdnative.Float)
-	SetLodMinHysteresis(mode gdnative.Float)
+	SetLodMaxDistance(mode gdnative.Real)
+	SetLodMaxHysteresis(mode gdnative.Real)
+	SetLodMinDistance(mode gdnative.Real)
+	SetLodMinHysteresis(mode gdnative.Real)
 	SetMaterialOverride(material MaterialImplementer)
 }

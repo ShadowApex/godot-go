@@ -61,7 +61,7 @@ func (o *AudioEffectEQ) GetBandCount() gdnative.Int {
         Returns the band's gain at the specified index, in dB.
 	Args: [{ false band_idx int}], Returns: float
 */
-func (o *AudioEffectEQ) GetBandGainDb(bandIdx gdnative.Int) gdnative.Float {
+func (o *AudioEffectEQ) GetBandGainDb(bandIdx gdnative.Int) gdnative.Real {
 	//log.Println("Calling AudioEffectEQ.GetBandGainDb()")
 
 	// Build out the method's arguments
@@ -73,11 +73,11 @@ func (o *AudioEffectEQ) GetBandGainDb(bandIdx gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -85,13 +85,13 @@ func (o *AudioEffectEQ) GetBandGainDb(bandIdx gdnative.Int) gdnative.Float {
         Sets band's gain at the specified index, in dB.
 	Args: [{ false band_idx int} { false volume_db float}], Returns: void
 */
-func (o *AudioEffectEQ) SetBandGainDb(bandIdx gdnative.Int, volumeDb gdnative.Float) {
+func (o *AudioEffectEQ) SetBandGainDb(bandIdx gdnative.Int, volumeDb gdnative.Real) {
 	//log.Println("Calling AudioEffectEQ.SetBandGainDb()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(bandIdx)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(volumeDb)
+	ptrArguments[1] = gdnative.NewPointerFromReal(volumeDb)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("AudioEffectEQ", "set_band_gain_db")
@@ -108,6 +108,6 @@ func (o *AudioEffectEQ) SetBandGainDb(bandIdx gdnative.Int, volumeDb gdnative.Fl
 type AudioEffectEQImplementer interface {
 	AudioEffectImplementer
 	GetBandCount() gdnative.Int
-	GetBandGainDb(bandIdx gdnative.Int) gdnative.Float
-	SetBandGainDb(bandIdx gdnative.Int, volumeDb gdnative.Float)
+	GetBandGainDb(bandIdx gdnative.Int) gdnative.Real
+	SetBandGainDb(bandIdx gdnative.Int, volumeDb gdnative.Real)
 }

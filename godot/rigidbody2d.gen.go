@@ -185,7 +185,7 @@ func (o *RigidBody2D) ApplyImpulse(offset gdnative.Vector2, impulse gdnative.Vec
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetAngularDamp() gdnative.Float {
+func (o *RigidBody2D) GetAngularDamp() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetAngularDamp()")
 
 	// Build out the method's arguments
@@ -196,11 +196,11 @@ func (o *RigidBody2D) GetAngularDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -208,7 +208,7 @@ func (o *RigidBody2D) GetAngularDamp() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetAngularVelocity() gdnative.Float {
+func (o *RigidBody2D) GetAngularVelocity() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetAngularVelocity()")
 
 	// Build out the method's arguments
@@ -219,11 +219,11 @@ func (o *RigidBody2D) GetAngularVelocity() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -254,7 +254,7 @@ func (o *RigidBody2D) GetAppliedForce() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetAppliedTorque() gdnative.Float {
+func (o *RigidBody2D) GetAppliedTorque() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetAppliedTorque()")
 
 	// Build out the method's arguments
@@ -265,11 +265,11 @@ func (o *RigidBody2D) GetAppliedTorque() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -277,7 +277,7 @@ func (o *RigidBody2D) GetAppliedTorque() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetBounce() gdnative.Float {
+func (o *RigidBody2D) GetBounce() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetBounce()")
 
 	// Build out the method's arguments
@@ -288,11 +288,11 @@ func (o *RigidBody2D) GetBounce() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -346,7 +346,7 @@ func (o *RigidBody2D) GetContinuousCollisionDetectionMode() RigidBody2DCCDMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetFriction() gdnative.Float {
+func (o *RigidBody2D) GetFriction() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetFriction()")
 
 	// Build out the method's arguments
@@ -357,11 +357,11 @@ func (o *RigidBody2D) GetFriction() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -369,7 +369,7 @@ func (o *RigidBody2D) GetFriction() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetGravityScale() gdnative.Float {
+func (o *RigidBody2D) GetGravityScale() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetGravityScale()")
 
 	// Build out the method's arguments
@@ -380,11 +380,11 @@ func (o *RigidBody2D) GetGravityScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -392,7 +392,7 @@ func (o *RigidBody2D) GetGravityScale() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetInertia() gdnative.Float {
+func (o *RigidBody2D) GetInertia() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetInertia()")
 
 	// Build out the method's arguments
@@ -403,11 +403,11 @@ func (o *RigidBody2D) GetInertia() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -415,7 +415,7 @@ func (o *RigidBody2D) GetInertia() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetLinearDamp() gdnative.Float {
+func (o *RigidBody2D) GetLinearDamp() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetLinearDamp()")
 
 	// Build out the method's arguments
@@ -426,11 +426,11 @@ func (o *RigidBody2D) GetLinearDamp() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -461,7 +461,7 @@ func (o *RigidBody2D) GetLinearVelocity() gdnative.Vector2 {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetMass() gdnative.Float {
+func (o *RigidBody2D) GetMass() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetMass()")
 
 	// Build out the method's arguments
@@ -472,11 +472,11 @@ func (o *RigidBody2D) GetMass() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -530,7 +530,7 @@ func (o *RigidBody2D) GetMode() RigidBody2DMode {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *RigidBody2D) GetWeight() gdnative.Float {
+func (o *RigidBody2D) GetWeight() gdnative.Real {
 	//log.Println("Calling RigidBody2D.GetWeight()")
 
 	// Build out the method's arguments
@@ -541,11 +541,11 @@ func (o *RigidBody2D) GetWeight() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -645,12 +645,12 @@ func (o *RigidBody2D) IsUsingCustomIntegrator() gdnative.Bool {
         Undocumented
 	Args: [{ false angular_damp float}], Returns: void
 */
-func (o *RigidBody2D) SetAngularDamp(angularDamp gdnative.Float) {
+func (o *RigidBody2D) SetAngularDamp(angularDamp gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetAngularDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(angularDamp)
+	ptrArguments[0] = gdnative.NewPointerFromReal(angularDamp)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_angular_damp")
@@ -666,12 +666,12 @@ func (o *RigidBody2D) SetAngularDamp(angularDamp gdnative.Float) {
         Undocumented
 	Args: [{ false angular_velocity float}], Returns: void
 */
-func (o *RigidBody2D) SetAngularVelocity(angularVelocity gdnative.Float) {
+func (o *RigidBody2D) SetAngularVelocity(angularVelocity gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetAngularVelocity()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(angularVelocity)
+	ptrArguments[0] = gdnative.NewPointerFromReal(angularVelocity)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_angular_velocity")
@@ -708,12 +708,12 @@ func (o *RigidBody2D) SetAppliedForce(force gdnative.Vector2) {
         Undocumented
 	Args: [{ false torque float}], Returns: void
 */
-func (o *RigidBody2D) SetAppliedTorque(torque gdnative.Float) {
+func (o *RigidBody2D) SetAppliedTorque(torque gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetAppliedTorque()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(torque)
+	ptrArguments[0] = gdnative.NewPointerFromReal(torque)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_applied_torque")
@@ -750,12 +750,12 @@ func (o *RigidBody2D) SetAxisVelocity(axisVelocity gdnative.Vector2) {
         Undocumented
 	Args: [{ false bounce float}], Returns: void
 */
-func (o *RigidBody2D) SetBounce(bounce gdnative.Float) {
+func (o *RigidBody2D) SetBounce(bounce gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetBounce()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(bounce)
+	ptrArguments[0] = gdnative.NewPointerFromReal(bounce)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_bounce")
@@ -834,12 +834,12 @@ func (o *RigidBody2D) SetContinuousCollisionDetectionMode(mode gdnative.Int) {
         Undocumented
 	Args: [{ false friction float}], Returns: void
 */
-func (o *RigidBody2D) SetFriction(friction gdnative.Float) {
+func (o *RigidBody2D) SetFriction(friction gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetFriction()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(friction)
+	ptrArguments[0] = gdnative.NewPointerFromReal(friction)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_friction")
@@ -855,12 +855,12 @@ func (o *RigidBody2D) SetFriction(friction gdnative.Float) {
         Undocumented
 	Args: [{ false gravity_scale float}], Returns: void
 */
-func (o *RigidBody2D) SetGravityScale(gravityScale gdnative.Float) {
+func (o *RigidBody2D) SetGravityScale(gravityScale gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetGravityScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(gravityScale)
+	ptrArguments[0] = gdnative.NewPointerFromReal(gravityScale)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_gravity_scale")
@@ -876,12 +876,12 @@ func (o *RigidBody2D) SetGravityScale(gravityScale gdnative.Float) {
         Undocumented
 	Args: [{ false inertia float}], Returns: void
 */
-func (o *RigidBody2D) SetInertia(inertia gdnative.Float) {
+func (o *RigidBody2D) SetInertia(inertia gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetInertia()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(inertia)
+	ptrArguments[0] = gdnative.NewPointerFromReal(inertia)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_inertia")
@@ -897,12 +897,12 @@ func (o *RigidBody2D) SetInertia(inertia gdnative.Float) {
         Undocumented
 	Args: [{ false linear_damp float}], Returns: void
 */
-func (o *RigidBody2D) SetLinearDamp(linearDamp gdnative.Float) {
+func (o *RigidBody2D) SetLinearDamp(linearDamp gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetLinearDamp()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(linearDamp)
+	ptrArguments[0] = gdnative.NewPointerFromReal(linearDamp)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_linear_damp")
@@ -939,12 +939,12 @@ func (o *RigidBody2D) SetLinearVelocity(linearVelocity gdnative.Vector2) {
         Undocumented
 	Args: [{ false mass float}], Returns: void
 */
-func (o *RigidBody2D) SetMass(mass gdnative.Float) {
+func (o *RigidBody2D) SetMass(mass gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetMass()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(mass)
+	ptrArguments[0] = gdnative.NewPointerFromReal(mass)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_mass")
@@ -1044,12 +1044,12 @@ func (o *RigidBody2D) SetUseCustomIntegrator(enable gdnative.Bool) {
         Undocumented
 	Args: [{ false weight float}], Returns: void
 */
-func (o *RigidBody2D) SetWeight(weight gdnative.Float) {
+func (o *RigidBody2D) SetWeight(weight gdnative.Real) {
 	//log.Println("Calling RigidBody2D.SetWeight()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(weight)
+	ptrArguments[0] = gdnative.NewPointerFromReal(weight)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("RigidBody2D", "set_weight")
@@ -1065,13 +1065,13 @@ func (o *RigidBody2D) SetWeight(weight gdnative.Float) {
         Returns [code]true[/code] if a collision would result from moving in the given vector. [code]margin[/code] increases the size of the shapes involved in the collision detection, and [code]result[/code] is an object of type [Physics2DTestMotionResult], which contains additional information about the collision (should there be one).
 	Args: [{ false motion Vector2} {0.08 true margin float} {Null true result Physics2DTestMotionResult}], Returns: bool
 */
-func (o *RigidBody2D) TestMotion(motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResultImplementer) gdnative.Bool {
+func (o *RigidBody2D) TestMotion(motion gdnative.Vector2, margin gdnative.Real, result Physics2DTestMotionResultImplementer) gdnative.Bool {
 	//log.Println("Calling RigidBody2D.TestMotion()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 3, 3)
 	ptrArguments[0] = gdnative.NewPointerFromVector2(motion)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(margin)
+	ptrArguments[1] = gdnative.NewPointerFromReal(margin)
 	ptrArguments[2] = gdnative.NewPointerFromObject(result.GetBaseObject())
 
 	// Get the method bind
@@ -1097,43 +1097,43 @@ type RigidBody2DImplementer interface {
 	X_IntegrateForces(state Physics2DDirectBodyStateImplementer)
 	AddForce(offset gdnative.Vector2, force gdnative.Vector2)
 	ApplyImpulse(offset gdnative.Vector2, impulse gdnative.Vector2)
-	GetAngularDamp() gdnative.Float
-	GetAngularVelocity() gdnative.Float
+	GetAngularDamp() gdnative.Real
+	GetAngularVelocity() gdnative.Real
 	GetAppliedForce() gdnative.Vector2
-	GetAppliedTorque() gdnative.Float
-	GetBounce() gdnative.Float
+	GetAppliedTorque() gdnative.Real
+	GetBounce() gdnative.Real
 	GetCollidingBodies() gdnative.Array
-	GetFriction() gdnative.Float
-	GetGravityScale() gdnative.Float
-	GetInertia() gdnative.Float
-	GetLinearDamp() gdnative.Float
+	GetFriction() gdnative.Real
+	GetGravityScale() gdnative.Real
+	GetInertia() gdnative.Real
+	GetLinearDamp() gdnative.Real
 	GetLinearVelocity() gdnative.Vector2
-	GetMass() gdnative.Float
+	GetMass() gdnative.Real
 	GetMaxContactsReported() gdnative.Int
-	GetWeight() gdnative.Float
+	GetWeight() gdnative.Real
 	IsAbleToSleep() gdnative.Bool
 	IsContactMonitorEnabled() gdnative.Bool
 	IsSleeping() gdnative.Bool
 	IsUsingCustomIntegrator() gdnative.Bool
-	SetAngularDamp(angularDamp gdnative.Float)
-	SetAngularVelocity(angularVelocity gdnative.Float)
+	SetAngularDamp(angularDamp gdnative.Real)
+	SetAngularVelocity(angularVelocity gdnative.Real)
 	SetAppliedForce(force gdnative.Vector2)
-	SetAppliedTorque(torque gdnative.Float)
+	SetAppliedTorque(torque gdnative.Real)
 	SetAxisVelocity(axisVelocity gdnative.Vector2)
-	SetBounce(bounce gdnative.Float)
+	SetBounce(bounce gdnative.Real)
 	SetCanSleep(ableToSleep gdnative.Bool)
 	SetContactMonitor(enabled gdnative.Bool)
 	SetContinuousCollisionDetectionMode(mode gdnative.Int)
-	SetFriction(friction gdnative.Float)
-	SetGravityScale(gravityScale gdnative.Float)
-	SetInertia(inertia gdnative.Float)
-	SetLinearDamp(linearDamp gdnative.Float)
+	SetFriction(friction gdnative.Real)
+	SetGravityScale(gravityScale gdnative.Real)
+	SetInertia(inertia gdnative.Real)
+	SetLinearDamp(linearDamp gdnative.Real)
 	SetLinearVelocity(linearVelocity gdnative.Vector2)
-	SetMass(mass gdnative.Float)
+	SetMass(mass gdnative.Real)
 	SetMaxContactsReported(amount gdnative.Int)
 	SetMode(mode gdnative.Int)
 	SetSleeping(sleeping gdnative.Bool)
 	SetUseCustomIntegrator(enable gdnative.Bool)
-	SetWeight(weight gdnative.Float)
-	TestMotion(motion gdnative.Vector2, margin gdnative.Float, result Physics2DTestMotionResultImplementer) gdnative.Bool
+	SetWeight(weight gdnative.Real)
+	TestMotion(motion gdnative.Vector2, margin gdnative.Real, result Physics2DTestMotionResultImplementer) gdnative.Bool
 }

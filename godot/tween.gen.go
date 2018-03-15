@@ -96,7 +96,7 @@ func (o *Tween) X_Remove(object ObjectImplementer, key gdnative.String, firstOnl
         Follow [code]method[/code] of [code]object[/code] and apply the returned value on [code]target_method[/code] of [code]target[/code], beginning from [code]initial_val[/code] for [code]duration[/code] seconds, [code]delay[/code] later. Methods are animated by calling them with consequitive values. [code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 	Args: [{ false object Object} { false method String} { false initial_val Variant} { false target Object} { false target_method String} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
-func (o *Tween) FollowMethod(object ObjectImplementer, method gdnative.String, initialVal gdnative.Variant, target ObjectImplementer, targetMethod gdnative.String, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
+func (o *Tween) FollowMethod(object ObjectImplementer, method gdnative.String, initialVal gdnative.Variant, target ObjectImplementer, targetMethod gdnative.String, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool {
 	//log.Println("Calling Tween.FollowMethod()")
 
 	// Build out the method's arguments
@@ -106,10 +106,10 @@ func (o *Tween) FollowMethod(object ObjectImplementer, method gdnative.String, i
 	ptrArguments[2] = gdnative.NewPointerFromVariant(initialVal)
 	ptrArguments[3] = gdnative.NewPointerFromObject(target.GetBaseObject())
 	ptrArguments[4] = gdnative.NewPointerFromString(targetMethod)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(duration)
+	ptrArguments[5] = gdnative.NewPointerFromReal(duration)
 	ptrArguments[6] = gdnative.NewPointerFromInt(transType)
 	ptrArguments[7] = gdnative.NewPointerFromInt(easeType)
-	ptrArguments[8] = gdnative.NewPointerFromFloat(delay)
+	ptrArguments[8] = gdnative.NewPointerFromReal(delay)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tween", "follow_method")
@@ -128,7 +128,7 @@ func (o *Tween) FollowMethod(object ObjectImplementer, method gdnative.String, i
         Follow [code]property[/code] of [code]object[/code] and apply it on [code]target_property[/code] of [code]target[/code], beginning from [code]initial_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later. Note that [code]target:target_property[/code] would equal [code]object:property[/code] at the end of the tween. [code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 	Args: [{ false object Object} { false property NodePath} { false initial_val Variant} { false target Object} { false target_property NodePath} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
-func (o *Tween) FollowProperty(object ObjectImplementer, property gdnative.NodePath, initialVal gdnative.Variant, target ObjectImplementer, targetProperty gdnative.NodePath, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
+func (o *Tween) FollowProperty(object ObjectImplementer, property gdnative.NodePath, initialVal gdnative.Variant, target ObjectImplementer, targetProperty gdnative.NodePath, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool {
 	//log.Println("Calling Tween.FollowProperty()")
 
 	// Build out the method's arguments
@@ -138,10 +138,10 @@ func (o *Tween) FollowProperty(object ObjectImplementer, property gdnative.NodeP
 	ptrArguments[2] = gdnative.NewPointerFromVariant(initialVal)
 	ptrArguments[3] = gdnative.NewPointerFromObject(target.GetBaseObject())
 	ptrArguments[4] = gdnative.NewPointerFromNodePath(targetProperty)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(duration)
+	ptrArguments[5] = gdnative.NewPointerFromReal(duration)
 	ptrArguments[6] = gdnative.NewPointerFromInt(transType)
 	ptrArguments[7] = gdnative.NewPointerFromInt(easeType)
-	ptrArguments[8] = gdnative.NewPointerFromFloat(delay)
+	ptrArguments[8] = gdnative.NewPointerFromReal(delay)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tween", "follow_property")
@@ -160,7 +160,7 @@ func (o *Tween) FollowProperty(object ObjectImplementer, property gdnative.NodeP
         Returns the time needed for all tweens to end in seconds, measured from the start. Thus, if you have two tweens, one ending 10 seconds after the start and the other - 20 seconds, it would return 20 seconds, as by that time all tweens would have finished.
 	Args: [], Returns: float
 */
-func (o *Tween) GetRuntime() gdnative.Float {
+func (o *Tween) GetRuntime() gdnative.Real {
 	//log.Println("Calling Tween.GetRuntime()")
 
 	// Build out the method's arguments
@@ -171,11 +171,11 @@ func (o *Tween) GetRuntime() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -183,7 +183,7 @@ func (o *Tween) GetRuntime() gdnative.Float {
         Undocumented
 	Args: [], Returns: float
 */
-func (o *Tween) GetSpeedScale() gdnative.Float {
+func (o *Tween) GetSpeedScale() gdnative.Real {
 	//log.Println("Calling Tween.GetSpeedScale()")
 
 	// Build out the method's arguments
@@ -194,11 +194,11 @@ func (o *Tween) GetSpeedScale() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -229,13 +229,13 @@ func (o *Tween) GetTweenProcessMode() TweenTweenProcessMode {
         Call [code]callback[/code] of [code]object[/code] after [code]duration[/code]. [code]arg1[/code]-[code]arg5[/code] are arguments to be passed to the callback.
 	Args: [{ false object Object} { false duration float} { false callback String} {Null true arg1 Variant} {Null true arg2 Variant} {Null true arg3 Variant} {Null true arg4 Variant} {Null true arg5 Variant}], Returns: bool
 */
-func (o *Tween) InterpolateCallback(object ObjectImplementer, duration gdnative.Float, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool {
+func (o *Tween) InterpolateCallback(object ObjectImplementer, duration gdnative.Real, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool {
 	//log.Println("Calling Tween.InterpolateCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 8, 8)
 	ptrArguments[0] = gdnative.NewPointerFromObject(object.GetBaseObject())
-	ptrArguments[1] = gdnative.NewPointerFromFloat(duration)
+	ptrArguments[1] = gdnative.NewPointerFromReal(duration)
 	ptrArguments[2] = gdnative.NewPointerFromString(callback)
 	ptrArguments[3] = gdnative.NewPointerFromVariant(arg1)
 	ptrArguments[4] = gdnative.NewPointerFromVariant(arg2)
@@ -260,13 +260,13 @@ func (o *Tween) InterpolateCallback(object ObjectImplementer, duration gdnative.
         Call [code]callback[/code] of [code]object[/code] after [code]duration[/code] on the main thread (similar to [method Object.call_deferred]). [code]arg1[/code]-[code]arg5[/code] are arguments to be passed to the callback.
 	Args: [{ false object Object} { false duration float} { false callback String} {Null true arg1 Variant} {Null true arg2 Variant} {Null true arg3 Variant} {Null true arg4 Variant} {Null true arg5 Variant}], Returns: bool
 */
-func (o *Tween) InterpolateDeferredCallback(object ObjectImplementer, duration gdnative.Float, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool {
+func (o *Tween) InterpolateDeferredCallback(object ObjectImplementer, duration gdnative.Real, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool {
 	//log.Println("Calling Tween.InterpolateDeferredCallback()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 8, 8)
 	ptrArguments[0] = gdnative.NewPointerFromObject(object.GetBaseObject())
-	ptrArguments[1] = gdnative.NewPointerFromFloat(duration)
+	ptrArguments[1] = gdnative.NewPointerFromReal(duration)
 	ptrArguments[2] = gdnative.NewPointerFromString(callback)
 	ptrArguments[3] = gdnative.NewPointerFromVariant(arg1)
 	ptrArguments[4] = gdnative.NewPointerFromVariant(arg2)
@@ -291,7 +291,7 @@ func (o *Tween) InterpolateDeferredCallback(object ObjectImplementer, duration g
         Animate [code]method[/code] of [code]object[/code] from [code]initial_val[/code] to [code]final_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later. Methods are animated by calling them with consecutive values. [code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 	Args: [{ false object Object} { false method String} { false initial_val Variant} { false final_val Variant} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
-func (o *Tween) InterpolateMethod(object ObjectImplementer, method gdnative.String, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
+func (o *Tween) InterpolateMethod(object ObjectImplementer, method gdnative.String, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool {
 	//log.Println("Calling Tween.InterpolateMethod()")
 
 	// Build out the method's arguments
@@ -300,10 +300,10 @@ func (o *Tween) InterpolateMethod(object ObjectImplementer, method gdnative.Stri
 	ptrArguments[1] = gdnative.NewPointerFromString(method)
 	ptrArguments[2] = gdnative.NewPointerFromVariant(initialVal)
 	ptrArguments[3] = gdnative.NewPointerFromVariant(finalVal)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(duration)
+	ptrArguments[4] = gdnative.NewPointerFromReal(duration)
 	ptrArguments[5] = gdnative.NewPointerFromInt(transType)
 	ptrArguments[6] = gdnative.NewPointerFromInt(easeType)
-	ptrArguments[7] = gdnative.NewPointerFromFloat(delay)
+	ptrArguments[7] = gdnative.NewPointerFromReal(delay)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tween", "interpolate_method")
@@ -322,7 +322,7 @@ func (o *Tween) InterpolateMethod(object ObjectImplementer, method gdnative.Stri
         Animate [code]property[/code] of [code]object[/code] from [code]initial_val[/code] to [code]final_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later. [code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 	Args: [{ false object Object} { false property NodePath} { false initial_val Variant} { false final_val Variant} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
-func (o *Tween) InterpolateProperty(object ObjectImplementer, property gdnative.NodePath, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
+func (o *Tween) InterpolateProperty(object ObjectImplementer, property gdnative.NodePath, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool {
 	//log.Println("Calling Tween.InterpolateProperty()")
 
 	// Build out the method's arguments
@@ -331,10 +331,10 @@ func (o *Tween) InterpolateProperty(object ObjectImplementer, property gdnative.
 	ptrArguments[1] = gdnative.NewPointerFromNodePath(property)
 	ptrArguments[2] = gdnative.NewPointerFromVariant(initialVal)
 	ptrArguments[3] = gdnative.NewPointerFromVariant(finalVal)
-	ptrArguments[4] = gdnative.NewPointerFromFloat(duration)
+	ptrArguments[4] = gdnative.NewPointerFromReal(duration)
 	ptrArguments[5] = gdnative.NewPointerFromInt(transType)
 	ptrArguments[6] = gdnative.NewPointerFromInt(easeType)
-	ptrArguments[7] = gdnative.NewPointerFromFloat(delay)
+	ptrArguments[7] = gdnative.NewPointerFromReal(delay)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tween", "interpolate_property")
@@ -543,12 +543,12 @@ func (o *Tween) ResumeAll() gdnative.Bool {
         Seek the animation to the given [code]time[/code] in seconds.
 	Args: [{ false time float}], Returns: bool
 */
-func (o *Tween) Seek(time gdnative.Float) gdnative.Bool {
+func (o *Tween) Seek(time gdnative.Real) gdnative.Bool {
 	//log.Println("Calling Tween.Seek()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(time)
+	ptrArguments[0] = gdnative.NewPointerFromReal(time)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tween", "seek")
@@ -609,12 +609,12 @@ func (o *Tween) SetRepeat(repeat gdnative.Bool) {
         Undocumented
 	Args: [{ false speed float}], Returns: void
 */
-func (o *Tween) SetSpeedScale(speed gdnative.Float) {
+func (o *Tween) SetSpeedScale(speed gdnative.Real) {
 	//log.Println("Calling Tween.SetSpeedScale()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(speed)
+	ptrArguments[0] = gdnative.NewPointerFromReal(speed)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tween", "set_speed_scale")
@@ -722,7 +722,7 @@ func (o *Tween) StopAll() gdnative.Bool {
         Animate [code]method[/code] of [code]object[/code] from the value returned by [code]initial.initial_method[/code] to [code]final_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later. Methods are animated by calling them with consecutive values. [code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 	Args: [{ false object Object} { false method String} { false initial Object} { false initial_method String} { false final_val Variant} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
-func (o *Tween) TargetingMethod(object ObjectImplementer, method gdnative.String, initial ObjectImplementer, initialMethod gdnative.String, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
+func (o *Tween) TargetingMethod(object ObjectImplementer, method gdnative.String, initial ObjectImplementer, initialMethod gdnative.String, finalVal gdnative.Variant, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool {
 	//log.Println("Calling Tween.TargetingMethod()")
 
 	// Build out the method's arguments
@@ -732,10 +732,10 @@ func (o *Tween) TargetingMethod(object ObjectImplementer, method gdnative.String
 	ptrArguments[2] = gdnative.NewPointerFromObject(initial.GetBaseObject())
 	ptrArguments[3] = gdnative.NewPointerFromString(initialMethod)
 	ptrArguments[4] = gdnative.NewPointerFromVariant(finalVal)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(duration)
+	ptrArguments[5] = gdnative.NewPointerFromReal(duration)
 	ptrArguments[6] = gdnative.NewPointerFromInt(transType)
 	ptrArguments[7] = gdnative.NewPointerFromInt(easeType)
-	ptrArguments[8] = gdnative.NewPointerFromFloat(delay)
+	ptrArguments[8] = gdnative.NewPointerFromReal(delay)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tween", "targeting_method")
@@ -754,7 +754,7 @@ func (o *Tween) TargetingMethod(object ObjectImplementer, method gdnative.String
         Animate [code]property[/code] of [code]object[/code] from the current value of the [code]initial_val[/code] property of [code]initial[/code] to [code]final_val[/code] for [code]duration[/code] seconds, [code]delay[/code] seconds later. [code]trans_type[/code] accepts TRANS_* constants, and is the way the animation is interpolated, while [code]ease_type[/code] accepts EASE_* constants, and controls the place of the interpolation (the beginning, the end, or both). You can read more about them in the class description.
 	Args: [{ false object Object} { false property NodePath} { false initial Object} { false initial_val NodePath} { false final_val Variant} { false duration float} { false trans_type int} { false ease_type int} {0 true delay float}], Returns: bool
 */
-func (o *Tween) TargetingProperty(object ObjectImplementer, property gdnative.NodePath, initial ObjectImplementer, initialVal gdnative.NodePath, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool {
+func (o *Tween) TargetingProperty(object ObjectImplementer, property gdnative.NodePath, initial ObjectImplementer, initialVal gdnative.NodePath, finalVal gdnative.Variant, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool {
 	//log.Println("Calling Tween.TargetingProperty()")
 
 	// Build out the method's arguments
@@ -764,10 +764,10 @@ func (o *Tween) TargetingProperty(object ObjectImplementer, property gdnative.No
 	ptrArguments[2] = gdnative.NewPointerFromObject(initial.GetBaseObject())
 	ptrArguments[3] = gdnative.NewPointerFromNodePath(initialVal)
 	ptrArguments[4] = gdnative.NewPointerFromVariant(finalVal)
-	ptrArguments[5] = gdnative.NewPointerFromFloat(duration)
+	ptrArguments[5] = gdnative.NewPointerFromReal(duration)
 	ptrArguments[6] = gdnative.NewPointerFromInt(transType)
 	ptrArguments[7] = gdnative.NewPointerFromInt(easeType)
-	ptrArguments[8] = gdnative.NewPointerFromFloat(delay)
+	ptrArguments[8] = gdnative.NewPointerFromReal(delay)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("Tween", "targeting_property")
@@ -786,7 +786,7 @@ func (o *Tween) TargetingProperty(object ObjectImplementer, property gdnative.No
         Returns the current time of the tween.
 	Args: [], Returns: float
 */
-func (o *Tween) Tell() gdnative.Float {
+func (o *Tween) Tell() gdnative.Real {
 	//log.Println("Calling Tween.Tell()")
 
 	// Build out the method's arguments
@@ -797,11 +797,11 @@ func (o *Tween) Tell() gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -810,14 +810,14 @@ func (o *Tween) Tell() gdnative.Float {
 type TweenImplementer interface {
 	NodeImplementer
 	X_Remove(object ObjectImplementer, key gdnative.String, firstOnly gdnative.Bool)
-	FollowMethod(object ObjectImplementer, method gdnative.String, initialVal gdnative.Variant, target ObjectImplementer, targetMethod gdnative.String, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool
-	FollowProperty(object ObjectImplementer, property gdnative.NodePath, initialVal gdnative.Variant, target ObjectImplementer, targetProperty gdnative.NodePath, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool
-	GetRuntime() gdnative.Float
-	GetSpeedScale() gdnative.Float
-	InterpolateCallback(object ObjectImplementer, duration gdnative.Float, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool
-	InterpolateDeferredCallback(object ObjectImplementer, duration gdnative.Float, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool
-	InterpolateMethod(object ObjectImplementer, method gdnative.String, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool
-	InterpolateProperty(object ObjectImplementer, property gdnative.NodePath, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool
+	FollowMethod(object ObjectImplementer, method gdnative.String, initialVal gdnative.Variant, target ObjectImplementer, targetMethod gdnative.String, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool
+	FollowProperty(object ObjectImplementer, property gdnative.NodePath, initialVal gdnative.Variant, target ObjectImplementer, targetProperty gdnative.NodePath, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool
+	GetRuntime() gdnative.Real
+	GetSpeedScale() gdnative.Real
+	InterpolateCallback(object ObjectImplementer, duration gdnative.Real, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool
+	InterpolateDeferredCallback(object ObjectImplementer, duration gdnative.Real, callback gdnative.String, arg1 gdnative.Variant, arg2 gdnative.Variant, arg3 gdnative.Variant, arg4 gdnative.Variant, arg5 gdnative.Variant) gdnative.Bool
+	InterpolateMethod(object ObjectImplementer, method gdnative.String, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool
+	InterpolateProperty(object ObjectImplementer, property gdnative.NodePath, initialVal gdnative.Variant, finalVal gdnative.Variant, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool
 	IsActive() gdnative.Bool
 	IsRepeat() gdnative.Bool
 	Remove(object ObjectImplementer, key gdnative.String) gdnative.Bool
@@ -826,15 +826,15 @@ type TweenImplementer interface {
 	ResetAll() gdnative.Bool
 	Resume(object ObjectImplementer, key gdnative.String) gdnative.Bool
 	ResumeAll() gdnative.Bool
-	Seek(time gdnative.Float) gdnative.Bool
+	Seek(time gdnative.Real) gdnative.Bool
 	SetActive(active gdnative.Bool)
 	SetRepeat(repeat gdnative.Bool)
-	SetSpeedScale(speed gdnative.Float)
+	SetSpeedScale(speed gdnative.Real)
 	SetTweenProcessMode(mode gdnative.Int)
 	Start() gdnative.Bool
 	Stop(object ObjectImplementer, key gdnative.String) gdnative.Bool
 	StopAll() gdnative.Bool
-	TargetingMethod(object ObjectImplementer, method gdnative.String, initial ObjectImplementer, initialMethod gdnative.String, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool
-	TargetingProperty(object ObjectImplementer, property gdnative.NodePath, initial ObjectImplementer, initialVal gdnative.NodePath, finalVal gdnative.Variant, duration gdnative.Float, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Float) gdnative.Bool
-	Tell() gdnative.Float
+	TargetingMethod(object ObjectImplementer, method gdnative.String, initial ObjectImplementer, initialMethod gdnative.String, finalVal gdnative.Variant, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool
+	TargetingProperty(object ObjectImplementer, property gdnative.NodePath, initial ObjectImplementer, initialVal gdnative.NodePath, finalVal gdnative.Variant, duration gdnative.Real, transType gdnative.Int, easeType gdnative.Int, delay gdnative.Real) gdnative.Bool
+	Tell() gdnative.Real
 }

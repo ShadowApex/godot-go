@@ -224,7 +224,7 @@ func (o *StyleBoxFlat) GetCornerRadius(corner gdnative.Int) gdnative.Int {
         Undocumented
 	Args: [{ false margin int}], Returns: float
 */
-func (o *StyleBoxFlat) GetExpandMargin(margin gdnative.Int) gdnative.Float {
+func (o *StyleBoxFlat) GetExpandMargin(margin gdnative.Int) gdnative.Real {
 	//log.Println("Calling StyleBoxFlat.GetExpandMargin()")
 
 	// Build out the method's arguments
@@ -236,11 +236,11 @@ func (o *StyleBoxFlat) GetExpandMargin(margin gdnative.Int) gdnative.Float {
 
 	// Call the parent method.
 	// float
-	retPtr := gdnative.NewEmptyFloat()
+	retPtr := gdnative.NewEmptyReal()
 	gdnative.MethodBindPtrCall(methodBind, o.GetBaseObject(), ptrArguments, retPtr)
 
 	// If we have a return type, convert it from a pointer into its actual object.
-	ret := gdnative.NewFloatFromPointer(retPtr)
+	ret := gdnative.NewRealFromPointer(retPtr)
 	return ret
 }
 
@@ -597,13 +597,13 @@ func (o *StyleBoxFlat) SetDrawCenter(drawCenter gdnative.Bool) {
         Undocumented
 	Args: [{ false margin int} { false size float}], Returns: void
 */
-func (o *StyleBoxFlat) SetExpandMargin(margin gdnative.Int, size gdnative.Float) {
+func (o *StyleBoxFlat) SetExpandMargin(margin gdnative.Int, size gdnative.Real) {
 	//log.Println("Calling StyleBoxFlat.SetExpandMargin()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 2, 2)
 	ptrArguments[0] = gdnative.NewPointerFromInt(margin)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(size)
+	ptrArguments[1] = gdnative.NewPointerFromReal(size)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_expand_margin")
@@ -619,12 +619,12 @@ func (o *StyleBoxFlat) SetExpandMargin(margin gdnative.Int, size gdnative.Float)
 
 	Args: [{ false size float}], Returns: void
 */
-func (o *StyleBoxFlat) SetExpandMarginAll(size gdnative.Float) {
+func (o *StyleBoxFlat) SetExpandMarginAll(size gdnative.Real) {
 	//log.Println("Calling StyleBoxFlat.SetExpandMarginAll()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 1, 1)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(size)
+	ptrArguments[0] = gdnative.NewPointerFromReal(size)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_expand_margin_all")
@@ -640,15 +640,15 @@ func (o *StyleBoxFlat) SetExpandMarginAll(size gdnative.Float) {
 
 	Args: [{ false size_left float} { false size_top float} { false size_right float} { false size_bottom float}], Returns: void
 */
-func (o *StyleBoxFlat) SetExpandMarginIndividual(sizeLeft gdnative.Float, sizeTop gdnative.Float, sizeRight gdnative.Float, sizeBottom gdnative.Float) {
+func (o *StyleBoxFlat) SetExpandMarginIndividual(sizeLeft gdnative.Real, sizeTop gdnative.Real, sizeRight gdnative.Real, sizeBottom gdnative.Real) {
 	//log.Println("Calling StyleBoxFlat.SetExpandMarginIndividual()")
 
 	// Build out the method's arguments
 	ptrArguments := make([]gdnative.Pointer, 4, 4)
-	ptrArguments[0] = gdnative.NewPointerFromFloat(sizeLeft)
-	ptrArguments[1] = gdnative.NewPointerFromFloat(sizeTop)
-	ptrArguments[2] = gdnative.NewPointerFromFloat(sizeRight)
-	ptrArguments[3] = gdnative.NewPointerFromFloat(sizeBottom)
+	ptrArguments[0] = gdnative.NewPointerFromReal(sizeLeft)
+	ptrArguments[1] = gdnative.NewPointerFromReal(sizeTop)
+	ptrArguments[2] = gdnative.NewPointerFromReal(sizeRight)
+	ptrArguments[3] = gdnative.NewPointerFromReal(sizeBottom)
 
 	// Get the method bind
 	methodBind := gdnative.NewMethodBind("StyleBoxFlat", "set_expand_margin_individual")
@@ -714,7 +714,7 @@ type StyleBoxFlatImplementer interface {
 	GetBorderWidthMin() gdnative.Int
 	GetCornerDetail() gdnative.Int
 	GetCornerRadius(corner gdnative.Int) gdnative.Int
-	GetExpandMargin(margin gdnative.Int) gdnative.Float
+	GetExpandMargin(margin gdnative.Int) gdnative.Real
 	GetShadowColor() gdnative.Color
 	GetShadowSize() gdnative.Int
 	IsAntiAliased() gdnative.Bool
@@ -731,9 +731,9 @@ type StyleBoxFlatImplementer interface {
 	SetCornerRadiusAll(radius gdnative.Int)
 	SetCornerRadiusIndividual(radiusTopLeft gdnative.Int, radiusTopRight gdnative.Int, radiusBottomRight gdnative.Int, radiusBottomLeft gdnative.Int)
 	SetDrawCenter(drawCenter gdnative.Bool)
-	SetExpandMargin(margin gdnative.Int, size gdnative.Float)
-	SetExpandMarginAll(size gdnative.Float)
-	SetExpandMarginIndividual(sizeLeft gdnative.Float, sizeTop gdnative.Float, sizeRight gdnative.Float, sizeBottom gdnative.Float)
+	SetExpandMargin(margin gdnative.Int, size gdnative.Real)
+	SetExpandMarginAll(size gdnative.Real)
+	SetExpandMarginIndividual(sizeLeft gdnative.Real, sizeTop gdnative.Real, sizeRight gdnative.Real, sizeBottom gdnative.Real)
 	SetShadowColor(color gdnative.Color)
 	SetShadowSize(size gdnative.Int)
 }

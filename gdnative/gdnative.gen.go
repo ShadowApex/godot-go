@@ -46,46 +46,55 @@ func (e Error) getBase() C.godot_error {
 }
 
 const (
-	Ok Error = iota
-	Failed
-	ErrUnavailable
-	ErrUnconfigured
-	ErrUnauthorized
-	ErrOutOfMemory
-	ErrFileNotFound
-	ErrFileBadDrive
-	ErrFileBadPath
-	ErrFileAlreadyInUse
-	ErrFileCantOpen
-	ErrFileCantWrite
-	ErrFileCantRead
-	ErrFileCorrupt
-	ErrFileMissingDependencies
-	ErrFileEof
-	ErrCantOpen
-	ErrQueryFailed
-	ErrAlreadyInUse
-	ErrLocked
-	ErrTimeout
-	ErrCantResolve
-	ErrConnectionError
-	ErrCantAcquireResource
-	ErrCantFork
-	ErrInvalidParameter
-	ErrAlreadyExists
-	ErrDoesNotExist
-	ErrDatabaseCantRead
-	ErrCompilationFailed
-	ErrMethodNotFound
-	ErrLinkFailed
-	ErrScriptFailed
-	ErrInvalidDeclaration
-	ErrDuplicateSymbol
-	ErrParseError
-	ErrBusy
-	ErrHelp
-	ErrBug
-	ErrPrinterOnFire
+	Ok                         Error = 0
+	Failed                     Error = 1 // < Generic fail error
+	ErrUnavailable             Error = 2 // < What is requested is unsupported/unavailable
+	ErrUnconfigured            Error = 3 // < The object being used hasn't been properly set up yet
+	ErrUnauthorized            Error = 4 // < Missing credentials for requested resource
+	ErrParameterRangeError     Error = 5 // < Parameter given out of range (5)
+	ErrOutOfMemory             Error = 6 // < Out of memory
+	ErrFileNotFound            Error = 7
+	ErrFileBadDrive            Error = 8
+	ErrFileBadPath             Error = 9
+	ErrFileNoPermission        Error = 10 // (10)
+	ErrFileAlreadyInUse        Error = 11
+	ErrFileCantOpen            Error = 12
+	ErrFileCantWrite           Error = 13
+	ErrFileCantRead            Error = 14
+	ErrFileUnrecognized        Error = 15 // (15)
+	ErrFileCorrupt             Error = 16
+	ErrFileMissingDependencies Error = 17
+	ErrFileEof                 Error = 18
+	ErrCantOpen                Error = 19 // < Can't open a resource/socket/file
+	ErrCantCreate              Error = 20 // (20)
+	ErrQueryFailed             Error = 21
+	ErrAlreadyInUse            Error = 22
+	ErrLocked                  Error = 23 // < resource is locked
+	ErrTimeout                 Error = 24
+	ErrCantConnect             Error = 25 // (25)
+	ErrCantResolve             Error = 26
+	ErrConnectionError         Error = 27
+	ErrCantAcquireResource     Error = 28
+	ErrCantFork                Error = 29
+	ErrInvalidData             Error = 30 // < Data passed is invalid	(30)
+	ErrInvalidParameter        Error = 31 // < Parameter passed is invalid
+	ErrAlreadyExists           Error = 32 // < When adding, item already exists
+	ErrDoesNotExist            Error = 33 // < When retrieving/erasing, it item does not exist
+	ErrDatabaseCantRead        Error = 34 // < database is full
+	ErrDatabaseCantWrite       Error = 35 // < database is full	(35)
+	ErrCompilationFailed       Error = 36
+	ErrMethodNotFound          Error = 37
+	ErrLinkFailed              Error = 38
+	ErrScriptFailed            Error = 39
+	ErrCyclicLink              Error = 40 // (40)
+	ErrInvalidDeclaration      Error = 41
+	ErrDuplicateSymbol         Error = 42
+	ErrParseError              Error = 43
+	ErrBusy                    Error = 44
+	ErrSkip                    Error = 45 // (45)
+	ErrHelp                    Error = 46 // < user requested help!!
+	ErrBug                     Error = 47 // < a bug in the software certainly happened, due to a double check failing or unexpected behavior.
+	ErrPrinterOnFire           Error = 48 //  the parallel port printer is engulfed in flames
 )
 
 // ErrorLookupMap is a string-based lookup table of constants for Error.
@@ -95,38 +104,47 @@ var ErrorLookupMap = map[string]Error{
 	"ErrUnavailable":             ErrUnavailable,
 	"ErrUnconfigured":            ErrUnconfigured,
 	"ErrUnauthorized":            ErrUnauthorized,
+	"ErrParameterRangeError":     ErrParameterRangeError,
 	"ErrOutOfMemory":             ErrOutOfMemory,
 	"ErrFileNotFound":            ErrFileNotFound,
 	"ErrFileBadDrive":            ErrFileBadDrive,
 	"ErrFileBadPath":             ErrFileBadPath,
+	"ErrFileNoPermission":        ErrFileNoPermission,
 	"ErrFileAlreadyInUse":        ErrFileAlreadyInUse,
 	"ErrFileCantOpen":            ErrFileCantOpen,
 	"ErrFileCantWrite":           ErrFileCantWrite,
 	"ErrFileCantRead":            ErrFileCantRead,
+	"ErrFileUnrecognized":        ErrFileUnrecognized,
 	"ErrFileCorrupt":             ErrFileCorrupt,
 	"ErrFileMissingDependencies": ErrFileMissingDependencies,
 	"ErrFileEof":                 ErrFileEof,
 	"ErrCantOpen":                ErrCantOpen,
+	"ErrCantCreate":              ErrCantCreate,
 	"ErrQueryFailed":             ErrQueryFailed,
 	"ErrAlreadyInUse":            ErrAlreadyInUse,
 	"ErrLocked":                  ErrLocked,
 	"ErrTimeout":                 ErrTimeout,
+	"ErrCantConnect":             ErrCantConnect,
 	"ErrCantResolve":             ErrCantResolve,
 	"ErrConnectionError":         ErrConnectionError,
 	"ErrCantAcquireResource":     ErrCantAcquireResource,
 	"ErrCantFork":                ErrCantFork,
+	"ErrInvalidData":             ErrInvalidData,
 	"ErrInvalidParameter":        ErrInvalidParameter,
 	"ErrAlreadyExists":           ErrAlreadyExists,
 	"ErrDoesNotExist":            ErrDoesNotExist,
 	"ErrDatabaseCantRead":        ErrDatabaseCantRead,
+	"ErrDatabaseCantWrite":       ErrDatabaseCantWrite,
 	"ErrCompilationFailed":       ErrCompilationFailed,
 	"ErrMethodNotFound":          ErrMethodNotFound,
 	"ErrLinkFailed":              ErrLinkFailed,
 	"ErrScriptFailed":            ErrScriptFailed,
+	"ErrCyclicLink":              ErrCyclicLink,
 	"ErrInvalidDeclaration":      ErrInvalidDeclaration,
 	"ErrDuplicateSymbol":         ErrDuplicateSymbol,
 	"ErrParseError":              ErrParseError,
 	"ErrBusy":                    ErrBusy,
+	"ErrSkip":                    ErrSkip,
 	"ErrHelp":                    ErrHelp,
 	"ErrBug":                     ErrBug,
 	"ErrPrinterOnFire":           ErrPrinterOnFire,
