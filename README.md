@@ -3,17 +3,23 @@
 [![GoDoc](https://godoc.org/github.com/ShadowApex/goquery?status.png)](https://godoc.org/github.com/ShadowApex/godot-go/godot)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/ShadowApex/godot-go/master/LICENSE)
 
-# Godot-Go
+![Godot-Go logo](/logo.png)
+
+Godot-Go
+========
 Go language bindings for the [Godot Engine](https://godotengine.org/)'s [GDNative API](https://github.com/GodotNativeTools/godot_headers).
 
-**NOTE: These bindings are currently a work in progress. Any help is welcome!**
+**NOTE:** These bindings are currently still under development. Not all of the design,
+implementation, or documentation is final. Comments/suggestions are welcome (see GitHub issues).
+The API is subject to change.
 
-# Usage
+Usage
+-----
 The Godot Engine can interface with code written in Go using the GDNative module.
 It works by using Go's ability to compile code as a shared library (`.so`, `.dylib`, `.dll`),
 which the Godot Engine can load to call Go methods. 
 
-The godot-go library provides you with a method called `godot.Register`, which will
+The godot-go library provides you with a method called `godot.AutoRegister`, which will
 allow you to expose a Go struct that follows the `godot.Class` interface to the Godot
 Engine when it loads your shared library. It also provides bindings to all of
 the available Godot Engine classes and their methods, so you can call Godot 
@@ -170,3 +176,25 @@ created earlier to this node.
 ![](images/tutorial12.png)    
 ![](images/tutorial13.png)    
 
+Attributions
+------------
+The Go gopher was designed by [Renee French](http://reneefrench.blogspot.com/).
+
+The logo used above was based on the image by [Takuya Ueda](https://twitter.com/tenntenn). 
+Licensed under the Creative Commons 3.0 Attributions license. 
+Available unmodified from: <https://github.com/golang-samples/gopher-vector>
+
+The logo used above was also based on the image by [Andrea Calabró](https://commons.wikimedia.org/wiki/File:Godot_logo.svg)
+Licensed under the Creative Commons Attribution License version 3.0 [CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/legalcode)
+
+License
+-------
+MIT - <https://opensource.org/licenses/MIT>  
+
+Links
+-----
+GitHub repository - <https://github.com/shadowapex/godot-go>  
+GDNative repository - <https://github.com/GodotNativeTools/godot_headers>  
+
+Godot Engine - <https://godotengine.org>  
+Go programming language - <https://golang.org>  
