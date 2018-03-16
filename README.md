@@ -20,7 +20,7 @@ the available Godot Engine classes and their methods, so you can call Godot
 functions from your Go code.
 
 # Setup
-`go get github.com/ShadowApex/godot-go/godot`
+`go get github.com/shadowapex/godot-go/godot`
 
 # Build
 When you're ready to build your code as a dynamic library that can be imported into

@@ -117,6 +117,9 @@ func GetSingleton(name String) Object {
 // NewMethodBind will return a method binding using the given class name and method
 // name.
 func NewMethodBind(class, method string) MethodBind {
+	if debug {
+		log.Println("Creating method bind for:", class+"."+method)
+	}
 	GDNative.checkInit()
 	methodBind := C.go_godot_method_bind_get_method(
 		GDNative.api,

@@ -216,9 +216,9 @@ func (v View) IsValidClass(classString, inheritsString string) bool {
 	if strings.HasPrefix(classString, "@") {
 		return false
 	}
-	if strings.HasPrefix(classString, "_") {
-		return false
-	}
+	//if strings.HasPrefix(classString, "_") {
+	//	return false
+	//}
 	if unicode.IsLower(runeString[0]) {
 		return false
 	}
@@ -242,6 +242,9 @@ func (v View) IsEnum(str string) bool {
 }
 
 func (v View) SetClassName(classString string, singleton bool) string {
+	if strings.HasPrefix(classString, "_") {
+		classString = strings.Replace(classString, "_", "", 1)
+	}
 	if singleton {
 		return casee.ToCamelCase(classString)
 	}
@@ -461,6 +464,9 @@ func Generate() {
 		// Get the package name to generate
 		packageName := view.PackageMap[api.Name]
 		outFileName := view.PackageName(api.Name) + ".gen.go"
+		if strings.HasPrefix(outFileName, "_") {
+			outFileName = strings.Replace(outFileName, "_", "", 1)
+		}
 
 		// Set the current API
 		view.API = api

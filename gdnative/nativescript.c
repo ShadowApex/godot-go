@@ -2,6 +2,7 @@
 #include <gdnative_api_struct.gen.h>
 #include <nativescript/godot_nativescript.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 // This is a gateway function for the create method.
 void *cgo_gateway_create_func(godot_object *obj, void *method_data) {
@@ -75,4 +76,17 @@ godot_variant cgo_gateway_property_get_func(godot_object *obj,
 				   user_data);  // Execute our Go function.
 
 	return ret;
+}
+
+godot_signal_argument **go_godot_signal_argument_build_array(int length) {
+	godot_signal_argument **arr =
+	    malloc(sizeof(godot_signal_argument *) * length);
+
+	return arr;
+}
+
+void go_godot_signal_argument_add_element(godot_signal_argument **array,
+					  godot_signal_argument *element,
+					  int index) {
+	array[index] = element;
 }

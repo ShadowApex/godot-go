@@ -94,7 +94,13 @@ import "C"
 				{{/* Handle struct properties */}}
 				{{ range $j, $propdef := $typedef.Properties -}}
 					{{ if ($view.IsValidProperty $propdef) -}}
-						{{ $propdef.GoName }} {{ $view.ToGoName $propdef.Base }}
+						{{ if $propdef.IsPointer -}}
+							{{ if (eq $typedef.GoName "Signal" ) -}}
+								{{ $propdef.GoName }} []{{ $view.ToGoName $propdef.Base }}
+							{{ end -}}
+						{{ else -}}
+							{{ $propdef.GoName }} {{ $view.ToGoName $propdef.Base }}
+						{{ end -}}
 					{{ end -}}
 				{{ end -}}
 			}

@@ -1734,6 +1734,26 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 		class := &YSort{}
 		class.SetBaseObject(obj)
 		return class
+	case "_Directory":
+		class := &Directory{}
+		class.SetBaseObject(obj)
+		return class
+	case "_File":
+		class := &File{}
+		class.SetBaseObject(obj)
+		return class
+	case "_Mutex":
+		class := &Mutex{}
+		class.SetBaseObject(obj)
+		return class
+	case "_Semaphore":
+		class := &Semaphore{}
+		class.SetBaseObject(obj)
+		return class
+	case "_Thread":
+		class := &Thread{}
+		class.SetBaseObject(obj)
+		return class
 	}
 	log.Println("Could not find conversion for '" + className + "'. Defaulting to Object...")
 	return &Object{owner: obj}

@@ -2,6 +2,7 @@
 #define CGDNATIVE_NATIVESCRIPT_GATEWAY_H
 
 #include <gdnative/gdnative.h>
+#include <nativescript/godot_nativescript.h>
 
 /* GDNative NATIVESCRIPT C Gateway */
 void *cgo_gateway_create_func(godot_object *obj, void *method_data);
@@ -26,4 +27,8 @@ typedef godot_variant (*method)(godot_object *, void *, void *, int,
 typedef void (*set_property_func)(godot_object *, void *, void *,
 				  godot_variant *);
 typedef godot_variant (*get_property_func)(godot_object *, void *, void *);
+godot_signal_argument **go_godot_signal_argument_build_array(int length);
+void go_godot_signal_argument_add_element(godot_signal_argument **array,
+					  godot_signal_argument *element,
+					  int index);
 #endif

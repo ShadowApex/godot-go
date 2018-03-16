@@ -242,9 +242,9 @@ type Signal struct {
 
 	Name           String
 	NumArgs        Int
-	Args           SignalArgument
+	Args           []SignalArgument
 	NumDefaultArgs Int
-	DefaultArgs    Variant
+	DefaultArgs    []Variant
 }
 
 func (gdt Signal) getBase() *C.godot_signal {

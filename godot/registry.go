@@ -16,6 +16,14 @@ func AutoRegister(constructor ...ClassConstructor) {
 	}
 }
 
+// Register class will register the given Go struct as a Godot class, so it will be
+// available inside Godot. If you use this method, you will also need to manually
+// register this method's properties and methods. If you want to automatically
+// discover this class's methods and properties, use the 'AutoRegister' function.
+//func RegisterClass(className string, constructor ClassConstructor) {
+//	godotConstructorsToRegister[className] = constructor
+//}
+
 // Class is an interface for any objects that can have Godot
 // inheritance.
 type Class interface {
@@ -94,8 +102,13 @@ func newRegisteredMethod(classMethod reflect.Method) *registeredMethod {
 }
 
 // godotClassesToAutoRegister is a slice of objects that will be registered as a Godot class
-// upon library initialization.
+// upon library initialization. It will automatically inspect the object for exported
+// properties and methods.
 var godotConstructorsToAutoRegister = []ClassConstructor{}
+
+// godotConstructorsToRegister is a slice of objects that will be registered as a Godot class
+// upon library initialization. It will not attempt to discover methods or properties.
+var godotConstructorsToRegister = map[string]ClassConstructor{}
 
 // classRegistry is a mapping of all classes that have been registered in Godot.
 var classRegistry = map[string]*registeredClass{}

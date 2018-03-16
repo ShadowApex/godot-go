@@ -9,7 +9,11 @@ import (
 // NewPlayer is a player constructor that we will register with Godot.
 func NewPlayer() godot.Class {
 	player := &Player{
-		Speed: 400,
+		Hit: godot.Signal{
+			Name:        "hit",
+			Args:        []godot.SignalArg{},
+			DefaultArgs: []godot.SignalDefaultArg{},
+		},
 	}
 
 	return player
@@ -19,6 +23,7 @@ func NewPlayer() godot.Class {
 type Player struct {
 	godot.Area2D
 	Speed          gd.Real `hint_string:"The speed of the player"`
+	Hit            godot.Signal
 	screenSize     gd.Vector2
 	animatedSprite godot.AnimatedSpriteImplementer
 	collisionShape godot.CollisionShape2DImplementer

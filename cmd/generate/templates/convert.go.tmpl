@@ -34,7 +34,7 @@ func getActualClass(className gdnative.String, obj gdnative.Object) ObjectImplem
 			{{ if $view.IsValidClass $api.Name $api.BaseClass -}}
 				{{ if (not $api.Singleton) -}}
 					case "{{ $api.Name }}":
-						class := &{{ $api.Name }}{}
+						class := &{{ $view.SetClassName $api.Name $api.Singleton }}{}
 						class.SetBaseObject(obj)
 						return class
 				{{ end -}}

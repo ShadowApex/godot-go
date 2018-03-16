@@ -7,6 +7,7 @@ package gdnative
 #include <nativescript/godot_nativescript.h>
 #include "nativescript.gen.h"
 #include "nativescript.h"
+#include "variant.h"
 */
 import "C"
 
@@ -372,9 +373,29 @@ func (n *nativeScript) RegisterSignal(name string, signal *Signal) {
 	signal.base = &base
 	signal.base.name = *(signal.Name.getBase())
 	signal.base.num_args = C.int(signal.NumArgs.getBase())
-	signal.base.args = signal.Args.getBase()
 	signal.base.num_default_args = C.int(signal.NumDefaultArgs.getBase())
-	signal.base.default_args = signal.DefaultArgs.getBase()
+
+	// Build the arguments
+	argsArray := C.go_godot_signal_argument_build_array(C.int(signal.NumArgs))
+	for i, arg := range signal.Args {
+		var cArg C.godot_signal_argument
+		cArg.name = *(arg.Name.getBase())
+		cArg._type = arg.Type.getBase()
+		cArg.default_value = *(arg.DefaultValue.getBase())
+		cArg.hint = arg.Hint.getBase()
+		cArg.hint_string = *(arg.HintString.getBase())
+		cArg.usage = arg.Usage.getBase()
+
+		C.go_godot_signal_argument_add_element(argsArray, &cArg, C.int(i))
+	}
+	signal.base.args = *argsArray
+
+	// Build the default arguments
+	variantArray := C.go_godot_variant_build_array(C.int(signal.NumDefaultArgs))
+	for i, variant := range signal.DefaultArgs {
+		C.go_godot_variant_add_element(variantArray, variant.getBase(), C.int(i))
+	}
+	signal.base.default_args = *variantArray
 
 	// Register the signal with Godot.
 	C.go_godot_nativescript_register_signal(
@@ -388,14 +409,16 @@ func (n *nativeScript) RegisterSignal(name string, signal *Signal) {
 // nativeScriptInit will be called when `godot_nativescript_init` is called by
 // Godot. You can use `SetNativeScriptInit` to set the function that will be called
 // when NativeScript initializes.
-var nativeScriptInit func()
+var nativeScriptInit = []func(){}
 
 // SetNativeScriptInit will configure the given function to be called when
 // `godot_nativescript_init` is called by Godot upon NativeScript initialization.
 // This is used so you can define a function that will run to register all of the
 // classes that you want exposed to Godot.
-func SetNativeScriptInit(initFunc func()) {
-	nativeScriptInit = initFunc
+func SetNativeScriptInit(initFunc ...func()) {
+	for _, init := range initFunc {
+		nativeScriptInit = append(nativeScriptInit, init)
+	}
 }
 
 /*------------------------------------------------------------------------------
@@ -426,7 +449,11 @@ func godot_nativescript_init(hdl unsafe.Pointer) {
 
 		return
 	}
-	nativeScriptInit()
+
+	// Loop through any defined nativeScriptInit methods and execute them.
+	for _, init := range nativeScriptInit {
+		init()
+	}
 }
 
 // This is a native Go function that is callable from C. It is called by the

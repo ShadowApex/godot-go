@@ -19,17 +19,58 @@ func EnableDebug() {
 }
 
 // Init is a special Go function that will be called upon library initialization.
+// This is also the script's entrypoint. It is called by Godot
+// when a script is loaded. It is responsible for registering all the classes.
 func init() {
 	// Configure GDNative to use our own NativeScript init function.
-	gdnative.SetNativeScriptInit(autoRegisterClasses)
+	gdnative.SetNativeScriptInit(
+		configureLogging,
+		registerClasses,
+		autoRegisterClasses,
+	)
 }
 
-// autoRegisterClasses is the script's entrypoint. It is called by Godot
-// when a script is loaded. It is responsible for registering all the classes.
-func autoRegisterClasses() {
+// configureLogging will set up the Go logger to output to the Godot console log.
+func configureLogging() {
 	// Configure logging.
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	log.SetOutput(Log)
+}
+
+// registerClasses will loop through all classes to register and register them
+// with Godot. It is the caller's responsibility for registering properties and
+// methods on this class.
+func registerClasses() {
+	for classString, constructor := range godotConstructorsToRegister {
+		if debug {
+			log.Println("Registering class:", classString)
+		}
+		// Call the constructor to get the BaseClass
+		class := constructor()
+
+		// Get the type of the class so we can register it.
+		classType := reflect.TypeOf(class)
+
+		// Create a registered class structure that will hold information about the
+		// cass and its methods.
+		regClass := newRegisteredClass(classType)
+
+		// Register our class in our Go registry.
+		classRegistry[classString] = regClass
+
+		// Set up our constructor and destructor function structs.
+		createFunc := createConstructor(classString, constructor)
+		destroyFunc := createDestructor(classString)
+
+		// Register our class with Godot.
+		gdnative.NativeScript.RegisterClass(classString, class.BaseClass(), createFunc, destroyFunc)
+	}
+}
+
+// autoRegisterClasses will automatically inspect all given classes to register
+// and use reflection to find exported methods and properties and register them
+// with Godot.
+func autoRegisterClasses() {
 	log.Println("Discovering classes to register with Godot...")
 
 	// Loop through our registered classes and register them with the Godot API.
@@ -89,6 +130,65 @@ func autoRegisterClasses() {
 				log.Println("    Type:", classField.Type.String())
 				log.Println("    Anonymous:", classField.Anonymous)
 				log.Println("    Package Path:", classField.PkgPath)
+			}
+
+			// Check to see if this field is a signal.
+			if classField.Type.String() == "godot.Signal" {
+				if debug {
+					log.Println("  Field is a signal type. Registering as signal.")
+				}
+
+				// Get the signal field
+				classValue := reflect.ValueOf(class)
+				signalField := classValue.Elem().FieldByName(classField.Name)
+				signalValue := signalField.Interface().(Signal)
+
+				// Construct our GDNative Signal struct from the discovered
+				// signal object.
+				signal := &gdnative.Signal{}
+				signal.Name = gdnative.String(signalValue.Name)
+				signal.NumArgs = gdnative.Int(len(signalValue.Args))
+				signal.NumDefaultArgs = gdnative.Int(len(signalValue.DefaultArgs))
+				signal.Args = []gdnative.SignalArgument{}
+				signal.DefaultArgs = []gdnative.Variant{}
+
+				// Construct the arguments for our GDNative Signal struct
+				for _, argValue := range signalValue.Args {
+					var arg gdnative.SignalArgument
+					arg.Name = argValue.Name
+					arg.Hint = argValue.Hint
+					arg.HintString = argValue.HintString
+					arg.Usage = argValue.Usage
+
+					// Get the type of the arg value
+					argType := reflect.TypeOf(argValue.Value)
+					if isGodotClass(argType) {
+						arg.Type = gdnative.Int(gdnative.VariantTypeObject)
+					} else {
+						arg.Type = gdnative.Int(VariantTypeToConstant(argType))
+					}
+
+					signal.Args = append(signal.Args, arg)
+				}
+
+				// Construct the default arguments for our GDNative Signal struct
+				for _, argValue := range signalValue.DefaultArgs {
+					var variant gdnative.Variant
+
+					// Get the type of the arg value
+					argType := reflect.TypeOf(argValue)
+					if isGodotClass(argType) {
+						obj := argValue.(Class).GetBaseObject()
+						variant = gdnative.NewVariantObject(obj)
+					} else {
+						variant = GoTypeToVariant(reflect.ValueOf(argValue))
+					}
+
+					signal.DefaultArgs = append(signal.DefaultArgs, variant)
+				}
+
+				gdnative.NativeScript.RegisterSignal(classString, signal)
+				continue
 			}
 
 			// Create our property getter/setter structs that we will register with Godot.
@@ -377,26 +477,25 @@ func createPropertySetter(classString, propertyString string, propertyType refle
 
 		// Check to see what kind of type this is. If it is a Godot class,
 		// we need to convert our variant into an object.
-		objectImplType := reflect.TypeOf((*ObjectImplementer)(nil)).Elem()
-		if propertyType.Implements(objectImplType) {
+		if isGodotClass(propertyType) {
 
 			// Create the variant as an object so we can get its class type.
 			propAsObject := &Object{}
 			propAsObject.SetBaseObject(property.AsObject())
 			typeString := propAsObject.GetClass()
-			if debug {
-				log.Println("Setting property '" + propertyString + "' with type '" + string(typeString) + "' as Object on instance (" + instanceString + ")")
-			}
 
 			// Get the actual class object.
 			obj := getActualClass(typeString, propAsObject.GetBaseObject())
+			if debug {
+				log.Println("Setting property '" + classString + "." + propertyString + "' (" + instanceString + ") with type '" + string(typeString) + "' as Object with ID (" + obj.GetBaseObject().ID() + ")")
+			}
 			propertyField.Set(reflect.ValueOf(obj))
 			return
 		}
 
 		// Otherwise, this should be a base variant type.
 		if debug {
-			log.Println("Setting property '" + propertyString + "' as a Variant on instance (" + instanceString + ")")
+			log.Println("Setting property '" + classString + "." + propertyString + "' as a Variant on instance (" + instanceString + ")")
 		}
 		value := VariantToGoType(property)
 		propertyField.Set(value)
@@ -425,10 +524,9 @@ func createPropertyGetter(classString, propertyString string, propertyType refle
 
 		// Check to see what kind of type this is. If it is a Godot class,
 		// we need to convert our object into a variant.
-		objectImplType := reflect.TypeOf((*ObjectImplementer)(nil)).Elem()
-		if propertyType.Implements(objectImplType) {
+		if isGodotClass(propertyType) {
 			if debug {
-				log.Println("Getting property '" + propertyString + "' as Object on instance (" + instanceString + ")")
+				log.Println("Getting property '" + classString + "." + propertyString + "' as Object on instance (" + instanceString + ")")
 			}
 
 			// Get the value of the field as an interface.
@@ -440,7 +538,7 @@ func createPropertyGetter(classString, propertyString string, propertyType refle
 
 		// Otherwise, convert the property to a base variant.
 		if debug {
-			log.Println("Getting property '" + propertyString + "' as a Variant on instance (" + instanceString + ")")
+			log.Println("Getting property '" + classString + "." + propertyString + "' as a Variant on instance (" + instanceString + ")")
 		}
 		return GoTypeToVariant(propertyField)
 	}
@@ -509,8 +607,7 @@ func createPropertyAttributes(field reflect.StructField) *gdnative.PropertyAttri
 	}
 
 	// Check to see if this field is a Godot object.
-	objectImplType := reflect.TypeOf((*ObjectImplementer)(nil)).Elem()
-	if field.Type.Implements(objectImplType) {
+	if isGodotClass(field.Type) {
 		propertyAttrs.Type = gdnative.Int(gdnative.VariantTypeObject)
 		return &propertyAttrs
 	}
@@ -710,6 +807,16 @@ func VariantTypeToConstant(t reflect.Type) gdnative.VariantType {
 		panic("Unknown type of exported godot field: " + t.String() + ". You probably need to use *" + t.String() + " or " + t.String() + "Implementer for this field.")
 	}
 	panic("Unknown type of exported godot field: " + t.String())
+}
+
+// isGodotClass will check to see if the given type implements the ObjectImplementer
+// interface.
+func isGodotClass(t reflect.Type) bool {
+	objectImplType := reflect.TypeOf((*ObjectImplementer)(nil)).Elem()
+	if t.Implements(objectImplType) {
+		return true
+	}
+	return false
 }
 
 // toGoMethodName will take the given Godot method name in snake_case and convert it

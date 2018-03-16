@@ -66,4 +66,12 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
+[connection signal="hit" from="Player" to="." method="game_over"]
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_Mob_timer_timeout"]
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_Score_timer_timeout"]
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_Start_timer_timeout"]
+
 
