@@ -13,6 +13,7 @@ import "C"
 
 import (
 	"log"
+	"reflect"
 	"unsafe"
 )
 
@@ -529,38 +530,30 @@ func go_method_func(godotObject *C.godot_object, methodData unsafe.Pointer, user
 	methodDataString := unsafeToGoString(methodData)
 	userDataString := unsafeToGoString(userData)
 
-	// Create a slice of Variants for the arguments
-	variantArgs := []Variant{}
+	// Convert the C arguments to a go slice of C variants
+	goVariants := make([]*C.godot_variant, 0)
+	sliceHeader := (*reflect.SliceHeader)(unsafe.Pointer(&goVariants))
+	sliceHeader.Cap = int(numArgs)
+	sliceHeader.Len = int(numArgs)
+	sliceHeader.Data = uintptr(unsafe.Pointer(args))
 
-	// Get the size of each godot_variant object pointer.
-	if debug {
-		log.Println("  Getting size of argument pointer")
-	}
-	size := unsafe.Sizeof(*args)
+	// Create a slice of Variants for the arguments
+	variantArgs := make([]Variant, int(numArgs))
 
 	// Panic if something's wrong.
 	if int(numArgs) > 50 {
 		panic("Too many arguments. Invalid method.")
 	}
 
-	// If we have arguments, append the first argument.
-	if int(numArgs) > 0 {
-		arg := *args
-		// Loop through all our arguments.
-		for i := 0; i < int(numArgs); i++ {
-			// Convert the variant into a Go Variant
-			variant := Variant{base: arg}
-
-			// Append the variant to our list of variants
-			variantArgs = append(variantArgs, variant)
-
-			// Convert the pointer into a uintptr so we can perform artithmetic on it.
-			arrayPtr := uintptr(unsafe.Pointer(args))
-
-			// Add the size of the godot_variant pointer to our array pointer to get the position
-			// of the next argument.
-			arg = (*C.godot_variant)(unsafe.Pointer(arrayPtr + size))
+	// Loop through all our arguments.
+	for i := 0; i < int(numArgs); i++ {
+		// Convert the variant into a Go Variant
+		variant := Variant{base: goVariants[i]}
+		if debug {
+			log.Println(methodDataString, "Argument", i, "type:", variant.GetType())
 		}
+		// Add the variant to the array
+		variantArgs[i] = variant
 	}
 
 	// Look up the method function in our MethodFuncRegistry for the function
